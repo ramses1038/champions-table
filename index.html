@@ -2454,8 +2454,8 @@ function setupHTML(){
       ${carousel('h',hids,p.hid,hid=>HEROES[hid].identity,heroSide,'히어로')}
       <div class="pname"><b>${esc(hFlip?h.ae:h.name)}</b><span>${esc(hFlip?h.name:h.ae)} · 카드를 누르면 ${hFlip?'히어로':'일상'} 면</span></div>
       <div class="asp">${Object.entries(ASPECTS).map(([id,a])=>{const taken=SF.players.some((q,x)=>x!==k&&q.aspect===id);return `<button class="ab ${p.aspect===id?'on':''}" data-act="sfAsp" data-a="${id}" style="--ac:${a[1]};--at:${a[2]}" ${taken?'disabled title="다른 플레이어가 사용 중"':''}>${a[0]}${id===h.aspect?'<small>초심자 덱</small>':''}</button>`}).join('')}</div>
-      <div class="stats">${stat('생명력',hm.hp,'hp')}${stat('공격',hm.atk)}${stat('저지',hm.thw)}${stat('방어',hm.def)}${stat('회복',hm.rec)}${stat('손 크기',`${hm.handH??'?'}<i>/</i>${hm.handA??'?'}`)}</div>
-      <p class="hint">손 크기: 히어로 면 / 일상 면 · 숙적 ${(()=>{const c=Object.keys(C).find(x=>C[x].kind==='minion'&&x.startsWith(h.nemSet+'-'));return c?esc(nm(c)):'-'})()}</p>
+      <div class="stats">${stat('생명력',hm.hp,'hp')}${stat('공격',hm.atk)}${stat('저지',hm.thw)}${stat('방어',hm.def)}${stat('회복',hm.rec)}${stat('손 크기 · 히어로',p.hid==='ironman'?`${hm.handH??'?'}<i>+</i>`:hm.handH)}${stat('손 크기 · 일상',hm.handA)}</div>
+      <p class="hint">${p.hid==='ironman'?'히어로 면 손 크기는 기술 업그레이드 1장마다 +1 (최대 7) · ':''}숙적 ${(()=>{const c=Object.keys(C).find(x=>C[x].kind==='minion'&&x.startsWith(h.nemSet+'-'));return c?esc(nm(c)):'-'})()}</p>
     </section>
     <div class="vsm" aria-hidden="true">VS</div>
     <section class="pick vpick" aria-label="빌런 선택">

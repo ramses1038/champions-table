@@ -470,6 +470,16 @@ body.ingame .pile-empty{border-color:#fff}
   .pname b{font-size:25px}
   .stt{min-width:46px;padding:3px 8px}.stt b{font-size:20px}
 }
+
+.flip3d{position:relative;width:var(--sc);aspect-ratio:63/88;transform-style:preserve-3d;transition:none}
+.flip3d.fb{transform:rotateY(180deg)}
+.flip3d .selc{position:absolute;inset:0;backface-visibility:hidden;-webkit-backface-visibility:hidden}
+.flip3d .selc.back{transform:rotateY(180deg)}
+.flip3d.toB{animation:flipB .5s ease-in-out}.flip3d.toA{animation:flipA .5s ease-in-out}
+@keyframes flipB{from{transform:rotateY(0)}50%{transform:rotateY(90deg) scale(1.06)}to{transform:rotateY(180deg)}}
+@keyframes flipA{from{transform:rotateY(180deg)}50%{transform:rotateY(90deg) scale(1.06)}to{transform:rotateY(0)}}
+.cmain{perspective:1200px}
+.fliptag{position:absolute;right:-6px;bottom:-10px;z-index:3;font:900 11px var(--f-body);background:var(--yel);color:var(--ink);border:2px solid var(--ink);border-radius:999px;padding:2px 9px;box-shadow:2px 2px 0 var(--ink)}
 @media (prefers-reduced-motion:reduce){*{transition:none!important;animation:none!important}}
 </style>
 </head>
@@ -2432,7 +2442,7 @@ function selCard(cid,side,cls=''){return `<div class="selc ${cls}">${faceOf(cid,
 function carousel(kind,list,cur,cidOf,sideOf,label){const n=list.length;const i=list.indexOf(cur);const pv=list[(i-1+n)%n],nx=list[(i+1)%n];const an=UI.sfAnim&&UI.sfAnim.k===kind?UI.sfAnim.d:'';
   return `<div class="car" data-swipe="${kind}">
     <button class="carr l" data-act="sfCycle" data-w="${kind}" data-d="-1" aria-label="이전 ${label}">‹</button>
-    <div class="cstage">${n>1?selCard(cidOf(pv),sideOf(pv),'side l'):''}<button class="cmain ${an?'in-'+an:''}" data-act="sfFlip" data-w="${kind}" aria-label="${label} 카드 뒤집어 보기">${selCard(cidOf(cur),sideOf(cur),'main')}</button>${n>1?selCard(cidOf(nx),sideOf(nx),'side r'):''}</div>
+    <div class="cstage">${n>1?selCard(cidOf(pv),sideOf(pv),'side l'):''}${kind==='h'?`<button class="cmain ${an?'in-'+an:''}" data-act="sfFlip" data-w="h" aria-label="카드 뒤집어 ${UI.sfFlip==='h'?'히어로':'일상'} 면 보기"><div class="flip3d ${UI.sfFlip==='h'?'fb':''} ${UI.sfFA||''}">${selCard(cidOf(cur),'a','main front')}${selCard(cidOf(cur),'b','main back')}</div><span class="fliptag">↻ 뒤집기</span></button>`:`<div class="cmain ${an?'in-'+an:''}">${selCard(cidOf(cur),sideOf(cur),'main')}</div>`}${n>1?selCard(cidOf(nx),sideOf(nx),'side r'):''}</div>
     <button class="carr r" data-act="sfCycle" data-w="${kind}" data-d="1" aria-label="다음 ${label}">›</button>
     <div class="cdots">${list.map(x=>`<i class="${x===cur?'on':''}"></i>`).join('')}</div></div>`}
 const stat=(l,v,c='')=>`<span class="stt ${c}"><small>${l}</small><b>${v??'?'}</b></span>`;
@@ -2451,16 +2461,16 @@ function setupHTML(){
     <section class="pick hpick" aria-label="히어로 선택">
       <div class="ptop"><h2>히어로 선택</h2><div class="seg">${[1,2,3,4].map(n=>`<button class="btn sm ${SF.players.length===n?'sel':''}" data-act="sfN" data-n="${n}">${n}명</button>`).join('')}</div></div>
       ${SF.players.length>1?`<div class="ptabs2">${SF.players.map((q,x)=>`<button class="pt ${x===k?'on':''}" data-act="sfPick" data-k="${x}" style="--ac:${ASPECTS[q.aspect][1]}"><small>P${x+1}</small>${esc(HEROES[q.hid].name)}</button>`).join('')}</div>`:''}
-      ${carousel('h',hids,p.hid,hid=>HEROES[hid].identity,heroSide,'히어로')}
-      <div class="pname"><b>${esc(hFlip?h.ae:h.name)}</b><span>${esc(hFlip?h.name:h.ae)} · 카드를 누르면 ${hFlip?'히어로':'일상'} 면</span></div>
+      ${carousel('h',hids,p.hid,hid=>HEROES[hid].identity,()=>'a','히어로')}
+      <div class="pname"><b>${esc(hFlip?h.ae:h.name)}</b><span>${hFlip?'일상 면':'히어로 면'} · 카드를 누르면 ${hFlip?esc(h.name)+' (히어로 면)':esc(h.ae)+' (일상 면)'}</span></div>
       <div class="asp">${Object.entries(ASPECTS).map(([id,a])=>{const taken=SF.players.some((q,x)=>x!==k&&q.aspect===id);return `<button class="ab ${p.aspect===id?'on':''}" data-act="sfAsp" data-a="${id}" style="--ac:${a[1]};--at:${a[2]}" ${taken?'disabled title="다른 플레이어가 사용 중"':''}>${a[0]}${id===h.aspect?'<small>초심자 덱</small>':''}</button>`}).join('')}</div>
-      <div class="stats">${stat('생명력',hm.hp,'hp')}${stat('공격',hm.atk)}${stat('저지',hm.thw)}${stat('방어',hm.def)}${stat('회복',hm.rec)}${stat('손 크기 · 히어로',p.hid==='ironman'?`${hm.handH??'?'}<i>+</i>`:hm.handH)}${stat('손 크기 · 일상',hm.handA)}</div>
-      <p class="hint">${p.hid==='ironman'?'히어로 면 손 크기는 기술 업그레이드 1장마다 +1 (최대 7) · ':''}숙적 ${(()=>{const c=Object.keys(C).find(x=>C[x].kind==='minion'&&x.startsWith(h.nemSet+'-'));return c?esc(nm(c)):'-'})()}</p>
+      <div class="stats">${stat('생명력',hm.hp,'hp')}${hFlip?stat('회복',hm.rec)+stat('손 크기',hm.handA):stat('공격',hm.atk)+stat('저지',hm.thw)+stat('방어',hm.def)+stat('손 크기',p.hid==='ironman'?`${hm.handH??'?'}<i>+</i>`:hm.handH)}</div>
+      <p class="hint">${p.hid==='ironman'&&!hFlip?'히어로 면 손 크기는 기술 업그레이드 1장마다 +1 (최대 7) · ':''}숙적 ${(()=>{const c=Object.keys(C).find(x=>C[x].kind==='minion'&&x.startsWith(h.nemSet+'-'));return c?esc(nm(c)):'-'})()}</p>
     </section>
     <div class="vsm" aria-hidden="true">VS</div>
     <section class="pick vpick" aria-label="빌런 선택">
       <div class="ptop"><h2>빌런 선택</h2><div class="seg"><button class="btn sm ${SF.expert?'':'sel'}" data-act="sfExp" data-v="0">일반</button><button class="btn sm ${SF.expert?'sel':''}" data-act="sfExp" data-v="1">전문가</button></div></div>
-      ${carousel('v',sids,SF.scen,vStage,sid=>(sid===SF.scen&&vFlip)?'b':'a','빌런')}
+      ${carousel('v',sids,SF.scen,vStage,()=>'a','빌런')}
       <div class="pname"><b>${esc(s.name)}</b><span>${SF.expert?'스테이지 II → III':'스테이지 I → II'} · 주요 음모 ${esc(nm(s.sSet[0]))}${s.sSet.length>1?` 외 ${s.sSet.length-1}단계`:''}</span></div>
       <div class="mods"><span class="ml">모듈식 조우 세트</span>${Object.entries(MODS).map(([id,m])=>`<button class="mb ${SF.mod===id?'on':''}" data-act="sfMod" data-m="${id}">${esc(m[0])}<small>위험도 ${m[1]}${id===s.mod?' · 추천':''}</small></button>`).join('')}</div>
       <div class="stats">${stat('생명력 (인원당)',`${meta(stages[0]).hp??'?'}<i>→</i>${meta(stages[1]).hp??'?'}`,'hp')}${stat('음모 임계점',sm.target!=null?sm.target+'<i>×인원</i>':'?')}${stat('가속',sm.accel!=null?sm.accel+'<i>×인원</i>':'?')}${stat('시작 위협',sm.start!=null?sm.start+'<i>×인원</i>':'0')}</div>
@@ -2946,7 +2956,7 @@ const A={
       const h=ids[i];SF.players[k].hid=h;const ua=SF.players.filter((q,x)=>x!==k).map(q=>q.aspect);if(!ua.includes(HEROES[h].aspect))SF.players[k].aspect=HEROES[h].aspect}
     else{const ids=Object.keys(SCEN);const i=(ids.indexOf(SF.scen)+dir+ids.length)%ids.length;SF.scen=ids[i];SF.mod=SCEN[ids[i]].mod}
     store.set('mct_setup',SF);render();UI.sfAnim=null},
-  sfFlip(d){UI.sfFlip=UI.sfFlip===d.w?null:d.w;render()},
+  sfFlip(d){if(d.w!=='h')return;UI.sfFlip=UI.sfFlip==='h'?null:'h';UI.sfFA=UI.sfFlip?'toB':'toA';render();UI.sfFA=null},
   sfAsp(d){const k=Math.min(UI.sfP||0,SF.players.length-1);SF.players[k].aspect=d.a;store.set('mct_setup',SF);render()},
   sfMod(d){SF.mod=d.m;store.set('mct_setup',SF);render()},
   sfExp(d){SF.expert=d.v==='1';store.set('mct_setup',SF);render()},

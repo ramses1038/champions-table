@@ -216,9 +216,9 @@ textarea{width:100%;min-height:200px;font:12px ui-monospace,Menlo,monospace;bord
 }
 @media (prefers-reduced-motion:reduce){*{transition:none!important;animation:none!important}}
 </style>
-
 </head>
 <body>
+
 <div class="app" id="app"></div>
 <div id="sheet" hidden><div class="scrim" data-act="closeSheet"></div><div class="panel2" id="sheetBody"></div></div>
 <div id="toast" hidden></div>
@@ -460,6 +460,1135 @@ Object.assign(DEF_META,{
  'justice-daredevil':{hp:3,atk:2,thw:2,catk:1,cthw:1},'justice-jessica-jones':{hp:3,atk:2,thw:1,catk:1,cthw:1},
  'leadership-hawkeye':{hp:3,atk:1,thw:1,catk:1,cthw:1},'leadership-maria-hill':{hp:2,atk:1,thw:2,catk:1,cthw:1},'leadership-vision':{hp:3,atk:2,thw:1,catk:1,cthw:1}
 });
+/* ===== 추가 등록 카드 (영문판 스캔 번역) ===== */
+Object.assign(CD,{
+"shehulk-identity": {
+"a": {
+"type": "히어로",
+"traits": "AVENGER. 감마.",
+"text": ""
+},
+"b": {
+"type": "일상",
+"traits": "변호사. 감마.",
+"text": ""
+}
+},
+"shehulk-hellcat": {
+"type": "동료",
+"text": "",
+"traits": "AVENGER.",
+"cost": 3,
+"res": "w"
+},
+"shehulk-gamma-slam": {
+"type": "이벤트",
+"text": "",
+"traits": "공격. 슈퍼파워.",
+"cost": 4,
+"res": "m",
+"heroOnly": 1
+},
+"shehulk-ground-stomp": {
+"type": "이벤트",
+"text": "",
+"traits": "슈퍼파워.",
+"cost": 2,
+"res": "m",
+"heroOnly": 1
+},
+"shehulk-legal-practice": {
+"type": "이벤트",
+"text": "",
+"traits": "기술. 저지.",
+"cost": 0,
+"res": "p",
+"aeOnly": 1
+},
+"shehulk-one-two-punch": {
+"type": "이벤트",
+"text": "",
+"traits": "기술.",
+"cost": 1,
+"res": "p",
+"window": "resp"
+},
+"shehulk-split-personality": {
+"type": "이벤트",
+"text": "",
+"cost": 3,
+"res": "e"
+},
+"shehulk-superhuman-law-division": {
+"type": "지원",
+"text": "",
+"traits": "장소.",
+"cost": 1,
+"res": "p"
+},
+"shehulk-focused-rage": {
+"type": "업그레이드",
+"text": "",
+"traits": "기술.",
+"cost": 3,
+"res": "e"
+},
+"shehulk-superhuman-strength": {
+"type": "업그레이드",
+"text": "",
+"traits": "슈퍼파워.",
+"cost": 2,
+"res": "m"
+},
+"shehulk-legal-work": {
+"type": "의무",
+"text": ""
+},
+"shehulk-nem-personal-challenge": {
+"type": "부가 음모",
+"text": "",
+"traits": "위기 아이콘 · 시작 위협 3 +1👤"
+},
+"shehulk-nem-titania": {
+"type": "하수인",
+"text": "",
+"traits": "야수. 정예."
+},
+"shehulk-nem-genetically-enhanced": {
+"type": "장착",
+"text": "",
+"traits": "상태."
+},
+"shehulk-nem-titanias-fury": {
+"type": "배반",
+"text": ""
+},
+"ironman-identity": {
+"a": {
+"type": "히어로",
+"traits": "AVENGER.",
+"text": ""
+},
+"b": {
+"type": "일상",
+"traits": "천재.",
+"text": ""
+}
+},
+"ironman-war-machine": {
+"type": "동료",
+"text": "",
+"traits": "S.H.I.E.L.D. 군인.",
+"cost": 4,
+"res": "w"
+},
+"ironman-repulsor-blast": {
+"type": "이벤트",
+"text": "",
+"traits": "공격. 슈퍼파워.",
+"cost": 1,
+"res": "p",
+"heroOnly": 1
+},
+"ironman-supersonic-punch": {
+"type": "이벤트",
+"text": "",
+"traits": "공격.",
+"cost": 2,
+"res": "e",
+"heroOnly": 1
+},
+"ironman-pepper-potts": {
+"type": "지원",
+"text": "",
+"traits": "페르소나.",
+"cost": 3,
+"res": "p"
+},
+"ironman-stark-tower": {
+"type": "지원",
+"text": "",
+"traits": "장소.",
+"cost": 2,
+"res": "m"
+},
+"ironman-arc-reactor": {
+"type": "업그레이드",
+"text": "",
+"traits": "아이템. 기술.",
+"cost": 2,
+"res": "e",
+"tech": 1
+},
+"ironman-mark-v-armor": {
+"type": "업그레이드",
+"text": "",
+"traits": "갑옷. 기술.",
+"cost": 3,
+"res": "m",
+"tech": 1
+},
+"ironman-mark-v-helmet": {
+"type": "업그레이드",
+"text": "",
+"traits": "갑옷. 기술.",
+"cost": 1,
+"res": "p",
+"tech": 1
+},
+"ironman-powered-gauntlets": {
+"type": "업그레이드",
+"text": "",
+"traits": "갑옷. 기술.",
+"cost": 2,
+"res": "e",
+"tech": 1
+},
+"ironman-rocket-boots": {
+"type": "업그레이드",
+"text": "",
+"traits": "갑옷. 기술.",
+"cost": 1,
+"res": "m",
+"tech": 1
+},
+"ironman-business-problems": {
+"type": "의무",
+"text": ""
+},
+"ironman-nem-imminent-overload": {
+"type": "부가 음모",
+"text": "",
+"traits": "가속 아이콘 · 시작 위협 3 +1👤"
+},
+"ironman-nem-whiplash": {
+"type": "하수인",
+"text": "",
+"traits": "범죄자."
+},
+"ironman-nem-electric-whip-attack": {
+"type": "배반",
+"text": ""
+},
+"ironman-nem-electromagnetic-backlash": {
+"type": "배반",
+"text": ""
+},
+"blackpanther-identity": {
+"a": {
+"type": "히어로",
+"traits": "AVENGER. 와칸다.",
+"text": ""
+},
+"b": {
+"type": "일상",
+"traits": "왕. 와칸다.",
+"text": ""
+}
+},
+"blackpanther-shuri": {
+"type": "동료",
+"text": "",
+"traits": "천재. 와칸다.",
+"cost": 2,
+"res": "p"
+},
+"blackpanther-ancestral-knowledge": {
+"type": "이벤트",
+"text": "",
+"cost": 1,
+"res": "m",
+"aeOnly": 1
+},
+"blackpanther-wakanda-forever": {
+"type": "이벤트",
+"text": "",
+"traits": "전술.",
+"cost": 1,
+"heroOnly": 1
+},
+"blackpanther-vibranium": {
+"type": "자원",
+"text": "",
+"res": "w",
+"resN": 2
+},
+"blackpanther-the-golden-city": {
+"type": "지원",
+"text": "",
+"traits": "장소. 와칸다.",
+"cost": 2,
+"res": "e"
+},
+"blackpanther-energy-daggers": {
+"type": "업그레이드",
+"text": "",
+"traits": "블랙 팬서. 무기.",
+"cost": 2,
+"res": "m",
+"bp": 1
+},
+"blackpanther-panther-claws": {
+"type": "업그레이드",
+"text": "",
+"traits": "블랙 팬서. 무기.",
+"cost": 2,
+"res": "e",
+"bp": 1
+},
+"blackpanther-tactical-genius": {
+"type": "업그레이드",
+"text": "",
+"traits": "블랙 팬서. 기술.",
+"cost": 2,
+"res": "p",
+"bp": 1
+},
+"blackpanther-vibranium-suit": {
+"type": "업그레이드",
+"text": "",
+"traits": "갑옷. 블랙 팬서.",
+"cost": 2,
+"res": "m",
+"bp": 1
+},
+"blackpanther-affairs-of-state": {
+"type": "의무",
+"text": ""
+},
+"blackpanther-nem-usurp-the-throne": {
+"type": "부가 음모",
+"text": "",
+"traits": "수령 아이콘 · 시작 위협 3👤"
+},
+"blackpanther-nem-killmonger": {
+"type": "하수인",
+"text": "",
+"traits": "암살자. 정예. 용병."
+},
+"blackpanther-nem-heart-shaped-herb": {
+"type": "배반",
+"text": ""
+},
+"blackpanther-nem-ritual-combat": {
+"type": "배반",
+"text": ""
+},
+"aggression-hulk": {
+"type": "동료",
+"text": "",
+"traits": "AVENGER. 감마.",
+"cost": 2,
+"res": "e"
+},
+"aggression-tigra": {
+"type": "동료",
+"text": "",
+"traits": "AVENGER.",
+"cost": 3,
+"res": "m"
+},
+"aggression-chase-them-down": {
+"type": "이벤트",
+"text": "",
+"traits": "저지.",
+"cost": 0,
+"res": "m",
+"window": "resp"
+},
+"aggression-relentless-assault": {
+"type": "이벤트",
+"text": "",
+"traits": "공격.",
+"cost": 2,
+"res": "e",
+"heroOnly": 1
+},
+"aggression-uppercut": {
+"type": "이벤트",
+"text": "",
+"traits": "공격.",
+"cost": 3,
+"res": "p",
+"heroOnly": 1
+},
+"aggression-the-power-of-aggression": {
+"type": "자원",
+"text": "",
+"res": "w",
+"dbl": "aggression"
+},
+"aggression-tac-team": {
+"type": "지원",
+"text": "",
+"traits": "S.H.I.E.L.D.",
+"cost": 3,
+"res": "e",
+"uses": 3
+},
+"aggression-combat-training": {
+"type": "업그레이드",
+"text": "",
+"traits": "기술.",
+"cost": 2,
+"res": "p",
+"one": 1
+},
+"protection-black-widow": {
+"type": "동료",
+"text": "",
+"traits": "S.H.I.E.L.D. 첩보원.",
+"cost": 3,
+"res": "p"
+},
+"protection-luke-cage": {
+"type": "동료",
+"text": "",
+"traits": "DEFENDER.",
+"cost": 4,
+"res": "e"
+},
+"protection-counter-punch": {
+"type": "이벤트",
+"text": "",
+"traits": "공격.",
+"cost": 0,
+"res": "p",
+"window": "resp"
+},
+"protection-get-behind-me": {
+"type": "이벤트",
+"text": "",
+"cost": 1,
+"res": "m",
+"window": "treachery"
+},
+"protection-the-power-of-protection": {
+"type": "자원",
+"text": "",
+"res": "w",
+"dbl": "protection"
+},
+"protection-med-team": {
+"type": "지원",
+"text": "",
+"traits": "S.H.I.E.L.D.",
+"cost": 3,
+"res": "e",
+"uses": 3
+},
+"protection-armored-vest": {
+"type": "업그레이드",
+"text": "",
+"traits": "갑옷.",
+"cost": 1,
+"res": "m",
+"one": 1
+},
+"protection-indomitable": {
+"type": "업그레이드",
+"text": "",
+"traits": "상태.",
+"cost": 1,
+"res": "e"
+},
+"klaw-v-klaw-i": {
+"type": "빌런 I",
+"traits": "MASTERS OF EVIL. · 생명력 12👤",
+"text": ""
+},
+"klaw-v-klaw-ii": {
+"type": "빌런 II",
+"traits": "MASTERS OF EVIL. · 생명력 18👤",
+"text": ""
+},
+"klaw-v-klaw-iii": {
+"type": "빌런 III",
+"traits": "MASTERS OF EVIL. · 생명력 22👤",
+"text": ""
+},
+"klaw-s-underground-distribution": {
+"a": {
+"type": "주요 음모 1A",
+"text": ""
+},
+"b": {
+"type": "주요 음모 1B",
+"text": ""
+}
+},
+"klaw-s-secret-rendezvous": {
+"a": {
+"type": "주요 음모 2A",
+"text": ""
+},
+"b": {
+"type": "주요 음모 2B",
+"text": ""
+}
+},
+"klaw-e-sonic-converter": {
+"type": "장착",
+"text": "",
+"traits": "무기. · 빌런 공격 +1"
+},
+"klaw-e-solid-sound-body": {
+"type": "장착",
+"text": "",
+"traits": "상태."
+},
+"klaw-e-armored-guard": {
+"type": "하수인",
+"text": "",
+"traits": "용병."
+},
+"klaw-e-weapons-runner": {
+"type": "하수인",
+"text": "",
+"traits": "용병."
+},
+"klaw-e-klaws-vengeance": {
+"type": "배반",
+"text": ""
+},
+"klaw-e-sonic-boom": {
+"type": "배반",
+"text": ""
+},
+"klaw-e-sound-manipulation": {
+"type": "배반",
+"text": ""
+},
+"klaw-e-defense-network": {
+"type": "부가 음모",
+"text": "",
+"traits": "위기 아이콘 · 시작 위협 2 +1👤"
+},
+"klaw-e-illegal-arms-factory": {
+"type": "부가 음모",
+"text": "",
+"traits": "수령 아이콘 · 시작 위협 3 +1👤"
+},
+"klaw-e-the-immortal-klaw": {
+"type": "부가 음모",
+"text": "",
+"traits": "가속 아이콘 · 시작 위협 3👤"
+},
+"ultron-v-ultron-i": {
+"type": "빌런 I",
+"traits": "안드로이드. · 생명력 17👤",
+"text": ""
+},
+"ultron-v-ultron-ii": {
+"type": "빌런 II",
+"traits": "안드로이드. · 생명력 22👤",
+"text": ""
+},
+"ultron-v-ultron-iii": {
+"type": "빌런 III",
+"traits": "안드로이드. · 생명력 27👤",
+"text": ""
+},
+"ultron-s-the-crimson-cowl": {
+"a": {
+"type": "주요 음모 1A",
+"text": ""
+},
+"b": {
+"type": "주요 음모 1B",
+"text": ""
+}
+},
+"ultron-s-assault-on-norad": {
+"a": {
+"type": "주요 음모 2A",
+"text": ""
+},
+"b": {
+"type": "주요 음모 2B",
+"text": ""
+}
+},
+"ultron-s-countdown-to-oblivion": {
+"a": {
+"type": "주요 음모 3A",
+"text": ""
+},
+"b": {
+"type": "주요 음모 3B",
+"text": ""
+}
+},
+"ultron-e-ultron-drones": {
+"type": "환경",
+"text": ""
+},
+"ultron-e-program-transmitter": {
+"type": "장착",
+"text": "",
+"traits": "아이템. 기술. · 빌런 음모 +1"
+},
+"ultron-e-upgraded-drones": {
+"type": "장착",
+"text": "",
+"traits": "상태."
+},
+"ultron-e-advanced-ultron-drone": {
+"type": "하수인",
+"text": "",
+"traits": "드론."
+},
+"ultron-e-android-efficiency": {
+"type": "배반",
+"text": ""
+},
+"ultron-e-rage-of-ultron": {
+"type": "배반",
+"text": ""
+},
+"ultron-e-repair-sequence": {
+"type": "배반",
+"text": ""
+},
+"ultron-e-swarm-attack": {
+"type": "배반",
+"text": ""
+},
+"ultron-e-drone-factory": {
+"type": "부가 음모",
+"text": "",
+"traits": "가속 아이콘 · 시작 위협 4"
+},
+"ultron-e-invasive-ai": {
+"type": "부가 음모",
+"text": "",
+"traits": "수령 아이콘 · 시작 위협 3👤"
+},
+"ultron-e-ultrons-imperative": {
+"type": "부가 음모",
+"text": "",
+"traits": "수령 아이콘 · 시작 위협 2👤"
+},
+"mastersofevil-the-masters-of-evil": {
+"type": "부가 음모",
+"text": "",
+"traits": "가속 아이콘 · 시작 위협 3👤"
+},
+"mastersofevil-radioactive-man": {
+"type": "하수인",
+"text": "",
+"traits": "정예. MASTERS OF EVIL."
+},
+"mastersofevil-whirlwind": {
+"type": "하수인",
+"text": "",
+"traits": "MASTERS OF EVIL."
+},
+"mastersofevil-tiger-shark": {
+"type": "하수인",
+"text": "",
+"traits": "MASTERS OF EVIL."
+},
+"mastersofevil-melter": {
+"type": "하수인",
+"text": "",
+"traits": "MASTERS OF EVIL."
+},
+"mastersofevil-masters-of-mayhem": {
+"type": "배반",
+"text": ""
+},
+"underattack-under-attack": {
+"type": "부가 음모",
+"text": "",
+"traits": "위기 아이콘 · 시작 위협 3"
+},
+"underattack-vibranium-chassis": {
+"type": "장착",
+"text": "",
+"traits": "갑옷."
+},
+"underattack-concussion-blasters": {
+"type": "장착",
+"text": "",
+"traits": "무기. · 빌런 공격 +1"
+},
+"underattack-concussive-blast": {
+"type": "배반",
+"text": ""
+},
+"legionsofhydra-legions-of-hydra": {
+"type": "부가 음모",
+"text": "",
+"traits": "수령 아이콘 · 시작 위협 3"
+},
+"legionsofhydra-madame-hydra": {
+"type": "하수인",
+"text": "",
+"traits": "정예. 하이드라."
+},
+"legionsofhydra-hydra-soldier": {
+"type": "하수인",
+"text": "",
+"traits": "하이드라."
+},
+"doomsdaychair-the-doomsday-chair": {
+"type": "부가 음모",
+"text": "",
+"traits": "가속 아이콘 · 시작 위협 8"
+},
+"doomsdaychair-modok": {
+"type": "하수인",
+"text": "",
+"traits": "사이보그. 정예."
+},
+"doomsdaychair-biomechanical-upgrades": {
+"type": "장착",
+"text": "",
+"traits": "기술."
+}
+});
+Object.assign(DEF_META,{
+"shehulk-identity": {
+"hp": 15,
+"handH": 4,
+"handA": 6,
+"thw": 1,
+"atk": 3,
+"rec": 5,
+"def": 2
+},
+"ironman-identity": {
+"hp": 9,
+"handH": 1,
+"handA": 6,
+"thw": 2,
+"atk": 1,
+"rec": 3,
+"def": 1
+},
+"blackpanther-identity": {
+"hp": 11,
+"handH": 5,
+"handA": 6,
+"thw": 2,
+"atk": 2,
+"rec": 4,
+"retal": 1,
+"def": 2
+},
+"shehulk-hellcat": {
+"hp": 3,
+"thw": 2,
+"atk": 1,
+"cthw": 1,
+"catk": 1
+},
+"ironman-war-machine": {
+"hp": 4,
+"thw": 1,
+"atk": 2,
+"cthw": 1,
+"catk": 1
+},
+"blackpanther-shuri": {
+"hp": 3,
+"thw": 1,
+"atk": 1,
+"cthw": 1,
+"catk": 1
+},
+"aggression-hulk": {
+"hp": 5,
+"atk": 3,
+"catk": 1,
+"nothw": true
+},
+"aggression-tigra": {
+"hp": 3,
+"thw": 1,
+"atk": 2,
+"cthw": 1,
+"catk": 1
+},
+"protection-black-widow": {
+"hp": 2,
+"thw": 2,
+"atk": 1,
+"cthw": 1,
+"catk": 1
+},
+"protection-luke-cage": {
+"hp": 5,
+"thw": 1,
+"atk": 2,
+"cthw": 1,
+"catk": 1,
+"tough": true
+},
+"shehulk-legal-work": {
+"boost": 2
+},
+"ironman-business-problems": {
+"boost": 2
+},
+"blackpanther-affairs-of-state": {
+"boost": 2
+},
+"shehulk-nem-titania": {
+"type": "minion",
+"sch": 1,
+"atk": 0,
+"hp": 6,
+"boost": 2
+},
+"shehulk-nem-personal-challenge": {
+"type": "side",
+"start": 3,
+"plusN": true,
+"crisis": true,
+"boost": 3
+},
+"shehulk-nem-genetically-enhanced": {
+"type": "attachment",
+"boost": 1
+},
+"shehulk-nem-titanias-fury": {
+"type": "treachery",
+"boost": 1,
+"star": true
+},
+"ironman-nem-whiplash": {
+"type": "minion",
+"sch": 2,
+"atk": 3,
+"hp": 4,
+"retal": 1,
+"boost": 2
+},
+"ironman-nem-imminent-overload": {
+"type": "side",
+"start": 3,
+"plusN": true,
+"accel": true,
+"boost": 3
+},
+"ironman-nem-electric-whip-attack": {
+"type": "treachery",
+"boost": 0,
+"star": true
+},
+"ironman-nem-electromagnetic-backlash": {
+"type": "treachery",
+"boost": 2
+},
+"blackpanther-nem-killmonger": {
+"type": "minion",
+"sch": 2,
+"atk": 2,
+"hp": 5,
+"boost": 2
+},
+"blackpanther-nem-usurp-the-throne": {
+"type": "side",
+"start": 3,
+"pp": true,
+"hazard": true,
+"boost": 3
+},
+"blackpanther-nem-heart-shaped-herb": {
+"type": "treachery",
+"boost": 0,
+"star": true
+},
+"blackpanther-nem-ritual-combat": {
+"type": "treachery",
+"boost": 2
+},
+"klaw-v-klaw-i": {
+"hp": 12,
+"atk": 0,
+"sch": 2
+},
+"klaw-v-klaw-ii": {
+"hp": 18,
+"atk": 1,
+"sch": 2
+},
+"klaw-v-klaw-iii": {
+"hp": 22,
+"atk": 2,
+"sch": 3,
+"tough": true
+},
+"klaw-s-underground-distribution": {
+"target": 6,
+"accel": 1,
+"start": 0
+},
+"klaw-s-secret-rendezvous": {
+"target": 8,
+"accel": 1,
+"start": 0
+},
+"klaw-e-sonic-converter": {
+"type": "attachment",
+"atkp": 1,
+"boost": 3,
+"star": true
+},
+"klaw-e-solid-sound-body": {
+"type": "attachment",
+"retal": 1,
+"boost": 3
+},
+"klaw-e-armored-guard": {
+"type": "minion",
+"sch": 0,
+"atk": 1,
+"hp": 3,
+"guard": true,
+"tough": true,
+"boost": 1
+},
+"klaw-e-weapons-runner": {
+"type": "minion",
+"sch": 1,
+"atk": 1,
+"hp": 2,
+"boost": 0,
+"star": true
+},
+"klaw-e-klaws-vengeance": {
+"type": "treachery",
+"boost": 1
+},
+"klaw-e-sonic-boom": {
+"type": "treachery",
+"boost": 0,
+"star": true
+},
+"klaw-e-sound-manipulation": {
+"type": "treachery",
+"boost": 2
+},
+"klaw-e-defense-network": {
+"type": "side",
+"start": 2,
+"plusN": true,
+"crisis": true,
+"boost": 2
+},
+"klaw-e-illegal-arms-factory": {
+"type": "side",
+"start": 3,
+"plusN": true,
+"hazard": true,
+"boost": 2
+},
+"klaw-e-the-immortal-klaw": {
+"type": "side",
+"start": 3,
+"pp": true,
+"accel": true,
+"boost": 0
+},
+"ultron-v-ultron-i": {
+"hp": 17,
+"atk": 2,
+"sch": 1
+},
+"ultron-v-ultron-ii": {
+"hp": 22,
+"atk": 2,
+"sch": 2
+},
+"ultron-v-ultron-iii": {
+"hp": 27,
+"atk": 4,
+"sch": 2
+},
+"ultron-s-the-crimson-cowl": {
+"target": 3,
+"accel": 1,
+"start": 0
+},
+"ultron-s-assault-on-norad": {
+"target": 10,
+"accel": 1,
+"start": 0
+},
+"ultron-s-countdown-to-oblivion": {
+"target": 5,
+"accel": 1,
+"start": 0
+},
+"ultron-e-ultron-drones": {
+"type": "attachment",
+"boost": 0
+},
+"ultron-e-program-transmitter": {
+"type": "attachment",
+"schp": 1,
+"boost": 1,
+"star": true
+},
+"ultron-e-upgraded-drones": {
+"type": "attachment",
+"boost": 1
+},
+"ultron-e-advanced-ultron-drone": {
+"type": "minion",
+"sch": 1,
+"atk": 1,
+"hp": 4,
+"guard": true,
+"boost": 2
+},
+"ultron-e-android-efficiency": {
+"type": "treachery",
+"boost": 0,
+"star": true
+},
+"ultron-e-rage-of-ultron": {
+"type": "treachery",
+"boost": 2
+},
+"ultron-e-repair-sequence": {
+"type": "treachery",
+"boost": 1,
+"star": true
+},
+"ultron-e-swarm-attack": {
+"type": "treachery",
+"boost": 1
+},
+"ultron-e-drone-factory": {
+"type": "side",
+"start": 4,
+"accel": true,
+"boost": 2
+},
+"ultron-e-invasive-ai": {
+"type": "side",
+"start": 3,
+"pp": true,
+"hazard": true,
+"boost": 3
+},
+"ultron-e-ultrons-imperative": {
+"type": "side",
+"start": 2,
+"pp": true,
+"hazard": true,
+"boost": 3
+},
+"mastersofevil-the-masters-of-evil": {
+"type": "side",
+"start": 3,
+"pp": true,
+"accel": true,
+"boost": 2
+},
+"mastersofevil-radioactive-man": {
+"type": "minion",
+"sch": 1,
+"atk": 1,
+"hp": 7,
+"boost": 0,
+"star": true
+},
+"mastersofevil-whirlwind": {
+"type": "minion",
+"sch": 1,
+"atk": 2,
+"hp": 6,
+"boost": 0,
+"star": true
+},
+"mastersofevil-tiger-shark": {
+"type": "minion",
+"sch": 1,
+"atk": 3,
+"hp": 6,
+"boost": 0,
+"star": true
+},
+"mastersofevil-melter": {
+"type": "minion",
+"sch": 1,
+"atk": 3,
+"hp": 5,
+"boost": 0,
+"star": true
+},
+"mastersofevil-masters-of-mayhem": {
+"type": "treachery",
+"boost": 2
+},
+"underattack-under-attack": {
+"type": "side",
+"start": 3,
+"crisis": true,
+"boost": 3
+},
+"underattack-vibranium-chassis": {
+"type": "attachment",
+"boost": 1
+},
+"underattack-concussion-blasters": {
+"type": "attachment",
+"atkp": 1,
+"retal": 1,
+"boost": 1
+},
+"underattack-concussive-blast": {
+"type": "treachery",
+"boost": 0,
+"star": true
+},
+"legionsofhydra-legions-of-hydra": {
+"type": "side",
+"start": 3,
+"hazard": true,
+"boost": 3
+},
+"legionsofhydra-madame-hydra": {
+"type": "minion",
+"sch": 2,
+"atk": 2,
+"hp": 6,
+"boost": 2,
+"star": true
+},
+"legionsofhydra-hydra-soldier": {
+"type": "minion",
+"sch": 1,
+"atk": 2,
+"hp": 4,
+"guard": true,
+"boost": 1
+},
+"doomsdaychair-the-doomsday-chair": {
+"type": "side",
+"start": 8,
+"accel": true,
+"boost": 3
+},
+"doomsdaychair-modok": {
+"type": "minion",
+"sch": 2,
+"atk": 2,
+"hp": 8,
+"retal": 2,
+"boost": 2
+},
+"doomsdaychair-biomechanical-upgrades": {
+"type": "attachment",
+"boost": 1
+}
+});
+KO["The Crimson Cowl"]="크림슨 카울";C["ultron-s-the-crimson-cowl"].name="크림슨 카울";
 for(const [cid,m] of Object.entries(DEF_META))if(m.type==='side'&&C[cid])C[cid].land=true;
 function cdOf(cid,side='a'){const d=CD[cid];if(!d)return null;return d.a?(d[side]||d.a):d}
 const resOf=cid=>{const d=CD[cid];return d&&!d.a?d.res||null:null};
@@ -520,29 +1649,33 @@ function allKeys(){const k=[];for(const c of Object.values(C)){k.push(c.cid+'|a'
 let G=store.get('mct_game',null);
 let hist=[];let VIEW='start';let SH=null;let UI={sel:new Set(),pickKey:null};
 const save=()=>store.set('mct_game',G);
-function act(fn){hist.push(JSON.stringify(G));if(hist.length>40)hist.shift();fn();if(G)cleanupHosts();checkEnds();save();render();if(G&&G.q&&G.q.length)SH=promptSheet;if(SH)drawSheet()}
+function act(fn){hist.push(JSON.stringify(G));if(hist.length>40)hist.shift();fn();if(G){cleanupHosts();syncHp()}checkEnds();save();render();if(G&&G.q&&G.q.length)SH=promptSheet;if(SH)drawSheet()}
 const qpush=x=>(G.q||(G.q=[])).push(x);
-function resumeSheet(){if(G.q&&G.q.length)return openSheet(promptSheet);if(G.vw&&G.phase==='villain')return openSheet(vwSheet);closeSheet()}
+function resumeSheet(){if(G.q&&G.q.length)return openSheet(promptSheet);if(G.setup)return openSheet(setupSheet);if(G.vw&&G.phase==='villain')return openSheet(vwSheet);closeSheet()}
 function hostedBy(t){const r=[];G.P.forEach(p=>p.play.forEach(i=>{if(G.I[i].host===t)r.push(i)}));return r}
 const webOn=t=>hostedBy(t).find(i=>G.I[i].cid==='spiderman-webbed-up');
-function defeatEnemy(iid){const h=hostedBy(iid);moveTo(iid,'enc.discard');
+function defeatEnemy(iid){const h=hostedBy(iid);const ii=G.I[iid];const z0=where(iid)||'';const km=z0.match(/^p(\d+)\.engaged$/);const ek=km?+km[1]:G.first;const wasD=!!ii.drone;
+  (ii.att||[]).forEach(a=>G.enc.discard.push(a));ii.att=[];
+  if(wasD)moveTo(iid,`p${ii.owner??ek}.discard`);else moveTo(iid,'enc.discard');
+  if(!wasD&&ii.cid==='legionsofhydra-hydra-soldier'){dealEnc(ek,1);setTimeout(()=>toast('하이드라 군인 격파 — 교전 중이던 플레이어가 조우 카드 1장을 받아요'),50)}
+  if(!wasD&&ii.cid==='ultron-e-advanced-ultron-drone'){putDrone(ek,1);setTimeout(()=>toast('향상된 Ultron 드론 — 덱 맨 위 카드가 드론으로 나왔어요'),50)}
   h.forEach(a=>{const ai=G.I[a];if(ai.cid==='spiderman-spider-tracer')qpush({t:'tracer'});ai.host=null;moveTo(a,`p${ai.owner??0}.discard`)})}
-function defeatSide(iid){const i=G.I[iid];const u=i.under||[];u.forEach(x=>{const o=G.I[x].owner??0;clean(x);G.P[o].hand.push(x)});i.under=[];moveTo(iid,'enc.discard');
+function defeatSide(iid){const i=G.I[iid];if(i.cid==='klaw-e-the-immortal-klaw'){G.vill.hp=Math.max(0,G.vill.hp-10);setTimeout(()=>toast('불멸의 Klaw 격파 — Klaw가 생명력 10을 잃었어요'),60)}const u=i.under||[];u.forEach(x=>{const o=G.I[x].owner??0;clean(x);G.P[o].hand.push(x)});i.under=[];moveTo(iid,'enc.discard');
   toast(`${nm(i.cid)} 격파${u.length?` — 뒷면 카드 ${u.length}장을 손으로 돌려줬어요`:''}`)}
-function vMax(){return (meta(vcid()).hp||0)*N()}
+function vMax(){return (meta(vcid()).hp||0)*N()+(G.sides.some(x=>G.I[x].cid==='klaw-e-the-immortal-klaw')?10:0)}
 const vBonus=k=>G.vill.attach.reduce((s2,x)=>s2+(meta(G.I[x].cid)[k]||0),0);
 function vAtk(){return (meta(vcid()).atk||0)+vBonus('atkp')}
 function vSch(){return (meta(vcid()).sch||0)+vBonus('schp')}
-function dmgVillain(v){const vi=G.I[G.vill.iid];if(v<=0)return;if(vi.st.tough){vi.st.tough=0;toast('강인함 카드로 피해가 막혔어요');return}
+function dmgVillain(v){const vi=G.I[G.vill.iid];if(v<=0)return;if(vcid()==='ultron-v-ultron-iii'&&anyDrone()){toast('드론 하수인이 있는 동안 Ultron은 피해를 입지 않아요');return}if(vi.st.tough){vi.st.tough=0;toast('강인함 카드로 피해가 막혔어요');return}
   const suit=G.vill.attach.find(x=>G.I[x].cid==='rhino-e-armored-rhino-suit');
   if(suit){const si=G.I[suit];si.dmg+=v;if(si.dmg>=5){moveTo(suit,'enc.discard');toast(`무장 Rhino 슈트가 피해 ${v}를 대신 받고 버려졌어요`)}else toast(`무장 Rhino 슈트가 피해 ${v}를 대신 받았어요 (${si.dmg}/5)`);return}
-  G.vill.hp=Math.max(0,G.vill.hp-v)}
+  G.vill.hp=Math.max(0,G.vill.hp-v);if(G.vill.attach.some(x=>G.I[x].cid==='underattack-vibranium-chassis')&&!vi.st.tough){vi.st.tough=1;toast('비브라늄 아머 — 빌런이 강인함을 얻었어요')}}
 function dmgId(k,v){const p=G.P[k];const ii=G.I[p.id];if(v<=0)return false;if(ii.st.tough){ii.st.tough=0;toast(`${hn(k)}: 강인함 카드로 피해를 막았어요`);return false}p.hp=Math.max(0,p.hp-v);return true}
 function dmgAlly(a,v){const ai=G.I[a];if(v<=0)return{hit:false,over:0};if(ai.st.tough){ai.st.tough=0;toast(`${nm(ai.cid)}: 강인함 카드로 피해를 막았어요`);return{hit:false,over:0}}
   const hp=meta(ai.cid).hp;const left=hp?hp-ai.dmg:Infinity;ai.dmg+=v;const dead=!!hp&&ai.dmg>=hp;if(dead){moveTo(a,`p${ai.owner??0}.discard`);toast(`${nm(ai.cid)} 격파`)}return{hit:true,over:dead?Math.max(0,v-left):0,dead}}
 const surge=k=>dealEnc(k,1,true);
-function sideEnter(c){const m=meta(G.I[c].cid);moveTo(c,'sides');G.I[c].thr=(m.start??0)*(m.pp?N():1)+(m.plusN?N():0);if(G.I[c].cid==='spiderman-nem-highway-robbery')hwEffect(c)}
-function minionEnter(c,k){const cid=G.I[c].cid;const m=meta(cid);moveTo(c,`p${k}.engaged`);if(m.tough)G.I[c].st.tough=1;
+function sideEnter(c){const m=meta(G.I[c].cid);moveTo(c,'sides');G.I[c].thr=(m.start??0)*(m.pp?N():1)+(m.plusN?N():0);if(G.I[c].cid==='spiderman-nem-highway-robbery')hwEffect(c);if(G.I[c].cid==='klaw-e-the-immortal-klaw')G.vill.hp+=10}
+function minionEnter(c,k,put){const cid=G.I[c].cid;const m=meta(cid);moveTo(c,`p${k}.engaged`);if(m.tough)G.I[c].st.tough=1;if(put){if(m.quick&&G.P[k].form==='hero')qpush({t:'qs',iid:c,k,val:m.atk??0,title:'속공',note:'교전하자마자 공격해요.'});return}
   G.P.forEach(q=>q.play.forEach(h=>{if(G.I[h].cid==='leadership-hawkeye'&&G.I[h].cnt>0)qpush({t:'hawk',h,m:c})}));
   if(cid==='rhino-e-shocker'){G.P.forEach((q,x)=>{if(!q.elim&&q.form==='hero')dmgId(x,1)});toast('Shocker — 모든 히어로에게 피해 1')}
   if(cid==='bombscare-hydra-bomber')qpush({t:'choice',k});
@@ -553,7 +1686,7 @@ const disc=c=>moveTo(c,'enc.discard');
 const ENC={
   'rhino-e-stampede':(c,k)=>{disc(c);if(G.P[k].form!=='hero'){surge(k);return '맹진 — 일상 형태라 쇄도'}qpush({t:'vatk',k,stun:true,title:'맹진'})},
   'standard-assault':(c,k)=>{disc(c);if(G.P[k].form!=='hero'){surge(k);return '습격 — 일상 형태라 쇄도'}qpush({t:'vatk',k,title:'습격'})},
-  'standard-gang-up':(c,k)=>{disc(c);if(G.P[k].form!=='hero'){surge(k);return '물량공세 — 일상 형태라 쇄도'}qpush({t:'vatk',k,title:'물량공세'});G.P[k].engaged.forEach(m=>qpush({t:'qs',iid:m,k,val:meta(G.I[m].cid).atk??0,title:'물량공세',note:'교전 중인 하수인도 공격해요.'}))},
+  'standard-gang-up':(c,k)=>{disc(c);if(G.P[k].form!=='hero'){surge(k);return '물량공세 — 일상 형태라 쇄도'}qpush({t:'vatk',k,title:'물량공세'});G.P[k].engaged.forEach(m=>qpush({t:'qs',iid:m,k,val:em(m).atk??0,title:'물량공세',note:'교전 중인 하수인도 공격해요.'}))},
   'standard-advance':(c,k)=>{disc(c);qpush({t:'vsch',title:'전진'})},
   'standard-caught-off-guard':(c,k)=>{disc(c);if(pickable(k).length)qpush({t:'pick',k});else{surge(k);return '허를 찔리다 — 버릴 업그레이드·지원이 없어 쇄도'}},
   'standard-shadow-of-the-past':(c,k)=>{disc(c);const ok=bringNemesis(k);if(!ok){surge(k);return '과거의 그림자 — 숙적 하수인이 나오지 않아 쇄도'}return '과거의 그림자 — 숙적이 등장했어요. 나머지 숙적 카드는 조우 덱에 섞었어요'},
@@ -572,28 +1705,32 @@ const ENC={
 ['rhino-e-enhanced-ivory-horn','rhino-e-charge','rhino-e-armored-rhino-suit'].forEach(x=>ENC[x]=(c,k)=>{moveTo(c,'vattach');return `${nm(G.I[c].cid)} — Rhino에게 장착`});
 const has=(k,cid)=>G.P[k].play.some(x=>G.I[x].cid===cid);
 const pbuff=k=>((G.buff||{})[k]||0);
-function heroStat(k,kind){const p=G.P[k];let v=meta(HEROES[p.hid].identity)[kind]??0;if(kind==='rec')return v;if(kind==='thw'&&has(k,'justice-heroic-intuition'))v+=1;return v+pbuff(k)}
+function heroStat(k,kind){const p=G.P[k];let v=meta(HEROES[p.hid].identity)[kind]??0;if(kind==='rec')return v;if(kind==='thw'&&has(k,'justice-heroic-intuition'))v+=1;if(kind==='atk'){if(has(k,'shehulk-superhuman-strength'))v+=2;if(has(k,'aggression-combat-training'))v+=1}return v+pbuff(k)}
 function allyStat(a,kind){const ai=G.I[a];let v=meta(ai.cid)[kind]??0;if(hostedBy(a).some(x=>G.I[x].cid==='leadership-inspired'))v+=1;v+=pbuff(ai.owner??0);v+=(ai.vb&&ai.vb[kind])||0;if(ai.cid==='justice-jessica-jones'&&kind==='thw')v+=G.sides.length;return v}
 const allyLimit=k=>3+G.P[k].play.filter(x=>G.I[x].cid==='leadership-the-triskelion').length;
 const costRed=k=>((G.costRed||{})[k]||0);
 function cleanupHosts(){Object.values(G.I).forEach(x=>{if(!x.host)return;const z=where(x.host);if(!(z==='villain'||(z&&/\.(play|engaged)$/.test(z)))){x.host=null;const zz=where(x.id);if(zz&&/\.play$/.test(zz))moveTo(x.id,`p${x.owner??0}.discard`)}})}
-function endPhaseBuffs(){G.buff={};G.costRed={};Object.values(G.I).forEach(x=>{if(x.vb)x.vb=null})}
+function endPhaseBuffs(){G.buff={};G.costRed={};G.aer={};Object.values(G.I).forEach(x=>{if(x.vb)x.vb=null})}
 function allyEnter(iid,k){const cid=G.I[iid].cid;
   if(cid==='basic-nick-fury')qpush({t:'nf',k});
   if(cid==='basic-mockingbird')qpush({t:'stunE'});
   if(cid==='leadership-maria-hill'){G.P.forEach((q,x)=>{if(!q.elim)draw(x,1)});toast('Maria Hill — 각 플레이어가 1장씩 뽑았어요')}
   if(cid==='captainmarvel-spider-woman'){G.I[G.vill.iid].st.conf=1;toast('Spider-Woman — 빌런을 혼란에 빠뜨렸어요')}
   if(cid==='spiderman-black-cat')blackCat(k);
+  if(cid==='blackpanther-shuri')qpush({t:'shuri',k});
+  if(meta(cid).tough)G.I[iid].st.tough=1;
   const d=cdOf(cid)||{};if(d.uses)G.I[iid].cnt=d.uses}
-function aerial(k){const p=G.P[k];return p.form==='hero'&&p.play.some(x=>G.I[x].cid==='captainmarvel-cosmic-flight')}
-function heroDef(k){const p=G.P[k];let d=meta(HEROES[p.hid].identity).def??0;if(p.form==='hero'&&p.play.some(x=>G.I[x].cid==='captainmarvel-captain-marvels-helmet'))d+=aerial(k)?2:1;return d}
+function aerial(k){const p=G.P[k];return p.form==='hero'&&(p.play.some(x=>G.I[x].cid==='captainmarvel-cosmic-flight')||!!(G.aer||{})[k])}
+function heroDef(k){const p=G.P[k];let d=meta(HEROES[p.hid].identity).def??0;if(p.form==='hero'&&p.play.some(x=>G.I[x].cid==='captainmarvel-captain-marvels-helmet'))d+=aerial(k)?2:1;if(has(k,'protection-armored-vest'))d+=1;return d}
 const hasCF=k=>G.P[k].form==='hero'&&G.P[k].play.some(x=>G.I[x].cid==='captainmarvel-cosmic-flight');
 function yonRogg(){const m=G.sides.find(x=>G.I[x].cid==='captainmarvel-nem-the-psyche-magnitron');if(m){G.I[m].thr+=1;setTimeout(()=>toast('Yon-Rogg — 사이키 매그니트론에 위협 1'),60)}}
 const resN=x=>(cdOf(G.I[x].cid)||{}).resN||1;
 function payTotal(u){const p=G.P[u.k];const hand=p.hand.filter(x=>x!==u.iid);const okR=x=>{if(!u.need)return true;const r=resOf(G.I[x].cid);return !r||r===u.need||r==='w'};
   const pc=u.forCid||G.I[u.iid].cid;const n=x=>{const d=cdOf(G.I[x].cid)||{};let r=d.resN||1;if(d.dbl&&C[pc]&&C[pc].set===d.dbl)r*=2;return r};
-  return hand.filter(x=>u.sel.has(x)&&okR(x)).reduce((a,x)=>a+n(x),0)+payGens(u.k).filter(g=>u.gen.has(g.id)&&(!u.need||g.res==='w'||g.res===u.need)).length}
-function idActs(k){const p=G.P[k];if(p.hid!=='captainmarvel'||p.elim)return '';const o=G.once||{};
+  return hand.filter(x=>u.sel.has(x)&&okR(x)).reduce((a,x)=>a+n(x),0)+payGens(u.k).filter(g=>u.gen.has(g.id)&&(!u.need||g.res==='w'||g.res===u.need)).reduce((a,g)=>a+(g.n||1),0)}
+function idActs(k){const p=G.P[k];const o=G.once||{};if(p.hid==='ironman'&&p.form==='ae'&&!p.elim)return `<div class="btns"><button class="btn sm" data-act="futStart" data-k="${k}" ${o['fut'+k]?'disabled':''}>미래학자: 덱 위 3장 중 1장 가져오기</button></div>`;
+  if(p.hid==='shehulk'&&p.form==='ae'&&!p.elim)return `<span class="sub">이의 있습니다!: 위협이 놓이는 화면에서 버튼으로 써요 ${o['obj'+k]?'(이번 라운드 사용함)':''}</span>`;
+  if(p.hid!=='captainmarvel'||p.elim)return '';
   if(p.form==='hero')return `<div class="btns"><button class="btn sm" data-act="cmCycle" data-k="${k}" ${o['cm'+k]?'disabled':''}>순환: 에너지 1 → 피해 1 치료·1장 뽑기</button></div>`;
   return `<div class="btns">${G.P.map((q,x)=>q.elim?'':`<button class="btn sm" data-act="cdCmd" data-k="${k}" data-t="${x}" ${o['cd'+k]?'disabled':''}>지휘관: ${esc(hn(x))} 1장 뽑기</button>`).join('')}</div>`}
 Object.assign(ENC,{
@@ -615,19 +1752,19 @@ function zones(){const z=[['enc.deck',G.enc.deck],['enc.discard',G.enc.discard],
 function where(iid){if(G.vill.iid===iid)return 'villain';if(G.sch.iid===iid)return 'scheme';const k=G.P.findIndex(p=>p.id===iid);if(k>=0)return `p${k}.identity`;
   for(const [n,a] of zones())if(a.includes(iid))return n;return null}
 function pull(iid){for(const [,a] of zones()){const k=a.indexOf(iid);if(k>=0){a.splice(k,1);return}}}
-function clean(iid){Object.assign(G.I[iid],{ex:false,dmg:0,thr:0,cnt:0,st:{}})}
+function clean(iid){Object.assign(G.I[iid],{ex:false,dmg:0,thr:0,cnt:0,st:{},drone:false})}
 function zoneArr(name){
   if(name.startsWith('enc.'))return G.enc[name.slice(4)];
   if(name==='sides')return G.sides;if(name==='vattach')return G.vill.attach;if(name==='removed')return G.removed;if(name==='limbo')return G.limbo;
   const m=name.match(/^p(\d+)\.(\w+)$/);if(m)return G.P[+m[1]][m[2]==='deckb'?'deck':m[2]];return null}
 const INPLAY=n=>/\.(play|engaged)$/.test(n)||n==='sides'||n==='vattach'||n==='limbo';
-function moveTo(iid,dest){pull(iid);const a=zoneArr(dest);if(!INPLAY(dest))clean(iid);
+function moveTo(iid,dest){pull(iid);const a=zoneArr(dest);const ii0=G.I[iid];if(ii0.att&&ii0.att.length&&!/\.engaged$/.test(dest)){G.enc.discard.push(...ii0.att);ii0.att=[]}if(!INPLAY(dest))clean(iid);
   if(dest.endsWith('deckb'))a.unshift(iid);else a.push(iid);
   const m=dest.match(/^p(\d+)\./);if(m&&!C[G.I[iid].cid].enc)G.I[iid].owner=+m[1];}
 const N=()=>G.N;
 const hn=k=>HEROES[G.P[k].hid].name;
 function order(){const o=[];for(let x=0;x<G.P.length;x++){const k=(G.first+x)%G.P.length;if(!G.P[k].elim)o.push(k)}return o}
-function hs(p){const m=meta(HEROES[p.hid].identity);return p.form==='hero'?(m.handH??m.handA??5):(m.handA??m.handH??5)}
+function hs(p){const m=meta(HEROES[p.hid].identity);if(p.hid==='ironman'&&p.form==='hero'&&m.handH!=null)return Math.min(7,m.handH+p.play.filter(isTech).length);return p.form==='hero'?(m.handH??m.handA??5):(m.handA??m.handH??5)}
 const vcid=()=>G.vill.stages[G.vill.idx];
 const scid=()=>G.sch.stages[G.sch.idx];
 function schTarget(){const m=meta(scid());return m.target!=null?m.target*N():null}
@@ -688,12 +1825,12 @@ function faceOf(cid,side='a',down=false){
 }
 function toks(i){
   let t='';if(i.dmg)t+=`<span class="tk dmg">${i.dmg}</span>`;if(i.thr)t+=`<span class="tk thr"><i>${i.thr}</i></span>`;if(i.cnt)t+=`<span class="tk cnt">${i.cnt}</span>`;
-  let s='';if(i.st.stun)s+=`<span class="st stun">기절</span>`;if(i.st.conf)s+=`<span class="st conf">혼란</span>`;if(i.st.tough)s+=`<span class="st tough">강인함</span>`;if(i.host)s+=`<span class="st" style="background:#fff">장착</span>`;if(i.under&&i.under.length)s+=`<span class="st" style="background:#fff">뒷면 ${i.under.length}</span>`;
+  let s='';if(i.st.stun)s+=`<span class="st stun">기절</span>`;if(i.st.conf)s+=`<span class="st conf">혼란</span>`;if(i.st.tough)s+=`<span class="st tough">강인함</span>`;if(i.host)s+=`<span class="st" style="background:#fff">장착</span>`;if(i.under&&i.under.length)s+=`<span class="st" style="background:#fff">뒷면 ${i.under.length}</span>`;if(i.drone)s+=`<span class="st" style="background:#fff">드론</span>`;if(i.att&&i.att.length)s+=`<span class="st" style="background:#fff">장착 ${i.att.length}</span>`;
   return (t?`<div class="toks">${t}</div>`:'')+(s?`<div class="sts">${s}</div>`:'');
 }
 function slot(iid,o={}){const i=G.I[iid];if(!i)return '';const c=C[i.cid];
   const land=c.land||(o.land);
-  return `<button class="slot ${land?'land':''} ${i.ex?'ex':''}" data-act="${o.act||'card'}" data-i="${iid}" aria-label="${esc(nm(i.cid,i.side))}">${faceOf(i.cid,i.side,o.down)}${o.noTok?'':toks(i)}${o.sel?'<span class="toks"><span class="tk cnt">✓</span></span>':''}</button>`}
+  return `<button class="slot ${land?'land':''} ${i.ex?'ex':''}" data-act="${o.act||'card'}" data-i="${iid}" aria-label="${esc(nm(i.cid,i.side))}">${faceOf(i.cid,i.side,o.down||i.drone)}${o.noTok?'':toks(i)}${o.sel?'<span class="toks"><span class="tk cnt">✓</span></span>':''}</button>`}
 function pile(arr,kind,act,label,showTop){
   const n=arr.length;let inner;
   if(!n)inner='<span class="pile-empty"></span>';
@@ -781,17 +1918,17 @@ function basicBtns(k){const p=G.P[k];const m=meta(HEROES[p.hid].identity);const 
 function targetSheet(){const t=UI.tg||(G.q&&G.q[0]&&G.q[0].t==='tg'?G.q[0]:null);if(!t)return null;const atk=t.kind==='atk';
   const hero=t.src.startsWith('h:');const ev=t.src.startsWith('e:');const srcName=ev?t.name:hero?hn(+t.src.slice(2)):nm(G.I[t.src.slice(2)].cid);
   const crisis=G.sides.some(i=>meta(G.I[i].cid).crisis);const tg=[];
-  const gk=t.src.startsWith('a:')?(G.I[t.src.slice(2)].owner??G.view):+t.src.slice(2);const guard=atk&&G.P[gk]&&G.P[gk].engaged.some(m=>meta(G.I[m].cid).guard);
-  if(atk){tg.push(['villain',`${nm(vcid())} · 생명력 ${G.vill.hp}`]);G.P.forEach(q=>q.engaged.forEach(i=>{const ii=G.I[i];const hp=meta(ii.cid).hp;tg.push([i,`${nm(ii.cid)} · 피해 ${ii.dmg}${hp?'/'+hp:''}`])}))}
+  const gk=t.src.startsWith('a:')?(G.I[t.src.slice(2)].owner??G.view):+t.src.slice(2);const guard=atk&&G.P[gk]&&G.P[gk].engaged.some(m=>em(m).guard);
+  if(atk){if(!t.minionOnly)tg.push(['villain',`${nm(vcid())} · 생명력 ${G.vill.hp}`]);G.P.forEach(q=>q.engaged.forEach(i=>{const ii=G.I[i];const hp=em(i).hp;tg.push([i,`${en(i)} · 피해 ${ii.dmg}${hp?'/'+hp:''}`])}))}
   else{tg.push(['scheme',`주요 음모 · 위협 ${G.sch.threat}`]);G.sides.forEach(i=>{const ii=G.I[i];tg.push([i,`${nm(ii.cid)} · 위협 ${ii.thr}`])})}
   if(t.excl){for(let x=tg.length-1;x>=0;x--)if(tg[x][0]===t.excl)tg.splice(x,1)}
   return head(`${esc(srcName)} · ${atk?'공격':'저지'}`)+stepper('tgVal','',t.val,atk?'입힐 피해':'제거할 위협')+
     (!atk&&crisis?'<p class="note">위기 아이콘이 있는 부가 음모가 있어요. 그 부가 음모를 먼저 격파해야 주요 음모의 위협을 제거할 수 있어요.</p>':'')+
     `<p class="sub">${ev?'대상을 누르면 바로 적용해요.':`대상을 누르면 ${hero?'아이덴티티 카드':'동료'}를 소진하고 바로 적용해요.${hero?'':' 부수적 피해도 함께 처리돼요.'}`}</p>
     ${guard?'<p class="note">경호 하수인과 교전 중이라 빌런을 공격할 수 없어요.</p>':''}
-    <div class="btns">${tg.map(([v,l])=>`<button class="btn ${atk?'go':'blue'}" data-act="tgHit" data-t="${v}" ${(!atk&&v==='scheme'&&crisis)||(guard&&v==='villain')?'disabled':''}>${esc(l)}</button>`).join('')}${ev?'<button class="btn" data-act="tgSkip">대상 없이 넘어가기</button>':''}</div>`}
+    <div class="btns">${tg.map(([v,l])=>`<button class="btn ${atk?'go':'blue'}" data-act="tgHit" data-t="${v}" ${(!atk&&v==='scheme'&&(crisis||noMainRemove()))||(guard&&v==='villain')?'disabled':''}>${esc(l)}</button>`).join('')}${ev?'<button class="btn" data-act="tgSkip">대상 없이 넘어가기</button>':''}</div>`}
 
-function resolvePlay(iid,k,then,u){const i=G.I[iid];const c=cdOf(i.cid);
+function resolvePlay(iid,k,then,u){const i=G.I[iid];const c=cdOf(i.cid);if(then&&resolveThen(iid,k,then,u))return;
   if(then==='mtc'){moveTo(iid,`p${k}.play`);G.I[iid].owner=k;allyEnter(iid,k);toast(`소집명령 — ${nm(i.cid)}이(가) 플레이 영역에 들어왔어요`);return}
   if(then==='ten'){moveTo(iid,`p${k}.discard`);G.I[G.P[k].id].ex=false;toast('불굴의 의지 — 히어로를 준비했어요');return}
   if(then==='visT'||then==='visA'){G.once=G.once||{};G.once['vis'+iid]=1;i.vb=then==='visT'?{thw:2}:{atk:2};toast(`Vision — 페이즈 끝까지 ${then==='visT'?'저지':'공격'} +2`);return}
@@ -799,7 +1936,7 @@ function resolvePlay(iid,k,then,u){const i=G.I[iid];const c=cdOf(i.cid);
   if(then==='echarge'){i.cnt+=u.x;toast(`에너지 방출에 에너지 카운터 ${u.x}개를 놓았어요 (총 ${i.cnt})`);return}
   if(then==='horn'){moveTo(iid,'enc.discard');toast('강화 코뿔을 버렸어요');return}
   if(then==='ess'){moveTo(iid,`p${k}.discard`);const w=G.vw;if(w&&w.cur){moveTo(w.cur,'enc.discard');w.cur=null}toast('향상된 스파이더센스 — 배반 카드의 공개될 때 효과를 무효화했어요');return}
-  if(c.type==='이벤트'){moveTo(iid,`p${k}.discard`);
+  if(c.type==='이벤트'){moveTo(iid,`p${k}.discard`);if(resolveEvent2(iid,k,u))return;
     if(i.cid==='basic-haymaker'){const idi=G.I[G.P[k].id];if(idi.st.stun){idi.st.stun=0;toast('기절 상태라 공격 대신 기절 카드를 버렸어요')}else qpush({t:'tg',src:'e:'+k,kind:'atk',val:3,name:'강타'})}
     if(i.cid==='basic-first-aid')qpush({t:'heal',val:2});
     if(i.cid==='justice-for-justice'){const idi=G.I[G.P[k].id];if(idi.st.conf){idi.st.conf=0;toast('혼란 상태라 저지 대신 혼란 카드를 버렸어요')}else qpush({t:'tg',src:'e:'+k,kind:'thw',val:u&&u.paidM?4:3,name:'정의를 위해!'})}
@@ -821,6 +1958,7 @@ function cardText(cid,side){const d=cdOf(cid,side);if(!d)return '';
 function playBtn(iid){const i=G.I[iid];const d=cdOf(i.cid);if(!d||d.cost==null)return '';
   if(d.window==='defense')return '<p class="sub">공격으로 피해를 입으려 할 때 쓰는 카드예요. 빌런 페이즈의 공격 화면에 버튼이 나타나요.</p>';
   if(d.window==='treachery')return '<p class="sub">배반 카드가 공개될 때 쓰는 카드예요. 빌런 페이즈의 조우 카드 공개 화면에 버튼이 나타나요.</p>';
+  if(d.window==='resp')return '<p class="sub">조건이 맞으면(공격·방어 직후 등) 쓸지 자동으로 물어봐요.</p>';
   if(d.window==='scheme')return '<p class="sub">위협이 놓이려 할 때 쓰는 카드예요. 빌런이 암약하는 화면에 버튼이 나타나요.</p>';
   if(d.type==='자원')return '';
   const red=Math.min(costRed(i.owner??G.view),d.cost);
@@ -839,11 +1977,31 @@ function cardButtons(iid,z){const i=G.I[iid];const p=G.P[i.owner??G.view];let h=
   if(i.cid==='captainmarvel-energy-channel'&&z&&/\.play$/.test(z))h+=`<button class="btn sm" data-act="ecCharge" data-i="${iid}">행동: 에너지 지불 → 카운터 놓기</button><button class="btn sm go" data-act="ecFire" data-i="${iid}" ${!p||p.form!=='hero'||!i.cnt?'disabled':''}>히어로 행동(공격): 버리고 피해 ${Math.min(10,i.cnt*2)}</button>`;
   if(i.cid==='captainmarvel-alpha-flight-station'&&z&&/\.play$/.test(z))h+=`<button class="btn sm blue" data-act="afs" data-i="${iid}" ${i.ex?'disabled':''}>행동: 소진하고 1장 버리기 → ${p&&p.hid==='captainmarvel'&&p.form==='ae'?2:1}장 뽑기</button>`;
   if(i.cid==='rhino-e-enhanced-ivory-horn'&&z==='vattach')h+=`<button class="btn sm go" data-act="hornPay" data-i="${iid}">히어로 행동: 물리력 3 지불하고 버리기</button>`;
+  const hf=p&&p.form==='hero',af=p&&p.form==='ae';const B=(w,l,dis,c='blue')=>`<button class="btn sm ${c}" data-act="cardUse" data-i="${iid}" data-w="${w}" ${dis?'disabled':''}>${l}</button>`;
+  if(inPlay){
+    if(i.cid==='shehulk-hellcat')h+=B('hellcat','행동: Hellcat을 손으로 되돌리기',false,'');
+    if(i.cid==='shehulk-superhuman-law-division')h+=B('sld','일상 행동(저지): 소진·정신력 1 → 위협 2 제거',i.ex||!af);
+    if(i.cid==='shehulk-focused-rage')h+=B('rage','히어로 행동: 소진·피해 1 → 1장 뽑기',i.ex||!hf);
+    if(i.cid==='ironman-war-machine')h+=B('wm','행동: 소진·자신에게 피해 2 → 각 적에게 피해 1',i.ex,'go');
+    if(i.cid==='ironman-stark-tower')h+=B('tower','일상 행동: 소진 → 기술 업그레이드 되돌리기',i.ex||!af);
+    if(i.cid==='ironman-arc-reactor')h+=B('arc','히어로 행동: 소진 → Iron Man 준비',i.ex||!hf);
+    if(i.cid==='ironman-mark-v-helmet')h+=B('helmet',`히어로 행동(저지): 소진 → 위협 1 제거${p&&aerial(own)?' (각 음모)':''}`,i.ex||!hf);
+    if(i.cid==='ironman-powered-gauntlets')h+=B('gaunt',`히어로 행동(공격): 소진 → 피해 ${p&&aerial(own)?2:1}`,i.ex||!hf,'go');
+    if(i.cid==='ironman-rocket-boots')h+=B('boots','히어로 행동: 소진·정신력 1 → 공중 특성',i.ex||!hf);
+    if(i.cid==='ironman-pepper-potts')h+=`<span class="sub">카드를 낼 때 결제 화면에서 Pepper Potts 자원을 쓸 수 있어요</span>`;
+    if(i.cid==='blackpanther-the-golden-city')h+=B('golden','일상 행동: 소진 → 2장 뽑기',i.ex||!af);
+    if(i.cid==='aggression-tac-team')h+=B('tac',`행동: 소진·카운터 1 → 피해 2 (남은 ${i.cnt})`,i.ex||!i.cnt,'go');
+    if(i.cid==='protection-med-team')h+=B('med',`행동: 소진·카운터 1 → 피해 2 치료 (남은 ${i.cnt})`,i.ex||!i.cnt);
+    if(isBPU(iid))h+=`<span class="sub">"와칸다 포에버!" 이벤트를 내면 특수 능력이 발동해요</span>`}
+  if(z==='vattach'&&['klaw-e-sonic-converter','klaw-e-solid-sound-body','ultron-e-upgraded-drones','ultron-e-program-transmitter','underattack-vibranium-chassis','underattack-concussion-blasters'].includes(i.cid))h+=B('encd','히어로 행동: 자원 지불하고 버리기',false,'go');
+  if(i.att&&i.att.length)h+=`<span class="sub">장착된 조우 카드: ${i.att.map(a=>esc(nm(G.I[a].cid))).join(', ')}</span>`;
+  if(i.drone)h+=`<span class="sub">뒷면 드론 하수인 (음모 1·공격 ${em(iid).atk}·생명력 ${em(iid).hp}). 격파되면 주인의 버린 더미로 가요.</span>`;
   if(i.cid==='spiderman-nem-highway-robbery'&&z==='sides'&&!i.revDone)h+=`<button class="btn sm" data-act="hwRev" data-i="${iid}">공개될 때 효과 처리</button>`;
   return h?`<div class="btns">${h}</div>`:''}
 function payGens(k){const p=G.P[k];const g=[];
   if(p.hid==='spiderman'&&p.form==='ae'&&!(G.once||{})['pp'+k])g.push({id:'pp',label:'Peter Parker — 과학자',res:'m'});
-  p.play.forEach(i=>{const ii=G.I[i];if(ii.cid==='spiderman-web-shooter'&&p.form==='hero'&&!ii.ex&&ii.cnt>0)g.push({id:'ws:'+i,label:`웹슈터 · 웹 카운터 ${ii.cnt}`,res:'w'})});return g}
+  p.play.forEach(i=>{const ii=G.I[i];if(ii.cid==='spiderman-web-shooter'&&p.form==='hero'&&!ii.ex&&ii.cnt>0)g.push({id:'ws:'+i,label:`웹슈터 · 웹 카운터 ${ii.cnt}`,res:'w'})});
+  p.play.forEach(i=>{const ii=G.I[i];if(ii.cid==='ironman-pepper-potts'&&!ii.ex&&p.discard.length){const t=p.discard[p.discard.length-1];const r=resOf(G.I[t].cid);if(r)g.push({id:'pep:'+i,label:`Pepper Potts · ${nm(G.I[t].cid)}`,res:r,n:resN(t)})}});return g}
 function paySheet(){const u=UI.pay;if(!u)return null;const i=G.I[u.iid];const d=cdOf(i.cid)||{};const cost=u.cost??d.cost;const p=G.P[u.k];
   const hand=p.hand.filter(x=>x!==u.iid);const gens=payGens(u.k);
   const okR=x=>{if(!u.need)return true;const r=resOf(G.I[x].cid);return !r||r===u.need||r==='w'};
@@ -889,7 +2047,7 @@ function promptSheet(){const q=G.q&&G.q[0];if(!q)return null;
       <p class="sub">빌런 SCH ${vSch()} + 강화 ${q.bst}${q.mod?` + 보정 ${q.mod}`:''} = ${tot}</p>${stepper('qStep',`data-k="fin"`,q.fin,'놓을 위협')}
       ${schBtns('q')}<div class="btns"><button class="btn go" data-act="vsGo" data-v="apply">주요 음모에 위협 ${q.fin} 놓기</button></div></div></div>`}
   if(q.t==='choice')return head('하이드라 폭탄마 · 공개될 때')+`<p class="note">${esc(hn(q.k))}이(가) 하나를 선택합니다.</p><div class="btns"><button class="btn go" data-act="chGo" data-v="dmg">피해 2점 입기</button><button class="btn blue" data-act="chGo" data-v="thr">주요 음모에 위협 1 놓기</button></div>`;
-  if(q.t==='pick'){const opts=pickable(q.k);return head('허를 찔리다 · 버릴 카드 고르기')+`<p class="note">${esc(hn(q.k))}이(가) 조종하는 업그레이드나 지원 하나를 버립니다.</p><div class="row">${opts.map(x=>slot(x,{act:'pkGo'})).join('')}</div>`}
+  if(q.t==='pick'){const opts=q.flt==='bp'?G.P[q.k].play.filter(isBPU):q.flt==='upg'?G.P[q.k].play.filter(x=>(cdOf(G.I[x].cid)||{}).type==='업그레이드'):pickable(q.k);return head(q.flt?'버릴 카드 고르기':'허를 찔리다 · 버릴 카드 고르기')+`<p class="note">${esc(hn(q.k))}이(가) 조종하는 ${q.flt==='bp'?'블랙 팬서 업그레이드':q.flt==='upg'?'업그레이드':'업그레이드나 지원'} 하나를 버립니다.</p><div class="row">${opts.map(x=>slot(x,{act:'pkGo'})).join('')}</div>`}
   if(q.t==='split'){const tg=[];G.P.forEach((p,x)=>{if(!p.elim&&p.form==='hero')tg.push(['h:'+x,hn(x)]);p.play.forEach(a=>{if(meta(G.I[a].cid).hp)tg.push(['a:'+a,nm(G.I[a].cid)])})});
     const used=Object.values(q.alloc).reduce((a,b)=>a+b,0);
     return head('폭발 · 피해 나누기')+`<p class="note">총 <b>${q.val}</b>점의 피해를 히어로들과 동료들에게 나누어 입힙니다. 남은 피해 <b>${q.val-used}</b></p>
@@ -905,11 +2063,11 @@ function promptSheet(){const q=G.q&&G.q[0];if(!q)return null;
         ${allies.map(a=>`<button class="btn blue" data-act="qsApply" data-v="a:${a}">동료 ${esc(nm(G.I[a].cid))}로 방어</button>`).join('')}
         ${bf?'<button class="btn v" data-act="qsApply" data-v="backflip">공중제비로 피해 모두 방지 (비용 0)</button>':''}
         ${hasCF(q.k)?'<button class="btn v" data-act="qsApply" data-v="cf">성간 비행 버리고 피해 3 방지</button>':''}</div>${q.reduce?`<p class="sub">성간 비행으로 히어로가 받는 피해에서 ${q.reduce}점을 방지해요.</p>`:''}`}
-    return head(`${q.title||'하수인 공격'} · ${esc(nm(mi.cid))}`)+`<p class="note"><b>${esc(nm(mi.cid))}</b>이(가) ${esc(hn(q.k))}을(를) 공격해요. ${q.note||''} 공격력 ${q.val}.</p>${b}`}
-  return null}
+    return head(`${q.title||'하수인 공격'} · ${esc(en(q.iid))}`)+`<p class="note"><b>${esc(en(q.iid))}</b>이(가) ${esc(hn(q.k))}을(를) 공격해요. ${q.note||''} 공격력 ${q.val}.</p>${b}`}
+  return promptSheet2(q)}
 
 function schBtns(ctx){const o=ctx==='q'?G.q[0]:G.vw;if(!o||!o.fin)return '';let h='';
-  G.P.forEach((p,x)=>{if(p.elim)return;if(p.hand.some(i=>G.I[i].cid==='basic-emergency'))h+=`<button class="btn v" data-act="schCard" data-c="emg" data-k="${x}" data-ctx="${ctx}">${esc(hn(x))}: 비상사태 (위협 -1)</button>`;
+  G.P.forEach((p,x)=>{if(p.elim)return;if(p.hid==='shehulk'&&p.form==='ae'&&!(G.once||{})['obj'+x])h+=`<button class="btn v" data-act="objGo" data-k="${x}" data-ctx="${ctx}">${esc(hn(x))}: 이의 있습니다! (위협 -1)</button>`;if(p.hand.some(i=>G.I[i].cid==='basic-emergency'))h+=`<button class="btn v" data-act="schCard" data-c="emg" data-k="${x}" data-ctx="${ctx}">${esc(hn(x))}: 비상사태 (위협 -1)</button>`;
     if(p.form==='hero'&&p.hand.some(i=>G.I[i].cid==='justice-great-responsibility'))h+=`<button class="btn v" data-act="schCard" data-c="gr" data-k="${x}" data-ctx="${ctx}">${esc(hn(x))}: 큰 힘에는 큰 책임 (위협 대신 피해)</button>`});
   return h?`<div class="btns">${h}</div>`:''}
 function vatkSheet(q){const k=q.k;const vi=G.I[G.vill.iid];const title=`${q.title||'빌런 공격'} · ${nm(vcid())} → ${hn(k)}`;
@@ -919,7 +2077,7 @@ function vatkSheet(q){const k=q.k;const vi=G.I[G.vill.iid];const title=`${q.titl
     return head(esc(title))+`<p class="note">${esc(nm(vcid()))}이(가) ${esc(hn(k))}을(를) 공격해요 (공격력 ${vAtk()}${vBonus('atkp')?`, 장착 카드 +${vBonus('atkp')} 포함`:''}).${q.stun?' 이 공격에 피해를 입은 캐릭터는 기절해요.':''}</p><div class="btns"><button class="btn go" data-act="vaGo" data-v="start">강화 카드 받기</button></div>`}
   if(q.step==='defend'){const opts=[];G.P.forEach((p,x)=>{if(!p.elim&&p.form==='hero'&&!G.I[p.id].ex)opts.push([`h:${x}`,`${hn(x)} (방어 ${heroDef(x)})`])});
     G.P.forEach(p=>p.play.forEach(i=>{const ii=G.I[i];if(!ii.ex&&meta(ii.cid).hp)opts.push([`a:${i}`,`동료 ${nm(ii.cid)}`])}));
-    return head(esc(title))+`<div class="row">${q.boost?slot(q.boost,{down:true,act:'noop'}):''}</div><p class="sub">강화 카드가 뒤집히기 전에 방어를 정해요. 히어로가 방어하면 방어 수치만큼 피해가 줄고, 동료가 방어하면 피해를 모두 받아요.</p>
+    return head(esc(title))+`<div class="row">${q.boost?slot(q.boost,{down:true,act:'noop'}):''}${q.boost2?slot(q.boost2,{down:true,act:'noop'}):''}</div><p class="sub">강화 카드가 뒤집히기 전에 방어를 정해요. 히어로가 방어하면 방어 수치만큼 피해가 줄고, 동료가 방어하면 피해를 모두 받아요.</p>
       <div class="btns"><button class="btn" data-act="vaGo" data-v="def:none">방어하지 않기</button>${opts.map(([v,l])=>`<button class="btn blue" data-act="vaGo" data-v="def:${v}">${esc(l)}</button>`).join('')}</div>`}
   const bi=q.boost?G.I[q.boost]:null;const total=Math.max(0,vAtk()+q.bst+(q.mod||0));let dmg=total;let note;
   if(q.def&&q.def.startsWith('h:')){const dk=+q.def.slice(2);if(q.defv==null)q.defv=heroDef(dk);dmg=Math.max(0,total-q.defv);note=`${hn(dk)}가 방어 (방어 ${q.defv})`}
@@ -928,7 +2086,7 @@ function vatkSheet(q){const k=q.k;const vi=G.I[G.vill.iid];const title=`${q.titl
   const ok=G.vill.attach.some(x=>G.I[x].cid==='rhino-e-charge')||(bi&&bi.cid==='rhino-e-charge');
   const tk=q.def&&q.def.startsWith('h:')?+q.def.slice(2):k;
   const bf=!q.prevented&&!(q.def&&q.def.startsWith('a:'))&&G.P[tk].hand.some(x=>G.I[x].cid==='spiderman-backflip');
-  return head(esc(title))+`<div class="cs"><div class="cs-img">${bi?`<button class="slot" data-act="card" data-i="${q.boost}">${faceOf(bi.cid,bi.side)}</button>`:'<p class="sub">강화 카드 없음</p>'}</div><div class="cs-body">
+  return head(esc(title))+`<div class="cs"><div class="cs-img">${bi?`<button class="slot" data-act="card" data-i="${q.boost}">${faceOf(bi.cid,bi.side)}</button>`:'<p class="sub">강화 카드 없음</p>'}${q.boost2?`<button class="slot" data-act="card" data-i="${q.boost2}">${faceOf(G.I[q.boost2].cid,G.I[q.boost2].side)}</button>`:''}</div><div class="cs-body">
     ${stepper('qStep',`data-k="bst"`,q.bst,'강화 아이콘')}${stepper('qStep',`data-k="mod"`,q.mod||0,'추가 보정')}
     <p class="sub">빌런 공격 ${vAtk()} + 강화 ${q.bst}${q.mod?` + 보정 ${q.mod}`:''} = ${total} · ${note}</p>
     ${q.def&&q.def.startsWith('h:')?stepper('qStep',`data-k="defv"`,q.defv,'방어'):''}
@@ -1063,7 +2221,7 @@ function cardSheet(iid){return ()=>{
       ${m.type==='side'?`<label class="fld">가속 아이콘<select id="m-${i.cid}-accel" data-meta="${i.cid}|accel" data-bool="1"><option value="">없음</option><option value="1" ${m.accel?'selected':''}>있음</option></select></label><label class="fld">수령 아이콘<select id="m-${i.cid}-hazard" data-meta="${i.cid}|hazard" data-bool="1"><option value="">없음</option><option value="1" ${m.hazard?'selected':''}>있음</option></select></label><label class="fld">위기 아이콘<select id="m-${i.cid}-crisis" data-meta="${i.cid}|crisis" data-bool="1"><option value="">없음</option><option value="1" ${m.crisis?'selected':''}>있음</option></select></label>`:''}`:''}
       ${!c.enc&&!fixed?[['hp','생명력'],['atk','공격'],['catk','공격 부수적 피해'],['thw','저지'],['cthw','저지 부수적 피해']].map(([k,l])=>`<label class="fld">${l}<input type="number" min="0" id="m-${i.cid}-${k}" data-meta="${i.cid}|${k}" value="${m[k]??''}"></label>`).join(''):''}
     </div><div class="btns"><button class="btn sm" data-act="pickImg" data-key="${i.cid}|${i.side}">${IMG.has(i.cid+'|'+i.side)?'이미지 바꾸기':'이미지 넣기'}${c.ds?` (${i.side.toUpperCase()}면)`:''}</button></div></div>`;
-  return head(esc(nm(i.cid,i.side)))+`<div class="cs"><div class="cs-img ${c.land?'land':''}"><div class="slot ${c.land?'land':''}">${faceOf(i.cid,i.side)}${toks(i)}</div></div>
+  return head(esc(i.drone?en(iid):nm(i.cid,i.side)))+`<div class="cs"><div class="cs-img ${c.land?'land':''}"><div class="slot ${c.land?'land':''}">${faceOf(i.cid,i.side,i.drone)}${toks(i)}</div></div>
     <div class="cs-body"><p class="sub">${esc(setLabel(c))} · ${esc(zLabel(z))}${m.type&&c.enc?` · ${TYPES[m.type]}`:''}</p>
       <div class="btns"><button class="btn sm ${i.ex?'sel':''}" data-act="ex" data-i="${iid}">${i.ex?'준비 상태로 세우기':'소진 (90도 돌리기)'}</button>${c.ds?`<button class="btn sm" data-act="flip" data-i="${iid}">뒤집기</button>`:''}</div>
       ${cardText(i.cid,i.side)}
@@ -1095,7 +2253,7 @@ function setupSheet(){
     return head(`멀리건 · ${esc(hn(k))}`)+`<p class="note">바꾸고 싶은 카드를 누르세요. 고른 카드는 버린 카드 더미로 가고, 같은 수만큼 새로 뽑아요. 버린 카드는 지금 덱에 섞지 않아요.</p>
       <div class="row" style="padding-top:8px">${p.hand.map(i=>slot(i,{act:'selCard',sel:UI.sel.has(i)})).join('')}</div>
       <div class="btns" style="margin-top:12px"><button class="btn go" data-act="mullDo">${UI.sel.size?`${UI.sel.size}장 바꾸고 다음`:'그대로 두고 다음'}</button></div>`}
-  if(st.step==='done')return head('준비 완료')+`<p class="note">아이덴티티 카드에 <b>사전 준비</b> 지시가 있으면 지금 처리하세요. 그다음 시작 플레이어부터 턴을 진행하면 돼요.</p><div class="btns"><button class="btn go" data-act="setupEnd">게임 시작</button></div>`;
+  if(st.step==='done')return head('준비 완료')+`<p class="note">아이덴티티 카드에 <b>사전 준비</b> 지시가 있으면 지금 처리하세요. 그다음 시작 플레이어부터 턴을 진행하면 돼요.</p>${G.P.map((p,x)=>p.hid==='blackpanther'&&!(G.once||{})['bps'+x]?`<div class="btns"><button class="btn blue" data-act="bpSetup" data-k="${x}">T'Challa 선견지명: 블랙 팬서 업그레이드 찾기</button></div>`:'').join('')}<div class="btns"><button class="btn go" data-act="setupEnd">게임 시작</button></div>`;
   return null;
 }
 
@@ -1163,8 +2321,8 @@ function vwSheet(){
     }
     if(w.sub==='minions'){
       const ms=p.engaged.filter(i=>!(w.mdone||{})[i]);
-      body+=ms.length?`<p class="sub">교전 중인 하수인도 차례로 ${hero?'공격해요 (강화 카드 없음)':'암약해요 (강화 카드 없음)'}.</p>`+ms.map(i=>{const mi=G.I[i];const mm2=meta(mi.cid);const val=(w.mv||{})[i]??(hero?mm2.atk:mm2.sch)??0;
-        return `<div class="pcfg"><div class="ctl"><span>${esc(nm(mi.cid))}</span>${stepper('vwMv',`data-i="${i}"`,val,hero?'피해':'위협').replace(/<div class="ctl"><span>[^<]*<\/span>/,'<div class="ctl">')}
+      body+=ms.length?`<p class="sub">교전 중인 하수인도 차례로 ${hero?'공격해요 (강화 카드 없음)':'암약해요 (강화 카드 없음)'}.</p>`+ms.map(i=>{const mi=G.I[i];const mm2=em(i);const val=(w.mv||{})[i]??(hero?mm2.atk:mm2.sch)??0;
+        return `<div class="pcfg"><div class="ctl"><span>${esc(en(i))}</span>${stepper('vwMv',`data-i="${i}"`,val,hero?'피해':'위협').replace(/<div class="ctl"><span>[^<]*<\/span>/,'<div class="ctl">')}
           <button class="btn sm go" data-act="vwMin" data-i="${i}">${hero?'공격 적용':'암약 적용'}</button>${hero&&p.hand.some(x=>G.I[x].cid==='spiderman-backflip')&&!mi.st.stun&&!webOn(i)?`<button class="btn sm v" data-act="vwMinFlip" data-i="${i}">공중제비로 방지</button>`:''}<button class="btn sm" data-act="vwMinSkip" data-i="${i}">건너뛰기</button></div>
           ${hero&&webOn(i)&&!mi.st.stun?'<p class="sub">거미줄 포획이 장착돼 있어 적용하면 공격 대신 카드를 버리고 하수인을 기절시켜요.</p>':''}
           ${(hero&&mi.st.stun)||(!hero&&mi.st.conf)?`<p class="sub">${hero?'기절':'혼란'} 상태라 적용하면 상태 카드만 버려요.</p>`:''}</div>`}).join('')
@@ -1187,6 +2345,8 @@ function vwSheet(){
     const btn=(t,l)=>`<button class="btn ${cm.type===t?'go':''}" data-act="vwRes" data-t="${t}">${l}</button>`;
     const AUTO=!!ENC[ci.cid];
     let essB='';if(cm.type==='treachery')G.P.forEach((q,x)=>{if(q.elim||q.form!=='hero')return;const e=q.hand.find(i=>G.I[i].cid==='spiderman-enhanced-spider-sense');if(e)essB+=`<button class="btn blue" data-act="vwEss" data-k="${x}" data-i="${e}">${esc(hn(x))}: 향상된 스파이더센스로 무효화 (비용 1)</button>`});
+    G.P.forEach((q,x)=>{if(q.elim)return;q.play.forEach(b=>{if(G.I[b].cid==='protection-black-widow'&&!G.I[b].ex)essB+=`<button class="btn blue" data-act="bwStart" data-k="${x}" data-i="${b}">${esc(hn(x))}: Black Widow로 무효화 (정신력 1)</button>`});if(cm.type==='treachery'&&q.form==='hero'){const g=q.hand.find(i=>G.I[i].cid==='protection-get-behind-me');if(g)essB+=`<button class="btn blue" data-act="gbmStart" data-k="${x}" data-i="${g}">${esc(hn(x))}: 내 뒤로! (비용 1)</button>`}});
+    const OB=OBL[ci.cid];const oblHTML=OB?`<p class="note"><b>의무 카드</b>예요. ${esc(hn(ownerK>=0?ownerK:k))}이(가) 일상 형태로 뒤집을 수 있고, 하나를 고르세요.</p><div class="btns"><button class="btn go" data-act="vwRes" data-t="oblx-ex" ${ownerK>=0&&G.I[G.P[ownerK].id].ex?'disabled':''}>일상으로 뒤집고 ${esc(OB.who)} 소진 → 게임에서 제거</button><button class="btn" data-act="vwRes" data-t="oblx-alt">${esc(OB.alt)}</button></div>`:'';
     const sDef=w.sthr??((cm.start??0)*(cm.pp?N():1));
     return hd+prog+`<div class="cs"><div class="cs-img ${C[ci.cid].land?'land':''}"><button class="slot ${C[ci.cid].land?'land':''}" data-act="card" data-i="${w.cur}">${faceOf(ci.cid,ci.side)}</button></div><div class="cs-body">
       ${cardText(ci.cid,ci.side)}
@@ -1194,7 +2354,7 @@ function vwSheet(){
       ${AUTO?`<div class="btns"><button class="btn go" data-act="vwAuto">공개될 때 효과 자동 처리</button></div>`:''}
       ${ci.cid==='captainmarvel-family-emergency'?`<p class="note"><b>의무 카드</b>예요. ${esc(hn(ownerK>=0?ownerK:k))}이(가) 하나를 고르세요.</p><div class="btns"><button class="btn go" data-act="vwRes" data-t="fam-ex" ${ownerK>=0&&G.I[G.P[ownerK].id].ex?'disabled':''}>일상으로 뒤집고 Carol Danvers 소진 → 게임에서 제거</button><button class="btn" data-act="vwRes" data-t="fam-stun">기절하기 · 쇄도</button></div>`:
       ci.cid==='spiderman-eviction-notice'?`<p class="note"><b>의무 카드</b>예요. ${esc(hn(ownerK>=0?ownerK:k))}이(가) 일상 형태로 뒤집고 하나를 고르세요.</p><div class="btns"><button class="btn go" data-act="vwRes" data-t="evict-ex" ${ownerK>=0&&G.I[G.P[ownerK].id].ex?'disabled':''}>Peter Parker 소진 → 게임에서 제거</button><button class="btn" data-act="vwRes" data-t="evict-disc">손에서 무작위로 1장 버리기 · 쇄도</button></div>`:
-      isObl?`<p class="note"><b>의무 카드</b>예요. ${esc(hn(ownerK>=0?ownerK:k))}에게 주고 카드 지시대로 처리하세요.</p><div class="btns"><button class="btn go" data-act="vwRes" data-t="obl-discard">처리 후 버린 조우 카드 더미로</button><button class="btn" data-act="vwRes" data-t="obl-remove">게임에서 제거</button><button class="btn" data-act="vwRes" data-t="obl-keep">플레이어 앞에 두기</button></div>`
+      OB?oblHTML:isObl?`<p class="note"><b>의무 카드</b>예요. ${esc(hn(ownerK>=0?ownerK:k))}에게 주고 카드 지시대로 처리하세요.</p><div class="btns"><button class="btn go" data-act="vwRes" data-t="obl-discard">처리 후 버린 조우 카드 더미로</button><button class="btn" data-act="vwRes" data-t="obl-remove">게임에서 제거</button><button class="btn" data-act="vwRes" data-t="obl-keep">플레이어 앞에 두기</button></div>`
       :`<p class="note">카드의 <b>공개 시</b> 효과를 처리하고, 종류를 골라 배치하세요.${cm.type?' 강조된 버튼이 기억된 종류예요.':''}</p>
       <div class="btns">${btn('minion',`하수인 — ${esc(hn(k))}와 교전`)}${btn('treachery','배반 — 처리 후 버림')}${btn('attachment','장착 — 빌런에게')}${btn('side','부가 음모')}</div>
       ${stepper('vwSthr','',sDef,'부가 음모 시작 위협')}`}
@@ -1220,7 +2380,7 @@ const A={
     if(d.t==='atk'&&idi.st.stun){act(()=>{idi.st.stun=0;idi.ex=true});toast('기절 상태라 공격 대신 기절 카드를 버렸어요');return}
     if(d.t==='thw'&&idi.st.conf){act(()=>{idi.st.conf=0;idi.ex=true});toast('혼란 상태라 저지 대신 혼란 카드를 버렸어요');return}
     UI.tg={src:'h:'+k,kind:d.t,val:heroStat(k,d.t)};openSheet(targetSheet)},
-  allyUse(d){const i=G.I[d.i];if(i.ex){toast('이미 소진된 동료예요');return}const m=meta(i.cid);
+  allyUse(d){const i=G.I[d.i];if(i.ex){toast('이미 소진된 동료예요');return}const m=meta(i.cid);if(d.t==='thw'&&m.nothw){toast('이 동료는 저지할 수 없어요');return}
     if(d.t==='atk'&&i.st.stun){act(()=>{i.st.stun=0;i.ex=true});toast('기절 상태라 공격 대신 기절 카드를 버렸어요');closeSheet();return}
     if(d.t==='thw'&&i.st.conf){act(()=>{i.st.conf=0;i.ex=true});toast('혼란 상태라 저지 대신 혼란 카드를 버렸어요');closeSheet();return}
     UI.tg={src:'a:'+d.i,kind:d.t,val:allyStat(d.i,d.t)};openSheet(targetSheet)},
@@ -1230,11 +2390,13 @@ const A={
     let src={};if(t.src.startsWith('e:')){}else if(t.src.startsWith('h:')){const k=+t.src.slice(2);src=G.I[G.P[k].id];}
     else{src=G.I[t.src.slice(2)]}
     if(!t.src.startsWith('e:'))src.ex=true;
+    let hres=null;
     if(d.t==='villain'){dmgVillain(v)}
-    else if(d.t==='scheme'){G.sch.threat=Math.max(0,G.sch.threat-v)}
+    else if(d.t==='scheme'){if(noMainRemove())toast('이 음모에서는 위협을 제거할 수 없어요');else G.sch.threat=Math.max(0,G.sch.threat-v)}
     else{const ti=G.I[d.t];
-      if(t.kind==='atk'){if(ti.st.tough&&v>0){ti.st.tough=0;toast('강인함 카드로 피해가 막혔어요')}else{ti.dmg+=v;const hp=meta(ti.cid).hp;if(hp&&ti.dmg>=hp){defeatEnemy(d.t);toast(`${nm(ti.cid)} 격파!`);const ak=t.src.startsWith('a:')?(src.owner??G.view):+t.src.slice(2);const r=G.P[ak]&&G.P[ak].play.find(x=>G.I[x].cid==='justice-interrogation-room'&&!G.I[x].ex);if(r)qpush({t:'irq',k:ak})}}}
+      if(t.kind==='atk'){hres=hitEnemy(d.t,v,{bp:t.bp});if(hres.dead){if(t.overkill&&hres.over>0){dmgVillain(hres.over);toast(`압살 — 초과 피해 ${hres.over}를 빌런에게`)}const ak=t.src.startsWith('a:')?(src.owner??G.view):+t.src.slice(2);const r=G.P[ak]&&G.P[ak].play.find(x=>G.I[x].cid==='justice-interrogation-room'&&!G.I[x].ex);if(r)qpush({t:'irq',k:ak})}}
       else{ti.thr=Math.max(0,ti.thr-v);if(ti.thr===0)defeatSide(d.t)}}
+    afterAttack(t,d.t,hres);
     if(t.src.startsWith('a:')){const c=meta(src.cid)[t.kind==='atk'?'catk':'cthw']||0;
       if(c){src.dmg+=c;const hp=meta(src.cid).hp;if(hp&&src.dmg>=hp){moveTo(src.id,`p${src.owner??G.view}.discard`);toast(`${nm(src.cid)} — 부수적 피해로 격파돼 버린 카드 더미로 갔어요`)}}}
   if(t.then2)qpush({t:'tg',src:t.src,kind:'thw',val:2,name:'위기 차단 · 공중',excl:d.t});
@@ -1244,6 +2406,7 @@ const A={
   tgSkip(){act(()=>G.q.shift());resumeSheet()},
   play(d){const i=G.I[d.i];const k=i.owner??G.view;const p=G.P[k];const c=cdOf(i.cid);
     if(c.heroOnly&&p.form!=='hero'){toast('히어로 형태일 때만 낼 수 있는 카드예요');return}
+    if(c.aeOnly&&p.form!=='ae'){toast('일상 형태일 때만 낼 수 있는 카드예요');return}
     if(c.type==='동료'&&p.play.filter(x=>(cdOf(G.I[x].cid)||{}).type==='동료').length>=allyLimit(k)){toast(`동료는 최대 ${allyLimit(k)}명까지예요. 기존 동료 하나를 먼저 버려 주세요`);return}
     if(c.attach==='ally'&&!G.P.some(q=>q.play.some(x=>(cdOf(G.I[x].cid)||{}).type==='동료'&&!hostedBy(x).some(y=>G.I[y].cid==='leadership-inspired')))){toast('장착할 동료가 없어요');return}
     if(c.attach==='minion'&&!G.P.some(q=>q.engaged.length)){toast('장착할 하수인이 없어요');return}
@@ -1253,9 +2416,9 @@ const A={
   payGen(d){const u=UI.pay;u.gen.has(d.g)?u.gen.delete(d.g):u.gen.add(d.g);drawSheet()},
   payCancel(){UI.pay=null;resumeSheet()},
   payDo(){const u=UI.pay;if(!u)return;u.x=payTotal(u);u.paidE=[...u.sel].some(x=>['e','w'].includes(resOf(G.I[x].cid)))||[...u.gen].some(g=>g.startsWith('ws:'));UI.pay=null;closeSheet();act(()=>{if(u.red){G.costRed=G.costRed||{};G.costRed[u.k]=0}
-    u.paidM=[...u.sel].some(x=>['m','w'].includes(resOf(G.I[x].cid)));
+    u.paidM=[...u.sel].some(x=>['m','w'].includes(resOf(G.I[x].cid)));u.paidP=[...u.sel].some(x=>['p','w'].includes(resOf(G.I[x].cid)));
     [...u.sel].forEach(x=>moveTo(x,`p${u.k}.discard`));
-    u.gen.forEach(g=>{if(g==='pp'){G.once=G.once||{};G.once['pp'+u.k]=1}else{const wi=G.I[g.slice(3)];wi.ex=true;wi.cnt--;if(wi.cnt<=0){moveTo(wi.id,`p${u.k}.discard`);toast('웹 카운터가 모두 사라져 웹슈터를 버렸어요')}}});
+    u.gen.forEach(g=>{if(g==='pp'){G.once=G.once||{};G.once['pp'+u.k]=1}else if(g.startsWith('pep:')){G.I[g.slice(4)].ex=true}else{const wi=G.I[g.slice(3)];wi.ex=true;wi.cnt--;if(wi.cnt<=0){moveTo(wi.id,`p${u.k}.discard`);toast('웹 카운터가 모두 사라져 웹슈터를 버렸어요')}}});
     resolvePlay(u.iid,u.k,u.then,u)});resumeSheet()},
   auntMay(d){act(()=>{const i=G.I[d.i];const p=G.P[i.owner??G.view];i.ex=true;p.hp=Math.min(p.hpMax||99,p.hp+4)});toast('Aunt May — Peter Parker의 피해 4점을 치료했어요')},
   hwRev(d){act(()=>hwEffect(d.i));toast('각 플레이어의 손에서 무작위로 1장씩 고속도로 강도에 뒷면으로 놓았어요')},
@@ -1266,10 +2429,10 @@ const A={
     if(d.v==='stun'){mi.st.stun=0;toast('기절 상태라 공격 대신 기절 카드를 버렸어요');return}
     if(d.v==='web'){const w2=webOn(q.iid);G.I[w2].host=null;moveTo(w2,`p${G.I[w2].owner??q.k}.discard`);mi.st.stun=1;toast('거미줄 포획 — 공격 대신 카드를 버리고 하수인을 기절시켰어요');return}
     if(d.v==='backflip'){const b=p.hand.find(x=>G.I[x].cid==='spiderman-backflip');moveTo(b,`p${q.k}.discard`);toast('공중제비 — 피해를 모두 방지했어요');return}
-    if(d.v.startsWith('a:')){const a=G.I[d.v.slice(2)];a.ex=true;if(a.st.tough){a.st.tough=0;toast('강인함 카드로 피해를 막았어요')}else{a.dmg+=v;const hp=meta(a.cid).hp;if(hp&&a.dmg>=hp)moveTo(a.id,`p${a.owner??q.k}.discard`)}return}
+    if(d.v.startsWith('a:')){const a=G.I[d.v.slice(2)];a.ex=true;if(a.st.tough){a.st.tough=0;toast('강인함 카드로 피해를 막았어요')}else{a.dmg+=v;const hp=meta(a.cid).hp;if(hp&&a.dmg>=hp)moveTo(a.id,`p${a.owner??q.k}.discard`)}if(G.I[q.iid]&&['mastersofevil-tiger-shark','legionsofhydra-madame-hydra'].includes(G.I[q.iid].cid))afterMinionAtk(q.iid,q.k,false);return}
     let dmg=v;if(d.v==='h'){idi.ex=true;dmg=Math.max(0,v-heroDef(q.k))}
     dmg=Math.max(0,dmg-(q.reduce||0));
-    if(idi.st.tough&&dmg>0){idi.st.tough=0;toast('강인함 카드로 피해를 막았어요')}else p.hp=Math.max(0,p.hp-dmg)});resumeSheet()},
+    if(idi.st.tough&&dmg>0){idi.st.tough=0;toast('강인함 카드로 피해를 막았어요')}else p.hp=Math.max(0,p.hp-dmg);afterMinionAtk(q.iid,q.k,d.v==='h')});resumeSheet()},
   vwWeb(){act(()=>{const w2=webOn(G.vill.iid);G.I[w2].host=null;moveTo(w2,`p${G.I[w2].owner??0}.discard`);G.I[G.vill.iid].st.stun=1;G.vw.sub='minions';G.vw.mdone={}});toast('거미줄 포획 — 공격 대신 카드를 버리고 빌런을 기절시켰어요')},
   vwBackflip(d){act(()=>{const k=+d.k;const p=G.P[k];const b=p.hand.find(x=>G.I[x].cid==='spiderman-backflip');moveTo(b,`p${k}.discard`);G.vw.fin=0;G.vw.finAuto=false;G.vw.prevented=true});toast('공중제비 — 이번 공격의 피해를 모두 방지해요')},
   vwMinFlip(d){act(()=>{const w=G.vw;const k=w.order[w.oi];const p=G.P[k];const b=p.hand.find(x=>G.I[x].cid==='spiderman-backflip');moveTo(b,`p${k}.discard`);w.mdone=w.mdone||{};w.mdone[d.i]=true});toast('공중제비 — 하수인 공격의 피해를 모두 방지했어요')},
@@ -1290,9 +2453,11 @@ const A={
     if(v==='stun'){vi.st.stun=0;toast('빌런의 기절 카드를 버렸어요');end();return}
     if(v==='web'){const w2=webOn(G.vill.iid);G.I[w2].host=null;moveTo(w2,`p${G.I[w2].owner??0}.discard`);vi.st.stun=1;toast('거미줄 포획 — 공격 대신 카드를 버리고 빌런을 기절시켰어요');end();return}
     if(v==='start'){const p=G.P[k];if(p.form==='hero'&&p.hid==='spiderman'){draw(k,1);toast('스파이더센스 — 빌런이 공격을 개시해 카드 1장을 뽑았어요')}
-      const b=encTop();if(b)G.limbo.push(b);q.boost=b||null;q.step='defend';return}
+      const b=encTop();if(b)G.limbo.push(b);q.boost=b||null;q.step='defend';
+      if(/^klaw-v-/.test(vcid())){const b2=encTop();if(b2){G.limbo.push(b2);q.boost2=b2}toast('★ Klaw — 강화 카드를 1장 더 받아요')}
+      if(vcid()==='ultron-v-ultron-ii'){putDrone(k,1);q.umod=dronesWith(k);toast(`★ Ultron (II) — 드론 1을 내려놓고 이번 공격 +${q.umod}`)}return}
     if(v.startsWith('def:')){const dv=v.slice(4);q.def=dv==='none'?null:dv;if(dv.startsWith('h:'))G.I[G.P[+dv.slice(2)].id].ex=true;if(dv.startsWith('a:'))G.I[dv.slice(2)].ex=true;
-      q.step='reveal';q.bst=q.boost?(meta(G.I[q.boost].cid).boost??0):0;q.mod=0;q.finAuto=true;return}
+      q.step='reveal';q.bst=(q.boost?(meta(G.I[q.boost].cid).boost??0):0)+(q.boost2?(meta(G.I[q.boost2].cid).boost??0):0);q.mod=q.umod||0;q.finAuto=true;return}
     if(v.startsWith('cf:')){const tk=+v.split(':')[1];const cf=G.P[tk].play.find(x=>G.I[x].cid==='captainmarvel-cosmic-flight');moveTo(cf,`p${tk}.discard`);q.reduce=(q.reduce||0)+3;q.finAuto=true;toast('성간 비행 — 피해 3 방지');return}
     if(v.startsWith('backflip:')){const tk=+v.split(':')[1];const b=G.P[tk].hand.find(x=>G.I[x].cid==='spiderman-backflip');moveTo(b,`p${tk}.discard`);q.prevented=true;q.fin=0;q.finAuto=false;toast('공중제비 — 이번 공격의 피해를 모두 방지해요');return}
     if(v==='apply'){const dmg=q.prevented?0:q.fin;const bcid=q.boost?G.I[q.boost].cid:null;const stunHit=q.stun||bcid==='spiderman-nem-sweeping-swoop';
@@ -1302,13 +2467,14 @@ const A={
         if(ok&&r.over>0){const h2=dmgId(own,r.over);toast(`압살 — 초과 피해 ${r.over}를 ${hn(own)}가 입었어요`);if(h2&&stunHit)G.I[G.P[own].id].st.stun=1}}
       else{const tk=q.def&&q.def.startsWith('h:')?+q.def.slice(2):k;const hit=dmgId(tk,dmg);if(hit&&stunHit){G.I[G.P[tk].id].st.stun=1;toast(`${hn(tk)} 기절`)}}
       if(bcid==='captainmarvel-nem-kree-manipulator'&&!q.def){G.sch.threat+=1;toast('★ 크리 조종장치 — 주요 음모에 위협 1')}
-      if(q.boost)moveTo(q.boost,'enc.discard');
+      if(q.boost)moveTo(q.boost,'enc.discard');if(q.boost2)moveTo(q.boost2,'enc.discard');
+      {let dealt=0;if(q.def&&q.def.startsWith('a:'))dealt=dmg;else{dealt=dmg}afterVAtk(q,dealt)}
       G.vill.attach.filter(x=>G.I[x].cid==='rhino-e-charge').forEach(x=>{moveTo(x,'enc.discard');toast('공격이 끝나 돌격을 버렸어요')});
       end()}});if(!(G.q&&G.q.length))resumeSheet()},
   vsGo(d){act(()=>{const q=G.q[0];const vi=G.I[G.vill.iid];
     if(d.v==='conf'){vi.st.conf=0;G.q.shift();toast('빌런의 혼란 카드를 버렸어요');return}
     if(d.v==='boost'){const b=encTop();if(b)G.limbo.push(b);q.boost=b||null;q.step='reveal';q.bst=b?(meta(G.I[b].cid).boost??0):0;q.mod=0;q.finAuto=true;return}
-    G.sch.threat+=q.fin;if(q.boost)moveTo(q.boost,'enc.discard');G.q.shift();toast(`주요 음모에 위협 ${q.fin}`)});if(!(G.q&&G.q.length))resumeSheet()},
+    G.sch.threat+=q.fin;if(q.boost)moveTo(q.boost,'enc.discard');G.q.shift();toast(`주요 음모에 위협 ${q.fin}`);afterVSch();if(q.after==='rageS'&&q.fin>0&&q.k!=null){millTop(q.k,q.fin)}});if(!(G.q&&G.q.length))resumeSheet()},
   chGo(d){act(()=>{const q=G.q.shift();if(d.v==='dmg'){dmgId(q.k,2);toast(`${hn(q.k)} 피해 2`)}else{G.sch.threat+=1;toast('주요 음모에 위협 1')}});if(!(G.q&&G.q.length))resumeSheet()},
   pkGo(d){act(()=>{const q=G.q.shift();const i=G.I[d.i];i.host=null;moveTo(d.i,`p${i.owner??q.k}.discard`);toast(`${nm(i.cid)}을(를) 버렸어요`)});if(!(G.q&&G.q.length))resumeSheet()},
   spStep(d){const q=G.q[0];const used=Object.values(q.alloc).reduce((a,b)=>a+b,0);const cur=q.alloc[d.v]||0;const nv=Math.max(0,cur+ +d.d);if(nv>cur&&used>=q.val)return;q.alloc[d.v]=nv;save();drawSheet()},
@@ -1325,7 +2491,7 @@ const A={
   nfGo(d){act(()=>{const q=G.q.shift();if(d.v==='draw'){draw(q.k,3);toast('Nick Fury — 카드 3장 뽑기')}else qpush({t:'tg',src:'e:'+q.k,kind:d.v,val:d.v==='atk'?4:2,name:'Nick Fury'})});if(!(G.q&&G.q.length))resumeSheet()},
   seGo(d){act(()=>{G.q.shift();if(d.t!=='none'){const e=d.t==='villain'?G.I[G.vill.iid]:G.I[d.t];e.st.stun=1;toast(`${nm(e.cid)} 기절`)}});if(!(G.q&&G.q.length))resumeSheet()},
   hawkGo(d){act(()=>{const q=G.q.shift();if(d.v!=='yes')return;const h=G.I[q.h];const m=G.I[q.m];if(!h||!m||!where(q.m)||!where(q.m).endsWith('.engaged')||h.cnt<=0)return;h.cnt--;
-    if(m.st.tough){m.st.tough=0;toast('강인함 카드로 피해가 막혔어요');return}m.dmg+=2;const hp=meta(m.cid).hp;if(hp&&m.dmg>=hp){defeatEnemy(q.m);toast(`Hawkeye — ${nm(m.cid)} 격파!`)}else toast(`Hawkeye — ${nm(m.cid)}에게 피해 2`)});if(!(G.q&&G.q.length))resumeSheet()},
+    const r=hitEnemy(q.m,2);if(!r.dead)toast('Hawkeye — 피해 2')});if(!(G.q&&G.q.length))resumeSheet()},
   healGo(d){act(()=>{const q=G.q.shift();const t=d.t;if(t.startsWith('h:')){const p=G.P[+t.slice(2)];p.hp=Math.min(p.hpMax||99,p.hp+q.val)}else{const a=G.I[t.slice(2)];a.dmg=Math.max(0,a.dmg-q.val)}toast(`피해 ${q.val} 치료`)});if(!(G.q&&G.q.length))resumeSheet()},
   raGo(d){act(()=>{G.q.shift();if(d.i!=='none'){G.I[d.i].ex=false;toast(`${nm(G.I[d.i].cid)} 준비`)}});if(!(G.q&&G.q.length))resumeSheet()},
   mtcGo(d){if(d.i==='none'){act(()=>G.q.shift());resumeSheet();return}const q=G.q[0];const k=q.k;const p=G.P[k];
@@ -1354,7 +2520,7 @@ const A={
   ex(d){act(()=>{G.I[d.i].ex=!G.I[d.i].ex})},
   flip(d){act(()=>{const i=G.I[d.i];i.side=i.side==='a'?'b':'a';const k=G.P.findIndex(p=>p.id===d.i);if(k>=0)G.P[k].form=i.side==='a'?'hero':'ae'})},
   tok(d){let gone=false;act(()=>{const i=G.I[d.i];i[d.k]=Math.max(0,i[d.k]+ +d.d);
-    if(d.k==='dmg'&&+d.d>0){const m=meta(i.cid);const z=where(d.i);if(m.hp&&i.dmg>=m.hp&&z&&/\.(play|engaged)$/.test(z)){gone=true;if(z.endsWith('.engaged'))defeatEnemy(d.i);else moveTo(d.i,C[i.cid].enc?'enc.discard':`p${i.owner??G.view}.discard`);toast(`${nm(i.cid)} 격파 — 버린 카드 더미로 보냈어요`)}}
+    if(d.k==='dmg'&&+d.d>0){const z=where(d.i);const m=z&&z.endsWith('.engaged')?em(d.i):meta(i.cid);if(m.hp&&i.dmg>=m.hp&&z&&/\.(play|engaged)$/.test(z)){gone=true;if(z.endsWith('.engaged'))defeatEnemy(d.i);else moveTo(d.i,C[i.cid].enc?'enc.discard':`p${i.owner??G.view}.discard`);toast(`${nm(i.cid)} 격파 — 버린 카드 더미로 보냈어요`)}}
     if(d.k==='thr'&&+d.d<0&&i.thr===0&&where(d.i)==='sides'){gone=true;defeatSide(d.i)}});if(gone&&!(G.q&&G.q.length))closeSheet()},
   stat(d){act(()=>{const i=G.I[d.i];i.st[d.k]=i.st[d.k]?0:1})},
   mv(d){act(()=>{moveTo(d.i,d.to)});closeSheet()},
@@ -1363,15 +2529,16 @@ const A={
   sThr(d){act(()=>{G.sch.threat=Math.max(0,G.sch.threat+ +d.d)})},
   accTok(d){act(()=>{G.accel=Math.max(0,G.accel+ +d.d)})},
   form(d){const k=+d.k;if(G.formUsed[k])toast('이번 라운드에 이미 변신했어요. 변신은 라운드마다 한 번이에요.');
-    act(()=>{const p=G.P[k];p.form=p.form==='hero'?'ae':'hero';G.I[p.id].side=p.form==='hero'?'a':'b';G.formUsed[k]=true})},
-  elim(d){act(()=>{const p=G.P[+d.k];p.elim=true;[...p.hand,...p.play].forEach(i=>moveTo(i,`p${d.k}.discard`));p.engaged.slice().forEach(i=>moveTo(i,'enc.discard'))})},
+    act(()=>{const p=G.P[k];p.form=p.form==='hero'?'ae':'hero';G.I[p.id].side=p.form==='hero'?'a':'b';G.formUsed[k]=true;onForm(k)})},
+  elim(d){act(()=>{const p=G.P[+d.k];p.elim=true;[...p.hand,...p.play].forEach(i=>moveTo(i,`p${d.k}.discard`));p.engaged.slice().forEach(i=>moveTo(i,G.I[i].drone?`p${G.I[i].owner??d.k}.discard`:'enc.discard'))})},
   vAdvance(){act(()=>{const v=G.vill;if(v.idx+1>=v.stages.length){G.over='win';return}
     v.idx++;const old=G.I[v.iid];v.iid=mk(v.stages[v.idx]);G.I[v.iid].st=old.st;Object.values(G.I).forEach(x=>{if(x.host===old.id)x.host=v.iid});const hp=meta(v.stages[v.idx]).hp;v.hp=(hp||0)*N();const ncid=v.stages[v.idx];if(meta(ncid).tough)G.I[v.iid].st.tough=1;
+    stageReveal(ncid);
     if(ncid==='rhino-v-rhino-ii'){const f=[...G.enc.deck,...G.enc.discard].find(x=>G.I[x].cid==='rhino-e-breakin-takin');if(f){sideEnter(f);setTimeout(()=>toast('Rhino (II) 공개 — 부수고 챙긴다가 등장하고 조우 덱을 섞었어요'),50)}shuffle(G.enc.deck)}
     if(ncid==='rhino-v-rhino-iii'){G.P.forEach(q=>{if(!q.elim&&q.form==='hero')G.I[q.id].st.stun=1});setTimeout(()=>toast('Rhino (III) 공개 — 강인함을 얻고 모든 히어로가 기절했어요'),50)}
     if(!hp)toast('새 빌런 스테이지의 생명력을 카드에서 확인해 넣어 주세요');else toast(`빌런 스테이지 ${ROMAN[v.idx+(G.cfg.expert?1:0)]} — 생명력 ${v.hp}. 공개 시 효과를 확인하세요`)});closeSheet()},
   sAdvance(){act(()=>{const s=G.sch;if(s.idx+1>=s.stages.length){G.over='lose';return}
-    s.idx++;s.iid=mk(s.stages[s.idx]);const m=meta(s.stages[s.idx]);s.threat=(m.start||0)*N();toast('다음 음모 스테이지 — A 면을 읽고 B 면으로 뒤집으세요')});closeSheet()},
+    s.idx++;s.iid=mk(s.stages[s.idx]);const m=meta(s.stages[s.idx]);s.threat=(m.start||0)*N();G.I[s.iid].side='b';toast('다음 음모 스테이지 — A 면의 공개될 때 효과를 처리했어요');schemeReveal(s.stages[s.idx],'a')});closeSheet()},
   nemesis(d){const k=+d.k;act(()=>bringNemesis(k));toast('숙적 하수인과 숙적 부가 음모가 등장했어요. 나머지 숙적 카드는 조우 덱에 섞었어요')},
 
   pDeck(){const k=G.view;openSheet(()=>{const p=G.P[k];return head(`${esc(hn(k))} 덱 · ${p.deck.length}장`)+`<div class="btns"><button class="btn go" data-act="drawOne">1장 뽑기</button><button class="btn" data-act="drawTo">손 크기까지 뽑기</button><button class="btn" data-act="shufP">섞기</button><button class="btn" data-act="searchP">덱에서 찾기</button></div>`})},
@@ -1389,7 +2556,7 @@ const A={
   encDiscard(){openSheet(listSheet('버린 조우 카드 더미',()=>G.enc.discard))},
 
   selCard(d){UI.sel.has(d.i)?UI.sel.delete(d.i):UI.sel.add(d.i);drawSheet()},
-  setupFlip(){act(()=>{G.I[G.sch.iid].side='b'})},
+  setupFlip(){act(()=>{G.I[G.sch.iid].side='b';schemeReveal(scid(),'a');schemeReveal(scid(),'b')})},
   setupNext(){act(()=>{G.setup={step:'mull',k:0}})},
   mullDo(){const sel=[...UI.sel];UI.sel=new Set();act(()=>{const k=G.setup.k;const p=G.P[k];sel.forEach(i=>moveTo(i,`p${k}.discard`));draw(k,sel.length);
     G.setup=k+1<G.P.length?{step:'mull',k:k+1}:{step:'done'}})},
@@ -1403,7 +2570,7 @@ const A={
     endPhaseBuffs();G.phase='villain';G.vw={step:1,order:order(),oi:0,sub:'start'}});openSheet(vwSheet)},
   vwOpen(){openSheet(vwSheet)},
   vwAdd(d){G.vw.add=Math.max(0,G.vw.add+ +d.d);save();drawSheet()},
-  vw1(){act(()=>{G.sch.threat+=G.vw.add;G.vw.step=2;G.vw.oi=0;G.vw.sub='start'})},
+  vw1(){act(()=>{G.sch.threat+=G.vw.add;G.vw.step=2;G.vw.oi=0;G.vw.sub='start';if(scid()==='ultron-s-assault-on-norad')G.vw.order.forEach(k=>qpush({t:'norad',k}))})},
   vwStatus(d){act(()=>{G.I[G.vill.iid].st[d.k]=0;G.vw.sub='minions';G.vw.mdone={}})},
   vwBoost(){const k0=G.vw.order[G.vw.oi];const p0=G.P[k0];if(p0.form==='hero'&&p0.hid==='spiderman'){act(()=>draw(k0,1));toast('스파이더센스 — 빌런이 공격을 개시해 카드 1장을 뽑았어요')}
     act(()=>{const b=encTop();if(!b){G.vw.sub='minions';G.vw.mdone={};return}G.limbo.push(b);Object.assign(G.vw,{boost:b,rv:false,bst:null,mod:0,def:null,defv:null,fin:null,finAuto:true});
@@ -1418,13 +2585,13 @@ const A={
     if(p.form==='hero'){
       if(w.def&&w.def.startsWith('a:')){const a=G.I[w.def.slice(2)];if(a.st.tough&&v>0){a.st.tough=0;toast('강인함 카드로 피해를 막았어요')}else if(v>0){a.dmg+=v;const hp=meta(a.cid).hp;if(hp&&a.dmg>=hp){moveTo(a.id,`p${a.owner??k}.discard`);toast(`${nm(a.cid)} 격파 — 버린 카드 더미로`)}else if(star){a.st.stun=1;toast(`★ 급강하 타격 — ${nm(a.cid)} 기절`)}}}
       else{const tk=w.def&&w.def.startsWith('h:')?+w.def.slice(2):k;const t=G.P[tk];const ti=G.I[t.id];if(ti.st.tough&&v>0){ti.st.tough=0;toast('강인함 카드로 피해를 막았어요')}else if(v>0){t.hp=Math.max(0,t.hp-v);if(star){ti.st.stun=1;toast(`★ 급강하 타격 — ${hn(tk)} 기절`)}}}
-    }else G.sch.threat+=v;
+    }else{G.sch.threat+=v;afterVSch()}
     moveTo(w.boost,'enc.discard');w.boost=null;w.prevented=false;w.sub='minions';w.mdone={};w.mv={}})},
-  vwMv(d){const w=G.vw;w.mv=w.mv||{};const mi=G.I[d.i];const hero=G.P[w.order[w.oi]].form==='hero';const mm=meta(mi.cid);const cur=w.mv[d.i]??(hero?mm.atk:mm.sch)??0;w.mv[d.i]=Math.max(0,cur+ +d.d);save();drawSheet()},
-  vwMin(d){act(()=>{const w=G.vw;const k=w.order[w.oi];const p=G.P[k];const mi=G.I[d.i];const hero=p.form==='hero';const mm=meta(mi.cid);const v=(w.mv||{})[d.i]??(hero?mm.atk:mm.sch)??0;
+  vwMv(d){const w=G.vw;w.mv=w.mv||{};const mi=G.I[d.i];const hero=G.P[w.order[w.oi]].form==='hero';const mm=em(d.i);const cur=w.mv[d.i]??(hero?mm.atk:mm.sch)??0;w.mv[d.i]=Math.max(0,cur+ +d.d);save();drawSheet()},
+  vwMin(d){act(()=>{const w=G.vw;const k=w.order[w.oi];const p=G.P[k];const mi=G.I[d.i];const hero=p.form==='hero';const mm=em(d.i);const v=(w.mv||{})[d.i]??(hero?mm.atk:mm.sch)??0;
     if(hero&&!mi.st.stun&&webOn(d.i)){const w2=webOn(d.i);G.I[w2].host=null;moveTo(w2,`p${G.I[w2].owner??k}.discard`);mi.st.stun=1;toast('거미줄 포획 — 공격 대신 카드를 버리고 하수인을 기절시켰어요')}
-    else if(hero){if(mi.st.stun){mi.st.stun=0;toast('기절 카드를 버렸어요')}else{if(mi.cid==='captainmarvel-nem-yon-rogg')yonRogg();const ti=G.I[p.id];if(ti.st.tough&&v>0){ti.st.tough=0;toast('강인함 카드로 피해를 막았어요')}else p.hp=Math.max(0,p.hp-v)}}
-    else{if(mi.st.conf){mi.st.conf=0;toast('혼란 카드를 버렸어요')}else G.sch.threat+=v}
+    else if(hero){if(mi.st.stun){mi.st.stun=0;toast('기절 카드를 버렸어요')}else{if(mi.cid==='captainmarvel-nem-yon-rogg')yonRogg();const ti=G.I[p.id];if(ti.st.tough&&v>0){ti.st.tough=0;toast('강인함 카드로 피해를 막았어요')}else p.hp=Math.max(0,p.hp-v);afterMinionAtk(d.i,k,false)}}
+    else{if(mi.st.conf){mi.st.conf=0;toast('혼란 카드를 버렸어요')}else{G.sch.threat+=v;if(mi.cid==='legionsofhydra-madame-hydra')legionsThr()}}
     w.mdone=w.mdone||{};w.mdone[d.i]=true})},
   vwMinSkip(d){act(()=>{G.vw.mdone=G.vw.mdone||{};G.vw.mdone[d.i]=true})},
   vwNextP(){act(()=>{const w=G.vw;w.oi++;w.sub='start';w.mdone={};if(w.oi>=w.order.length){w.step=3;w.oi=0;w.haz=null}})},
@@ -1440,6 +2607,9 @@ const A={
     if(t.startsWith('evict-')){const ok=G.P.findIndex(q=>HEROES[q.hid].oblCid===cid);const o=ok>=0?ok:k;const p=G.P[o];p.form='ae';G.I[p.id].side='b';
       if(t==='evict-ex'){G.I[p.id].ex=true;moveTo(c,'removed');toast('Peter Parker를 소진하고 퇴거 통지를 게임에서 제거했어요')}
       else{if(p.hand.length){const r=p.hand[Math.floor(Math.random()*p.hand.length)];moveTo(r,`p${o}.discard`);toast(`무작위로 ${nm(G.I[r].cid)}을(를) 버렸어요 — 쇄도로 1장 더`)}moveTo(c,'enc.discard');dealEnc(k,1,true)}
+      w.cur=null;return}
+    if(t.startsWith('oblx-')){const ok=G.P.findIndex(q=>HEROES[q.hid].oblCid===cid);const o=ok>=0?ok:k;const p=G.P[o];
+      if(t==='oblx-ex'){p.form='ae';G.I[p.id].side='b';G.I[p.id].ex=true;moveTo(c,'removed');toast(`${OBL[cid].who}를 소진하고 의무 카드를 게임에서 제거했어요`)}else{OBL[cid].fn(o,c);toast('의무 카드를 처리했어요')}
       w.cur=null;return}
     if(t.startsWith('obl-')){const ok=G.P.findIndex(q=>HEROES[q.hid].oblCid===cid);moveTo(c,t==='obl-discard'?'enc.discard':t==='obl-remove'?'removed':`p${ok>=0?ok:k}.play`)}
     else{setMeta(cid,'type',t);
@@ -1480,6 +2650,254 @@ const A={
       <textarea id="nameList" readonly>${esc(lines.join('\n'))}</textarea><div class="btns" style="margin-top:8px"><button class="btn" data-act="copyNames">복사</button></div>`)},
   copyNames(){const ta=$('#nameList');navigator.clipboard?.writeText(ta.value).then(()=>toast('복사했어요'),()=>{ta.select();toast('선택했어요. 복사 단축키로 복사하세요')})||(ta.select())},
 };
+
+/* ===== 추가 카드 효과 (She-Hulk · Iron Man · Black Panther · 공격 · 보호 · Klaw · Ultron · 모듈식) ===== */
+const MOE=['mastersofevil-radioactive-man','mastersofevil-whirlwind','mastersofevil-tiger-shark','mastersofevil-melter'];
+const HYDRA=['legionsofhydra-hydra-soldier','legionsofhydra-madame-hydra','rhino-e-hydra-mercenary','bombscare-hydra-bomber'];
+const isDroneI=x=>{const i=G.I[x];return !!i&&(i.drone||i.cid==='ultron-e-advanced-ultron-drone')};
+const dronesWith=k=>G.P[k].engaged.filter(isDroneI).length;
+const anyDrone=()=>G.P.some(p=>p.engaged.some(isDroneI));
+function dronePlus(){return (vcid()==='ultron-v-ultron-iii'?1:0)+G.vill.attach.filter(x=>G.I[x].cid==='ultron-e-upgraded-drones').length}
+function em(iid){const i=G.I[iid];if(!i)return {};let m;
+  if(i.drone){const b=dronePlus();m={type:'minion',sch:1,atk:1+b,hp:1+b,drone:true}}
+  else{m=Object.assign({},meta(i.cid));if(i.cid==='ultron-e-advanced-ultron-drone'&&vcid()==='ultron-v-ultron-iii'){m.atk=(m.atk||0)+1;m.hp=(m.hp||0)+1}}
+  (i.att||[]).forEach(a=>{if(G.I[a].cid==='shehulk-nem-genetically-enhanced')m.hp=(m.hp||0)+3});
+  if(i.cid==='shehulk-nem-titania'&&!i.drone)m.atk=Math.max(0,(m.hp||0)-i.dmg);
+  return m}
+const en=iid=>{const i=G.I[iid];if(!i)return '';return i.drone?'드론 (뒷면 카드)':nm(i.cid)};
+function topCard(k){const p=G.P[k];if(!p.deck.length){if(!p.discard.length)return null;p.deck.push(...shuffle(p.discard.splice(0)));dealEnc(k,1);toast(`${hn(k)}: 덱이 다 떨어져 버린 카드 더미를 섞었어요. 조우 카드 1장을 받습니다.`)}return p.deck.pop()}
+function millTop(k,n){const out=[];for(let x=0;x<n;x++){const c=topCard(k);if(!c)break;clean(c);G.P[k].discard.push(c);out.push(c)}return out}
+const printedE=arr=>arr.reduce((s,x)=>s+(['e'].includes(resOf(G.I[x].cid))?resN(x):0),0);
+function putDrone(k,n=1){let c2=0;const p=G.P[k];if(p.elim)return 0;for(let x=0;x<n;x++){const c=topCard(k);if(!c)break;clean(c);p.engaged.push(c);G.I[c].owner=k;G.I[c].drone=true;c2++}return c2}
+function eachDrone(){const m=[];G.P.forEach((p,k)=>{if(!p.elim){const n=putDrone(k,1);if(n)m.push(hn(k))}});return m.length?`각 플레이어 덱 맨 위 카드를 드론으로 내려놓았어요`:''}
+function searchEnc(cid){return G.enc.deck.find(x=>G.I[x].cid===cid)||G.enc.discard.find(x=>G.I[x].cid===cid)||null}
+const inPlayEnemy=cid=>G.P.some(p=>p.engaged.some(x=>G.I[x].cid===cid&&!G.I[x].drone));
+function digMinion(k,flt){const lim=G.enc.deck.length+G.enc.discard.length+1;const out=[];
+  for(let x=0;x<lim;x++){const c=encTop();if(!c)break;const cid=G.I[c].cid;const ok=meta(cid).type==='minion'&&(!flt||flt(cid));
+    if(ok){minionEnter(c,k,true);return `${nm(cid)}을(를) 찾아 ${hn(k)}와 교전시켰어요${out.length?` (버린 카드 ${out.length}장)`:''}`}
+    G.enc.discard.push(c);out.push(c)}
+  return '조건에 맞는 하수인을 찾지 못했어요'}
+function attachMinion(m,c){pull(c);clean(c);const mi=G.I[m];mi.att=mi.att||[];mi.att.push(c)}
+function highestMinion(excl){let best=null,bh=-1;G.P.forEach(p=>p.engaged.forEach(x=>{const ii=G.I[x];if(ii.drone)return;if(excl&&(ii.att||[]).some(a=>G.I[a].cid===excl))return;const h=meta(ii.cid).hp||0;if(h>bh){bh=h;best=x}}));return best}
+function hitEnemy(iid,v,o={}){const ti=G.I[iid];if(!ti||v<=0)return {dead:false};const name=en(iid);
+  if(ti.cid==='legionsofhydra-madame-hydra'&&!ti.drone&&G.sides.some(x=>G.I[x].cid==='legionsofhydra-legions-of-hydra')){toast('하이드라 군단이 있는 동안 Madame Hydra는 피해를 입지 않아요');return {dead:false,blocked:true}}
+  if(o.bp&&ti.cid==='blackpanther-nem-killmonger'){toast('Killmonger는 블랙 팬서 업그레이드로부터 피해를 입지 않아요');return {dead:false,blocked:true}}
+  if(ti.st.tough){ti.st.tough=0;toast(`${name}: 강인함 카드로 피해가 막혔어요`);return {dead:false}}
+  ti.dmg+=v;const hp=em(iid).hp;
+  if(hp&&ti.dmg>=hp){const bio=(ti.att||[]).find(a=>G.I[a].cid==='doomsdaychair-biomechanical-upgrades');
+    if(bio){ti.dmg=0;ti.att=ti.att.filter(a=>a!==bio);G.enc.discard.push(bio);toast('생체역학적 향상 — 격파 대신 피해를 모두 치료하고 버렸어요');return {dead:false}}
+    const over=ti.dmg-hp;defeatEnemy(iid);toast(`${name} 격파!`);return {dead:true,over}}
+  return {dead:false}}
+function eachEnemy(v,o={}){dmgVillain(v);G.P.forEach(p=>p.engaged.slice().forEach(x=>hitEnemy(x,v,o)))}
+function vRetal(){return G.vill.attach.reduce((s,x)=>s+(meta(G.I[x].cid).retal||0),0)}
+function heroAtk(k,val,name,extra={}){const idi=G.I[G.P[k].id];if(idi.st.stun){idi.st.stun=0;toast('기절 상태라 공격 대신 기절 카드를 버렸어요');return false}qpush(Object.assign({t:'tg',src:'e:'+k,kind:'atk',val,name,att:true},extra));return true}
+function heroThw(k,val,name,extra={}){const idi=G.I[G.P[k].id];if(idi.st.conf){idi.st.conf=0;toast('혼란 상태라 저지 대신 혼란 카드를 버렸어요');return false}qpush(Object.assign({t:'tg',src:'e:'+k,kind:'thw',val,name},extra));return true}
+const isTech=x=>!!(cdOf(G.I[x].cid)||{}).tech;
+const isBPU=x=>!!(cdOf(G.I[x].cid)||{}).bp;
+function syncHp(){if(!G)return;G.P.forEach(p=>{const base=meta(HEROES[p.hid].identity).hp;if(base==null)return;
+  const bonus=p.play.reduce((s,x)=>s+(G.I[x].cid==='ironman-mark-v-armor'?6:G.I[x].cid==='ironman-rocket-boots'?1:0),0);const t=base+bonus;
+  if(p.hpMax==null)p.hpMax=t;if(p.hpMax!==t){const d=t-p.hpMax;p.hpMax=t;p.hp=Math.max(0,p.hp+d)}})}
+function onForm(k){const p=G.P[k];if(p.hid==='shehulk'&&p.form==='hero')qpush({t:'tg',src:'e:'+k,kind:'atk',val:2,name:'She-Hulk · 운동은 좀 하니?'})}
+function stageReveal(cid){
+  if(cid==='klaw-v-klaw-ii'){const f=searchEnc('klaw-e-the-immortal-klaw');if(f){sideEnter(f);shuffle(G.enc.deck);setTimeout(()=>toast('Klaw (II) 공개 — 불멸의 Klaw가 등장했어요 (Klaw 생명력 +10)'),60)}}
+  if(cid==='ultron-v-ultron-iii'){const f=searchEnc('ultron-e-ultrons-imperative');if(f){ENC['ultron-e-ultrons-imperative'](f,G.first);shuffle(G.enc.deck);setTimeout(()=>toast('Ultron (III) 공개 — Ultron의 명령이 등장했어요'),60)}}}
+function schemeReveal(cid,side){const msg=[];
+  if(cid==='klaw-s-underground-distribution'){if(side==='a'){const f=searchEnc('klaw-e-defense-network');if(f){sideEnter(f);shuffle(G.enc.deck);msg.push('방어 조직이 등장했어요')}}else msg.push(digMinion(G.first))}
+  if(cid==='klaw-s-secret-rendezvous'){msg.push(digMinion(G.first))}
+  if(cid==='ultron-s-the-crimson-cowl'){if(side==='a'){const f=searchEnc('ultron-e-ultron-drones');if(f){moveTo(f,'vattach');shuffle(G.enc.deck);msg.push('Ultron 드론 환경 카드를 내려놓았어요')}}else msg.push(eachDrone())}
+  if(cid==='ultron-s-assault-on-norad'||cid==='ultron-s-countdown-to-oblivion')msg.push(eachDrone());
+  const s=msg.filter(Boolean).join(' · ');if(s)setTimeout(()=>toast(s),80)}
+const noMainRemove=()=>scid()==='ultron-s-countdown-to-oblivion';
+/* 공격 뒤 처리 (tgHit 에서 호출) */
+function afterAttack(t,target,res){const src=t.src;const hk=src.startsWith('h:')||src.startsWith('e:')?+src.slice(2):null;const ai=src.startsWith('a:')?src.slice(2):null;
+  const isAtk=t.kind==='atk'&&(t.att||src.startsWith('h:')||src.startsWith('a:'));if(!isAtk)return;
+  const alive=target==='villain'?G.vill.hp>0:!!where(target);
+  const r=target==='villain'?vRetal():(alive?(em(target).retal||0):0);
+  if(r&&alive){if(hk!=null){dmgId(hk,r);toast(`보복 ${r} — ${hn(hk)}이(가) 피해 ${r}를 입었어요`)}else if(ai&&where(ai))dmgAlly(ai,r)}
+  if(hk!=null){const p=G.P[hk];
+    const ss=p.play.find(x=>G.I[x].cid==='shehulk-superhuman-strength');
+    if(ss&&p.form==='hero'){moveTo(ss,`p${hk}.discard`);if(target==='villain'){G.I[G.vill.iid].st.stun=1;toast('초인적인 힘 — 빌런 기절')}else if(where(target)){G.I[target].st.stun=1;toast(`초인적인 힘 — ${en(target)} 기절`)}}
+    if(src.startsWith('h:')&&p.form==='hero'&&p.hand.some(x=>G.I[x].cid==='shehulk-one-two-punch'))qpush({t:'otp',k:hk});
+    if(res&&res.dead&&p.hand.some(x=>G.I[x].cid==='aggression-chase-them-down'))qpush({t:'ctd',k:hk})}
+  if(ai){const a=G.I[ai];const own=a.owner??G.view;
+    if(a.cid==='aggression-tigra'&&res&&res.dead&&where(ai)){a.dmg=Math.max(0,a.dmg-1);toast('Tigra — 피해 1 치료')}
+    if(a.cid==='aggression-hulk'&&where(ai))hulkSmash(own,ai)}}
+function hulkSmash(k,hulk){const c=millTop(k,1)[0];if(!c){toast('Hulk — 덱이 비었어요');return}const r=resOf(G.I[c].cid);const nmC=nm(G.I[c].cid);
+  if(!r){toast(`Hulk — ${nmC}(자원 미등록) · 직접 처리해 주세요`);return}
+  const doP=r==='p'||r==='w',doE=r==='e'||r==='w',doM=r==='m'||r==='w';const msg=[`Hulk — 버린 카드 ${nmC}`];
+  if(doE){G.P.forEach((q,x)=>{if(!q.elim)dmgId(x,1);q.play.slice().forEach(a=>{if(meta(G.I[a].cid).hp&&where(a))dmgAlly(a,1)})});eachEnemy(1);msg.push('모든 캐릭터에게 피해 1')}
+  if(doM&&where(hulk)){moveTo(hulk,`p${k}.discard`);msg.push('Hulk를 버림')}
+  if(doP){qpush({t:'tg',src:'e:'+k,kind:'atk',val:2,name:'Hulk · 물리력'});msg.push('적 하나에게 피해 2')}
+  toast(msg.join(' · '))}
+/* 빌런 공격 뒤 처리 (vaGo apply) */
+function afterVAtk(q,dealt){const k=q.k;const tk=q.def&&q.def.startsWith('h:')?+q.def.slice(2):k;const allyDef=q.def&&q.def.startsWith('a:');
+  if(!allyDef){const p=G.P[tk];const rt=meta(HEROES[p.hid].identity).retal;if(rt&&p.form==='hero'&&p.hp>0){dmgVillain(rt);toast(`보복 ${rt} — 빌런에게 피해 ${rt}`)}}
+  if(dealt>0&&G.vill.attach.some(x=>G.I[x].cid==='klaw-e-sonic-converter')){if(allyDef){const a=q.def.slice(2);if(where(a)){G.I[a].st.stun=1}}else G.I[G.P[tk].id].st.stun=1;toast('★ 음파 변환기 — 피해를 입은 캐릭터 기절')}
+  if(q.after==='kv'&&dealt>0){G.sch.threat+=1;toast('Klaw의 복수 — 주요 음모에 위협 1')}
+  if(q.after==='rage'&&dealt>0){millTop(k,dealt);toast(`Ultron의 분노 — 덱 맨 위 ${dealt}장을 버렸어요`)}
+  if(q.def&&q.def.startsWith('h:')){const p=G.P[tk];
+    if(p.hand.some(x=>G.I[x].cid==='protection-counter-punch'))qpush({t:'cp',k:tk,tgt:'villain'});
+    if(p.play.some(x=>G.I[x].cid==='protection-indomitable'))qpush({t:'indo',k:tk})}
+  if(vcid()==='ultron-v-ultron-i')qpush({t:'u1',k})}
+function afterMinionAtk(mi,k,defH){const m=G.I[mi];if(!m)return;const p=G.P[k];
+  if(m.cid==='mastersofevil-radioactive-man'&&p.hand.length){const r=p.hand[Math.floor(Math.random()*p.hand.length)];moveTo(r,`p${k}.discard`);toast(`★ Radioactive Man — ${nm(G.I[r].cid)}을(를) 무작위로 버렸어요`)}
+  if(m.cid==='mastersofevil-tiger-shark'){m.st.tough=1;toast('★ Tiger Shark — 강인함을 얻었어요')}
+  if(m.cid==='legionsofhydra-madame-hydra')legionsThr();
+  const rt=meta(HEROES[p.hid].identity).retal;if(rt&&p.form==='hero'&&p.hp>0&&where(mi))hitEnemy(mi,rt);
+  if(defH){if(p.hand.some(x=>G.I[x].cid==='protection-counter-punch'))qpush({t:'cp',k,tgt:mi});if(p.play.some(x=>G.I[x].cid==='protection-indomitable'))qpush({t:'indo',k})}}
+function legionsThr(){const l=G.sides.find(x=>G.I[x].cid==='legionsofhydra-legions-of-hydra');if(l){G.I[l].thr+=2;toast('★ Madame Hydra — 하이드라 군단에 위협 2')}}
+function afterVSch(){const pt=G.vill.attach.some(x=>G.I[x].cid==='ultron-e-program-transmitter');if(pt&&G.sides.length){G.sides.forEach(x=>G.I[x].thr+=1);toast('★ 프로그램 송신기 — 각 부가 음모에 위협 1')}}
+/* 의무 카드 */
+const OBL={
+  'shehulk-legal-work':{who:'Jennifer Walters',alt:'주요 음모에 가속 토큰 1개 놓고 버리기',fn:(o,c)=>{G.accel++;moveTo(c,'enc.discard')}},
+  'ironman-business-problems':{who:'Tony Stark',alt:'조종하는 업그레이드를 모두 소진하고 버리기',fn:(o,c)=>{G.P[o].play.forEach(x=>{if((cdOf(G.I[x].cid)||{}).type==='업그레이드')G.I[x].ex=true});moveTo(c,'enc.discard')}},
+  'blackpanther-affairs-of-state':{who:"T'Challa",alt:'블랙 팬서 업그레이드 하나를 버리고 이 카드 버리기',fn:(o,c)=>{moveTo(c,'enc.discard');if(G.P[o].play.some(isBPU))qpush({t:'pick',k:o,flt:'bp'})}}
+};
+/* 조우 카드 공개 효과 */
+['shehulk-nem-titania','ironman-nem-whiplash','blackpanther-nem-killmonger','klaw-e-armored-guard','ultron-e-advanced-ultron-drone',...MOE,'legionsofhydra-madame-hydra','legionsofhydra-hydra-soldier','doomsdaychair-modok'].forEach(x=>ENC[x]=(c,k)=>{minionEnter(c,k)});
+['shehulk-nem-personal-challenge','ironman-nem-imminent-overload','blackpanther-nem-usurp-the-throne','klaw-e-defense-network','klaw-e-illegal-arms-factory'].forEach(x=>ENC[x]=(c,k)=>{sideEnter(c);return `${nm(G.I[c].cid)} — 위협 ${G.I[c].thr}로 등장`});
+['klaw-e-sonic-converter','klaw-e-solid-sound-body','ultron-e-program-transmitter','underattack-vibranium-chassis','underattack-concussion-blasters'].forEach(x=>ENC[x]=(c,k)=>{moveTo(c,'vattach');return `${nm(G.I[c].cid)} — 빌런에게 장착`});
+Object.assign(ENC,{
+  'klaw-e-weapons-runner':(c,k)=>{minionEnter(c,k);surge(k);return '무기 밀수업자 — 교전 · 쇄도'},
+  'klaw-e-the-immortal-klaw':(c,k)=>{sideEnter(c);return `불멸의 Klaw — 위협 ${G.I[c].thr}로 등장 · Klaw 생명력 +10`},
+  'shehulk-nem-genetically-enhanced':(c,k)=>{const m=highestMinion();if(!m){disc(c);surge(k);return '유전자 강화 — 하수인이 없어 쇄도'}attachMinion(m,c);return `유전자 강화 — ${en(m)}에게 장착 (생명력 +3)`},
+  'doomsdaychair-biomechanical-upgrades':(c,k)=>{const m=highestMinion('doomsdaychair-biomechanical-upgrades');surge(k);if(!m){disc(c);return '생체역학적 향상 — 장착할 하수인이 없어 버림 · 쇄도'}attachMinion(m,c);return `생체역학적 향상 — ${en(m)}에게 장착 · 쇄도`},
+  'ultron-e-ultron-drones':(c,k)=>{moveTo(c,'vattach');return 'Ultron 드론 환경 카드를 내려놓았어요'},
+  'ultron-e-upgraded-drones':(c,k)=>{moveTo(c,'vattach');return '드론 개량 — Ultron 드론 환경에 장착 (드론 공격·생명력 +1)'},
+  'shehulk-nem-titanias-fury':(c,k)=>{disc(c);const t=G.P.map(p=>p.engaged.find(x=>G.I[x].cid==='shehulk-nem-titania'&&!G.I[x].drone)).find(Boolean);const p=G.P[k];
+    if(t&&p.form==='hero'&&!G.I[t].st.stun){qpush({t:'qs',iid:t,k,val:em(t).atk??0,title:'Titania의 분노',note:'Titania가 당신의 히어로를 공격해요.'});return}
+    if(t)G.I[t].dmg=0;surge(k);return 'Titania의 분노 — Titania가 공격하지 못해 피해를 모두 치료 · 쇄도'},
+  'ironman-nem-electric-whip-attack':(c,k)=>{disc(c);qpush({t:'ewa',k})},
+  'ironman-nem-electromagnetic-backlash':(c,k)=>{disc(c);const m=[];G.P.forEach((p,x)=>{if(p.elim)return;const out=millTop(x,5);const e=printedE(out);if(e)dmgId(x,e);m.push(`${hn(x)} 에너지 ${e} → 피해 ${e}`)});return '전자기 역류 — '+m.join(' · ')},
+  'blackpanther-nem-heart-shaped-herb':(c,k)=>{disc(c);G.I[G.vill.iid].st.tough=1;G.P[k].engaged.forEach(x=>G.I[x].st.tough=1);surge(k);return '하트 모양 허브 — 빌런과 교전 중인 하수인이 강인함을 얻었어요 · 쇄도'},
+  'blackpanther-nem-ritual-combat':(c,k)=>{disc(c);const t=encTop();let x=1;if(t){G.enc.discard.push(t);x=(meta(G.I[t].cid).boost??0)+1}qpush({t:'rc',k,x,card:t?nm(G.I[t].cid):'없음'})},
+  'klaw-e-klaws-vengeance':(c,k)=>{disc(c);const p=G.P[k];if(p.form!=='hero'){if(p.hand.length){const r=p.hand[Math.floor(Math.random()*p.hand.length)];moveTo(r,`p${k}.discard`);return `Klaw의 복수 — ${nm(G.I[r].cid)}을(를) 무작위로 버렸어요`}return 'Klaw의 복수 — 버릴 카드가 없어요'}
+    qpush({t:'vatk',k,title:'Klaw의 복수',after:'kv'})},
+  'klaw-e-sonic-boom':(c,k)=>{disc(c);qpush({t:'sboom',k})},
+  'klaw-e-sound-manipulation':(c,k)=>{disc(c);const p=G.P[k];if(p.form!=='hero'){const h=Math.max(0,Math.min(4,vMax()-G.vill.hp));G.vill.hp+=h;if(!h){surge(k);return '음파 조작 — 치료할 피해가 없어 쇄도'}return `음파 조작 — Klaw 피해 ${h} 치료`}
+    dmgId(k,2);const h=Math.max(0,Math.min(2,vMax()-G.vill.hp));G.vill.hp+=h;return `음파 조작 — ${hn(k)} 피해 2 · Klaw 피해 ${h} 치료`},
+  'ultron-e-android-efficiency':(c,k)=>{disc(c);return '안드로이드의 효율성 — '+(eachDrone()||'덱이 비었어요')},
+  'ultron-e-rage-of-ultron':(c,k)=>{disc(c);if(G.P[k].form!=='hero')qpush({t:'vsch',title:'Ultron의 분노',after:'rageS',k});else qpush({t:'vatk',k,title:'Ultron의 분노',after:'rage'})},
+  'ultron-e-repair-sequence':(c,k)=>{disc(c);const n=dronesWith(k);const h=Math.max(0,Math.min(2*n,vMax()-G.vill.hp));G.vill.hp+=h;if(!h){surge(k);return '수리 절차 — 치료된 피해가 없어 쇄도'}return `수리 절차 — Ultron 피해 ${h} 치료`},
+  'ultron-e-swarm-attack':(c,k)=>{disc(c);const p=G.P[k];const ds=p.form==='hero'?p.engaged.filter(isDroneI).filter(x=>!G.I[x].st.stun):[];
+    if(!ds.length){putDrone(k,1);return '벌떼 공격 — 공격한 드론이 없어 덱 맨 위 카드를 드론으로 내려놓았어요'}
+    ds.forEach(x=>qpush({t:'qs',iid:x,k,val:em(x).atk??1,title:'벌떼 공격',note:'교전 중인 드론 하수인이 공격해요.'}))},
+  'ultron-e-drone-factory':(c,k)=>{eachDrone();sideEnter(c);let n=0;G.P.forEach(p=>n+=p.engaged.filter(isDroneI).length);G.I[c].thr+=n;return `드론 공장 — 각 플레이어 드론 1 · 위협 ${G.I[c].thr}로 등장`},
+  'ultron-e-invasive-ai':(c,k)=>{G.P.forEach((p,x)=>{if(!p.elim)millTop(x,3)});sideEnter(c);return `침습하는 AI — 각 플레이어 덱 맨 위 3장 버림 · 위협 ${G.I[c].thr}로 등장`},
+  'ultron-e-ultrons-imperative':(c,k)=>{putDrone(G.first,2);sideEnter(c);return `Ultron의 명령 — 첫 번째 플레이어 드론 2 · 위협 ${G.I[c].thr}로 등장`},
+  'mastersofevil-the-masters-of-evil':(c,k)=>{sideEnter(c);const m=digMinion(G.first,cid=>MOE.includes(cid));return `Masters of Evil — 위협 ${G.I[c].thr}로 등장 · ${m}`},
+  'mastersofevil-masters-of-mayhem':(c,k)=>{disc(c);let n=0;G.P.forEach((p,x)=>{if(p.elim||p.form!=='hero')return;p.engaged.forEach(m=>{if(MOE.includes(G.I[m].cid)&&!G.I[m].drone&&!G.I[m].st.stun){qpush({t:'qs',iid:m,k:x,val:em(m).atk??0,title:'대혼란의 대가들'});n++}})});
+    if(n)return;const f=MOE.map(searchEnc).find(Boolean);if(f){minionEnter(f,k,true);shuffle(G.enc.deck);return `대혼란의 대가들 — 공격이 없어 ${nm(G.I[f].cid)}이(가) 교전했어요`}return '대혼란의 대가들 — 찾을 하수인이 없어요'},
+  'underattack-under-attack':(c,k)=>{sideEnter(c);G.P.forEach((p,x)=>{if(!p.elim)qpush({t:'ua',k:x,side:c})});return `무차별 공격 — 위협 ${G.I[c].thr}로 등장`},
+  'underattack-concussive-blast':(c,k)=>{disc(c);G.P.forEach((p,x)=>{if(p.elim)return;dmgId(x,1);p.play.slice().forEach(a=>{if(meta(G.I[a].cid).hp&&where(a))dmgAlly(a,1)})});return '강력한 폭발 — 각 아군 캐릭터에게 피해 1'},
+  'legionsofhydra-legions-of-hydra':(c,k)=>{let msg='';if(!inPlayEnemy('legionsofhydra-madame-hydra')){const f=searchEnc('legionsofhydra-madame-hydra');if(f){minionEnter(f,k,true);shuffle(G.enc.deck);msg=' · Madame Hydra 교전'}}
+    sideEnter(c);let n=0;G.P.forEach(p=>p.engaged.forEach(x=>{if(HYDRA.includes(G.I[x].cid)&&!G.I[x].drone)n++}));G.I[c].thr+=2*n;return `하이드라 군단 — 위협 ${G.I[c].thr}로 등장${msg}`},
+  'doomsdaychair-the-doomsday-chair':(c,k)=>{let msg='';if(!inPlayEnemy('doomsdaychair-modok')){const f=searchEnc('doomsdaychair-modok');if(f){minionEnter(f,k,true);shuffle(G.enc.deck);msg=' · MODOK 교전'}}sideEnter(c);return `종말의 의자 — 위협 ${G.I[c].thr}로 등장${msg}`}
+});
+/* 추가 확인창 */
+function promptSheet2(q){
+  const yesNo=(title,note,act)=>head(title)+`<p class="note">${note}</p><div class="btns"><button class="btn go" data-act="${act}" data-v="yes">쓰기</button><button class="btn" data-act="${act}" data-v="no">쓰지 않기</button></div>`;
+  if(q.t==='otp')return yesNo('원투 펀치 · 반응',`${esc(hn(q.k))}이(가) 기본 공격을 했어요. 원투 펀치(비용 1)로 She-Hulk를 준비할까요?`,'otpGo');
+  if(q.t==='ctd')return yesNo('끝까지 추격 · 반응',`${esc(hn(q.k))}의 공격으로 적을 격파했어요. 끝까지 추격(비용 0)으로 음모 하나에서 위협 2를 제거할까요?`,'ctdGo');
+  if(q.t==='cp')return yesNo('카운터 펀치 · 반응',`${esc(hn(q.k))}이(가) 적의 공격을 방어했어요. 카운터 펀치(비용 0)로 그 적에게 피해 ${heroStat(q.k,'atk')}을(를) 줄까요?`,'cpGo');
+  if(q.t==='indo')return yesNo('불굴 · 반응',`${esc(hn(q.k))}이(가) 방어했어요. 불굴을 버리고 히어로를 준비할까요?`,'indoGo');
+  if(q.t==='u1')return head('Ultron (I) · 강제 반응')+`<p class="note">Ultron이 ${esc(hn(q.k))}을(를) 공격한 후, 하나를 선택합니다.</p><div class="btns"><button class="btn blue" data-act="u1Go" data-v="thr">주요 음모에 위협 1 놓기</button><button class="btn go" data-act="u1Go" data-v="drone">덱 맨 위 카드를 드론으로 내려놓기</button></div>`;
+  if(q.t==='norad')return head('NORAD 습격 · 강제 반응')+`<p class="note">${esc(hn(q.k))}이(가) 하나를 선택해야 합니다.</p><div class="btns"><button class="btn blue" data-act="noradGo" data-v="thr">이 음모에 위협 2 놓기</button><button class="btn go" data-act="noradGo" data-v="drone">덱 맨 위 카드를 드론으로 내려놓기</button></div>`;
+  if(q.t==='ua')return head('무차별 공격 · 공개될 때')+`<p class="note">${esc(hn(q.k))}이(가) 하나를 선택합니다.</p><div class="btns"><button class="btn blue" data-act="uaGo" data-v="thr">이 카드에 위협 2 놓기</button><button class="btn go" data-act="uaGo" data-v="dmg">히어로에게 피해 3</button></div>`;
+  if(q.t==='ewa'){const n=G.P[q.k].play.filter(x=>(cdOf(G.I[x].cid)||{}).type==='업그레이드').length;return head('전기 채찍 공격 · 공개될 때')+`<p class="note">${esc(hn(q.k))}이(가) 하나를 선택합니다. ★ 강화: 방어되지 않은 공격이면 업그레이드 하나를 버려요(직접 처리).</p><div class="btns"><button class="btn go" data-act="ewaGo" data-v="dmg">업그레이드마다 피해 1 (피해 ${n})</button><button class="btn blue" data-act="ewaGo" data-v="disc" ${n?'':'disabled'}>업그레이드 하나 버리기</button></div>`}
+  if(q.t==='rc')return head('의식의 결투 · 공개될 때')+`<p class="note">조우 덱 맨 위 카드(<b>${esc(q.card)}</b>)를 버렸어요. X = 강화 아이콘 + 1 = <b>${q.x}</b></p><div class="btns"><button class="btn go" data-act="rcGo" data-v="dmg">히어로에게 피해 ${q.x}</button><button class="btn blue" data-act="rcGo" data-v="thr">주요 음모에 위협 ${q.x}</button></div>`;
+  if(q.t==='sboom')return head('소닉 붐 · 공개될 때')+`<p class="note">${esc(hn(q.k))}이(가) 하나를 선택합니다.</p><div class="btns"><button class="btn blue" data-act="sbGo" data-v="pay">에너지·정신력·물리력 자원 지불</button><button class="btn go" data-act="sbGo" data-v="ex">조종하는 캐릭터를 모두 소진</button></div>`;
+  if(q.t==='shuri'||q.t==='bpsetup'){const p=G.P[q.k];const opts=p.deck.filter(x=>q.t==='shuri'?(cdOf(G.I[x].cid)||{}).type==='업그레이드':isBPU(x));
+    return head(q.t==='shuri'?'Shuri · 반응':"T'Challa · 선견지명")+`<p class="note">덱에서 ${q.t==='shuri'?'업그레이드':'블랙 팬서 업그레이드'} 하나를 골라 손에 더해요. 그다음 덱을 섞어요.</p>${opts.length?`<div class="row">${opts.map(x=>`<button class="slot" data-act="srchGo" data-i="${x}">${faceOf(G.I[x].cid,'a')}</button>`).join('')}</div>`:'<p class="sub">찾을 카드가 없어요.</p>'}<div class="btns"><button class="btn" data-act="srchGo" data-i="none">넘어가기</button></div>`}
+  if(q.t==='lp'||q.t==='ak'){const p=G.P[q.k];const src=q.t==='lp'?p.hand:p.discard.filter(x=>x!==q.self);const max=q.t==='lp'?5:3;const sel=q.sel||[];
+    return head(q.t==='lp'?'변론 · 버릴 카드 고르기':'조상의 지혜 · 덱에 섞을 카드 고르기')+`<p class="note">${q.t==='lp'?'손에서 최대 5장까지 고르세요. 고른 장수만큼 음모에서 위협을 제거해요.':'버린 더미에서 서로 다른 카드를 최대 3장까지 고르면 덱에 넣고 섞어요.'} (${sel.length}/${max})</p>
+      <div class="row">${src.map(x=>slot(x,{act:'mselGo',sel:sel.includes(x)})).join('')}</div><div class="btns"><button class="btn go" data-act="mselDo">${sel.length}장으로 진행</button></div>`}
+  if(q.t==='wf'){const left=q.left.filter(x=>where(x)&&where(x).endsWith('.play'));
+    if(!left.length)return head('와칸다 포에버!')+'<p class="note">해결할 블랙 팬서 업그레이드가 없어요.</p><div class="btns"><button class="btn" data-act="wfGo" data-i="none">마치기</button></div>';
+    return head('와칸다 포에버! · 특수 능력 순서')+`<p class="note">해결할 업그레이드를 순서대로 누르세요. ${left.length===1?'<b>이번이 마지막 단계</b>라 강화된 효과가 적용돼요.':`남은 ${left.length}장 · 마지막으로 해결하는 카드는 강화된 효과가 적용돼요.`}</p><div class="row">${left.map(x=>`<button class="slot" data-act="wfGo" data-i="${x}">${faceOf(G.I[x].cid,'a')}</button>`).join('')}</div><div class="btns"><button class="btn" data-act="wfGo" data-i="none">나머지 건너뛰기</button></div>`}
+  if(q.t==='wfd'){return head('에너지 단검 · 플레이어 선택')+`<p class="note">빌런과 고른 플레이어와 교전 중인 각 적에게 피해 ${q.val}을 입혀요.</p><div class="btns">${G.P.map((p,x)=>p.elim?'':`<button class="btn go" data-act="wfdGo" data-k="${x}">${esc(hn(x))}</button>`).join('')}</div>`}
+  if(q.t==='fut'){const p=G.P[q.k];return head('Tony Stark · 미래학자')+`<p class="note">덱 맨 위 3장 중 1장을 손에 더하고 나머지는 버려요.</p><div class="row">${q.cards.map(x=>`<button class="slot" data-act="futGo" data-i="${x}">${faceOf(G.I[x].cid,'a')}</button>`).join('')}</div>`}
+  if(q.t==='tower')return head('스타크 타워 · 플레이어 선택')+`<p class="note">고른 플레이어의 버린 더미에서 가장 위의 <b>기술</b> 업그레이드를 손으로 되돌려요.</p><div class="btns">${G.P.map((p,x)=>p.elim?'':`<button class="btn go" data-act="towerGo" data-k="${x}">${esc(hn(x))}</button>`).join('')}</div>`;
+  if(q.t==='medh'){const tg=[];G.P.forEach((p,x)=>{if(!p.elim)tg.push(['h:'+x,`${hn(x)} (${p.hp}/${p.hpMax})`]);p.play.forEach(a=>{const ai=G.I[a];if(meta(ai.cid).hp)tg.push(['a:'+a,`${nm(ai.cid)} (피해 ${ai.dmg})`])})});
+    return head('의료팀')+`<p class="note">아군 캐릭터 하나가 입은 피해 2점을 치료합니다.</p><div class="btns">${tg.map(([v,l])=>`<button class="btn blue" data-act="healGo" data-t="${v}">${esc(l)}</button>`).join('')}</div>`}
+  return null}
+Object.assign(A,{
+  otpGo(d){if(d.v!=='yes'){act(()=>G.q.shift());resumeSheet();return}const q=G.q[0];const c=G.P[q.k].hand.find(x=>G.I[x].cid==='shehulk-one-two-punch');act(()=>G.q.shift());if(!c)return resumeSheet();
+    UI.pay={iid:c,k:q.k,sel:new Set(),gen:new Set(),then:'otp',cost:1,title:'원투 펀치 · 반응',btn:'지불하고 She-Hulk 준비'};openSheet(paySheet)},
+  ctdGo(d){act(()=>{const q=G.q.shift();if(d.v!=='yes')return;const p=G.P[q.k];const c=p.hand.find(x=>G.I[x].cid==='aggression-chase-them-down');if(!c)return;moveTo(c,`p${q.k}.discard`);heroThw(q.k,2,'끝까지 추격')});resumeSheet()},
+  cpGo(d){act(()=>{const q=G.q.shift();if(d.v!=='yes')return;const p=G.P[q.k];const c=p.hand.find(x=>G.I[x].cid==='protection-counter-punch');if(!c)return;moveTo(c,`p${q.k}.discard`);
+    const idi=G.I[p.id];if(idi.st.stun){idi.st.stun=0;toast('기절 상태라 공격 대신 기절 카드를 버렸어요');return}const v=heroStat(q.k,'atk');
+    if(q.tgt==='villain'){dmgVillain(v);toast(`카운터 펀치 — 빌런에게 피해 ${v}`);afterAttack({src:'e:'+q.k,kind:'atk',att:true},'villain',{dead:false})}
+    else if(where(q.tgt)){const r=hitEnemy(q.tgt,v);toast(`카운터 펀치 — 피해 ${v}`);afterAttack({src:'e:'+q.k,kind:'atk',att:true},q.tgt,r)}});resumeSheet()},
+  indoGo(d){act(()=>{const q=G.q.shift();if(d.v!=='yes')return;const p=G.P[q.k];const c=p.play.find(x=>G.I[x].cid==='protection-indomitable');if(!c)return;moveTo(c,`p${q.k}.discard`);G.I[p.id].ex=false;toast('불굴 — 히어로를 준비했어요')});resumeSheet()},
+  u1Go(d){act(()=>{const q=G.q.shift();if(d.v==='thr'){G.sch.threat+=1;toast('주요 음모에 위협 1')}else{putDrone(q.k,1);toast('덱 맨 위 카드를 드론으로 내려놓았어요')}});resumeSheet()},
+  noradGo(d){act(()=>{const q=G.q.shift();if(d.v==='thr'){G.sch.threat+=2;toast('NORAD 습격 — 위협 2')}else{putDrone(q.k,1);toast('드론 1을 내려놓았어요')}});resumeSheet()},
+  uaGo(d){act(()=>{const q=G.q.shift();if(d.v==='thr'){if(G.I[q.side]&&where(q.side)==='sides')G.I[q.side].thr+=2;toast('무차별 공격에 위협 2')}else{dmgId(q.k,3);toast(`${hn(q.k)} 피해 3`)}});resumeSheet()},
+  ewaGo(d){act(()=>{const q=G.q.shift();const p=G.P[q.k];if(d.v==='dmg'){const n=p.play.filter(x=>(cdOf(G.I[x].cid)||{}).type==='업그레이드').length;if(n)dmgId(q.k,n);toast(`전기 채찍 공격 — 피해 ${n}`)}else qpush({t:'pick',k:q.k,flt:'upg'})});resumeSheet()},
+  rcGo(d){act(()=>{const q=G.q.shift();if(d.v==='dmg'){dmgId(q.k,q.x);toast(`의식의 결투 — 피해 ${q.x}`)}else{G.sch.threat+=q.x;toast(`의식의 결투 — 주요 음모에 위협 ${q.x}`)}});resumeSheet()},
+  sbGo(d){const q=G.q[0];if(d.v==='pay'){const p=G.P[q.k];act(()=>G.q.shift());UI.pay={iid:p.id,k:q.k,sel:new Set(),gen:new Set(),then:'noop',cost:3,title:'소닉 붐 · 자원 지불',btn:'에너지·정신력·물리력 각 1개 지불'};openSheet(paySheet);return}
+    act(()=>{G.q.shift();const p=G.P[q.k];G.I[p.id].ex=true;p.play.forEach(x=>{if(meta(G.I[x].cid).hp)G.I[x].ex=true});toast('소닉 붐 — 조종하는 캐릭터를 모두 소진했어요')});resumeSheet()},
+  srchGo(d){act(()=>{const q=G.q.shift();const p=G.P[q.k];if(d.i!=='none'){pull(d.i);clean(d.i);p.hand.push(d.i);toast(`${nm(G.I[d.i].cid)}을(를) 손에 더했어요`)}shuffle(p.deck)});resumeSheet()},
+  mselGo(d){const q=G.q[0];q.sel=q.sel||[];const i=q.sel.indexOf(d.i);if(i>=0)q.sel.splice(i,1);else{const max=q.t==='lp'?5:3;if(q.sel.length>=max)return;if(q.t==='ak'&&q.sel.some(x=>G.I[x].cid===G.I[d.i].cid)){toast('서로 다른 카드만 고를 수 있어요');return}q.sel.push(d.i)}save();drawSheet()},
+  mselDo(){act(()=>{const q=G.q.shift();const p=G.P[q.k];const sel=q.sel||[];
+    if(q.t==='lp'){sel.forEach(x=>moveTo(x,`p${q.k}.discard`));if(sel.length)qpush({t:'tg',src:'e:'+q.k,kind:'thw',val:sel.length,name:'변론'})}
+    else{sel.forEach(x=>{pull(x);clean(x);p.deck.push(x)});shuffle(p.deck);toast(`조상의 지혜 — ${sel.length}장을 덱에 섞었어요`)}});resumeSheet()},
+  wfGo(d){act(()=>{const q=G.q.shift();if(d.i==='none')return;const left=q.left.filter(x=>x!==d.i&&where(x)&&where(x).endsWith('.play'));const fin=!left.length;const k=q.k;const cid=G.I[d.i].cid;const idi=G.I[G.P[k].id];const add=[];
+    if(cid==='blackpanther-energy-daggers'){const v=fin?2:1;if(G.P.filter(p=>!p.elim).length>1)add.push({t:'wfd',k,val:v});else{dmgVillain(v);G.P[k].engaged.slice().forEach(x=>hitEnemy(x,v,{bp:true}));toast(`에너지 단검 — 빌런과 교전 중인 적에게 피해 ${v}`)}}
+    if(cid==='blackpanther-panther-claws'){const v=fin?4:2;if(idi.st.stun){idi.st.stun=0;toast('기절 상태라 공격 대신 기절 카드를 버렸어요')}else add.push({t:'tg',src:'e:'+k,kind:'atk',val:v,name:'팬서 클로',att:true,bp:true})}
+    if(cid==='blackpanther-tactical-genius'){const v=fin?2:1;if(idi.st.conf){idi.st.conf=0;toast('혼란 상태라 저지 대신 혼란 카드를 버렸어요')}else add.push({t:'tg',src:'e:'+k,kind:'thw',val:v,name:'전술의 천재'})}
+    if(cid==='blackpanther-vibranium-suit'){const p=G.P[k];const v=Math.min(fin?2:1,(p.hpMax||0)-p.hp);if(idi.st.stun){idi.st.stun=0;toast('기절 상태라 공격 대신 기절 카드를 버렸어요')}else if(v>0){p.hp+=v;add.push({t:'tg',src:'e:'+k,kind:'atk',val:v,name:'비브라늄 슈트',att:true,bp:true})}else toast('비브라늄 슈트 — 옮길 피해가 없어요')}
+    if(!fin)add.push({t:'wf',k,left});G.q.unshift(...add)});resumeSheet()},
+  wfdGo(d){act(()=>{const q=G.q.shift();const x=+d.k;dmgVillain(q.val);G.P[x].engaged.slice().forEach(e=>hitEnemy(e,q.val,{bp:true}));toast(`에너지 단검 — 피해 ${q.val}`)});resumeSheet()},
+  futGo(d){act(()=>{const q=G.q.shift();const p=G.P[q.k];q.cards.forEach(x=>{pull(x);clean(x);if(x===d.i)p.hand.push(x);else p.discard.push(x)});G.once=G.once||{};G.once['fut'+q.k]=1;toast(`미래학자 — ${nm(G.I[d.i].cid)}을(를) 손에 더했어요`)});resumeSheet()},
+  towerGo(d){act(()=>{G.q.shift();const p=G.P[+d.k];const t=p.discard.slice().reverse().find(isTech);if(t){pull(t);clean(t);p.hand.push(t);toast(`스타크 타워 — ${nm(G.I[t].cid)}을(를) 손으로`)}else toast('버린 더미에 기술 업그레이드가 없어요')});resumeSheet()},
+  futStart(d){const k=+d.k;act(()=>{const p=G.P[k];const cards=[];for(let x=0;x<3;x++){const c=topCard(k);if(!c)break;cards.push(c);G.limbo.push(c)}qpush({t:'fut',k,cards})})},
+  bpSetup(d){act(()=>{G.once=G.once||{};G.once['bps'+d.k]=1;qpush({t:'bpsetup',k:+d.k})})},
+  cardUse(d){const i=G.I[d.i];const k=i.owner??G.view;const p=G.P[k];const w=d.w;
+    if(w==='hellcat'){act(()=>{moveTo(d.i,`p${k}.hand`)});closeSheet();toast('Hellcat을 손으로 되돌렸어요');return}
+    if(w==='sld'){UI.pay={iid:d.i,k,sel:new Set(),gen:new Set(),then:'sld',cost:1,need:'m',title:'초인 법률 부서 · 일상 행동',btn:'지불하고 위협 2 제거'};openSheet(paySheet);return}
+    if(w==='boots'){UI.pay={iid:d.i,k,sel:new Set(),gen:new Set(),then:'boots',cost:1,need:'m',title:'로켓 부츠 · 히어로 행동',btn:'지불하고 공중 특성 얻기'};openSheet(paySheet);return}
+    if(w==='encd'){const m={'klaw-e-sonic-converter':[3,null,0],'klaw-e-solid-sound-body':[3,null,0],'ultron-e-upgraded-drones':[3,null,0],'ultron-e-program-transmitter':[2,'m',1],'underattack-vibranium-chassis':[2,'p',1],'underattack-concussion-blasters':[2,'e',1]}[i.cid];
+      const kk=G.view;if(G.P[kk].form!=='hero'){toast('히어로 형태일 때만 쓸 수 있어요');return}if(m[2]&&G.I[G.P[kk].id].ex){toast('히어로가 소진돼 있어요');return}
+      UI.pay={iid:d.i,k:kk,sel:new Set(),gen:new Set(),then:m[2]?'encdx':'encd',cost:m[0],need:m[1],title:`${nm(i.cid)} · 히어로 행동`,btn:m[1]?'지불하고 버리기':'에너지·정신력·물리력 각 1개 지불하고 버리기'};openSheet(paySheet);return}
+    closeSheet();act(()=>{
+      if(w==='rage'){i.ex=true;dmgId(k,1);draw(k,1);toast('집중된 분노 — 피해 1, 카드 1장 뽑기')}
+      if(w==='wm'){i.ex=true;dmgAlly(d.i,2);eachEnemy(1);toast('War Machine — 각 적에게 피해 1')}
+      if(w==='tower'){i.ex=true;qpush({t:'tower'})}
+      if(w==='arc'){i.ex=true;G.I[p.id].ex=false;toast('아크 원자로 — Iron Man 준비')}
+      if(w==='helmet'){i.ex=true;const idi=G.I[p.id];if(idi.st.conf){idi.st.conf=0;toast('혼란 상태라 저지 대신 혼란 카드를 버렸어요')}else if(aerial(k)){if(!G.sides.some(x=>meta(G.I[x].cid).crisis)&&!noMainRemove())G.sch.threat=Math.max(0,G.sch.threat-1);G.sides.slice().forEach(x=>{G.I[x].thr=Math.max(0,G.I[x].thr-1);if(!G.I[x].thr)defeatSide(x)});toast('마크 V 헬멧 — 각 음모에서 위협 1 제거')}else qpush({t:'tg',src:'e:'+k,kind:'thw',val:1,name:'마크 V 헬멧'})}
+      if(w==='gaunt'){i.ex=true;heroAtk(k,aerial(k)?2:1,'파워 건틀릿')}
+      if(w==='golden'){i.ex=true;draw(k,2);toast('황금 도시 — 카드 2장 뽑기')}
+      if(w==='tac'){i.ex=true;i.cnt--;if(i.cnt<=0){moveTo(d.i,`p${k}.discard`);toast('공격 카운터가 모두 사라져 전술팀을 버렸어요')}qpush({t:'tg',src:'e:'+k,kind:'atk',val:2,name:'전술팀'})}
+      if(w==='med'){i.ex=true;i.cnt--;if(i.cnt<=0){moveTo(d.i,`p${k}.discard`);toast('의료 카운터가 모두 사라져 의료팀을 버렸어요')}qpush({t:'medh',val:2})}
+    })},
+  bwStart(d){const w=G.vw;UI.pay={iid:d.i,k:+d.k,sel:new Set(),gen:new Set(),then:'bw',cost:1,need:'m',title:'Black Widow · 난입',btn:'지불하고 무효화'};openSheet(paySheet)},
+  gbmStart(d){UI.pay={iid:d.i,k:+d.k,sel:new Set(),gen:new Set(),then:'gbm'};openSheet(paySheet)},
+  objGo(d){const k=+d.k;const ctxQ=d.ctx==='q';const o=ctxQ?G.q[0]:G.vw;act(()=>{G.once=G.once||{};G.once['obj'+k]=1;o.fin=Math.max(0,o.fin-1);o.finAuto=false});toast('이의 있습니다! — 놓일 위협 1 방지')}
+});
+/* 결제 뒤 처리 (resolvePlay 앞부분에서 호출) */
+function resolveThen(iid,k,then,u){const i=G.I[iid];const p=G.P[k];
+  if(then==='noop'){toast('자원을 지불했어요');return true}
+  if(then==='otp'){moveTo(iid,`p${k}.discard`);G.I[p.id].ex=false;toast('원투 펀치 — She-Hulk 준비');return true}
+  if(then==='sld'){i.ex=true;heroThw(k,2,'초인 법률 부서');return true}
+  if(then==='boots'){i.ex=true;G.aer=G.aer||{};G.aer[k]=1;toast('로켓 부츠 — 페이즈 끝까지 공중 특성');return true}
+  if(then==='encd'||then==='encdx'){if(then==='encdx')G.I[p.id].ex=true;moveTo(iid,'enc.discard');toast(`${nm(i.cid)}을(를) 버렸어요`);return true}
+  if(then==='bw'){i.ex=true;const w=G.vw;if(w&&w.cur){moveTo(w.cur,'enc.discard');w.cur=null;dealEnc(w.order[w.oi],1,true)}toast('Black Widow — 공개된 카드를 무효화하고 버렸어요. 조우 카드 1장을 새로 공개해요');return true}
+  if(then==='gbm'){moveTo(iid,`p${k}.discard`);const w=G.vw;if(w&&w.cur){moveTo(w.cur,'enc.discard');w.cur=null}qpush({t:'vatk',k,title:'내 뒤로!'});toast('내 뒤로! — 공개될 때 효과를 무효화하고 빌런이 대신 공격해요');return true}
+  return false}
+/* 새 이벤트 카드 */
+function resolveEvent2(iid,k,u){const cid=G.I[iid].cid;const p=G.P[k];
+  if(cid==='shehulk-gamma-slam'){heroAtk(k,Math.min(15,Math.max(0,(p.hpMax||0)-p.hp)),'감마 슬램');return true}
+  if(cid==='shehulk-ground-stomp'){eachEnemy(1);toast('지면 강타 — 각 적에게 피해 1');return true}
+  if(cid==='shehulk-legal-practice'){const idi=G.I[p.id];if(idi.st.conf){idi.st.conf=0;toast('혼란 상태라 저지 대신 혼란 카드를 버렸어요')}else qpush({t:'lp',k,sel:[]});return true}
+  if(cid==='shehulk-split-personality'){p.form=p.form==='hero'?'ae':'hero';G.I[p.id].side=p.form==='hero'?'a':'b';draw(k,Math.max(0,hs(p)-p.hand.length));toast(`이중 인격 — ${p.form==='hero'?'히어로':'일상'} 형태로 바꾸고 손 크기까지 뽑았어요`);onForm(k);return true}
+  if(cid==='ironman-repulsor-blast'){const idi=G.I[p.id];if(idi.st.stun){idi.st.stun=0;toast('기절 상태라 공격 대신 기절 카드를 버렸어요');return true}const out=millTop(k,5);const e=printedE(out);qpush({t:'tg',src:'e:'+k,kind:'atk',val:1+2*e,name:`리펄서 블래스트 (에너지 ${e})`,att:true});toast(`리펄서 블래스트 — 버린 5장에 에너지 ${e}개 → 피해 ${1+2*e}`);return true}
+  if(cid==='ironman-supersonic-punch'){heroAtk(k,aerial(k)?8:4,'초음속 펀치');return true}
+  if(cid==='blackpanther-ancestral-knowledge'){qpush({t:'ak',k,sel:[],self:iid});return true}
+  if(cid==='blackpanther-wakanda-forever'){const left=p.play.filter(isBPU);qpush({t:'wf',k,left});return true}
+  if(cid==='aggression-relentless-assault'){heroAtk(k,5,'맹렬한 공세',{minionOnly:true,overkill:!!(u&&u.paidP)});return true}
+  if(cid==='aggression-uppercut'){heroAtk(k,5,'어퍼컷');return true}
+  return false}
 
 /* ---------- 이미지 파일 처리 ---------- */
 function keyFromName(fname){

@@ -389,7 +389,7 @@ body.ingame .pile-empty{border-color:#fff}
 .hpnum .delta{top:-20px;right:-10px}
 .hpbtn{width:28px;height:28px;border-radius:50%;border:2.5px solid var(--ink);background:var(--paper);color:var(--ink);font:900 15px var(--f-body);box-shadow:2px 2px 0 var(--ink);cursor:pointer;padding:0;line-height:1}
 .hpbtn:active{transform:translate(1px,1px);box-shadow:1px 1px 0 var(--ink)}
-.hpbar{position:relative;height:26px;margin:0 8px;transform:skewX(-18deg);border:3px solid #0a0a0a;background:#0b1222;overflow:hidden;
+.hpbar{display:block;width:calc(100% - 16px);padding:0;cursor:pointer;font:inherit;position:relative;height:26px;margin:0 8px;transform:skewX(-18deg);border:3px solid #0a0a0a;background:#0b1222;overflow:hidden;
   box-shadow:4px 4px 0 #000,inset 0 0 0 2px rgba(255,255,255,.12)}
 .hpb.vil .hpbar{height:32px}
 .hpbar i{position:absolute;left:0;top:0;bottom:0}
@@ -2079,8 +2079,14 @@ const LASTHP={};
 function hpBar(kind,name,v,max,act,attrs,key,extra=''){const mx=max||0;const pct=mx?Math.max(0,Math.min(1,v/mx))*100:100;
   const prev=LASTHP[key];LASTHP[key]=v;const from=prev!=null&&prev>v&&mx?Math.min(1,prev/mx)*100:pct;
   const seg=mx&&mx<=40?mx:0;const low=mx&&v/mx<=.25;
-  return `<div class="hpb ${kind} ${low?'low':''}"><div class="hpn"><b>${esc(name)}</b>${extra}<span class="hpv"><button class="hpbtn" data-act="${act}" ${attrs} data-d="-1" aria-label="생명력 1 줄이기">−</button><span class="hpnum">${Math.max(0,v)}<small> / ${mx||'?'}</small>${dlt(key,v,1)}</span><button class="hpbtn" data-act="${act}" ${attrs} data-d="1" aria-label="생명력 1 늘리기">+</button></span></div>
-    <div class="hpbar" role="meter" aria-label="${esc(name)} 생명력" aria-valuenow="${v}" aria-valuemin="0" aria-valuemax="${mx||v}"><i class="chip" style="--from:${from}%;--to:${pct}%"></i><i class="fill" style="width:${pct}%"></i>${seg?`<span class="seg" style="--seg:${seg}"></span>`:''}</div></div>`}
+  return `<div class="hpb ${kind} ${low?'low':''}"><div class="hpn"><b>${esc(name)}</b>${extra}<span class="hpv"><span class="hpnum">${Math.max(0,v)}<small> / ${mx||'?'}</small>${dlt(key,v,1)}</span></span></div>
+    <button class="hpbar" data-act="hpEdit" data-w="${act}" ${attrs} title="눌러서 생명력 직접 고치기" role="meter" aria-label="${esc(name)} 생명력" aria-valuenow="${v}" aria-valuemin="0" aria-valuemax="${mx||v}"><i class="chip" style="--from:${from}%;--to:${pct}%"></i><i class="fill" style="width:${pct}%"></i>${seg?`<span class="seg" style="--seg:${seg}"></span>`:''}</button></div>`}
+function hpSheet(){const u=UI.hpE;if(!u||!G)return null;const vil=u.w==='vhp';const p=vil?null:G.P[u.k];if(!vil&&!p)return null;
+  const v=vil?G.vill.hp:p.hp;const mx=vil?(meta(vcid()).hp?vMax():null):p.hpMax;const name=vil?nm(vcid()):nm(G.I[p.id].cid,G.I[p.id].side);
+  const at=vil?'':`data-k="${u.k}"`;const B=(d,l)=>`<button class="btn ${d<0?'go':'blue'}" data-act="${u.w}" ${at} data-d="${d}">${l}</button>`;
+  return head('생명력 직접 고치기')+`<p class="sub">${esc(name)} · 보통은 자동으로 처리돼요. 자동 처리가 안 된 효과나 실물과 숫자를 맞출 때만 써 주세요. 잘못 진행됐다면 '되돌리기'가 더 정확해요.</p>
+    <div style="display:flex;align-items:center;justify-content:center;gap:10px;margin:14px 0"><span class="big-num">${v}</span><span class="sub" style="font-size:18px">/ ${mx??'?'}</span></div>
+    <div class="btns" style="justify-content:center">${B(-5,'−5')}${B(-1,'−1')}${B(1,'+1')}${B(5,'+5')}</div>`}
 function gameHTML(){
   const k=G.view;const p=G.P[k];const h=HEROES[p.hid];const vm=meta(vcid());const tgt=schTarget();
   const sideHaz=G.sides.filter(i=>meta(G.I[i].cid).hazard).length;
@@ -2763,7 +2769,8 @@ const A={
   stat(d){act(()=>{const i=G.I[d.i];i.st[d.k]=i.st[d.k]?0:1})},
   mv(d){act(()=>{moveTo(d.i,d.to)});closeSheet()},
   php(d){act(()=>{const p=G.P[+d.k];p.hp=Math.max(0,Math.min(p.hpMax||99,p.hp+ +d.d))})},
-  vhp(d){act(()=>{G.vill.hp=Math.max(0,G.vill.hp+ +d.d)})},
+  vhp(d){act(()=>{G.vill.hp=Math.max(0,Math.min(meta(vcid()).hp?vMax():999,G.vill.hp+ +d.d))})},
+  hpEdit(d){UI.hpE={w:d.w,k:d.k!=null?+d.k:null};openSheet(hpSheet)},
   sThr(d){act(()=>{G.sch.threat=Math.max(0,G.sch.threat+ +d.d)})},
   accTok(d){act(()=>{G.accel=Math.max(0,G.accel+ +d.d)})},
   form(d){const k=+d.k;if(G.formUsed[k])toast('이번 라운드에 이미 변신했어요. 변신은 라운드마다 한 번이에요.');

@@ -533,6 +533,7 @@ details.manual summary small{font-weight:500;font-size:11px}
 .sumbox{display:inline-flex;align-items:center;gap:12px;background:#000;border:3px solid var(--yel);border-radius:16px;padding:8px 20px}
 .sumbox span{font:700 15px var(--f-body);color:#dfe6f5}
 .sumbox b{font:400 44px var(--f-num);color:#ff5a4f;letter-spacing:2px;line-height:1}
+.sumbox.thrsum{border-color:#3d8bfd}.sumbox.thrsum b{color:#ffd640}
 .stg-pan{background:var(--paper);color:var(--ink);border:4px solid var(--ink);border-radius:18px;padding:16px;box-shadow:0 7px 0 #000;display:flex;flex-direction:column;gap:10px}
 .stg-pan h3{margin:0;font:400 23px var(--f-disp);line-height:1.2}
 .stg-pan .sub{color:var(--muted)}
@@ -2070,6 +2071,7 @@ const resOf=cid=>{const d=CD[cid];return d&&!d.a?d.res||null:null};
 for(const [cid,c] of Object.entries(C)){ if(c.kind==='minion'||c.kind==='side'||c.kind==='obligation'){DEF_META[cid]=Object.assign({type:c.kind},DEF_META[cid]||{})} }
 let M=store.get('mct_meta',{});
 const meta=cid=>Object.assign({},DEF_META[cid]||{},M[cid]||{});
+try{if(!localStorage.getItem('mct_meta_v2')){for(const cid of Object.keys(M)){const d=DEF_META[cid];if(!d)continue;for(const k of Object.keys(M[cid]))if(k in d)delete M[cid][k];if(!Object.keys(M[cid]).length)delete M[cid]}store.set('mct_meta',M);localStorage.setItem('mct_meta_v2','1')}}catch(e){}
 function setMeta(cid,k,v){M[cid]=M[cid]||{};if(v===''||v===null||v===undefined||Number.isNaN(v))delete M[cid][k];else M[cid][k]=v;store.set('mct_meta',M)}
 const TYPES={minion:'하수인',treachery:'배반',attachment:'장착',side:'부가 음모',obligation:'의무'};
 const ROMAN=['I','II','III','IV'];
@@ -2281,7 +2283,8 @@ function newGame(cfg){
   for(const set of encSets)for(const cid of set)for(let x=0;x<C[cid].count;x++)G.enc.deck.push(mk(cid));
   shuffle(G.enc.deck);
   G.P.forEach((p,k)=>{const n=hs(p);for(let x=0;x<n;x++)p.hand.push(p.deck.pop())});
-  hist=[];save();VIEW='game';render();openSheet(setupSheet);
+  G.I[G.sch.iid].side='b';schemeReveal(scid(),'a');schemeReveal(scid(),'b');G.setup={step:'mull',k:0};
+  hist=[];save();VIEW='game';render();if(G.q&&G.q.length)openSheet(promptSheet);else openSheet(setupSheet);
 }
 
 function checkEnds(){
@@ -2343,7 +2346,7 @@ function schemeBox(){const sm=meta(scid());const tgt=schTarget();const th=G.sch.
   return `<div class="zcol osch"><span class="cap">주요 음모${stg}</span>
     <div class="schwrap">${slot(G.sch.iid,{noTok:true})}${G.accel?`<span class="accwrap" title="가속 토큰 ${G.accel}개"><span class="tk acc">${G.accel>1?`<i>×${G.accel}</i>`:''}</span></span>`:''}<span class="bigthr ${lv}"><span class="tk thr"><i>${th}</i></span>${dlt('thr',th)}</span></div>
     <div class="gauge ${lv}" title="위협 ${th} / 임계점 ${tgt??'?'}"><div class="gbar"><i style="width:${r*100}%"></i><b style="left:${r*100}%;width:${pr*100}%"></b></div><span class="gnum">${th} / ${tgt??'?'}</span></div>
-    <div class="gctl"><div class="step"><button data-act="sThr" data-d="-1" aria-label="위협 1 제거">−</button><button data-act="sThr" data-d="1" aria-label="위협 1 추가">+</button></div>
+    <div class="gctl">
       <span class="pred">다음 빌런 페이즈 <b>+${add}</b><br><small>${parts.join(' + ')}${vSch()?` · 암약 시 +${vSch()}`:''}</small></span></div>
     ${(sideAcc||crisis)?`<div class="badges">${sideAcc?`<span class="bdg acc">가속 아이콘 부가 음모 +${sideAcc}</span>`:''}${crisis?'<span class="bdg cri">위기 — 주요 음모 저지 불가</span>':''}</div>`:''}
   </div>`}
@@ -2377,7 +2380,6 @@ function gameHTML(){
   let banners='';
   if(G.vill.hp<=0&&vm.hp)banners+=`<div class="banner"><b>빌런 스테이지 ${ROMAN[G.vill.idx+(G.cfg.expert?1:0)]} 격파!</b><button class="btn go" data-act="vAdvance">${G.vill.idx+1<G.vill.stages.length?'다음 빌런 스테이지로':'승리 처리'}</button></div>`;
   if(tgt!=null&&G.sch.threat>=tgt)banners+=`<div class="banner"><b>음모 완료 — 위협 ${G.sch.threat}/${tgt}</b><button class="btn v" data-act="sAdvance">${G.sch.idx+1<G.sch.stages.length?'다음 음모 스테이지로':'패배 처리'}</button></div>`;
-  if(!vm.hp)banners+=`<div class="banner"><b>이 빌런 스테이지의 생명력을 아직 몰라요</b><span class="sub">빌런 카드를 눌러 생명력(인원당)을 넣어 주세요.</span></div>`;
   const eng=p.engaged;
   return `
   <header class="bar">
@@ -2386,7 +2388,7 @@ function gameHTML(){
     <span class="sp"></span>
     <div class="btns">
       <button class="btn" data-act="undo" ${hist.length?'':'disabled'}>되돌리기</button>
-      ${G.phase==='player'?`<button class="btn yel" data-act="endPlayer"><span class="lg">플레이어 </span>페이즈 끝<span class="lg">내기</span></button>`:`<button class="btn v" data-act="vwOpen">빌런 페이즈 진행</button>`}
+      ${G.phase==='player'?`<button class="btn yel" data-act="endPlayer"><span class="lg">플레이어 </span>페이즈 끝<span class="lg">내기</span></button>`:`<button class="btn v" data-act="vwOpen">진행 화면 보기</button>`}
     </div>
   </header>
 
@@ -2570,14 +2572,7 @@ function promptSheet(){const q=G.q&&G.q[0];if(!q)return null;
   if(q.t==='mtc'){const al=[];G.P.forEach(p=>p.discard.forEach(a=>{if((cdOf(G.I[a].cid)||{}).type==='동료')al.push(a)}));
     return head('소집명령')+`<p class="note">버린 더미의 동료 하나를 고르면 인쇄된 비용을 지불하고 당신의 조종하에 내려놓아요.</p>${al.length?`<div class="row">${al.map(a=>`<div class="paycard"><button class="slot" data-act="mtcGo" data-i="${a}">${faceOf(G.I[a].cid,'a')}</button><span class="res">비용 ${cdOf(G.I[a].cid).cost}</span></div>`).join('')}</div>`:'<p class="sub">버린 더미에 동료가 없어요.</p>'}<div class="btns"><button class="btn" data-act="mtcGo" data-i="none">넘어가기</button></div>`}
   if(q.t==='irq')return head('심문실 · 반응')+'<p class="note">하수인을 격파했어요. 심문실을 소진하고 음모 하나에서 위협 1을 제거할까요?</p><div class="btns"><button class="btn go" data-act="irqGo" data-v="yes">사용하기</button><button class="btn" data-act="irqGo" data-v="no">쓰지 않기</button></div>';
-  if(q.t==='vsch'){const vi=G.I[G.vill.iid];const hd2=head(`${q.title} · ${esc(nm(vcid()))}이(가) 암약해요`);
-    if(!q.step){if(vi.st.conf)return hd2+'<p class="note">빌런이 혼란 상태예요. 암약 대신 혼란 카드를 버려요.</p><div class="btns"><button class="btn go" data-act="vsGo" data-v="conf">혼란 카드 버리기</button></div>';
-      return hd2+'<p class="note">빌런이 암약할 때도 강화 카드를 받아요.</p><div class="btns"><button class="btn go" data-act="vsGo" data-v="boost">강화 카드 받기</button></div>'}
-    const bi=q.boost?G.I[q.boost]:null;const tot=Math.max(0,vSch()+q.bst+(q.mod||0));if(q.finAuto!==false)q.fin=tot;
-    return hd2+`<div class="cs"><div class="cs-img">${bi?`<div class="slot">${faceOf(bi.cid,bi.side)}</div>`:''}</div><div class="cs-body">
-      ${stepper('qStep',`data-k="bst"`,q.bst,'강화 아이콘')}${stepper('qStep',`data-k="mod"`,q.mod||0,'추가 보정')}
-      <p class="sub">빌런 SCH ${vSch()} + 강화 ${q.bst}${q.mod?` + 보정 ${q.mod}`:''} = ${tot}</p>${stepper('qStep',`data-k="fin"`,q.fin,'놓을 위협')}
-      ${schBtns('q')}<div class="btns"><button class="btn go" data-act="vsGo" data-v="apply">주요 음모에 위협 ${q.fin} 놓기</button></div></div></div>`}
+  if(q.t==='vsch')return vschSheet(q);
   if(q.t==='choice')return head('하이드라 폭탄마 · 공개될 때')+`<p class="note">${esc(hn(q.k))}이(가) 하나를 선택합니다.</p><div class="btns"><button class="btn go" data-act="chGo" data-v="dmg">피해 2점 입기</button><button class="btn blue" data-act="chGo" data-v="thr">주요 음모에 위협 1 놓기</button></div>`;
   if(q.t==='pick'){const opts=q.flt==='bp'?G.P[q.k].play.filter(isBPU):q.flt==='upg'?G.P[q.k].play.filter(x=>(cdOf(G.I[x].cid)||{}).type==='업그레이드'):pickable(q.k);return head(q.flt?'버릴 카드 고르기':'허를 찔리다 · 버릴 카드 고르기')+`<p class="note">${esc(hn(q.k))}이(가) 조종하는 ${q.flt==='bp'?'블랙 팬서 업그레이드':q.flt==='upg'?'업그레이드':'업그레이드나 지원'} 하나를 버립니다.</p><div class="row">${opts.map(x=>slot(x,{act:'pkGo'})).join('')}</div>`}
   if(q.t==='split'){const tg=[];G.P.forEach((p,x)=>{if(!p.elim&&p.form==='hero')tg.push(['h:'+x,hn(x)]);p.play.forEach(a=>{if(meta(G.I[a].cid).hp)tg.push(['a:'+a,nm(G.I[a].cid)])})});
@@ -2597,6 +2592,19 @@ const bigC=(cid,side,cls='',down=false,iid=null)=>(cls+=(C[cid]&&C[cid].land&&!d
 const miniF=(cid,side,down)=>`<span class="mface">${cid?faceOf(cid,side,down):''}</span>`;
 function choice(act,v,mini,title,sub,num,numCls='',cls=''){return `<button class="choice ${cls}" data-act="${act}" data-v="${v}">${mini}<span class="ctx"><b>${title}</b>${sub?`<small>${sub}</small>`:''}</span>${num!=null?`<span class="cnum ${numCls}">${num}</span>`:''}</button>`}
 const sumBox=(parts,total,cls='')=>`<div class="sumbox ${cls}"><span>${parts}</span><b>${total}</b></div>`;
+function vschSheet(q){const vi=G.I[G.vill.iid];const title=q.title||'빌런 암약';const sub=`빌런 페이즈 · ${esc(nm(vcid()))}이(가) 주요 음모를 진행해요`;
+  const vcard=bigC(vi.cid,vi.side,'vil',false,G.vill.iid);const tgt=schTarget();
+  if(!q.step){if(vi.st.conf)return stage({kind:'sch',badge:esc(title)+'!',sub,vis:vcard,panel:'<h3>혼란 상태예요</h3><p class="sub">암약 대신 혼란 카드를 버려요.</p><div class="btns"><button class="btn go" data-act="vsGo" data-v="conf">혼란 카드 버리기</button></div>'});
+    return stage({kind:'sch',badge:esc(title)+'!',sub,vis:vcard,panel:`<h3>음모 ${vSch()}</h3><p class="sub">강화 카드를 받아요.</p><div class="btns"><button class="btn go" data-act="vsGo" data-v="boost">강화 카드 받기</button></div>`})}
+  const bi=q.boost?G.I[q.boost]:null;const tot=Math.max(0,vSch()+q.bst+(q.mod||0));if(q.finAuto!==false)q.fin=tot;
+  const after=G.sch.threat+q.fin;const rsp=schBtns('q');
+  return stage({kind:'sch',badge:esc(title)+'!',sub,
+    vis:`<div class="vrowc">${vcard}<span class="plus">+</span><div class="bstack">${bi?bigC(bi.cid,bi.side,'boost b0',false,q.boost):'<span class="sub">강화 카드 없음</span>'}</div></div>${sumBox(`음모 ${vSch()} + 강화 ${q.bst}${q.mod?` + 보정 ${q.mod}`:''} =`,tot,'thrsum')}`,
+    panel:`<h3>주요 음모에 위협 ${q.fin}</h3><p class="sub">위협 ${G.sch.threat} → <b>${after}</b>${tgt?` / ${tgt}`:''}${tgt&&after>=tgt?' · <b style="color:#d62828">임계점 도달!</b>':''}</p>
+      ${rsp?`<div class="rsp"><span class="rl">손에 쓸 수 있는 카드가 있어요</span>${rsp.replace('<div class="btns">','<div class="btns col">')}</div>`:''}
+      <div class="fin"><span>놓을 위협</span><b class="bad">${q.fin}</b></div>
+      <div class="btns"><button class="btn go big" data-act="vsGo" data-v="apply">위협 ${q.fin} 놓기</button></div>
+      <details class="manual"><summary>수동 조정 <small>강화 아이콘·위협 직접 고치기</small></summary><div class="mbody">${stepper('qStep',`data-k="bst"`,q.bst,'강화 아이콘')}${stepper('qStep',`data-k="mod"`,q.mod||0,'추가 보정')}${stepper('qStep',`data-k="fin"`,q.fin,'놓을 위협')}</div></details>`})}
 function vatkSheet(q){const k=q.k;const vi=G.I[G.vill.iid];const vc=vcid();const title=q.title||'빌런 공격';
   const sub=`빌런 페이즈 · ${esc(nm(vc))} → ${esc(hn(k))}`;
   const vcard=bigC(vi.cid,vi.side,'vil',false,G.vill.iid);
@@ -2690,7 +2698,7 @@ function setupHTML(){
   const heroSide=hid=>(hid===p.hid&&hFlip)?'b':'a';
   const vStage=sid=>{const x=SCEN[sid];return SF.expert?x.vSet[1]:x.vSet[0]};
   return `<header class="bar"><button class="brand" data-act="toStart" aria-label="처음으로"><span class="lg">챔피언스 테이블</span></button><span class="phs player">새 게임</span><span class="sp"></span>
-    <div class="btns"><button class="btn sm" data-act="sfPractice">규칙서 연습 게임</button></div></header>
+    </header>
   <div class="vs">
     <section class="pick hpick" aria-label="히어로 선택">
       <div class="ptop"><h2>히어로 선택</h2><div class="seg">${[1,2,3,4].map(n=>`<button class="btn sm ${SF.players.length===n?'sel':''}" data-act="sfN" data-n="${n}">${n}명</button>`).join('')}</div></div>
@@ -2809,7 +2817,7 @@ function setupSheet(){
       <p class="sub">빌런 생명력 ${G.vill.hp} · 위협 임계점 ${schTarget()??'?'} · 시작 위협 ${G.sch.threat}</p>
       <div class="btns">${i.side==='a'?'<button class="btn go" data-act="setupFlip">1B 면으로 넘기기</button>':'<button class="btn go" data-act="setupNext">멀리건으로</button>'}</div></div></div>`}
   if(st.step==='mull'){const k=st.k;const p=G.P[k];
-    return head(`멀리건 · ${esc(hn(k))}`)+`<p class="note">바꾸고 싶은 카드를 누르세요. 고른 카드는 버린 카드 더미로 가고, 같은 수만큼 새로 뽑아요. 버린 카드는 지금 덱에 섞지 않아요.</p>
+    return head(`멀리건 · ${esc(hn(k))}`)+`${k===0?`<p class="sub">주요 음모 ${esc(nm(scid(),'b'))}(1B)가 준비됐어요 · 위협 임계점 ${schTarget()??'?'} · 시작 위협 ${G.sch.threat}</p>`:''}<p class="note">바꾸고 싶은 카드를 누르세요. 고른 카드는 버린 카드 더미로 가고, 같은 수만큼 새로 뽑아요. 버린 카드는 지금 덱에 섞지 않아요.</p>
       <div class="row" style="padding-top:8px">${p.hand.map(i=>slot(i,{act:'selCard',sel:UI.sel.has(i)})).join('')}</div>
       <div class="btns" style="margin-top:12px"><button class="btn go" data-act="mullDo">${UI.sel.size?`${UI.sel.size}장 바꾸고 다음`:'그대로 두고 다음'}</button></div>`}
   if(st.step==='done')return head('준비 완료')+`<p class="note">아이덴티티 카드에 <b>사전 준비</b> 지시가 있으면 지금 처리하세요. 그다음 시작 플레이어부터 턴을 진행하면 돼요.</p>${G.P.map((p,x)=>p.hid==='blackpanther'&&!(G.once||{})['bps'+x]?`<div class="btns"><button class="btn blue" data-act="bpSetup" data-k="${x}">T'Challa 선견지명: 블랙 팬서 업그레이드 찾기</button></div>`:'').join('')}<div class="btns"><button class="btn go" data-act="setupEnd">게임 시작</button></div>`;
@@ -3123,7 +3131,7 @@ const A={
   encDiscard(){openSheet(listSheet('버린 조우 카드 더미',()=>G.enc.discard))},
 
   selCard(d){UI.sel.has(d.i)?UI.sel.delete(d.i):UI.sel.add(d.i);drawSheet()},
-  setupFlip(){act(()=>{G.I[G.sch.iid].side='b';schemeReveal(scid(),'a');schemeReveal(scid(),'b')})},
+  setupFlip(){act(()=>{if(G.I[G.sch.iid].side!=='b'){G.I[G.sch.iid].side='b';schemeReveal(scid(),'a');schemeReveal(scid(),'b')}})},
   setupNext(){act(()=>{G.setup={step:'mull',k:0}})},
   mullDo(){const sel=[...UI.sel];UI.sel=new Set();act(()=>{const k=G.setup.k;const p=G.P[k];sel.forEach(i=>moveTo(i,`p${k}.discard`));draw(k,sel.length);
     G.setup=k+1<G.P.length?{step:'mull',k:k+1}:{step:'done'}})},

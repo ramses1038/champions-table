@@ -689,6 +689,78 @@ body.vilmini .bar .phs{display:inline-block}
 .tutcta{display:flex;flex-direction:column;gap:8px;align-items:flex-start;background:var(--yel);border:3px solid var(--ink);border-radius:14px;padding:16px 18px;box-shadow:5px 5px 0 var(--ink)}
 .tutcta b{font:400 24px var(--f-disp);transform:skew(-6deg)}
 .tutcta span{font-size:14px;line-height:1.6}
+
+/* 기록실 */
+.mz.st{display:flex;flex-direction:column;gap:10px}
+.stiles{display:grid;grid-template-columns:repeat(auto-fit,minmax(120px,1fr));gap:10px}
+.stile{background:rgba(0,0,0,.35);border:2px solid rgba(255,255,255,.18);border-radius:12px;padding:8px 12px;display:flex;flex-direction:column}
+.stile small{font-size:11px;color:var(--soft);font-weight:700}.stile b{font:400 34px var(--f-num);letter-spacing:1px;line-height:1.1}.stile em{font-style:normal;font-size:11px;color:var(--soft)}
+.achs{display:grid;grid-template-columns:repeat(auto-fill,minmax(150px,1fr));gap:10px}
+.ach{display:flex;flex-direction:column;align-items:center;text-align:center;gap:3px;background:rgba(255,255,255,.05);border:2px dashed rgba(255,255,255,.2);border-radius:14px;padding:10px 8px;color:var(--soft)}
+.ach .aic{width:46px;height:46px;border-radius:50%;display:grid;place-items:center;font:400 22px var(--f-num);background:#222c44;color:#5c6680;border:3px solid #39445e}
+.ach b{font-size:13px}.ach small{font-size:10.5px;line-height:1.35}
+.ach.on{background:linear-gradient(160deg,rgba(255,214,64,.22),rgba(255,214,64,.05));border:2px solid var(--yel);color:#fff}
+.ach.on .aic{background:radial-gradient(circle at 35% 30%,#ffe98a,#f0a91c 70%);color:var(--ink);border-color:var(--ink);box-shadow:0 3px 0 #000}
+.ach.pop{animation:apop .6s cubic-bezier(.2,1.6,.4,1)}@keyframes apop{from{transform:scale(.3) rotate(-15deg);opacity:0}}
+.newach{display:flex;flex-wrap:wrap;gap:8px;justify-content:center;align-items:center}
+.newach>span{flex-basis:100%;font:400 22px var(--f-disp);color:var(--yel)}
+.newach .ach{width:150px}
+.tw{overflow-x:auto}
+.stab{width:100%;border-collapse:collapse;font-size:13px;min-width:560px;color:#fff}
+.stab th,.stab td{padding:7px 8px;border-bottom:1px solid rgba(255,255,255,.12);text-align:left;white-space:nowrap}
+.stab tr:first-child th{font-size:11px;color:var(--yel)}
+.stab td:nth-child(n+2):nth-child(-n+3){font:400 18px var(--f-num);letter-spacing:1px}
+.hdot{display:inline-block;width:10px;height:10px;border-radius:50%;margin-right:6px;border:1.5px solid #000}
+.wbar{display:inline-block;width:60px;height:8px;background:#0b1222;border:1.5px solid #000;margin-right:6px;vertical-align:middle;transform:skewX(-18deg)}
+.wbar i{display:block;height:100%;background:#7ed321}
+.asps{white-space:normal!important}
+.achip{display:inline-block;font-size:10.5px;font-weight:800;border-left:5px solid var(--ac);background:rgba(255,255,255,.08);border-radius:4px;padding:1px 6px;margin:1px 3px 1px 0}
+b.ok{color:#7ee081}
+.mtx{border-collapse:separate;border-spacing:5px;font-size:12px;color:#fff;align-self:flex-start;width:auto}
+.mtx th{white-space:nowrap}
+.mtx th{text-align:left;font-weight:800;color:var(--soft);padding:0 6px}
+.mtx tr:first-child th{color:var(--yel);text-align:center}
+.mtx td{width:84px;height:46px;text-align:center;border-radius:10px;background:rgba(255,255,255,.05);border:2px dashed rgba(255,255,255,.15);font:400 20px var(--f-num);color:#5c6680}
+.mtx td small{display:block;font:700 10px var(--f-body)}
+.mtx td.win{background:rgba(126,211,33,.2);border:2px solid #7ed321;color:#c8ff7a}
+.mtx td.lose{background:rgba(214,40,40,.15);border:2px solid #a33;color:#ff8a7a}
+.rgs{display:flex;flex-direction:column;gap:6px}
+.rg{display:flex;flex-wrap:wrap;gap:4px 12px;align-items:center;background:rgba(0,0,0,.3);border-left:6px solid #a33;border-radius:8px;padding:7px 10px;font-size:13px}
+.rg.win{border-left-color:#7ed321}
+.rg .rr{font:400 15px var(--f-disp)}.rg.win .rr{color:#c8ff7a}.rg.lose .rr{color:#ff8a7a}
+.rg .rd{color:var(--soft);font-size:11px}.rg small{color:var(--soft);font-weight:500}
+@media (max-width:700px){.mtx td{width:64px;height:40px}.stile b{font-size:28px}}
+
+/* 덱 빌더 */
+.dklist{display:grid;grid-template-columns:repeat(auto-fill,minmax(260px,1fr));gap:10px}
+.dk{display:flex;gap:10px;align-items:center;background:rgba(0,0,0,.3);border:2px solid rgba(255,255,255,.15);border-left:6px solid var(--ac,#888);border-radius:12px;padding:8px;color:#fff;text-align:left}
+.dk.pre{opacity:.75}
+.dkimg{position:relative;width:52px;aspect-ratio:63/88;flex:none}.dkimg .face{border-radius:5px}
+.dkb{display:flex;flex-direction:column;gap:4px;min-width:0}.dkb b{font-size:14px}.dkb small{font-size:11px;color:var(--soft)}
+.dkb em{font-style:normal}.dkb em.bad,.dkn.bad b{color:#ff8a7a}.dkb em.ok,.ok{color:#7ee081}
+.dk.add{justify-content:center;flex-direction:column;border:2px dashed rgba(255,255,255,.3);cursor:pointer;font:800 13px var(--f-body);min-height:80px}
+.dk.add b{font-size:26px;color:var(--yel)}
+.tgl{display:flex;gap:8px;align-items:center;font-size:13px;color:#fff;margin-top:6px}
+.dked{display:flex;flex-direction:column;gap:12px}
+.dkhead{display:flex;flex-wrap:wrap;gap:12px;align-items:flex-end}.dkhead .fld{color:#fff}.dkhead .asp{justify-content:flex-start}
+.dksum{display:flex;flex-wrap:wrap;gap:14px;align-items:center;background:rgba(0,0,0,.3);border-radius:12px;padding:10px 14px}
+.dkn b{font:400 40px var(--f-num);letter-spacing:1px}.dkn small{color:var(--soft);margin-left:4px}.dkn.ok b{color:#c8ff7a}
+.dkres{display:flex;gap:5px;flex-wrap:wrap}
+.dkcurve{display:flex;gap:5px;align-items:flex-end;height:60px}
+.dkcurve div{position:relative;width:20px;height:100%;display:flex;flex-direction:column;justify-content:flex-end;align-items:center}
+.dkcurve i{display:block;width:100%;background:var(--yel);border:1.5px solid #000;border-radius:3px 3px 0 0;min-height:2px}
+.dkcurve span{position:absolute;top:-2px;font:400 11px var(--f-num)}.dkcurve small{font-size:9px;color:var(--soft)}
+.dktabs .btn{color:var(--ink)}
+.dkpool{display:grid;grid-template-columns:repeat(auto-fill,minmax(104px,1fr));gap:14px 10px}
+.dkc{display:flex;flex-direction:column;align-items:center;gap:4px;text-align:center;--cw:92px;opacity:.55}
+.dkc.in{opacity:1}
+.dkc small{font-size:11px;color:#fff;line-height:1.2;min-height:26px}
+.dkmeta{font-size:10px;color:var(--soft);display:flex;gap:4px;align-items:center}.dkmeta .cost{font-style:normal;font-size:12px;min-width:16px;padding:0 3px}
+.dkcnt{position:absolute;right:-6px;top:-6px;z-index:5;font:400 16px var(--f-num);background:var(--yel);color:var(--ink);border:2px solid var(--ink);border-radius:999px;padding:0 7px}
+.dkc .step button{width:28px;height:28px;color:var(--ink)}.dkc .step button:disabled{opacity:.35}
+.dkc .step output{color:#fff;font-size:18px;min-width:20px}
+.dksel{display:flex;flex-wrap:wrap;gap:7px;justify-content:center}
+.mb:disabled{opacity:.4}
 @media (prefers-reduced-motion:reduce){*{transition:none!important;animation:none!important}}
 </style>
 </head>
@@ -2129,7 +2201,7 @@ function allKeys(){const k=[];for(const c of Object.values(C)){k.push(c.cid+'|a'
 let G=store.get('mct_game',null);
 let hist=[];let VIEW='start';let SH=null;let UI={sel:new Set(),pickKey:null};
 const save=()=>store.set('mct_game',G);
-function act(fn){hist.push(JSON.stringify(G));if(hist.length>40)hist.shift();fn();if(G){cleanupHosts();syncHp();if(!G.setup){autoChecks();if(G.phase==='villain')vpRun()}}checkEnds();save();render();if(G&&G.q&&G.q.length)SH=promptSheet;if(SH)drawSheet()}
+function act(fn){hist.push(JSON.stringify(G));if(hist.length>40)hist.shift();fn();if(G){cleanupHosts();syncHp();if(!G.setup){autoChecks();if(G.phase==='villain')vpRun()}}checkEnds();try{trk();if(G&&G.over)recordGame()}catch(e){}save();render();if(G&&G.q&&G.q.length)SH=promptSheet;if(SH)drawSheet()}
 const qpush=x=>(G.q||(G.q=[])).push(x);
 function resumeSheet(){if(G.q&&G.q.length)return openSheet(promptSheet);if(G.setup)return openSheet(setupSheet);closeSheet()}
 function hostedBy(t){const r=[];G.P.forEach(p=>p.play.forEach(i=>{if(G.I[i].host===t)r.push(i)}));return r}
@@ -2268,8 +2340,9 @@ function newGame(cfg){
     const p={hid:pc.hid,aspect:pc.aspect,hpMax:im.hp,hp:im.hp,form:'ae',id:mk(h.identity,k,'b'),deck:[],hand:[],discard:[],play:[],engaged:[],aside:[],pend:[],elim:false};
     const add=(cid)=>{for(let x=0;x<C[cid].count;x++)p.deck.push(mk(cid,k))};
     SETS.find(x=>x.id===pc.hid).cards.forEach(cid=>{const c=C[cid];if(c.kind!=='identity'&&c.kind!=='obligation')add(cid)});
-    SETS.find(x=>x.id===pc.aspect).cards.forEach(add);
-    SETS.find(x=>x.id==='basic').cards.forEach(add);
+    const dk=pc.deck&&typeof DECKS!=='undefined'?DECKS.find(x=>x.id===pc.deck):null;
+    if(dk){p.deckName=dk.name;for(const [cid,n] of Object.entries(dk.cards))for(let x=0;x<n;x++)p.deck.push(mk(cid,k))}
+    else{SETS.find(x=>x.id===pc.aspect).cards.forEach(add);SETS.find(x=>x.id==='basic').cards.forEach(add)}
     shuffle(p.deck);
     SETS.find(x=>x.id===h.nemSet).cards.forEach(cid=>{for(let x=0;x<C[cid].count;x++)p.aside.push(mk(cid))});
     G.enc.deck.push(mk(h.oblCid));
@@ -2328,6 +2401,8 @@ function render(){
   if(VIEW==='start')app.innerHTML=startHTML();
   else if(VIEW==='setup')app.innerHTML=setupHTML();
   else if(VIEW==='lib')app.innerHTML=libHTML();
+  else if(VIEW==='stats')app.innerHTML=statsHTML();
+  else if(VIEW==='decks')app.innerHTML=decksHTML();
   else if(G)app.innerHTML=gameHTML();
   else{VIEW='start';app.innerHTML=startHTML()}
   document.body.classList.toggle('ingame',VIEW==='game'&&!!G);
@@ -2653,7 +2728,8 @@ function overHTML(){const win=G.over==='win';const vi=G.I[G.vill.iid];
   <div class="ovcards">${G.P.map(p=>{const ii=G.I[p.id];return `<div class="ovc">${faceOf(ii.cid,ii.side)}</div>`}).join('')}<span class="ovvs">VS</span><div class="ovc">${faceOf(vi.cid,vi.side)}</div></div>
   <p class="ovlead">${win?`${esc(G.P.map((p,k)=>hn(k)).join(' · '))}이(가) ${esc(nm(vcid()))}을(를) 쓰러뜨렸어요!`:'빌런의 음모가 끝까지 달성됐거나 모든 히어로가 쓰러졌어요.'}</p>
   <div class="ovstats"><span><small>라운드</small><b>${G.round}</b></span><span><small>남은 위협</small><b>${G.sch.threat}</b></span><span><small>히어로 생명력</small><b>${G.P.map(p=>Math.max(0,p.hp)).join(' · ')}</b></span></div>
-  <div class="btns" style="justify-content:center"><button class="btn" data-act="overUndo">되돌리기</button><button class="btn go big" data-act="toSetup">새 게임</button><button class="btn" data-act="toStart">처음 화면</button></div></div></div>`}
+  ${G.cfg.tutorial?'<p class="sub">튜토리얼 게임은 기록에 남지 않아요.</p>':(G.newAch&&G.newAch.length?`<div class="newach"><span>도전과제 달성!</span>${G.newAch.map(id=>{const a=ACH.find(x=>x.id===id);return a?`<div class="ach on pop"><span class="aic">${a.ic}</span><b>${a.t}</b><small>${a.d}</small></div>`:''}).join('')}</div>`:'')}
+  <div class="btns" style="justify-content:center"><button class="btn" data-act="toStats">기록실</button><button class="btn" data-act="overUndo">되돌리기</button><button class="btn go big" data-act="toSetup">새 게임</button><button class="btn" data-act="toStart">처음 화면</button></div></div></div>`}
 
 /* ---------- 시작 화면 ---------- */
 function startHTML(){
@@ -2666,6 +2742,8 @@ function startHTML(){
       ${G?`<button class="btn go" data-act="resume">이어하기 · 라운드 ${G.round}</button>`:''}
       <button class="btn ${G?'':'go'}" data-act="toSetup">새 게임</button>
       <button class="btn v" data-act="tutAsk">튜토리얼</button>
+      <button class="btn" data-act="toDecks">덱 빌더</button>
+      <button class="btn" data-act="toStats">기록실</button>
       <button class="btn blue" data-act="toLib">카드 이미지 넣기</button>
     </div>
   </section>
@@ -2691,7 +2769,7 @@ const stat=(l,v,c='')=>`<span class="stt ${c}"><small>${l}</small><b>${v??'?'}</
 function setupHTML(){
   const k=Math.min(UI.sfP||0,SF.players.length-1);const p=SF.players[k];const h=HEROES[p.hid];const hm=meta(h.identity);
   const s=SCEN[SF.scen];const stages=SF.expert?[s.vSet[1],s.vSet[2]]:[s.vSet[0],s.vSet[1]];const sm=meta(s.sSet[0]);
-  const usedAsp=SF.players.map(q=>q.aspect);const dupe=usedAsp.some((a,i)=>usedAsp.indexOf(a)!==i);
+  const usedAsp=SF.players.filter(q=>!q.deck).map(q=>q.aspect);const dupe=usedAsp.some((a,i)=>usedAsp.indexOf(a)!==i);
   const usedHero=SF.players.map(q=>q.hid);const dupH=usedHero.some((a,i)=>usedHero.indexOf(a)!==i);
   const hFlip=UI.sfFlip==='h',vFlip=UI.sfFlip==='v';
   const hids=Object.keys(HEROES),sids=Object.keys(SCEN);
@@ -2706,6 +2784,7 @@ function setupHTML(){
       ${carousel('h',hids,p.hid,hid=>HEROES[hid].identity,()=>'a','히어로')}
       <div class="pname"><b>${esc(hFlip?h.ae:h.name)}</b><span>${hFlip?'일상 면':'히어로 면'} · 카드를 누르면 ${hFlip?esc(h.name)+' (히어로 면)':esc(h.ae)+' (일상 면)'}</span></div>
       <div class="asp">${Object.entries(ASPECTS).map(([id,a])=>{const taken=SF.players.some((q,x)=>x!==k&&q.aspect===id);return `<button class="ab ${p.aspect===id?'on':''}" data-act="sfAsp" data-a="${id}" style="--ac:${a[1]};--at:${a[2]}" ${taken?'disabled title="다른 플레이어가 사용 중"':''}>${a[0]}${id===h.aspect?'<small>초심자 덱</small>':''}</button>`}).join('')}</div>
+      <div class="dksel"><span class="ml">덱</span><button class="mb ${!p.deck?'on':''}" data-act="sfDeck" data-id="pre">기본 덱<small>${ASPECTS[p.aspect][0]} 성향 전체</small></button>${DECKS.filter(x=>x.hid===p.hid).map(x=>{const bad=deckIssues(x).length;return `<button class="mb ${p.deck===x.id?'on':''}" data-act="sfDeck" data-id="${x.id}" ${bad?'disabled title="규칙에 맞지 않는 덱"':''}>${esc(x.name)}<small>${ASPECTS[x.aspect][0]} · ${deckN(x)}장${bad?' · 규칙 확인':''}</small></button>`}).join('')}<button class="mb" data-act="toDecks">＋ 덱 만들기</button></div>
       <div class="stats">${stat('생명력',hm.hp,'hp')}${hFlip?stat('회복',hm.rec)+stat('손 크기',hm.handA):stat('공격',hm.atk)+stat('저지',hm.thw)+stat('방어',hm.def)+stat('손 크기',p.hid==='ironman'?`${hm.handH??'?'}<i>+</i>`:hm.handH)}</div>
       <p class="hint">${p.hid==='ironman'&&!hFlip?'히어로 면 손 크기는 기술 업그레이드 1장마다 +1 (최대 7) · ':''}숙적 ${(()=>{const c=Object.keys(C).find(x=>C[x].kind==='minion'&&x.startsWith(h.nemSet+'-'));return c?esc(nm(c)):'-'})()}</p>
     </section>
@@ -3078,13 +3157,13 @@ const A={
   afs(d){const st=d.i;const i=G.I[st];const k=i.owner??G.view;openSheet(()=>head('알파 우주 정거장 · 버릴 카드 고르기')+`<p class="note">손에서 카드 1장을 버리면 ${G.P[k].hid==='captainmarvel'&&G.P[k].form==='ae'?'2장(Carol Danvers)':'1장'}을 뽑아요.</p><div class="row">${G.P[k].hand.map(x=>`<button class="slot" data-act="afsPick" data-i="${x}" data-s="${st}">${faceOf(G.I[x].cid,'a')}</button>`).join('')}</div>`)},
   afsPick(d){const st=G.I[d.s];const k=st.owner??G.view;const n=G.P[k].hid==='captainmarvel'&&G.P[k].form==='ae'?2:1;act(()=>{st.ex=true;moveTo(d.i,`p${k}.discard`);draw(k,n)});closeSheet();toast(`알파 우주 정거장 — ${n}장 뽑기`)},
   sfPractice(){SF={players:[{hid:'spiderman',aspect:'justice'},{hid:'captainmarvel',aspect:'aggression'}],scen:'rhino',mod:'bombscare',expert:false};store.set('mct_setup',SF);render()},
-  menu(){openSheet(()=>head('메뉴')+`<div class="mtiles"><button class="mtile" data-act="closeSheet"><b>▶</b>게임 계속하기</button><button class="mtile" data-act="toSetup"><b>✚</b>새 게임</button><button class="mtile" data-act="toLib"><b>▦</b>카드 보관함</button><button class="mtile" data-act="tutAsk"><b>?</b>튜토리얼</button><button class="mtile" data-act="toStart"><b>⌂</b>처음 화면</button></div><p class="sub" style="margin-top:12px">게임은 이 기기에 자동 저장돼요. 언제든 처음 화면의 '이어하기'로 돌아올 수 있어요.</p>`)},
+  menu(){openSheet(()=>head('메뉴')+`<div class="mtiles"><button class="mtile" data-act="closeSheet"><b>▶</b>게임 계속하기</button><button class="mtile" data-act="toSetup"><b>✚</b>새 게임</button><button class="mtile" data-act="toLib"><b>▦</b>카드 보관함</button><button class="mtile" data-act="toDecks"><b>🂠</b>덱 빌더</button><button class="mtile" data-act="toStats"><b>♛</b>기록실</button><button class="mtile" data-act="tutAsk"><b>?</b>튜토리얼</button><button class="mtile" data-act="toStart"><b>⌂</b>처음 화면</button></div><p class="sub" style="margin-top:12px">게임은 이 기기에 자동 저장돼요. 언제든 처음 화면의 '이어하기'로 돌아올 수 있어요.</p>`)},
   toStart(){closeSheet();VIEW='start';render()},
   toSetup(){closeSheet();VIEW='setup';render()},
   toLib(){closeSheet();VIEW='lib';render()},
   resume(){closeSheet();VIEW='game';render();if(G.setup)openSheet(setupSheet)},
   undo(){if(!hist.length)return;G=JSON.parse(hist.pop());save();render();if(SH)drawSheet()},
-  overUndo(){A.undo()},
+  overUndo(){try{unrecord()}catch(e){}A.undo()},
   view(d){act(()=>{G.view=+d.k})},
   card(d){openSheet(cardSheet(d.i))},
   manTog(d,t,e){e.preventDefault();UI.manOpen=!UI.manOpen;drawSheet()},
@@ -3208,7 +3287,7 @@ const A={
     else{const ids=Object.keys(SCEN);const i=(ids.indexOf(SF.scen)+dir+ids.length)%ids.length;SF.scen=ids[i];SF.mod=SCEN[ids[i]].mod}
     store.set('mct_setup',SF);render();UI.sfAnim=null},
   sfFlip(d){if(d.w!=='h')return;UI.sfFlip=UI.sfFlip==='h'?null:'h';UI.sfFA=UI.sfFlip?'toB':'toA';render();UI.sfFA=null},
-  sfAsp(d){const k=Math.min(UI.sfP||0,SF.players.length-1);SF.players[k].aspect=d.a;store.set('mct_setup',SF);render()},
+  sfAsp(d){const k=Math.min(UI.sfP||0,SF.players.length-1);SF.players[k].aspect=d.a;delete SF.players[k].deck;store.set('mct_setup',SF);render()},
   sfMod(d){SF.mod=d.m;store.set('mct_setup',SF);render()},
   sfExp(d){SF.expert=d.v==='1';store.set('mct_setup',SF);render()},
   sfN(d){const n=+d.n;const ids=Object.keys(HEROES);while(SF.players.length<n){const used=SF.players.map(p=>p.hid);const h=ids.find(x=>!used.includes(x));const ua=SF.players.map(p=>p.aspect);
@@ -3621,6 +3700,120 @@ document.addEventListener('pointerup',e=>{if(!el||sx==null)return;const dx=e.cli
   if(Math.abs(dx)>45&&Math.abs(dx)>Math.abs(dy)*1.3){A.sfCycle({w,d:dx<0?1:-1});swipeEat=Date.now()}},{passive:true})})();
 let swipeEat=0;document.addEventListener('click',e=>{if(Date.now()-swipeEat<350){e.stopPropagation();e.preventDefault()}},true);
 /* =====================================================
+   덱 빌더
+   ===================================================== */
+let DECKS=store.get('mct_decks',[]);let DOPT=store.get('mct_deckopt',{phys:false});
+const saveDecks=()=>store.set('mct_decks',DECKS);
+const heroKit=hid=>SETS.find(x=>x.id===hid).cards.filter(c=>C[c].kind!=='identity'&&C[c].kind!=='obligation');
+const kitN=hid=>heroKit(hid).reduce((a,c)=>a+C[c].count,0);
+const maxCopy=cid=>{const t=(cdOf(cid)||{}).text||'';if(/덱마다 최대 1장/.test(t))return 1;return DOPT.phys?C[cid].count:3};
+const deckN=d=>Object.values(d.cards).reduce((a,b)=>a+b,0)+kitN(d.hid);
+function deckIssues(d){const n=deckN(d);const is=[];if(n<40)is.push(`카드가 ${40-n}장 모자라요 (최소 40장)`);if(n>50)is.push(`카드가 ${n-50}장 많아요 (최대 50장)`);
+  for(const [cid,c] of Object.entries(d.cards)){if(c>maxCopy(cid))is.push(`${nm(cid)}: 최대 ${maxCopy(cid)}장`);const sid=C[cid]&&C[cid].set;if(sid&&sid!=='basic'&&sid!==d.aspect)is.push(`${nm(cid)}: 다른 성향 카드`)}return is}
+function preconCards(asp){const o={};[asp,'basic'].forEach(sid=>SETS.find(x=>x.id===sid).cards.forEach(c=>o[c]=C[c].count));return o}
+function deckStats(d){const all=[];heroKit(d.hid).forEach(c=>{for(let i=0;i<C[c].count;i++)all.push(c)});Object.entries(d.cards).forEach(([c,n])=>{for(let i=0;i<n;i++)all.push(c)});
+  const res={m:0,p:0,e:0,w:0},cost=[0,0,0,0,0,0],typ={};all.forEach(c=>{const cd=cdOf(c)||{};const r=resOf?resOf(c):cd.res;if(r)res[r]+=(cd.resN||1);if(cd.cost!=null)cost[Math.min(5,cd.cost)]++;typ[cd.type||'?']=(typ[cd.type||'?']||0)+1});return {res,cost,typ}}
+function decksHTML(){const E=UI.deckE;
+  const top=`<header class="bar"><button class="brand" data-act="toStart" aria-label="처음으로"><span class="lg">챔피언스 테이블</span></button><span class="phs player">덱 빌더</span><span class="sp"></span><div class="btns">${E?`<button class="btn" data-act="dkCancel">취소</button><button class="btn yel" data-act="dkSave">저장</button>`:`<button class="btn" data-act="toSetup">새 게임</button>`}</div></header>`;
+  if(!E){const byH=Object.entries(HEROES).map(([hid,h])=>{const ds=DECKS.filter(d=>d.hid===hid);
+      return `<section class="mz dkh"><span class="zl">${esc(h.name)}</span><div class="dklist">
+        <div class="dk pre"><div class="dkimg">${faceOf(h.identity,'a')}</div><div class="dkb"><b>기본 덱</b><small>히어로 카드 + 성향 카드 전부 + 기본 카드</small></div></div>
+        ${ds.map(d=>{const is=deckIssues(d);return `<div class="dk" style="--ac:${ASPECTS[d.aspect][1]}"><div class="dkimg">${faceOf(h.identity,'a')}</div><div class="dkb"><b>${esc(d.name)}</b><small><span class="achip" style="--ac:${ASPECTS[d.aspect][1]}">${ASPECTS[d.aspect][0]}</span> ${deckN(d)}장 ${is.length?'<em class="bad">· 규칙 확인 필요</em>':'<em class="ok">· 사용 가능</em>'}</small>
+          <div class="btns"><button class="btn sm" data-act="dkEdit" data-id="${d.id}">편집</button><button class="btn sm" data-act="dkCopy" data-id="${d.id}">복제</button><button class="btn sm" data-act="dkDel" data-id="${d.id}">삭제</button></div></div></div>`}).join('')}
+        <button class="dk add" data-act="dkNew" data-h="${hid}"><b>＋</b>새 덱 만들기</button></div></section>`}).join('');
+    return top+`<section class="mz"><span class="zl">덱 규칙</span><p class="sub" style="margin:0">히어로 카드 ${kitN('spiderman')}장은 자동으로 들어가요. 성향 하나 + 기본 카드로 채워 <b>40~50장</b>을 만들어요. 같은 카드는 최대 3장, "덱마다 최대 1장" 카드는 1장까지예요.</p>
+      <label class="tgl"><input type="checkbox" id="dkPhys" data-dopt="phys" ${DOPT.phys?'checked':''}> 실물 기본판 1개에 있는 장수까지만 쓰기</label></section>`+byH}
+  const d=E;const h=HEROES[d.hid];const is=deckIssues(d);const n=deckN(d);const st=deckStats(d);const tab=UI.deckTab||'aspect';
+  const pool=tab==='basic'?SETS.find(x=>x.id==='basic').cards:tab==='hero'?heroKit(d.hid):SETS.find(x=>x.id===d.aspect).cards;
+  const cmax=Math.max(1,...st.cost);
+  return top+`<section class="mz dked"><span class="zl">${esc(h.name)} 덱</span>
+    <div class="dkhead"><label class="fld" style="flex:1 1 200px">덱 이름<input type="text" id="dkName" data-dk="name" value="${esc(d.name)}"></label>
+      <div class="asp">${Object.entries(ASPECTS).map(([id,a])=>`<button class="ab ${d.aspect===id?'on':''}" data-act="dkAsp" data-a="${id}" style="--ac:${a[1]};--at:${a[2]}">${a[0]}</button>`).join('')}</div></div>
+    <div class="dksum"><div class="dkn ${is.length?'bad':'ok'}"><b>${n}</b><small>/ 40~50장</small></div>
+      <div class="dkres">${['m','p','e','w'].map(r=>`<span class="res ${r}">${RES[r]} ${st.res[r]}</span>`).join('')}</div>
+      <div class="dkcurve">${st.cost.map((c,i)=>`<div><i style="height:${c/cmax*100}%"></i><span>${c}</span><small>${i===5?'5+':i}</small></div>`).join('')}</div>
+      <div class="btns"><button class="btn sm" data-act="dkPre">기본 구성으로 채우기</button><button class="btn sm" data-act="dkClear">성향·기본 카드 비우기</button></div></div>
+    ${is.length?`<div class="note warn">${is.map(esc).join('<br>')}</div>`:'<p class="sub ok" style="margin:0">✓ 규칙에 맞는 덱이에요</p>'}
+    <div class="seg dktabs">${[['aspect',ASPECTS[d.aspect][0]+' 카드'],['basic','기본 카드'],['hero','히어로 카드 (고정)']].map(([k,l])=>`<button class="btn sm ${tab===k?'sel':''}" data-act="dkTab" data-t="${k}">${l}</button>`).join('')}</div>
+    <div class="dkpool">${pool.map(cid=>{const fixed=tab==='hero';const c=fixed?C[cid].count:(d.cards[cid]||0);const mx=fixed?c:maxCopy(cid);const cd=cdOf(cid)||{};
+      return `<div class="dkc ${c?'in':''}"><button class="slot" data-act="dkView" data-c="${cid}">${faceOf(cid,'a')}${c?`<span class="dkcnt">×${c}</span>`:''}</button>
+        <small>${esc(nm(cid))}</small><span class="dkmeta">${cd.cost!=null?`<i class="cost">${cd.cost}</i>`:''}${esc(cd.type||'')}</span>
+        ${fixed?'<span class="sub">고정</span>':`<div class="step"><button data-act="dkAdd" data-c="${cid}" data-d="-1" ${c?'':'disabled'} aria-label="빼기">−</button><output>${c}</output><button data-act="dkAdd" data-c="${cid}" data-d="1" ${c>=mx?'disabled':''} aria-label="넣기">+</button></div>`}</div>`}).join('')}</div>
+  </section>`}
+Object.assign(A,{
+  toDecks(){closeSheet();UI.deckE=null;VIEW='decks';render();scrollTo(0,0)},
+  dkNew(d){UI.deckE={id:'d'+Date.now().toString(36),name:HEROES[d.h].name+' 덱 '+(DECKS.filter(x=>x.hid===d.h).length+1),hid:d.h,aspect:HEROES[d.h].aspect,cards:preconCards(HEROES[d.h].aspect)};UI.deckTab='aspect';render();scrollTo(0,0)},
+  dkEdit(d){const x=DECKS.find(y=>y.id===d.id);if(!x)return;UI.deckE=JSON.parse(JSON.stringify(x));UI.deckTab='aspect';render();scrollTo(0,0)},
+  dkCopy(d){const x=DECKS.find(y=>y.id===d.id);if(!x)return;const c=JSON.parse(JSON.stringify(x));c.id='d'+Date.now().toString(36);c.name+=' (복사)';DECKS.push(c);saveDecks();render()},
+  dkDel(d){const x=DECKS.find(y=>y.id===d.id);if(!x)return;openSheet(()=>head('덱 삭제')+`<p class="note">"${esc(x.name)}" 덱을 삭제할까요?</p><div class="btns"><button class="btn go" data-act="dkDelDo" data-id="${x.id}">삭제</button><button class="btn" data-act="closeSheet">취소</button></div>`)},
+  dkDelDo(d){DECKS=DECKS.filter(y=>y.id!==d.id);saveDecks();SF.players.forEach(p=>{if(p.deck===d.id)delete p.deck});closeSheet();render()},
+  dkCancel(){UI.deckE=null;render()},
+  dkSave(){const E=UI.deckE;const nmEl=$('#dkName');if(nmEl)E.name=nmEl.value.trim()||E.name;const i=DECKS.findIndex(x=>x.id===E.id);if(i>=0)DECKS[i]=E;else DECKS.push(E);saveDecks();UI.deckE=null;toast(`"${E.name}" 덱을 저장했어요${deckIssues(E).length?' (규칙에 맞지 않아 아직 게임에 쓸 수 없어요)':''}`);render()},
+  dkAsp(d){const E=UI.deckE;if(E.aspect===d.a)return;E.aspect=d.a;for(const c of Object.keys(E.cards))if(C[c].set!=='basic')delete E.cards[c];UI.deckTab='aspect';render()},
+  dkTab(d){UI.deckTab=d.t;render()},
+  dkAdd(d){const E=UI.deckE;const c=d.c;const v=Math.max(0,Math.min(maxCopy(c),(E.cards[c]||0)+ +d.d));if(v)E.cards[c]=v;else delete E.cards[c];const y=scrollY;render();scrollTo(0,y)},
+  dkPre(){const E=UI.deckE;E.cards=preconCards(E.aspect);render()},
+  dkClear(){UI.deckE.cards={};render()},
+  dkView(d){openSheet(()=>head(esc(nm(d.c)))+`<div class="cs"><div class="cs-img ${C[d.c].land?'land':''}"><div class="slot ${C[d.c].land?'land':''}">${faceOf(d.c,'a')}</div></div><div class="cs-body">${cardText(d.c,'a')}<p class="sub">덱에 최대 ${maxCopy(d.c)}장</p></div></div>`)},
+  sfDeck(d){const k=Math.min(UI.sfP||0,SF.players.length-1);const p=SF.players[k];if(d.id==='pre'){delete p.deck}else{const x=DECKS.find(y=>y.id===d.id);if(!x)return;p.deck=x.id;p.aspect=x.aspect}store.set('mct_setup',SF);render()}
+});
+document.addEventListener('change',e=>{const t=e.target;if(t.dataset.dopt){DOPT[t.dataset.dopt]=t.checked;store.set('mct_deckopt',DOPT);render()}if(t.dataset.dk&&UI.deckE){UI.deckE[t.dataset.dk]=t.value}});
+/* =====================================================
+   통계 · 도전과제
+   ===================================================== */
+let STATS=store.get('mct_stats',{games:[],ach:{}});
+const saveStats=()=>store.set('mct_stats',STATS);
+function trk(){if(!G)return;G.trk=G.trk||{maxAllies:0,nem:false};
+  G.P.forEach((p,k)=>{const n=p.play.filter(x=>(cdOf(G.I[x].cid)||{}).type==='동료').length;if(n>G.trk.maxAllies)G.trk.maxAllies=n});
+  if(G.P.some(p=>!p.aside.length&&HEROES[p.hid]))G.trk.nem=true}
+function recordGame(){if(!G||!G.over||G.rec||(G.cfg&&G.cfg.tutorial))return;trk();
+  G.gid=G.gid||('g'+Date.now().toString(36)+Math.random().toString(36).slice(2,6));G.rec=true;
+  const g={id:G.gid,at:Date.now(),res:G.over,rounds:G.round,scen:G.cfg.scen,mod:G.cfg.mod,expert:!!G.cfg.expert,
+    heroes:G.P.map(p=>({hid:p.hid,aspect:p.aspect,deck:p.deckName||null,hp:Math.max(0,p.hp),elim:!!p.elim})),
+    cause:G.over==='lose'?(G.P.every(p=>p.elim)?'heroes':'scheme'):null,nem:!!G.trk.nem,maxAllies:G.trk.maxAllies};
+  STATS.games=STATS.games.filter(x=>x.id!==g.id);STATS.games.push(g);
+  G.newAch=checkAch();saveStats();save()}
+function unrecord(){if(!G||!G.gid)return;STATS.games=STATS.games.filter(x=>x.id!==G.gid);(G.newAch||[]).forEach(a=>delete STATS.ach[a]);saveStats()}
+const W=()=>STATS.games.filter(g=>g.res==='win');
+const ACH=[
+ {id:'first',t:'첫 승리',d:'게임에서 처음으로 승리',ic:'★',f:()=>W().length>=1},
+ {id:'plays10',t:'단골 손님',d:'게임 10판 플레이',ic:'10',f:()=>STATS.games.length>=10},
+ {id:'wins10',t:'베테랑',d:'10번 승리',ic:'✪',f:()=>W().length>=10},
+ {id:'villains',t:'빌런 사냥꾼',d:'Rhino·Klaw·Ultron 모두 처치',ic:'☠',f:()=>Object.keys(SCEN).every(s=>W().some(g=>g.scen===s))},
+ {id:'heroes',t:'어벤져스 어셈블',d:'히어로 5명 각각으로 1승',ic:'A',f:()=>Object.keys(HEROES).every(h=>W().some(g=>g.heroes.some(x=>x.hid===h)))},
+ {id:'aspects',t:'네 가지 길',d:'정의·용맹·통솔·수호 성향으로 각각 1승',ic:'◆',f:()=>Object.keys(ASPECTS).every(a=>W().some(g=>g.heroes.some(x=>x.aspect===a)))},
+ {id:'nonem',t:'과거는 과거일 뿐',d:'숙적이 나오기 전에 승리',ic:'⌛',f:()=>W().some(g=>!g.nem)},
+ {id:'fast',t:'번개 같은 승리',d:'5라운드 이내에 승리',ic:'⚡',f:()=>W().some(g=>g.rounds<=5)},
+ {id:'close',t:'구사일생',d:'생명력 2 이하로 승리',ic:'♥',f:()=>W().some(g=>g.heroes.some(h=>!h.elim&&h.hp<=2))},
+ {id:'allies4',t:'든든한 동료들',d:'동료 4명을 동시에 거느리기',ic:'👥',f:()=>STATS.games.some(g=>g.maxAllies>=4)},
+ {id:'mods',t:'모든 위협에 대비',d:'모듈식 조우 세트 5종 각각으로 1승',ic:'⬢',f:()=>Object.keys(MODS).every(m=>W().some(g=>g.mod===m))},
+ {id:'expert',t:'전문가',d:'전문가 모드로 승리',ic:'Ⅲ',f:()=>W().some(g=>g.expert)},
+ {id:'custom',t:'나만의 덱',d:'직접 만든 덱으로 승리',ic:'🂠',f:()=>W().some(g=>g.heroes.some(h=>h.deck))},
+ {id:'all15',t:'완전 정복',d:'히어로 5명 × 빌런 3명, 15개 조합 모두 클리어',ic:'♛',f:()=>Object.keys(HEROES).every(h=>Object.keys(SCEN).every(s=>W().some(g=>g.scen===s&&g.heroes.some(x=>x.hid===h))))},
+ {id:'allexp',t:'전설',d:'빌런 3명 모두 전문가 모드로 처치',ic:'♜',f:()=>Object.keys(SCEN).every(s=>W().some(g=>g.expert&&g.scen===s))}
+];
+function checkAch(){const nw=[];ACH.forEach(a=>{if(!STATS.ach[a.id]&&a.f()){STATS.ach[a.id]=Date.now();nw.push(a.id)}});return nw}
+const pct=(a,b)=>b?Math.round(a/b*100)+'%':'-';
+function statsHTML(){const gs=STATS.games,ws=W();
+  const tile=(l,v,s='')=>`<div class="stile"><small>${l}</small><b>${v}</b>${s?`<em>${s}</em>`:''}</div>`;
+  const hero=Object.entries(HEROES).map(([hid,h])=>{const g=gs.filter(x=>x.heroes.some(y=>y.hid===hid));const w=g.filter(x=>x.res==='win');const best=w.length?Math.min(...w.map(x=>x.rounds)):null;
+    const asp=Object.keys(ASPECTS).map(a=>{const ga=g.filter(x=>x.heroes.some(y=>y.hid===hid&&y.aspect===a));return ga.length?`<span class="achip" style="--ac:${ASPECTS[a][1]}">${ASPECTS[a][0]} ${ga.filter(x=>x.res==='win').length}/${ga.length}</span>`:''}).join('');
+    return `<tr><th><span class="hdot" style="background:${h.color}"></span>${esc(h.name)}</th><td>${g.length}</td><td>${w.length}</td><td><div class="wbar"><i style="width:${g.length?w.length/g.length*100:0}%"></i></div>${pct(w.length,g.length)}</td><td>${best??'-'}</td><td class="asps">${asp||'<span class="sub">-</span>'}</td></tr>`}).join('');
+  const vil=Object.entries(SCEN).map(([sid,s])=>{const g=gs.filter(x=>x.scen===sid);const w=g.filter(x=>x.res==='win');const sc=g.filter(x=>x.cause==='scheme').length,hc=g.filter(x=>x.cause==='heroes').length;
+    return `<tr><th>${esc(s.name)}</th><td>${g.length}</td><td>${w.length}</td><td><div class="wbar"><i style="width:${g.length?w.length/g.length*100:0}%"></i></div>${pct(w.length,g.length)}</td><td>${w.some(x=>x.expert)?'<b class="ok">클리어</b>':g.some(x=>x.expert)?'도전 중':'-'}</td><td class="sub">${sc||hc?`음모 완성 ${sc} · 히어로 탈락 ${hc}`:'-'}</td></tr>`}).join('');
+  const mx=`<table class="mtx"><tr><th></th>${Object.values(SCEN).map(s=>`<th>${esc(s.name)}</th>`).join('')}</tr>${Object.entries(HEROES).map(([hid,h])=>`<tr><th>${esc(h.name)}</th>${Object.keys(SCEN).map(sid=>{const g=gs.filter(x=>x.scen===sid&&x.heroes.some(y=>y.hid===hid));const w=g.filter(x=>x.res==='win').length;return `<td class="${w?'win':g.length?'lose':''}">${w?`✓<small>${w}승</small>`:g.length?`✗<small>${g.length}패</small>`:'·'}</td>`}).join('')}</tr>`).join('')}</table>`;
+  const recent=gs.slice().reverse().slice(0,15).map(g=>{const d=new Date(g.at);return `<div class="rg ${g.res}"><span class="rr">${g.res==='win'?'승리':'패배'}</span><span class="rd">${d.getMonth()+1}/${d.getDate()}</span><b>${g.heroes.map(h=>esc(HEROES[h.hid].name)+`<small> ${ASPECTS[h.aspect][0]}${h.deck?' · '+esc(h.deck):''}</small>`).join(' + ')}</b><span>vs ${esc(SCEN[g.scen].name)}${g.expert?' (전문가)':''}</span><span class="sub">R${g.rounds}${g.nem?' · 숙적 등장':''}${g.cause==='scheme'?' · 음모 완성':g.cause==='heroes'?' · 탈락':''}</span></div>`}).join('')||'<p class="sub">아직 기록된 게임이 없어요. 게임을 끝까지 하면 여기에 쌓여요.</p>';
+  const got=ACH.filter(a=>STATS.ach[a.id]).length;
+  const ach=ACH.map(a=>`<div class="ach ${STATS.ach[a.id]?'on':''}"><span class="aic">${STATS.ach[a.id]?a.ic:'?'}</span><b>${a.t}</b><small>${a.d}</small></div>`).join('');
+  return `<header class="bar"><button class="brand" data-act="toStart" aria-label="처음으로"><span class="lg">챔피언스 테이블</span></button><span class="phs player">기록실</span><span class="sp"></span><div class="btns">${G?'<button class="btn" data-act="resume">게임으로</button>':''}</div></header>
+  <section class="mz st"><span class="zl">한눈에 보기</span><div class="stiles">${tile('플레이',gs.length,'판')}${tile('승리',ws.length,'판')}${tile('승률',pct(ws.length,gs.length))}${tile('도전과제',`${got}/${ACH.length}`)}${tile('최단 승리',ws.length?Math.min(...ws.map(x=>x.rounds)):'-',ws.length?'라운드':'')}</div></section>
+  <section class="mz st"><span class="zl">도전과제 ${got} / ${ACH.length}</span><div class="achs">${ach}</div></section>
+  <section class="mz st"><span class="zl">히어로 × 빌런</span><p class="sub">아직 비어 있는 칸이 다음 도전이에요.</p>${mx}</section>
+  <section class="mz st"><span class="zl">히어로별</span><div class="tw"><table class="stab"><tr><th>히어로</th><th>플레이</th><th>승리</th><th>승률</th><th>최단</th><th>성향별 (승/판)</th></tr>${hero}</table></div></section>
+  <section class="mz st"><span class="zl">빌런별</span><div class="tw"><table class="stab"><tr><th>빌런</th><th>플레이</th><th>승리</th><th>승률</th><th>전문가</th><th>패배 원인</th></tr>${vil}</table></div></section>
+  <section class="mz st"><span class="zl">최근 게임</span><div class="rgs">${recent}</div></section>`}
+Object.assign(A,{toStats(){closeSheet();VIEW='stats';render();scrollTo(0,0)}});
+/* =====================================================
    튜토리얼 — Spider-Man(정의) vs Rhino 연습 게임
    ===================================================== */
 const TUTK='mct_tut_seen';
@@ -3653,7 +3846,7 @@ function tutStart(){try{localStorage.setItem(TUTK,'1')}catch(e){}
   const enc=G.enc.deck;const top=cid=>{const i=enc.findIndex(x=>G.I[x].cid===cid);if(i>=0)enc.push(enc.splice(i,1)[0])};
   top('rhino-e-hydra-mercenary');top('bombscare-false-alarm');
   const ob=enc.findIndex(x=>C[G.I[x].cid].kind==='obligation');if(ob>=0&&ob>enc.length-8)enc.unshift(enc.splice(ob,1)[0]);
-  G.sch.threat=2;G.tut={step:0,bc,wk};hist=[];save();VIEW='game';render();tutDraw(true)}
+  G.sch.threat=2;G.cfg.tutorial=true;G.tut={step:0,bc,wk};hist=[];save();VIEW='game';render();tutDraw(true)}
 function tutCur(){return G&&G.tut&&!G.over?TS[G.tut.step]:null}
 function tutNext(){if(!G||!G.tut)return;const s=TS[G.tut.step];if(s&&s.fin){tutEnd();return}G.tut.step++;save();tutDraw(true)}
 function tutEnd(){if(G){delete G.tut;save()}const o=$('#tut');if(o)o.remove();document.body.classList.remove('tutlock')}
@@ -3709,7 +3902,7 @@ const RM=()=>matchMedia('(prefers-reduced-motion: reduce)').matches;
 function animSnap(){const m={};document.querySelectorAll('#app .slot[data-i]').forEach(el=>{const r=el.getBoundingClientRect();if(!r.width)return;m[el.dataset.i]={r,html:el.innerHTML,hand:!!el.closest('.fan'),land:el.classList.contains('land')}});
   const pr=s=>{const e=document.querySelector(s);return e?e.getBoundingClientRect():null};
   return {m,view:G.view,deck:pr('[data-act="pDeck"]'),disc:pr('[data-act="pDiscard"]')}}
-function animPlay(sn){if(RM()||!G||sn.view!==G.view)return;const now={};
+function animPlay(sn){if(RM()||!G||sn.view!==G.view||VIEW!=='game')return;const now={};
   const ease='cubic-bezier(.2,.75,.25,1)';
   document.querySelectorAll('#app .slot[data-i]').forEach(el=>{const id=el.dataset.i;now[id]=1;const r=el.getBoundingClientRect();if(!r.width)return;const o=sn.m[id];
     if(o){const dx=(o.r.left+o.r.width/2)-(r.left+r.width/2),dy=(o.r.top+o.r.height/2)-(r.top+r.height/2);if(Math.hypot(dx,dy)<24)return;const s=o.r.width/r.width;

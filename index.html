@@ -214,6 +214,135 @@ textarea{width:100%;min-height:200px;font:12px ui-monospace,Menlo,monospace;bord
   .bar{gap:8px}
   .rnd{font-size:17px}
 }
+
+/* =========== 테이블 개편: 네이비 플레이매트 =========== */
+:root{--mat:#16233f;--line:rgba(255,255,255,.24);--soft:#cfd8ea;--hcw:clamp(84px,9.4vw,118px)}
+body{background:radial-gradient(rgba(255,255,255,.07) 1.2px,transparent 1.3px) 0 0/9px 9px,var(--mat);background-attachment:fixed}
+body::before{background:#c2231a}
+body.ingame{padding-bottom:calc(var(--hcw)*1.4*.62 + 30px)}
+.btn.yel{background:var(--yel);color:var(--ink)}
+.bar{background:#c2231a;border:3px solid var(--ink);box-shadow:0 4px 0 var(--ink);gap:8px 12px}
+.bar .brand{color:#fff;text-shadow:2px 2px 0 var(--ink)}
+.bar .rnd{font-family:var(--f-num);font-size:18px;background:var(--yel);border:2px solid var(--ink);border-radius:999px;padding:1px 12px;letter-spacing:1px}
+.bar .phs{background:#fff}
+.bar .phs.villain{background:var(--ink);color:var(--yel)}
+.bar .sp{flex:1}
+.mz{position:relative;border:2px dashed var(--line);border-radius:14px;padding:18px 14px 12px;color:#fff}
+.mz>.zl{position:absolute;top:-11px;left:14px;background:var(--mat);padding:0 8px;font:900 12.5px var(--f-body);color:var(--yel);letter-spacing:.03em;white-space:nowrap}
+.mz .banner{color:var(--ink)}
+.mz .sub{color:var(--soft)}
+.cap{font:800 11.5px var(--f-body);color:var(--yel);white-space:nowrap;display:flex;align-items:center;gap:6px}
+.cap em{font-style:normal;font-weight:600;color:var(--soft)}
+.zcol{display:flex;flex-direction:column;gap:7px;min-width:0}
+.zcol.grow{flex:1 1 200px}
+.vrow{display:flex;flex-wrap:wrap;gap:14px 22px;align-items:flex-start}
+.row{min-height:calc(var(--cw)*1.4)}
+.row.empty::after,.player-area .row.empty::after{color:rgba(255,255,255,.45)}
+.ez .row{min-height:0}
+.ez .row.empty{min-height:24px}
+.row.stack .slot{--cw:clamp(46px,5vw,64px)}
+.dwrap{position:relative;display:inline-flex}
+.delta{position:absolute;right:-6px;top:-18px;font:400 22px var(--f-num);letter-spacing:1px;pointer-events:none;text-shadow:2px 2px 0 var(--ink);animation:dl 1.6s ease-out forwards;z-index:6}
+.delta.up{color:#ff6b57}.delta.dn{color:#7ee081}
+@keyframes dl{0%{opacity:0;transform:translateY(8px) scale(.8)}15%{opacity:1;transform:translateY(0) scale(1.15)}70%{opacity:1}100%{opacity:0;transform:translateY(-14px)}}
+/* 주요 음모 + 위협 게이지 */
+.schwrap{position:relative;display:inline-block;align-self:flex-start}
+.bigthr{position:absolute;right:-12px;top:-12px;z-index:5}
+.bigthr .tk.thr{width:44px;height:38px;font-size:20px}
+.bigthr .tk.thr i{padding-top:12px;font-size:19px}
+.bigthr.hot .tk.thr{animation:hot 1s ease-in-out infinite}
+@keyframes hot{50%{transform:scale(1.12);filter:drop-shadow(0 0 6px #ff3b2f)}}
+.gauge{display:flex;align-items:center;gap:8px;width:calc(var(--cw)*1.75)}
+.gbar{position:relative;flex:1;height:12px;border:2px solid var(--ink);border-radius:999px;background:#0c1528;overflow:hidden;box-shadow:0 0 0 1px rgba(255,255,255,.25)}
+.gbar i{position:absolute;left:0;top:0;bottom:0;background:#3d8bfd;transition:width .4s}
+.gauge.warm .gbar i{background:#ef7c21}.gauge.hot .gbar i{background:#e3342a}
+.gbar b{position:absolute;top:0;bottom:0;background:repeating-linear-gradient(45deg,rgba(255,255,255,.4) 0 4px,rgba(255,255,255,.12) 4px 8px)}
+.gnum{font:400 17px var(--f-num);letter-spacing:1px;white-space:nowrap}
+.gauge.hot .gnum{color:#ff6b57}
+.gctl{display:flex;gap:8px;align-items:center}
+.gctl .step button{width:26px;height:26px}
+.pred{font-size:11px;color:var(--soft);line-height:1.35}
+.pred b{color:#fff;font-family:var(--f-num);font-size:15px;letter-spacing:1px;font-weight:400}
+.pred small{font-size:10px;opacity:.85}
+.badges{display:flex;gap:5px;flex-wrap:wrap;max-width:calc(var(--cw)*2)}
+.bdg{font:800 10.5px var(--f-body);border:2px solid var(--ink);border-radius:999px;padding:1px 8px;color:var(--ink)}
+.bdg.acc{background:#d9a0ff}.bdg.cri{background:#ff8a7a}
+/* 플레이어 영역 */
+.pgrid{display:grid;grid-template-columns:auto 1fr auto;gap:12px 18px;align-items:start}
+.idcol{display:flex;flex-direction:column;gap:10px;padding-right:18px;border-right:2px dashed rgba(255,255,255,.18);min-height:100%}
+.idtop{display:flex;gap:10px;align-items:flex-start;flex-wrap:wrap}
+.idcol .slot{--cw:clamp(70px,8vw,104px)}
+.acts{display:flex;flex-direction:column;gap:7px;align-items:flex-start;max-width:230px}
+.tab{display:flex;flex-direction:column;gap:12px;min-width:0}
+.trow{display:flex;flex-direction:column;gap:7px;min-width:0}
+.arow{display:flex;gap:8px;flex-wrap:wrap;align-items:flex-start}
+.aslot{border:2px dashed rgba(255,255,255,.3);border-radius:10px;padding:4px;display:flex;align-items:center;justify-content:center;min-height:calc(var(--cw)*88/63);min-width:var(--cw)}
+.aslot.empty span{font:700 10.5px var(--f-body);color:rgba(255,255,255,.4);text-align:center}
+.urow{display:flex;align-items:flex-start;padding:4px 0 4px 2px}
+.urow.none{font-size:12px;color:rgba(255,255,255,.45);font-style:italic;min-height:30px;align-items:center}
+.urow.open{flex-wrap:wrap;gap:10px}
+.urow:not(.open){gap:10px}
+.urow.tight{gap:0}
+.urow.tight>.slot:not(:first-child){margin-left:calc(var(--cw)*-.3)}
+.urow.tight>.slot{transition:transform .15s}
+.urow.tight>.slot:hover,.urow.tight>.slot:focus-visible{transform:translateY(-8px);z-index:8}
+.urow.tight .toks{right:auto;left:-6px;top:auto;bottom:16px}
+.mini{font:800 10.5px var(--f-body);border:2px solid var(--ink);border-radius:999px;background:var(--yel);color:var(--ink);padding:1px 9px;cursor:pointer;box-shadow:1px 2px 0 var(--ink)}
+.pcol{display:flex;flex-direction:column;gap:14px;align-items:center}
+.slot.ex::after{content:"소진";position:absolute;left:4px;bottom:4px;z-index:5;font:900 10px var(--f-body);background:var(--ink);color:var(--yel);border:1.5px solid var(--yel);border-radius:6px;padding:0 5px;line-height:1.5}
+/* 손패 부채꼴 */
+.hand2{position:fixed;left:0;right:0;bottom:0;z-index:30;pointer-events:none;height:calc(var(--hcw)*1.4*.62 + 10px);
+  background:linear-gradient(to top,rgba(0,0,0,.7),rgba(0,0,0,0))}
+.hlab{position:absolute;left:max(16px,env(safe-area-inset-left,0px));bottom:calc(var(--hcw)*1.4*.62 - 4px);font:900 13px var(--f-body);color:var(--yel);display:flex;flex-direction:column}
+.hlab small{font-weight:500;color:var(--soft);font-size:10.5px}
+.fan{position:absolute;left:50%;bottom:0;transform:translateX(-50%);display:flex;align-items:flex-end;justify-content:center;width:min(100vw - 24px,980px)}
+.fc{pointer-events:auto;--ov:max(calc(var(--hcw)*-.62),min(8px,calc((min(100vw - 24px,980px) - var(--n)*var(--hcw))/var(--n1))));transform:translateY(calc(38% + var(--y))) rotate(var(--r));transform-origin:50% 100%;transition:transform .18s}
+.fc:not(:first-child){margin-left:var(--ov)}
+.fc .slot{--cw:var(--hcw);box-shadow:0 6px 14px rgba(0,0,0,.45);border-radius:8px}
+.fc:hover,.fc:focus-within{transform:translateY(-4px) rotate(0deg);z-index:40!important}
+.hempty{pointer-events:none;color:var(--soft);font-size:12px;padding-bottom:20px}
+body.ingame .step button,body.ingame .dial button{color:var(--ink)}
+body.ingame .pile-empty{border-color:#fff}
+#toast{bottom:auto;top:calc(70px + env(safe-area-inset-top,0px))}
+.ptabs .chip{color:var(--ink)}
+.lib-set h3{color:var(--yel)}
+
+@media (max-width:820px){
+  .pgrid{grid-template-columns:1fr auto}
+  .idcol{grid-column:1/-1;border-right:0;padding-right:0;border-bottom:2px dashed rgba(255,255,255,.18);padding-bottom:12px;flex-direction:row;flex-wrap:wrap}
+  .tab{grid-column:1}
+  .pcol{grid-column:2;grid-row:2}
+}
+@media (max-width:700px){
+  :root{--cw:50px;--hcw:84px}
+  .mz{padding:16px 10px 10px}
+  .vrow{gap:12px 14px}
+  .bar .brand{font-size:16px}
+  .bar .btn{padding:6px 9px;font-size:12px}
+  .arow{flex-wrap:nowrap;overflow-x:auto;padding-bottom:4px;scrollbar-width:thin}
+  .aslot{flex:none}
+  .urow.tight>.slot:not(:first-child){margin-left:calc(var(--cw)*-.42)}
+  .idcol .slot{--cw:64px}
+  .acts{max-width:none;flex-direction:row;flex-wrap:wrap}
+  .pcol{gap:10px}
+  .gauge{width:calc(var(--cw)*2.4)}
+  .bar{gap:6px 8px;padding:6px 8px;flex-wrap:nowrap}
+  .bar .lg{display:none}
+  .bar .brand::before{content:"☰";font-size:20px;transform:skew(8deg);display:inline-block}
+  .bar .rnd{font-size:15px;padding:0 9px}
+  .bar .rnd::before{content:"R"}
+  .bar .phs{font-size:12px;padding:2px 8px}
+  .bar .btns{gap:6px;flex-wrap:nowrap}
+  .vrow{display:grid;grid-template-columns:auto 1fr;gap:14px 12px}
+  .osch{order:1;grid-row:span 2}.ovil{order:2}.oenc{order:3}.oside{order:4;grid-column:1/-1}
+  .ovil .pair{flex-direction:column;align-items:flex-start;gap:6px}
+  .ovil .dial .win{padding:3px 9px}.ovil .dial .win span{font-size:17px;min-width:15px}
+  .ovil .dial button{width:26px;height:26px}
+  .pred{max-width:150px}
+  .vrow>.zcol:not(.osch):not(.ovil):not(.oenc):not(.oside){order:5;grid-column:1/-1}
+  .hlab small{display:none}
+}
+
 @media (prefers-reduced-motion:reduce){*{transition:none!important;animation:none!important}}
 </style>
 </head>
@@ -1848,68 +1977,99 @@ function render(){
   else if(VIEW==='lib')app.innerHTML=libHTML();
   else if(G)app.innerHTML=gameHTML();
   else{VIEW='start';app.innerHTML=startHTML()}
+  document.body.classList.toggle('ingame',VIEW==='game'&&!!G);
   $('#overRoot').innerHTML=(VIEW==='game'&&G&&G.over)?overHTML():'';
 }
 
+const LASTV={};
+function dlt(key,v){const o=LASTV[key];LASTV[key]=v;if(o==null||o===v||!G)return '';const d=v-o;return `<span class="delta ${d>0?'up':'dn'}">${d>0?'+':''}${d}</span>`}
+function schemeBox(){const sm=meta(scid());const tgt=schTarget();const th=G.sch.threat;
+  const sideAcc=G.sides.filter(i=>meta(G.I[i].cid).accel).length;const base=(sm.accel??0)*N();const add=base+G.accel+sideAcc;
+  const crisis=G.sides.some(i=>meta(G.I[i].cid).crisis);
+  const r=tgt?Math.min(1,th/tgt):0;const lv=r>=.85?'hot':r>=.5?'warm':'cool';
+  const pr=tgt?Math.max(0,Math.min(1,(th+add)/tgt)-r):0;
+  const parts=[`가속 ${base}`];if(G.accel)parts.push(`토큰 ${G.accel}`);if(sideAcc)parts.push(`가속 아이콘 ${sideAcc}`);
+  const stg=G.sch.stages.length>1?` · ${G.sch.idx+1}/${G.sch.stages.length}단계`:'';
+  return `<div class="zcol osch"><span class="cap">주요 음모${stg}</span>
+    <div class="schwrap">${slot(G.sch.iid,{noTok:true})}<span class="bigthr ${lv}"><span class="tk thr"><i>${th}</i></span>${dlt('thr',th)}</span></div>
+    <div class="gauge ${lv}" title="위협 ${th} / 임계점 ${tgt??'?'}"><div class="gbar"><i style="width:${r*100}%"></i><b style="left:${r*100}%;width:${pr*100}%"></b></div><span class="gnum">${th} / ${tgt??'?'}</span></div>
+    <div class="gctl"><div class="step"><button data-act="sThr" data-d="-1" aria-label="위협 1 제거">−</button><button data-act="sThr" data-d="1" aria-label="위협 1 추가">+</button></div>
+      <span class="pred">다음 빌런 페이즈 <b>+${add}</b><br><small>${parts.join(' + ')}${vSch()?` · 암약 시 +${vSch()}`:''}</small></span></div>
+    ${(G.accel||sideAcc||crisis)?`<div class="badges">${G.accel||sideAcc?`<span class="bdg acc">가속 +${G.accel+sideAcc}</span>`:''}${crisis?'<span class="bdg cri">위기 — 주요 음모 저지 불가</span>':''}</div>`:''}
+  </div>`}
+function allySlots(k){const p=G.P[k];const lim=allyLimit(k);const al=p.play.filter(x=>(cdOf(G.I[x].cid)||{}).type==='동료');
+  const empt=Math.max(0,lim-al.length);
+  return `<div class="trow"><span class="cap">동료 ${al.length} / ${lim}${lim>3?` <em>· 트리스켈리온으로 +${lim-3}</em>`:''}${al.length>=lim?' <em>· 꽉 참</em>':''}</span>
+    <div class="arow">${al.map(i=>`<div class="aslot">${slot(i)}</div>`).join('')}${Array.from({length:empt},()=>'<div class="aslot empty"><span>빈 자리</span></div>').join('')}</div></div>`}
+function upRow(k){const p=G.P[k];const ups=p.play.filter(x=>(cdOf(G.I[x].cid)||{}).type!=='동료');const open=UI.upOpen;
+  if(!ups.length)return `<div class="trow"><span class="cap">업그레이드 · 지원</span><div class="urow none">손패에서 업그레이드나 지원을 내면 여기에 놓여요</div></div>`;
+  const tight=ups.length>4&&!open;
+  return `<div class="trow"><span class="cap">업그레이드 · 지원 ${ups.length}${ups.length>4?` <button class="mini" data-act="upToggle">${open?'겹치기':'펼치기'}</button>`:''}</span>
+    <div class="urow ${tight?'tight':''} ${open?'open':''}" style="--n:${ups.length}">${ups.map(i=>slot(i)).join('')}</div></div>`}
+function handFan(p){const n=p.hand.length;const mid=(n-1)/2;
+  return `<section class="hand2" aria-label="손패"><div class="hlab">손패 ${n} / ${hs(p)}<small>카드를 누르면 자세히 보고 낼 수 있어요</small></div>
+  <div class="fan" style="--n:${n};--n1:${Math.max(1,n-1)}">${p.hand.map((i,x)=>{const d=x-mid;return `<div class="fc" style="--r:${(d*Math.min(5,24/Math.max(1,n))).toFixed(1)}deg;--y:${(Math.abs(d)*Math.abs(d)*2.2).toFixed(1)}px;z-index:${x+1}">${slot(i)}</div>`}).join('')||'<span class="hempty">손패가 없어요</span>'}</div></section>`}
 function gameHTML(){
-  const k=G.view;const p=G.P[k];const h=HEROES[p.hid];const vm=meta(vcid());const sm=meta(scid());const tgt=schTarget();
-  const sideAcc=G.sides.filter(i=>meta(G.I[i].cid).accel).length, sideHaz=G.sides.filter(i=>meta(G.I[i].cid).hazard).length;
+  const k=G.view;const p=G.P[k];const h=HEROES[p.hid];const vm=meta(vcid());const tgt=schTarget();
+  const sideHaz=G.sides.filter(i=>meta(G.I[i].cid).hazard).length;
   let banners='';
   if(G.vill.hp<=0&&vm.hp)banners+=`<div class="banner"><b>빌런 스테이지 ${ROMAN[G.vill.idx+(G.cfg.expert?1:0)]} 격파!</b><button class="btn go" data-act="vAdvance">${G.vill.idx+1<G.vill.stages.length?'다음 빌런 스테이지로':'승리 처리'}</button></div>`;
   if(tgt!=null&&G.sch.threat>=tgt)banners+=`<div class="banner"><b>음모 완료 — 위협 ${G.sch.threat}/${tgt}</b><button class="btn v" data-act="sAdvance">${G.sch.idx+1<G.sch.stages.length?'다음 음모 스테이지로':'패배 처리'}</button></div>`;
   if(!vm.hp)banners+=`<div class="banner"><b>이 빌런 스테이지의 생명력을 아직 몰라요</b><span class="sub">빌런 카드를 눌러 생명력(인원당)을 넣어 주세요.</span></div>`;
+  const eng=p.engaged;
   return `
   <header class="bar">
-    <button class="brand" data-act="menu">챔피언스 테이블</button>
-    <div class="phase"><span class="rnd">ROUND ${G.round}</span><span class="phs ${G.phase}">${G.phase==='player'?'플레이어 페이즈':'빌런 페이즈'}</span></div>
+    <button class="brand" data-act="menu" aria-label="메뉴"><span class="lg">챔피언스 테이블</span></button>
+    <span class="rnd"><span class="lg">ROUND </span>${G.round}</span><span class="phs ${G.phase}">${G.phase==='player'?'플레이어':'빌런'}<span class="lg"> 페이즈</span></span>
+    <span class="sp"></span>
     <div class="btns">
       <button class="btn" data-act="undo" ${hist.length?'':'disabled'}>되돌리기</button>
-      ${G.phase==='player'?`<button class="btn go" data-act="endPlayer">플레이어 페이즈 끝내기</button>`:`<button class="btn v" data-act="vwOpen">빌런 페이즈 진행</button>`}
+      ${G.phase==='player'?`<button class="btn yel" data-act="endPlayer"><span class="lg">플레이어 </span>페이즈 끝<span class="lg">내기</span></button>`:`<button class="btn v" data-act="vwOpen">빌런 페이즈 진행</button>`}
     </div>
   </header>
 
-  <section class="panel villain-area" aria-label="빌런 플레이 영역">
-    <h2>빌런 플레이 영역</h2>
+  <section class="mz vz" aria-label="빌런 영역">
+    <span class="zl">빌런 영역</span>
     ${banners}
-    <div class="zones">
-      <div class="zone"><span class="zlabel">조우 덱 · 버린 카드</span><div class="pair">${pile(G.enc.deck,'e','encDeck','조우 덱')}${pile(G.enc.discard,'e','encDiscard','버린 조우 카드 더미',true)}</div></div>
-      <div class="zone"><span class="zlabel">주요 음모 ${G.sch.stages.length>1?`· ${G.sch.idx+1}스테이지`:''}</span>
-        ${slot(G.sch.iid,{noTok:true})}
-        <div class="ctl"><div class="step"><button data-act="sThr" data-d="-1" aria-label="위협 1 제거">−</button><span class="tk thr"><i>${G.sch.threat}</i></span><button data-act="sThr" data-d="1" aria-label="위협 1 추가">+</button></div>
-        <span class="sub">임계점 ${tgt??'?'} · 가속 +${(sm.accel??0)*N()+G.accel+sideAcc}</span>${G.accel?`<span class="tk acc" title="가속 토큰"><i>+${G.accel}</i></span>`:''}</div>
+    <div class="vrow">
+      <div class="zcol oenc"><span class="cap">조우 덱 · 버린 카드</span><div class="pair">${pile(G.enc.deck,'e','encDeck','조우 덱')}${pile(G.enc.discard,'e','encDiscard','버린 조우 카드 더미',true)}</div></div>
+      ${schemeBox()}
+      <div class="zcol grow oside"><span class="cap">부가 음모${G.sides.length?` ${G.sides.length}`:''}${sideHaz?` · 수령 ${sideHaz}`:''}</span>${rowOf(G.sides,'없음')}</div>
+      <div class="zcol ovil"><span class="cap">빌런 · 스테이지 ${ROMAN[G.vill.idx+(G.cfg.expert?1:0)]}</span>
+        <div class="pair">${slot(G.vill.iid)}<div class="zcol"><div class="dwrap">${dial(G.vill.hp,'vhp','','v')}${dlt('vhp',G.vill.hp)}</div><span class="sub">공격 ${vAtk()} · 음모 ${vSch()}${vm.hp?`<br>최대 ${vMax()}`:''}</span></div></div>
       </div>
-      <div class="zone grow"><span class="zlabel">부가 음모 ${sideHaz?`· 수령 ${sideHaz}`:''}</span>${rowOf(G.sides,'없음')}</div>
-      <div class="zone"><span class="zlabel">빌런 · 스테이지 ${ROMAN[G.vill.idx+(G.cfg.expert?1:0)]}</span>
-        <div class="pair">${slot(G.vill.iid)}<div class="zone">${dial(G.vill.hp,'vhp','','v')}<span class="sub">공격 ${vAtk()} · 음모 ${vSch()}${vm.hp?` · 최대 ${vMax()}`:''}</span></div></div>
-      </div>
-      <div class="zone"><span class="zlabel">빌런 장착 카드</span>${rowOf(G.vill.attach,'없음')}</div>
-      ${G.limbo.length?`<div class="zone"><span class="zlabel">공개된 카드</span>${rowOf(G.limbo,'',{down:false})}</div>`:''}
+      ${G.vill.attach.length?`<div class="zcol"><span class="cap">빌런 장착 ${G.vill.attach.length}</span><div class="row stack">${G.vill.attach.map(i=>slot(i)).join('')}</div></div>`:''}
+      ${G.limbo.length?`<div class="zcol"><span class="cap">공개된 카드</span>${rowOf(G.limbo,'',{down:false})}</div>`:''}
     </div>
   </section>
 
   ${G.P.length>1?`<nav class="ptabs" aria-label="플레이어">${G.P.map((q,x)=>`<button class="chip ${x===k?'on':''}" data-act="view" data-k="${x}">${x===G.first?'<span class="fpt sm">!!!</span>':''}${esc(HEROES[q.hid].name)} <span class="hp">${q.hp}</span>${q.form==='hero'?'히어로':'일상'}${q.elim?' · 탈락':''}</button>`).join('')}</nav>`:''}
 
-  <section class="panel player-area" aria-label="플레이어 플레이 영역">
-    <h2>${esc(h.name)} · ${esc(ASPECTS[p.aspect][0])}</h2>
-    ${p.hp<=0&&!p.elim?`<div class="banner"><b>${esc(h.name)}의 생명력이 0이 됐어요</b><button class="btn go" data-act="elim" data-k="${k}">탈락 처리</button></div>`:''}
-    <div class="zones">
-      <div class="zone"><span class="zlabel">아이덴티티 카드 ${k===G.first?'<span class="fpt sm" title="시작 플레이어">!!!</span>':''}</span>
-        <div class="pair">${slot(p.id)}<div class="zone">${dial(p.hp,'php',`data-k="${k}"`)}
-          <button class="btn sm ${p.form==='hero'?'go':'blue'}" data-act="form" data-k="${k}">${p.form==='hero'?'히어로 → 일상으로':'일상 → 히어로로'}</button>
-          <span class="sub">${G.formUsed[k]?'이번 라운드에 변신함':'변신 가능 (라운드마다 1회)'}</span>${basicBtns(k)}</div></div>
-      </div>
-      <div class="zone"><span class="zlabel">교전 중인 적</span>${rowOf(p.engaged,'없음')}</div>
-      <div class="zone grow"><span class="zlabel">동료 · 업그레이드 · 지원</span>${rowOf(p.play,'손패에서 카드를 내면 여기에 놓여요')}</div>
-      ${p.pend.length?`<div class="zone"><span class="zlabel">받은 조우 카드</span>${pile(p.pend,'e','pendInfo','받은 조우 카드')}</div>`:''}
-      <div class="zone"><span class="zlabel">덱 · 버린 카드</span><div class="pair">${pile(p.deck,'p','pDeck','플레이어 덱')}${pile(p.discard,'p','pDiscard','버린 카드 더미',true)}</div></div>
-      ${p.aside.length?`<div class="zone"><span class="zlabel">숙적 세트</span><button class="btn sm" data-act="nemesis" data-k="${k}">숙적 등장</button><span class="sub">${p.aside.length}장 대기</span></div>`:''}
-    </div>
+  <section class="mz ez" aria-label="교전 중인 적">
+    <span class="zl">${esc(h.name)}와 교전 중인 적 · ${eng.length}</span>
+    ${rowOf(eng,'교전 중인 적이 없어요')}
   </section>
 
-  <section class="hand" aria-label="손패">
-    <h2>손패 ${p.hand.length} / ${hs(p)}</h2>
-    ${p.hand.length?`<div class="hand-row">${p.hand.map(i=>slot(i)).join('')}</div>`:'<p class="muted">손패가 없어요.</p>'}
-  </section>`;
+  <section class="mz pz" aria-label="플레이어 영역">
+    <span class="zl">${esc(h.name)} · ${esc(ASPECTS[p.aspect][0])}${k===G.first?' <span class="fpt sm" title="시작 플레이어">!!!</span>':''}</span>
+    ${p.hp<=0&&!p.elim?`<div class="banner"><b>${esc(h.name)}의 생명력이 0이 됐어요</b><button class="btn go" data-act="elim" data-k="${k}">탈락 처리</button></div>`:''}
+    <div class="pgrid">
+      <div class="idcol">
+        <div class="idtop">${slot(p.id)}<div class="dwrap">${dial(p.hp,'php',`data-k="${k}"`)}${dlt('php'+k,p.hp)}</div></div>
+        <div class="acts">${basicBtns(k)}
+          <button class="btn sm ${p.form==='hero'?'':'blue'}" data-act="form" data-k="${k}">${p.form==='hero'?'일상으로 변신':'히어로로 변신'}</button>
+          <span class="sub">${G.formUsed[k]?'이번 라운드에 변신함':'변신은 라운드마다 1회'}</span></div>
+      </div>
+      <div class="tab">${allySlots(k)}${upRow(k)}</div>
+      <div class="pcol">
+        <div class="zcol"><span class="cap">덱</span>${pile(p.deck,'p','pDeck','플레이어 덱')}</div>
+        <div class="zcol"><span class="cap">버린 카드</span>${pile(p.discard,'p','pDiscard','버린 카드 더미',true)}</div>
+        ${p.pend.length?`<div class="zcol"><span class="cap">받은 조우 카드</span>${pile(p.pend,'e','pendInfo','받은 조우 카드')}</div>`:''}
+        ${p.aside.length?`<div class="zcol"><span class="cap">숙적 세트 ${p.aside.length}</span><button class="btn sm" data-act="nemesis" data-k="${k}">숙적 등장</button></div>`:''}
+      </div>
+    </div>
+  </section>
+  ${handFan(p)}`;
 }
 
 function basicBtns(k){const p=G.P[k];const m=meta(HEROES[p.hid].identity);const ex=G.I[p.id].ex;
@@ -2520,6 +2680,7 @@ const A={
   overUndo(){A.undo()},
   view(d){act(()=>{G.view=+d.k})},
   card(d){openSheet(cardSheet(d.i))},
+  upToggle(){UI.upOpen=!UI.upOpen;render()},
   ex(d){act(()=>{G.I[d.i].ex=!G.I[d.i].ex})},
   flip(d){act(()=>{const i=G.I[d.i];i.side=i.side==='a'?'b':'a';const k=G.P.findIndex(p=>p.id===d.i);if(k>=0)G.P[k].form=i.side==='a'?'hero':'ae'})},
   tok(d){let gone=false;act(()=>{const i=G.I[d.i];i[d.k]=Math.max(0,i[d.k]+ +d.d);

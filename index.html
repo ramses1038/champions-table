@@ -664,6 +664,29 @@ body.vilmini .bar .phs{display:inline-block}
   #rotateMsg b{display:block;font-size:56px;color:var(--yel);animation:rot 1.6s ease-in-out infinite}
   @keyframes rot{50%{transform:rotate(-90deg)}}
 }
+
+/* 튜토리얼 */
+#tut{position:fixed;inset:0;z-index:90;pointer-events:none}
+#tut .thole{position:fixed;border-radius:14px;box-shadow:0 0 0 9999px rgba(5,10,25,.66),0 0 0 3px var(--yel) inset;transition:all .25s ease;animation:tpulse 1.6s ease-in-out infinite}
+@keyframes tpulse{50%{box-shadow:0 0 0 9999px rgba(5,10,25,.66),0 0 0 5px var(--yel) inset}}
+#tut .tdim{position:fixed;inset:0;background:rgba(5,10,25,.66)}
+#tut .tbub{position:fixed;pointer-events:auto;box-sizing:border-box;width:min(380px,calc(100vw - 24px));background:var(--paper);color:var(--ink);border:3px solid var(--ink);border-radius:16px;padding:12px 14px;box-shadow:0 6px 0 #000;display:flex;flex-direction:column;gap:8px}
+#tut .tbub.mini{width:min(520px,calc(100vw - 24px));padding:8px 12px;gap:4px;background:#fff8d6}
+#tut .tbub h4{margin:0;font:400 20px var(--f-disp);color:var(--red);transform:skew(-6deg)}
+#tut .tbub.mini h4{font-size:15px}
+#tut .tbub p{margin:0;font-size:13.5px;line-height:1.6}
+#tut .tbub.mini p{font-size:12.5px}
+#tut .tbub small{color:var(--muted)}
+#tut .tbh{display:flex;justify-content:space-between;align-items:center;font:800 11px var(--f-body);color:var(--muted)}
+#tut .tbx{border:0;background:none;font:700 11px var(--f-body);color:var(--muted);text-decoration:underline;cursor:pointer;padding:0}
+#tut .tbub .btn{align-self:flex-end}
+#tut .twait{align-self:flex-end;font:900 12px var(--f-body);color:var(--purple);animation:tw 1.2s ease-in-out infinite}
+@keyframes tw{50%{transform:translateX(4px)}}
+#tut .tbub.shake{animation:tshake .35s}
+@keyframes tshake{25%{transform:translateX(-6px)}75%{transform:translateX(6px)}}
+.tutcta{display:flex;flex-direction:column;gap:8px;align-items:flex-start;background:var(--yel);border:3px solid var(--ink);border-radius:14px;padding:16px 18px;box-shadow:5px 5px 0 var(--ink)}
+.tutcta b{font:400 24px var(--f-disp);transform:skew(-6deg)}
+.tutcta span{font-size:14px;line-height:1.6}
 @media (prefers-reduced-motion:reduce){*{transition:none!important;animation:none!important}}
 </style>
 </head>
@@ -2622,12 +2645,14 @@ function overHTML(){const win=G.over==='win';const vi=G.I[G.vill.iid];
 /* ---------- 시작 화면 ---------- */
 function startHTML(){
   const total=allKeys().length;const have=allKeys().filter(k=>IMG.has(k)).length;
-  return `<section class="hero">
+  let seen=false;try{seen=!!localStorage.getItem(TUTK)}catch(e){}
+  return `${!seen?`<section class="tutcta"><b>처음이세요?</b><span>Spider-Man으로 Rhino와 한 라운드를 직접 해 보며 사용법과 규칙을 익혀요. 5분이면 돼요.</span><button class="btn go big" data-act="tutAsk">튜토리얼 시작</button></section>`:''}<section class="hero">
     <h1 class="title">챔피언스 테이블</h1>
     <p class="lead">마블 챔피언스 기본판을 혼자, 또는 한 기기로 함께 펼쳐 놓고 하는 개인용 테이블이에요. 카드만 내면 세팅, 빌런 페이즈, 카드 효과는 앱이 처리하고, 방어처럼 고를 일이 있을 때만 물어봐요.</p>
     <div class="btns">
       ${G?`<button class="btn go" data-act="resume">이어하기 · 라운드 ${G.round}</button>`:''}
       <button class="btn ${G?'':'go'}" data-act="toSetup">새 게임</button>
+      <button class="btn v" data-act="tutAsk">튜토리얼</button>
       <button class="btn blue" data-act="toLib">카드 이미지 넣기</button>
     </div>
   </section>
@@ -3040,7 +3065,7 @@ const A={
   afs(d){const st=d.i;const i=G.I[st];const k=i.owner??G.view;openSheet(()=>head('알파 우주 정거장 · 버릴 카드 고르기')+`<p class="note">손에서 카드 1장을 버리면 ${G.P[k].hid==='captainmarvel'&&G.P[k].form==='ae'?'2장(Carol Danvers)':'1장'}을 뽑아요.</p><div class="row">${G.P[k].hand.map(x=>`<button class="slot" data-act="afsPick" data-i="${x}" data-s="${st}">${faceOf(G.I[x].cid,'a')}</button>`).join('')}</div>`)},
   afsPick(d){const st=G.I[d.s];const k=st.owner??G.view;const n=G.P[k].hid==='captainmarvel'&&G.P[k].form==='ae'?2:1;act(()=>{st.ex=true;moveTo(d.i,`p${k}.discard`);draw(k,n)});closeSheet();toast(`알파 우주 정거장 — ${n}장 뽑기`)},
   sfPractice(){SF={players:[{hid:'spiderman',aspect:'justice'},{hid:'captainmarvel',aspect:'aggression'}],scen:'rhino',mod:'bombscare',expert:false};store.set('mct_setup',SF);render()},
-  menu(){openSheet(()=>head('메뉴')+`<div class="mtiles"><button class="mtile" data-act="closeSheet"><b>▶</b>게임 계속하기</button><button class="mtile" data-act="toSetup"><b>✚</b>새 게임</button><button class="mtile" data-act="toLib"><b>▦</b>카드 보관함</button><button class="mtile" data-act="toStart"><b>⌂</b>처음 화면</button></div><p class="sub" style="margin-top:12px">게임은 이 기기에 자동 저장돼요. 언제든 처음 화면의 '이어하기'로 돌아올 수 있어요.</p>`)},
+  menu(){openSheet(()=>head('메뉴')+`<div class="mtiles"><button class="mtile" data-act="closeSheet"><b>▶</b>게임 계속하기</button><button class="mtile" data-act="toSetup"><b>✚</b>새 게임</button><button class="mtile" data-act="toLib"><b>▦</b>카드 보관함</button><button class="mtile" data-act="tutAsk"><b>?</b>튜토리얼</button><button class="mtile" data-act="toStart"><b>⌂</b>처음 화면</button></div><p class="sub" style="margin-top:12px">게임은 이 기기에 자동 저장돼요. 언제든 처음 화면의 '이어하기'로 돌아올 수 있어요.</p>`)},
   toStart(){closeSheet();VIEW='start';render()},
   toSetup(){closeSheet();VIEW='setup';render()},
   toLib(){closeSheet();VIEW='lib';render()},
@@ -3581,6 +3606,74 @@ document.addEventListener('change',e=>{const t=e.target;
 document.addEventListener('pointerup',e=>{if(!el||sx==null)return;const dx=e.clientX-sx,dy=e.clientY-sy;const w=el.dataset.swipe;el=null;sx=null;
   if(Math.abs(dx)>45&&Math.abs(dx)>Math.abs(dy)*1.3){A.sfCycle({w,d:dx<0?1:-1});swipeEat=Date.now()}},{passive:true})})();
 let swipeEat=0;document.addEventListener('click',e=>{if(Date.now()-swipeEat<350){e.stopPropagation();e.preventDefault()}},true);
+/* =====================================================
+   튜토리얼 — Spider-Man(정의) vs Rhino 연습 게임
+   ===================================================== */
+const TUTK='mct_tut_seen';
+function tutIds(){return (G&&G.tut)||{}}
+const TS=[
+ {t:'튜토리얼에 오신 걸 환영해요!',b:'<b>Spider-Man</b>으로 <b>Rhino</b>를 상대하는 연습 게임이에요. 한 라운드를 직접 해 보면서 화면 보는 법과 규칙을 익혀요.<br><br>세팅(주요 음모 준비, 손패 뽑기)은 앱이 이미 해 뒀어요.',btn:'시작하기'},
+ {sel:'.hpb.vil',t:'빌런: Rhino',b:'위쪽 빨간 막대가 <b>빌런의 생명력</b>이에요. 빌런 스테이지 I·II를 모두 0으로 만들면 <b>승리</b>해요.<br>화면을 내려도 상단 바에 작게 따라와요.',btn:'다음'},
+ {sel:'.osch',t:'주요 음모',b:'빌런의 계획이에요. 빌런 페이즈마다 <b>위협</b>(노란 삼각 토큰)이 쌓이고, 게이지가 <b>임계점</b>에 닿으면 <b>패배</b>해요.<br>빗금 부분은 다음 빌런 페이즈에 늘어날 위협이에요.',btn:'다음'},
+ {sel:'.hpb.ply',t:'나의 생명력',b:'히어로의 생명력이에요. 0이 되면 탈락해요. 모든 히어로가 탈락해도 패배예요.',btn:'다음'},
+ {sel:'.idcol',t:'아이덴티티 카드',b:'지금은 <b>일상 형태(Peter Parker)</b>예요. 일상 형태에선 빌런이 공격 대신 음모를 진행(암약)하고, 손패가 더 많아요.<br><b>히어로 형태</b>에선 공격·저지를 할 수 있어요.',btn:'다음'},
+ {sel:'.hand2',t:'손패',b:'카드 왼쪽 위 숫자가 <b>비용</b>, 왼쪽 아래 아이콘이 <b>자원</b>이에요.<br>카드를 내려면 다른 손패를 버려서 그 카드에 인쇄된 자원으로 비용을 내요. (정신력·물리력·에너지·만능)',btn:'다음'},
+ {sel:'.idcol [data-act="form"]',t:'히어로로 변신!',b:'<b>히어로로 변신</b> 버튼을 눌러 보세요. 변신은 라운드마다 한 번 할 수 있어요.',wait:()=>G.P[0].form==='hero'},
+ {sel:()=>`.fan .slot[data-i="${tutIds().bc}"]`,t:'동료 내기: Black Cat',b:'손패의 <b>Black Cat</b>(비용 2)을 눌러 <b>카드 내기</b>를 고르세요. 그다음 <b>천재</b>(정신력 2개)를 눌러 자원으로 쓰고 지불하면 돼요.<br><small>카드를 위로 끌어다 놓아도 낼 수 있어요.</small>',sheetT:'천재 카드를 눌러 자원 2개를 만들고, 아래 지불 버튼을 누르세요.',wait:()=>G.P[0].play.includes(tutIds().bc)},
+ {sel:()=>`.fan .slot[data-i="${tutIds().wk}"]`,t:'이벤트: 거미줄 날아차기',b:'Black Cat이 들어오면서 덱 위 카드 2장을 확인했어요(자동 처리).<br>이번엔 <b>거미줄 날아차기</b>(비용 3)를 내 보세요. <b>에너지</b>(에너지 2개) + <b>정의를 위해!</b>(에너지 1개)로 비용 3을 맞추면 돼요.',sheetT:'에너지와 정의를 위해!를 골라 비용 3을 맞추고 지불 → 대상으로 Rhino를 고르세요.',wait:()=>G.vill.hp<=meta(vcid()).hp*G.N-8},
+ {sel:()=>`.arow .slot[data-i="${tutIds().bc}"]`,t:'동료로 저지',b:'Rhino에게 피해 8! 이번엔 Black Cat을 눌러 <b>동료로 저지</b>를 써 보세요. 주요 음모의 위협을 1 지워요.<br>동료는 쓰면 <b>소진</b>(옆으로 눕힘)되고, 저지 후 <b>부수적 피해</b> 1을 입어요.',sheetT:'"동료로 저지"를 누른 뒤 주요 음모를 고르세요.',wait:()=>G.I[tutIds().bc]&&G.I[tutIds().bc].ex},
+ {sel:'.idcol',t:'히어로는 아직 준비 상태',b:'기본 공격·저지를 하면 히어로가 소진돼요. 이번엔 히어로를 <b>준비 상태로 남겨 두면</b> 빌런의 공격을 <b>방어</b>할 수 있어요. 그래서 그냥 둘게요.',btn:'다음'},
+ {sel:'.bar [data-act="endPlayer"]',t:'플레이어 페이즈 끝내기',b:'할 일을 마쳤으면 오른쪽 위 <b>페이즈 끝내기</b>를 누르세요. 버릴 카드를 고르는 창이 나오면 그대로 진행하면 돼요. 그러면 손 크기만큼 카드를 다시 뽑아요.',sheetT:'버릴 카드가 없으면 그대로 진행 버튼을 누르세요.',wait:()=>G.phase==='villain'||G.round>1},
+ {t:'빌런 페이즈 (자동)',b:'① 주요 음모에 위협 추가 → ② 빌런·하수인 활성화 → ③ 조우 카드 나눠주기 → ④ 공개 → ⑤ 라운드 끝.<br>앱이 자동으로 진행하고, <b>방어처럼 고를 일만</b> 물어봐요.<br><small>방어 화면이 나오면 Spider-Man으로 방어해 보세요. 공중제비로 피해를 모두 막을 수도 있어요.</small>',float:true,wait:()=>G.round>1&&G.phase==='player'&&!(G.q&&G.q.length)&&!G.vw},
+ {sel:'.mz.ez',t:'라운드 2',b:'공개된 조우 카드로 하수인이 나왔다면 여기 <b>교전 중인 적</b>에 놓여요. 하수인도 빌런 페이즈마다 공격하거나 암약해요.<br>변신 횟수·소진 카드는 새 라운드에 다시 준비됐어요.',btn:'다음'},
+ {t:'튜토리얼 완료!',b:'기본 흐름은 이게 전부예요.<br>• 카드를 누르면 자세히 보고 낼 수 있어요<br>• 체력 바를 누르면 수동 보정<br>• 잘못했다면 <b>되돌리기</b><br><br>이 연습 게임을 계속해도 되고, 메뉴에서 새 게임을 시작해도 돼요. 튜토리얼은 메뉴에서 언제든 다시 볼 수 있어요.',btn:'게임 계속하기',fin:true}
+];
+function tutStart(){try{localStorage.setItem(TUTK,'1')}catch(e){}
+  newGame({players:[{hid:'spiderman',aspect:'justice'}],scen:'rhino',mod:'bombscare',expert:false});
+  A.setupFlip();A.setupNext();while(G.setup&&G.setup.step==='mull')A.mullDo();A.setupEnd();closeSheet();
+  const p=G.P[0];p.deck.push(...p.hand.splice(0));
+  const take=cid=>{const i=p.deck.findIndex(x=>G.I[x].cid===cid);const id=p.deck.splice(i,1)[0];p.hand.push(id);return id};
+  const bc=take('spiderman-black-cat'),wk=take('spiderman-swinging-web-kick');take('basic-genius');take('basic-energy');take('justice-for-justice');take('spiderman-backflip');
+  // 덱 위는 정신력 없는 카드로 (Black Cat 효과가 단순하게)
+  const enc=G.enc.deck;const top=cid=>{const i=enc.findIndex(x=>G.I[x].cid===cid);if(i>=0)enc.push(enc.splice(i,1)[0])};
+  top('rhino-e-hydra-mercenary');top('bombscare-false-alarm');
+  const ob=enc.findIndex(x=>C[G.I[x].cid].kind==='obligation');if(ob>=0&&ob>enc.length-8)enc.unshift(enc.splice(ob,1)[0]);
+  G.sch.threat=2;G.tut={step:0,bc,wk};hist=[];save();VIEW='game';render();tutDraw(true)}
+function tutCur(){return G&&G.tut&&!G.over?TS[G.tut.step]:null}
+function tutNext(){if(!G||!G.tut)return;const s=TS[G.tut.step];if(s&&s.fin){tutEnd();return}G.tut.step++;save();tutDraw(true)}
+function tutEnd(){if(G){delete G.tut;save()}const o=$('#tut');if(o)o.remove();document.body.classList.remove('tutlock')}
+function tutSel(s){return typeof s.sel==='function'?s.sel():s.sel}
+function tutDraw(enter){const s=tutCur();let o=$('#tut');if(!s){if(o)o.remove();return}
+  if(!o){o=document.createElement('div');o.id='tut';document.body.appendChild(o)}
+  const sheetOn=!$('#sheet').hidden;const sel=s.sel?tutSel(s):null;let el=sel?document.querySelector(sel):null;
+  if(enter&&el&&!sheetOn)el.scrollIntoView({block:'center',behavior:'smooth'});
+  const float=s.float||sheetOn||!sel;const n=G.tut.step+1,N=TS.length;
+  const txt=sheetOn&&s.sheetT?s.sheetT:s.b;
+  const bub=`<div class="tbub ${sheetOn?'mini':''}"><div class="tbh"><span>${n} / ${N}</span><button class="tbx" data-tut="end">튜토리얼 끝내기</button></div><h4>${s.t}</h4><p>${txt}</p>${s.btn&&!sheetOn?`<button class="btn go" data-tut="next">${s.btn}</button>`:''}${s.wait&&!sheetOn?'<span class="twait">직접 해 보세요 ▸</span>':''}</div>`;
+  o.innerHTML=(el&&!sheetOn&&!s.float?'<div class="thole"></div>':(s.float||sheetOn?'':'<div class="tdim"></div>'))+bub;
+  o.className=(sheetOn||s.float)?'pass':'';
+  document.body.classList.toggle('tutlock',!!(el&&!sheetOn&&!s.float));
+  tutPos()}
+function tutPos(){const o=$('#tut');const s=tutCur();if(!o||!s)return;const b=o.querySelector('.tbub');const h=o.querySelector('.thole');
+  const sheetOn=!$('#sheet').hidden;
+  if(sheetOn||s.float||!h){b.style.left='50%';b.style.transform='translateX(-50%)';b.style.top=sheetOn?'calc(10px + env(safe-area-inset-top,0px))':(s.float?'calc(70px + env(safe-area-inset-top,0px))':'50%');if(!sheetOn&&!s.float)b.style.transform='translate(-50%,-50%)';b.style.bottom='';return}
+  const el=document.querySelector(tutSel(s));if(!el){h.style.display='none';return}
+  const r=el.getBoundingClientRect(),pd=8;Object.assign(h.style,{display:'block',left:r.left-pd+'px',top:r.top-pd+'px',width:r.width+pd*2+'px',height:r.height+pd*2+'px'});
+  const bw=Math.min(380,innerWidth-24);b.style.width=bw+'px';b.style.transform='';
+  const bh=b.offsetHeight;let top=r.bottom+pd+12;if(top+bh>innerHeight-10)top=r.top-pd-12-bh;if(top<10)top=Math.max(10,Math.min(innerHeight-bh-10,r.bottom+12));
+  let left=r.left+r.width/2-bw/2;left=Math.max(12,Math.min(innerWidth-bw-12,left));b.style.left=left+'px';b.style.top=top+'px'}
+addEventListener('scroll',()=>{if(tutCur())tutPos()},{passive:true});addEventListener('resize',()=>{if(tutCur())tutDraw()});
+setInterval(()=>{const s=tutCur();if(!s||VIEW!=='game'){const o=$('#tut');if(o&&(!s||VIEW!=='game'))o.remove();return}
+  if(s.wait&&s.wait()){tutNext();return}
+  const o=$('#tut');const sheetOn=!$('#sheet').hidden;const want=sheetOn?'s':'t';if(!o||o.dataset.m!==want){tutDraw();const o2=$('#tut');if(o2)o2.dataset.m=want}else tutPos()},350);
+document.addEventListener('click',e=>{const t=e.target.closest('[data-tut]');if(t){e.preventDefault();e.stopPropagation();if(t.dataset.tut==='next')tutNext();else tutEnd();return}
+  if(!document.body.classList.contains('tutlock'))return;const s=tutCur();if(!s||!$('#sheet').hidden)return;
+  const el=s.sel&&document.querySelector(tutSel(s));if(el&&el.contains(e.target))return;if(e.target.closest('#tut .tbub'))return;
+  e.preventDefault();e.stopPropagation();const b=$('#tut .tbub');if(b){b.classList.remove('shake');void b.offsetWidth;b.classList.add('shake')}},true);
+{const _r=render;render=function(){_r();if(VIEW==='game'&&tutCur())setTimeout(()=>tutDraw(),0)}}
+function tutAsk(){if(G&&!G.over&&!G.tut){openSheet(()=>head('튜토리얼 시작')+'<p class="note">진행 중인 게임이 있어요. 튜토리얼을 시작하면 지금 게임은 사라져요.</p><div class="btns"><button class="btn go" data-act="tutGo">튜토리얼 시작</button><button class="btn" data-act="closeSheet">취소</button></div>');return}tutGo()}
+function tutGo(){closeSheet();tutStart()}
+Object.assign(A,{tutAsk,tutGo});
 
 /* 카드 창: 아래로 끌어 닫기 */
 (()=>{let d=null;const pan=()=>document.querySelector('#sheet .panel2');

@@ -1649,9 +1649,9 @@ function allKeys(){const k=[];for(const c of Object.values(C)){k.push(c.cid+'|a'
 let G=store.get('mct_game',null);
 let hist=[];let VIEW='start';let SH=null;let UI={sel:new Set(),pickKey:null};
 const save=()=>store.set('mct_game',G);
-function act(fn){hist.push(JSON.stringify(G));if(hist.length>40)hist.shift();fn();if(G){cleanupHosts();syncHp()}checkEnds();save();render();if(G&&G.q&&G.q.length)SH=promptSheet;if(SH)drawSheet()}
+function act(fn){hist.push(JSON.stringify(G));if(hist.length>40)hist.shift();fn();if(G){cleanupHosts();syncHp();if(!G.setup){autoChecks();if(G.phase==='villain')vpRun()}}checkEnds();save();render();if(G&&G.q&&G.q.length)SH=promptSheet;if(SH)drawSheet()}
 const qpush=x=>(G.q||(G.q=[])).push(x);
-function resumeSheet(){if(G.q&&G.q.length)return openSheet(promptSheet);if(G.setup)return openSheet(setupSheet);if(G.vw&&G.phase==='villain')return openSheet(vwSheet);closeSheet()}
+function resumeSheet(){if(G.q&&G.q.length)return openSheet(promptSheet);if(G.setup)return openSheet(setupSheet);closeSheet()}
 function hostedBy(t){const r=[];G.P.forEach(p=>p.play.forEach(i=>{if(G.I[i].host===t)r.push(i)}));return r}
 const webOn=t=>hostedBy(t).find(i=>G.I[i].cid==='spiderman-webbed-up');
 function defeatEnemy(iid){const h=hostedBy(iid);const ii=G.I[iid];const z0=where(iid)||'';const km=z0.match(/^p(\d+)\.engaged$/);const ek=km?+km[1]:G.first;const wasD=!!ii.drone;
@@ -2424,7 +2424,8 @@ const A={
   hwRev(d){act(()=>hwEffect(d.i));toast('각 플레이어의 손에서 무작위로 1장씩 고속도로 강도에 뒷면으로 놓았어요')},
   attHit(d){act(()=>{const q=G.q.shift();if(d.t==='none'){moveTo(q.iid,`p${G.I[q.iid].owner??0}.discard`);return}G.I[q.iid].host=d.t==='villain'?G.vill.iid:d.t});resumeSheet()},
   traceHit(d){act(()=>{G.q.shift();if(d.t==='scheme')G.sch.threat=Math.max(0,G.sch.threat-3);else if(d.t!=='none'){const s2=G.I[d.t];s2.thr=Math.max(0,s2.thr-3);if(s2.thr===0)defeatSide(d.t)}});toast('스파이더 추적기 — 위협 3 제거');resumeSheet()},
-  qsApply(d){act(()=>{if(d.v==='cf'){const q0=G.q[0];const cf=G.P[q0.k].play.find(x=>G.I[x].cid==='captainmarvel-cosmic-flight');moveTo(cf,`p${q0.k}.discard`);q0.reduce=(q0.reduce||0)+3;toast('성간 비행 — 피해 3 방지');return}
+  qsApply(d){act(()=>A._qsApply(d));resumeSheet()},
+  _qsApply(d){if(d.v==='cf'){const q0=G.q[0];const cf=G.P[q0.k].play.find(x=>G.I[x].cid==='captainmarvel-cosmic-flight');moveTo(cf,`p${q0.k}.discard`);q0.reduce=(q0.reduce||0)+3;toast('성간 비행 — 피해 3 방지');return}
     const q=G.q.shift();const mi=G.I[q.iid];const p=G.P[q.k];const v=q.val;const idi=G.I[p.id];if(mi.cid==='captainmarvel-nem-yon-rogg'&&d.v!=='stun'&&d.v!=='web')yonRogg();
     if(d.v==='stun'){mi.st.stun=0;toast('기절 상태라 공격 대신 기절 카드를 버렸어요');return}
     if(d.v==='web'){const w2=webOn(q.iid);G.I[w2].host=null;moveTo(w2,`p${G.I[w2].owner??q.k}.discard`);mi.st.stun=1;toast('거미줄 포획 — 공격 대신 카드를 버리고 하수인을 기절시켰어요');return}
@@ -2432,7 +2433,7 @@ const A={
     if(d.v.startsWith('a:')){const a=G.I[d.v.slice(2)];a.ex=true;if(a.st.tough){a.st.tough=0;toast('강인함 카드로 피해를 막았어요')}else{a.dmg+=v;const hp=meta(a.cid).hp;if(hp&&a.dmg>=hp)moveTo(a.id,`p${a.owner??q.k}.discard`)}if(G.I[q.iid]&&['mastersofevil-tiger-shark','legionsofhydra-madame-hydra'].includes(G.I[q.iid].cid))afterMinionAtk(q.iid,q.k,false);return}
     let dmg=v;if(d.v==='h'){idi.ex=true;dmg=Math.max(0,v-heroDef(q.k))}
     dmg=Math.max(0,dmg-(q.reduce||0));
-    if(idi.st.tough&&dmg>0){idi.st.tough=0;toast('강인함 카드로 피해를 막았어요')}else p.hp=Math.max(0,p.hp-dmg);afterMinionAtk(q.iid,q.k,d.v==='h')});resumeSheet()},
+    if(idi.st.tough&&dmg>0){idi.st.tough=0;toast('강인함 카드로 피해를 막았어요')}else p.hp=Math.max(0,p.hp-dmg);afterMinionAtk(q.iid,q.k,d.v==='h')},
   vwWeb(){act(()=>{const w2=webOn(G.vill.iid);G.I[w2].host=null;moveTo(w2,`p${G.I[w2].owner??0}.discard`);G.I[G.vill.iid].st.stun=1;G.vw.sub='minions';G.vw.mdone={}});toast('거미줄 포획 — 공격 대신 카드를 버리고 빌런을 기절시켰어요')},
   vwBackflip(d){act(()=>{const k=+d.k;const p=G.P[k];const b=p.hand.find(x=>G.I[x].cid==='spiderman-backflip');moveTo(b,`p${k}.discard`);G.vw.fin=0;G.vw.finAuto=false;G.vw.prevented=true});toast('공중제비 — 이번 공격의 피해를 모두 방지해요')},
   vwMinFlip(d){act(()=>{const w=G.vw;const k=w.order[w.oi];const p=G.P[k];const b=p.hand.find(x=>G.I[x].cid==='spiderman-backflip');moveTo(b,`p${k}.discard`);w.mdone=w.mdone||{};w.mdone[d.i]=true});toast('공중제비 — 하수인 공격의 피해를 모두 방지했어요')},
@@ -2448,7 +2449,8 @@ const A={
   vwAtk(){const k=G.vw.order[G.vw.oi];act(()=>qpush({t:'vatk',k,from:'act'}))},
   qStep(d){const q=G.q[0];q[d.k]=(q[d.k]||0)+ +d.d;if(d.k!=='mod')q[d.k]=Math.max(0,q[d.k]);if(d.k==='fin')q.finAuto=false;else q.finAuto=true;
     if(d.k==='bst'&&q.boost)setMeta(G.I[q.boost].cid,'boost',q.bst);save();drawSheet()},
-  vaGo(d){const v=d.v;act(()=>{const q=G.q[0];const k=q.k;const vi=G.I[G.vill.iid];
+  vaGo(d){act(()=>A._vaGo(d));if(!(G.q&&G.q.length))resumeSheet()},
+  _vaGo(d){const v=d.v;const q=G.q[0];const k=q.k;const vi=G.I[G.vill.iid];
     const end=()=>{G.q.shift();if(q.from==='act'){G.vw.sub='minions';G.vw.mdone={};G.vw.mv={}}};
     if(v==='stun'){vi.st.stun=0;toast('빌런의 기절 카드를 버렸어요');end();return}
     if(v==='web'){const w2=webOn(G.vill.iid);G.I[w2].host=null;moveTo(w2,`p${G.I[w2].owner??0}.discard`);vi.st.stun=1;toast('거미줄 포획 — 공격 대신 카드를 버리고 빌런을 기절시켰어요');end();return}
@@ -2470,11 +2472,12 @@ const A={
       if(q.boost)moveTo(q.boost,'enc.discard');if(q.boost2)moveTo(q.boost2,'enc.discard');
       {let dealt=0;if(q.def&&q.def.startsWith('a:'))dealt=dmg;else{dealt=dmg}afterVAtk(q,dealt)}
       G.vill.attach.filter(x=>G.I[x].cid==='rhino-e-charge').forEach(x=>{moveTo(x,'enc.discard');toast('공격이 끝나 돌격을 버렸어요')});
-      end()}});if(!(G.q&&G.q.length))resumeSheet()},
-  vsGo(d){act(()=>{const q=G.q[0];const vi=G.I[G.vill.iid];
+      end()}},
+  vsGo(d){act(()=>A._vsGo(d));if(!(G.q&&G.q.length))resumeSheet()},
+  _vsGo(d){const q=G.q[0];const vi=G.I[G.vill.iid];
     if(d.v==='conf'){vi.st.conf=0;G.q.shift();toast('빌런의 혼란 카드를 버렸어요');return}
     if(d.v==='boost'){const b=encTop();if(b)G.limbo.push(b);q.boost=b||null;q.step='reveal';q.bst=b?(meta(G.I[b].cid).boost??0):0;q.mod=0;q.finAuto=true;return}
-    G.sch.threat+=q.fin;if(q.boost)moveTo(q.boost,'enc.discard');G.q.shift();toast(`주요 음모에 위협 ${q.fin}`);afterVSch();if(q.after==='rageS'&&q.fin>0&&q.k!=null){millTop(q.k,q.fin)}});if(!(G.q&&G.q.length))resumeSheet()},
+    G.sch.threat+=q.fin;if(q.boost)moveTo(q.boost,'enc.discard');G.q.shift();toast(`주요 음모에 위협 ${q.fin}`);afterVSch();if(q.after==='rageS'&&q.fin>0&&q.k!=null){millTop(q.k,q.fin)}},
   chGo(d){act(()=>{const q=G.q.shift();if(d.v==='dmg'){dmgId(q.k,2);toast(`${hn(q.k)} 피해 2`)}else{G.sch.threat+=1;toast('주요 음모에 위협 1')}});if(!(G.q&&G.q.length))resumeSheet()},
   pkGo(d){act(()=>{const q=G.q.shift();const i=G.I[d.i];i.host=null;moveTo(d.i,`p${i.owner??q.k}.discard`);toast(`${nm(i.cid)}을(를) 버렸어요`)});if(!(G.q&&G.q.length))resumeSheet()},
   spStep(d){const q=G.q[0];const used=Object.values(q.alloc).reduce((a,b)=>a+b,0);const cur=q.alloc[d.v]||0;const nv=Math.max(0,cur+ +d.d);if(nv>cur&&used>=q.val)return;q.alloc[d.v]=nv;save();drawSheet()},
@@ -2531,14 +2534,16 @@ const A={
   form(d){const k=+d.k;if(G.formUsed[k])toast('이번 라운드에 이미 변신했어요. 변신은 라운드마다 한 번이에요.');
     act(()=>{const p=G.P[k];p.form=p.form==='hero'?'ae':'hero';G.I[p.id].side=p.form==='hero'?'a':'b';G.formUsed[k]=true;onForm(k)})},
   elim(d){act(()=>{const p=G.P[+d.k];p.elim=true;[...p.hand,...p.play].forEach(i=>moveTo(i,`p${d.k}.discard`));p.engaged.slice().forEach(i=>moveTo(i,G.I[i].drone?`p${G.I[i].owner??d.k}.discard`:'enc.discard'))})},
-  vAdvance(){act(()=>{const v=G.vill;if(v.idx+1>=v.stages.length){G.over='win';return}
+  vAdvance(d){act(()=>A._vAdvance(d));resumeSheet()},
+  _vAdvance(d){const v=G.vill;if(v.idx+1>=v.stages.length){G.over='win';return}
     v.idx++;const old=G.I[v.iid];v.iid=mk(v.stages[v.idx]);G.I[v.iid].st=old.st;Object.values(G.I).forEach(x=>{if(x.host===old.id)x.host=v.iid});const hp=meta(v.stages[v.idx]).hp;v.hp=(hp||0)*N();const ncid=v.stages[v.idx];if(meta(ncid).tough)G.I[v.iid].st.tough=1;
     stageReveal(ncid);
     if(ncid==='rhino-v-rhino-ii'){const f=[...G.enc.deck,...G.enc.discard].find(x=>G.I[x].cid==='rhino-e-breakin-takin');if(f){sideEnter(f);setTimeout(()=>toast('Rhino (II) 공개 — 부수고 챙긴다가 등장하고 조우 덱을 섞었어요'),50)}shuffle(G.enc.deck)}
     if(ncid==='rhino-v-rhino-iii'){G.P.forEach(q=>{if(!q.elim&&q.form==='hero')G.I[q.id].st.stun=1});setTimeout(()=>toast('Rhino (III) 공개 — 강인함을 얻고 모든 히어로가 기절했어요'),50)}
-    if(!hp)toast('새 빌런 스테이지의 생명력을 카드에서 확인해 넣어 주세요');else toast(`빌런 스테이지 ${ROMAN[v.idx+(G.cfg.expert?1:0)]} — 생명력 ${v.hp}. 공개 시 효과를 확인하세요`)});closeSheet()},
-  sAdvance(){act(()=>{const s=G.sch;if(s.idx+1>=s.stages.length){G.over='lose';return}
-    s.idx++;s.iid=mk(s.stages[s.idx]);const m=meta(s.stages[s.idx]);s.threat=(m.start||0)*N();G.I[s.iid].side='b';toast('다음 음모 스테이지 — A 면의 공개될 때 효과를 처리했어요');schemeReveal(s.stages[s.idx],'a')});closeSheet()},
+    if(!hp)toast('새 빌런 스테이지의 생명력을 카드에서 확인해 넣어 주세요');else toast(`빌런 스테이지 ${ROMAN[v.idx+(G.cfg.expert?1:0)]} — 생명력 ${v.hp}. 공개 시 효과를 확인하세요`)},
+  sAdvance(d){act(()=>A._sAdvance(d));resumeSheet()},
+  _sAdvance(d){const s=G.sch;if(s.idx+1>=s.stages.length){G.over='lose';return}
+    s.idx++;s.iid=mk(s.stages[s.idx]);const m=meta(s.stages[s.idx]);s.threat=(m.start||0)*N();G.I[s.iid].side='b';toast('다음 음모 스테이지 — A 면의 공개될 때 효과를 처리했어요');schemeReveal(s.stages[s.idx],'a')},
   nemesis(d){const k=+d.k;act(()=>bringNemesis(k));toast('숙적 하수인과 숙적 부가 음모가 등장했어요. 나머지 숙적 카드는 조우 덱에 섞었어요')},
 
   pDeck(){const k=G.view;openSheet(()=>{const p=G.P[k];return head(`${esc(hn(k))} 덱 · ${p.deck.length}장`)+`<div class="btns"><button class="btn go" data-act="drawOne">1장 뽑기</button><button class="btn" data-act="drawTo">손 크기까지 뽑기</button><button class="btn" data-act="shufP">섞기</button><button class="btn" data-act="searchP">덱에서 찾기</button></div>`})},
@@ -2567,8 +2572,8 @@ const A={
     G.P.forEach((p,k)=>{if(p.elim)return;p.hand.filter(i=>sel.has(i)).forEach(i=>moveTo(i,`p${k}.discard`))});
     G.P.forEach((p,k)=>{if(p.elim)return;draw(k,Math.max(0,hs(p)-p.hand.length))});
     G.P.forEach(p=>{G.I[p.id].ex=false;p.play.forEach(i=>G.I[i].ex=false)});
-    endPhaseBuffs();G.phase='villain';G.vw={step:1,order:order(),oi:0,sub:'start'}});openSheet(vwSheet)},
-  vwOpen(){openSheet(vwSheet)},
+    endPhaseBuffs();G.phase='villain';G.vw={step:1,order:order(),oi:0,sub:'start'}});resumeSheet()},
+  vwOpen(){act(()=>{});resumeSheet()},
   vwAdd(d){G.vw.add=Math.max(0,G.vw.add+ +d.d);save();drawSheet()},
   vw1(){act(()=>{G.sch.threat+=G.vw.add;G.vw.step=2;G.vw.oi=0;G.vw.sub='start';if(scid()==='ultron-s-assault-on-norad')G.vw.order.forEach(k=>qpush({t:'norad',k}))})},
   vwStatus(d){act(()=>{G.I[G.vill.iid].st[d.k]=0;G.vw.sub='minions';G.vw.mdone={}})},
@@ -2796,6 +2801,7 @@ Object.assign(ENC,{
 });
 /* 추가 확인창 */
 function promptSheet2(q){
+  if(q.t==='rev')return revSheet(q);
   const yesNo=(title,note,act)=>head(title)+`<p class="note">${note}</p><div class="btns"><button class="btn go" data-act="${act}" data-v="yes">쓰기</button><button class="btn" data-act="${act}" data-v="no">쓰지 않기</button></div>`;
   if(q.t==='otp')return yesNo('원투 펀치 · 반응',`${esc(hn(q.k))}이(가) 기본 공격을 했어요. 원투 펀치(비용 1)로 She-Hulk를 준비할까요?`,'otpGo');
   if(q.t==='ctd')return yesNo('끝까지 추격 · 반응',`${esc(hn(q.k))}의 공격으로 적을 격파했어요. 끝까지 추격(비용 0)으로 음모 하나에서 위협 2를 제거할까요?`,'ctdGo');
@@ -2898,6 +2904,94 @@ function resolveEvent2(iid,k,u){const cid=G.I[iid].cid;const p=G.P[k];
   if(cid==='aggression-relentless-assault'){heroAtk(k,5,'맹렬한 공세',{minionOnly:true,overkill:!!(u&&u.paidP)});return true}
   if(cid==='aggression-uppercut'){heroAtk(k,5,'어퍼컷');return true}
   return false}
+
+/* ===== 자동 진행 엔진 ===== */
+Object.assign(CD,{
+ 'expert-exhaustion':{type:'배반',text:''},
+ 'expert-masterplan':{type:'배반',text:''},
+ 'expert-under-fire':{type:'배반',text:''}});
+Object.assign(DEF_META,{'expert-exhaustion':{type:'treachery',boost:1},'expert-masterplan':{type:'treachery',boost:2},'expert-under-fire':{type:'treachery',boost:2}});
+Object.assign(ENC,{
+ 'expert-exhaustion':(c,k)=>{disc(c);G.I[G.P[k].id].ex=true;surge(k);return '탈진 — 아이덴티티 카드 소진 · 쇄도'},
+ 'expert-under-fire':(c,k)=>{disc(c);surge(k);surge(k);return '포격 — 쇄도 · 조우 카드를 1장 더 공개해요'},
+ 'expert-masterplan':(c,k)=>{disc(c);if(G.sides.length){G.sides.forEach(x=>G.I[x].thr+=4);return '완벽한 계획 — 각 부가 음모에 위협 4'}
+   const lim=G.enc.deck.length+G.enc.discard.length+1;for(let x=0;x<lim;x++){const t=encTop();if(!t)break;if(meta(G.I[t].cid).type==='side'){const f=ENC[G.I[t].cid];if(f)f(t,k);else sideEnter(t);return `완벽한 계획 — ${nm(G.I[t].cid)} 공개`}G.enc.discard.push(t)}return '완벽한 계획 — 부가 음모를 찾지 못했어요'}
+});
+function elimDo(k){const p=G.P[k];if(p.elim)return;p.elim=true;[...p.hand,...p.play].forEach(i=>moveTo(i,`p${k}.discard`));p.engaged.slice().forEach(i=>moveTo(i,G.I[i].drone?`p${G.I[i].owner??k}.discard`:'enc.discard'));setTimeout(()=>toast(`${hn(k)} 탈락`),80)}
+function autoChecks(){if(!G||G.over)return;
+  G.P.forEach((p,k)=>{if(!p.elim&&p.hp<=0)elimDo(k)});
+  if(G.P.every(p=>p.elim)){G.over='lose';return}
+  const vm=meta(vcid());if(vm.hp&&G.vill.hp<=0){A._vAdvance();if(G.over)return}
+  const tg=schTarget();if(tg!=null&&G.sch.threat>=tg)A._sAdvance()}
+function defOpts(q){const o=[];G.P.forEach((p,x)=>{if(!p.elim&&p.form==='hero'&&!G.I[p.id].ex)o.push('h'+x)});G.P.forEach(p=>p.play.forEach(i=>{if(!G.I[i].ex&&meta(G.I[i].cid).hp)o.push(i)}));return o}
+function revIntr(q){if(q.prevented)return false;const tk=q.def&&q.def.startsWith('h:')?+q.def.slice(2):q.k;if(q.def&&q.def.startsWith('a:'))return false;return G.P[tk].hand.some(x=>G.I[x].cid==='spiderman-backflip')||hasCF(tk)}
+function qsOpts(q){const p=G.P[q.k];const mi=G.I[q.iid];if(!mi||!where(q.iid))return -1;if(mi.st.stun||webOn(q.iid))return 0;
+  return (!G.I[p.id].ex?1:0)+p.play.filter(x=>(cdOf(G.I[x].cid)||{}).type==='동료'&&!G.I[x].ex).length+(p.hand.some(x=>G.I[x].cid==='spiderman-backflip')?1:0)+(hasCF(q.k)?1:0)}
+function revAsk(c,k){const cid=G.I[c].cid;const cm=meta(cid);if(C[cid].kind==='obligation')return true;if(!ENC[cid]&&!cm.type)return true;
+  if(G.P.some(q=>!q.elim&&q.play.some(b=>G.I[b].cid==='protection-black-widow'&&!G.I[b].ex)))return true;
+  if(cm.type==='treachery'&&G.P.some(q=>!q.elim&&q.form==='hero'&&q.hand.some(i=>['spiderman-enhanced-spider-sense','protection-get-behind-me'].includes(G.I[i].cid))))return true;return false}
+function revAuto(c,k){const cid=G.I[c].cid;const cm=meta(cid);let msg='';
+  if(ENC[cid])msg=ENC[cid](c,k)||`${nm(cid)} 처리`;
+  else if(cm.type==='minion'){minionEnter(c,k);msg=`${nm(cid)} — ${hn(k)}와 교전`}
+  else if(cm.type==='side'){sideEnter(c);msg=`${nm(cid)} — 위협 ${G.I[c].thr}로 등장`}
+  else if(cm.type==='attachment'){moveTo(c,'vattach');msg=`${nm(cid)} — 빌런에게 장착`}
+  else{disc(c);msg=`${nm(cid)} — 카드 문구대로 직접 처리해 주세요`}
+  if(msg)setTimeout(()=>toast(msg),30)}
+/* 확인이 필요 없는 확인창은 자동으로 넘김 */
+function autoQ(){const q=G.q&&G.q[0];if(!q)return false;
+  if(q.t==='vatk'){const vi=G.I[G.vill.iid];
+    if(!q.step){if(vi.st.stun){A._vaGo({v:'stun'});return true}if(webOn(G.vill.iid)){A._vaGo({v:'web'});return true}A._vaGo({v:'start'});return true}
+    if(q.step==='defend'){if(!defOpts(q).length){A._vaGo({v:'def:none'});return true}return false}
+    if(q.step==='reveal'){if(!revIntr(q)){vAtkFin(q);A._vaGo({v:'apply'});return true}return false}}
+  if(q.t==='vsch'){const vi=G.I[G.vill.iid];
+    if(!q.step){if(vi.st.conf){A._vsGo({v:'conf'});return true}A._vsGo({v:'boost'});return true}
+    vSchFin(q);if(!schBtns('q')){A._vsGo({v:'apply'});return true}return false}
+  if(q.t==='qs'){const n=qsOpts(q);if(n<0){G.q.shift();return true}const mi=G.I[q.iid];
+    if(mi.st.stun){A._qsApply({v:'stun'});return true}if(webOn(q.iid)){A._qsApply({v:'web'});return true}if(n===0){A._qsApply({v:'none'});return true}return false}
+  if(q.t==='rev'){if(G.vw&&G.vw.cur!==q.c){G.q.shift();return true}return false}
+  if(q.t==='hawk'){const h=G.I[q.h];if(!h||!where(q.m)){G.q.shift();return true}return false}
+  return false}
+function vAtkFin(q){const total=Math.max(0,vAtk()+(q.bst||0)+(q.mod||0));let dmg=total;if(q.def&&q.def.startsWith('h:')){const dk=+q.def.slice(2);if(q.defv==null)q.defv=heroDef(dk);dmg=Math.max(0,total-q.defv)}if(q.finAuto!==false)q.fin=q.prevented?0:Math.max(0,dmg-(q.reduce||0))}
+function vSchFin(q){const tot=Math.max(0,vSch()+(q.bst||0)+(q.mod||0));if(q.finAuto!==false)q.fin=tot}
+/* 빌런 페이즈 자동 진행 */
+function vpRun(){let guard=0;
+  while(G&&G.phase==='villain'&&!G.over&&guard++<400){
+    if(G.q&&G.q.length){if(autoQ()){autoChecks();continue}return}
+    const w=G.vw;if(!w)return;
+    if(w.step===1){const sm=meta(scid());const add=(sm.accel??0)*N()+G.accel+G.sides.filter(i=>meta(G.I[i].cid).accel).length;G.sch.threat+=add;w.log=[`주요 음모에 위협 ${add}`];
+      if(scid()==='ultron-s-assault-on-norad')w.order.forEach(k=>{if(!G.P[k].elim)qpush({t:'norad',k})});w.step=2;w.oi=0;w.sub='start';autoChecks();continue}
+    if(w.step===2){if(w.oi>=w.order.length){w.step=3;continue}const k=w.order[w.oi];const p=G.P[k];
+      if(p.elim){w.oi++;w.sub='start';continue}
+      if(w.sub==='start'){if(p.form==='hero')qpush({t:'vatk',k,title:'빌런 공격'});else qpush({t:'vsch',title:'빌런 암약',k});w.sub='minions';w.mdone={};continue}
+      if(w.sub==='minions'){const ms=p.engaged.filter(i=>!(w.mdone||{})[i]);if(!ms.length){w.oi++;w.sub='start';continue}
+        const m=ms[0];w.mdone[m]=1;const mi=G.I[m];
+        if(p.form==='hero')qpush({t:'qs',iid:m,k,val:em(m).atk??0,title:'하수인 공격'});
+        else{if(mi.st.conf){mi.st.conf=0;toast(`${en(m)} — 혼란 카드를 버렸어요`)}else{const v=em(m).sch??0;G.sch.threat+=v;if(mi.cid==='legionsofhydra-madame-hydra')legionsThr();toast(`${en(m)} 암약 — 위협 ${v}`)}autoChecks()}
+        continue}}
+    if(w.step===3){const haz=G.sides.filter(i=>meta(G.I[i].cid).hazard).length;const ord=w.order.filter(k=>!G.P[k].elim);ord.forEach(k=>dealEnc(k,1));for(let x=0;x<haz;x++)dealEnc(ord[x%ord.length],1);w.step=4;w.oi=0;w.cur=null;continue}
+    if(w.step===4){if(w.oi>=w.order.length){w.step=5;continue}const k=w.order[w.oi];const p=G.P[k];
+      if(p.elim||!p.pend.length){w.oi++;continue}
+      const c=p.pend.shift();G.limbo.push(c);
+      if(revAsk(c,k)){w.cur=c;qpush({t:'rev',c,k});continue}
+      w.cur=null;revAuto(c,k);autoChecks();continue}
+    if(w.step===5){G.P.forEach((p,x)=>p.play.filter(i=>G.I[i].cid==='basic-nick-fury').forEach(i=>{moveTo(i,`p${x}.discard`)}));endPhaseBuffs();const o=order();G.first=o[1]??o[0];G.round++;G.phase='player';G.formUsed={};G.once={};G.vw=null;G.view=G.first;
+      setTimeout(()=>{closeSheet();toast(`라운드 ${G.round} 시작 — 플레이어 페이즈`)},120);return}
+  }}
+function revSheet(q){const c=q.c;const ci=G.I[c];if(!ci)return null;const k=q.k;const cm=meta(ci.cid);const isObl=C[ci.cid].kind==='obligation';const ownerK=isObl?G.P.findIndex(x=>HEROES[x.hid].oblCid===ci.cid):k;
+  let essB='';
+  if(cm.type==='treachery')G.P.forEach((x,i)=>{if(x.elim||x.form!=='hero')return;const e=x.hand.find(j=>G.I[j].cid==='spiderman-enhanced-spider-sense');if(e)essB+=`<button class="btn blue" data-act="vwEss" data-k="${i}" data-i="${e}">${esc(hn(i))}: 향상된 스파이더센스로 무효화 (비용 1)</button>`;const g=x.hand.find(j=>G.I[j].cid==='protection-get-behind-me');if(g)essB+=`<button class="btn blue" data-act="gbmStart" data-k="${i}" data-i="${g}">${esc(hn(i))}: 내 뒤로! (비용 1)</button>`});
+  G.P.forEach((x,i)=>{if(x.elim)return;x.play.forEach(b=>{if(G.I[b].cid==='protection-black-widow'&&!G.I[b].ex)essB+=`<button class="btn blue" data-act="bwStart" data-k="${i}" data-i="${b}">${esc(hn(i))}: Black Widow로 무효화 (정신력 1)</button>`})});
+  const OB=OBL[ci.cid];let main;
+  if(ci.cid==='captainmarvel-family-emergency')main=`<p class="note"><b>의무 카드</b>예요. ${esc(hn(ownerK>=0?ownerK:k))}이(가) 하나를 고르세요.</p><div class="btns"><button class="btn go" data-act="vwRes" data-t="fam-ex" ${ownerK>=0&&G.I[G.P[ownerK].id].ex?'disabled':''}>일상으로 뒤집고 Carol Danvers 소진 → 게임에서 제거</button><button class="btn" data-act="vwRes" data-t="fam-stun">기절하기 · 쇄도</button></div>`;
+  else if(ci.cid==='spiderman-eviction-notice')main=`<p class="note"><b>의무 카드</b>예요. ${esc(hn(ownerK>=0?ownerK:k))}이(가) 일상 형태로 뒤집고 하나를 고르세요.</p><div class="btns"><button class="btn go" data-act="vwRes" data-t="evict-ex" ${ownerK>=0&&G.I[G.P[ownerK].id].ex?'disabled':''}>Peter Parker 소진 → 게임에서 제거</button><button class="btn" data-act="vwRes" data-t="evict-disc">손에서 무작위로 1장 버리기 · 쇄도</button></div>`;
+  else if(OB)main=`<p class="note"><b>의무 카드</b>예요. ${esc(hn(ownerK>=0?ownerK:k))}이(가) 하나를 고르세요.</p><div class="btns"><button class="btn go" data-act="vwRes" data-t="oblx-ex" ${ownerK>=0&&G.I[G.P[ownerK].id].ex?'disabled':''}>일상으로 뒤집고 ${esc(OB.who)} 소진 → 게임에서 제거</button><button class="btn" data-act="vwRes" data-t="oblx-alt">${esc(OB.alt)}</button></div>`;
+  else if(isObl)main=`<p class="note"><b>의무 카드</b>예요. 카드 지시대로 처리하세요.</p><div class="btns"><button class="btn go" data-act="vwRes" data-t="obl-discard">처리 후 버린 조우 카드 더미로</button><button class="btn" data-act="vwRes" data-t="obl-remove">게임에서 제거</button></div>`;
+  else if(!ENC[ci.cid]&&!cm.type)main=`<p class="note">이 카드의 종류를 골라 주세요. 한 번 고르면 기억해요.</p><div class="btns"><button class="btn" data-act="vwRes" data-t="minion">하수인</button><button class="btn" data-act="vwRes" data-t="treachery">배반</button><button class="btn" data-act="vwRes" data-t="attachment">장착</button><button class="btn" data-act="vwRes" data-t="side">부가 음모</button></div>`;
+  else main=`<div class="btns"><button class="btn go" data-act="revGo">그대로 진행 — 공개될 때 효과 처리</button></div>`;
+  return head(`조우 카드 공개 · ${esc(hn(k))}`)+`<div class="cs"><div class="cs-img ${C[ci.cid].land?'land':''}"><div class="slot ${C[ci.cid].land?'land':''}">${faceOf(ci.cid,ci.side)}</div></div><div class="cs-body">${cardText(ci.cid,ci.side)}${essB?`<p class="sub">이 카드에 반응할 수 있는 카드가 있어요.</p><div class="btns">${essB}</div>`:''}${main}</div></div>`}
+Object.assign(A,{
+  revGo(){act(()=>{const q=G.q[0];if(!q||q.t!=='rev')return;G.q.shift();const w=G.vw;if(w)w.cur=null;revAuto(q.c,q.k)});resumeSheet()}
+});
 
 /* ---------- 이미지 파일 처리 ---------- */
 function keyFromName(fname){

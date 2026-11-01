@@ -480,6 +480,17 @@ body.ingame .pile-empty{border-color:#fff}
 @keyframes flipA{from{transform:rotateY(180deg)}50%{transform:rotateY(90deg) scale(1.06)}to{transform:rotateY(0)}}
 .cmain{perspective:1200px}
 .fliptag{position:absolute;right:-6px;bottom:-10px;z-index:3;font:900 11px var(--f-body);background:var(--yel);color:var(--ink);border:2px solid var(--ink);border-radius:999px;padding:2px 9px;box-shadow:2px 2px 0 var(--ink)}
+
+/* 카드 상세 창: 카드 크게 */
+.cs-img{--cw:min(300px,calc(100vw - 48px))}
+.cs-img.land{--cw:min(330px,calc((100vw - 48px)/1.4))}
+.cs-img .face{border-radius:12px}
+@media (max-width:760px){
+  .cs{flex-direction:column}
+  .cs-img,.cs-img.land{align-self:stretch;display:flex;justify-content:center}
+  .cs-img{--cw:calc(100vw - 40px - env(safe-area-inset-left,0px) - env(safe-area-inset-right,0px))}
+  .cs-img.land{--cw:calc((100vw - 40px - env(safe-area-inset-left,0px) - env(safe-area-inset-right,0px))/1.4)}
+}
 @media (prefers-reduced-motion:reduce){*{transition:none!important;animation:none!important}}
 </style>
 </head>
@@ -2564,7 +2575,7 @@ function setupSheet(){
   const st=G.setup;if(!st)return null;
   if(st.step==='scheme'){const i=G.I[G.sch.iid];
     return head('세팅 · 주요 음모')+`<div class="cs"><div class="cs-img land"><div class="slot land">${faceOf(i.cid,i.side)}</div></div><div class="cs-body">${cardText(i.cid,i.side)}
-      <p class="note">주요 음모 ${i.side==='a'?'1A':'1B'} 면이에요. 1A 면의 도입부 문구와 <b>사전 준비</b> 지시를 읽고 처리한 뒤 1B 면으로 넘기세요.</p>
+      <p class="note">${i.side==='a'?'주요 음모 1A 면이에요. 도입부 문구와 <b>사전 준비</b> 지시를 읽은 뒤 1B 면으로 넘기세요. 사전 준비는 앱이 처리해요.':'주요 음모 1B 면이에요. 이 면의 위협 임계점·가속으로 게임이 진행돼요. 다음은 시작 손패 멀리건이에요.'}</p>
       <p class="sub">빌런 생명력 ${G.vill.hp} · 위협 임계점 ${schTarget()??'?'} · 시작 위협 ${G.sch.threat}</p>
       <div class="btns">${i.side==='a'?'<button class="btn go" data-act="setupFlip">1B 면으로 넘기기</button>':'<button class="btn go" data-act="setupNext">멀리건으로</button>'}</div></div></div>`}
   if(st.step==='mull'){const k=st.k;const p=G.P[k];

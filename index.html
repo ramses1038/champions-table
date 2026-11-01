@@ -409,6 +409,67 @@ body.ingame .pile-empty{border-color:#fff}
   .hpbar{height:20px}.hpb.vil .hpbar{height:24px}
   .hpb{margin-bottom:12px}
 }
+
+/* =========== 캐릭터 선택 화면 =========== */
+.vs{display:grid;grid-template-columns:1fr auto 1fr;gap:14px;align-items:start}
+.pick{position:relative;border:2px dashed var(--line);border-radius:16px;padding:14px 14px 16px;color:#fff;display:flex;flex-direction:column;gap:12px;min-width:0}
+.hpick{background:linear-gradient(160deg,rgba(61,139,253,.16),transparent 60%)}
+.vpick{background:linear-gradient(200deg,rgba(214,40,40,.2),transparent 60%)}
+.ptop{display:flex;align-items:center;justify-content:space-between;gap:10px;flex-wrap:wrap}
+.ptop h2{margin:0;font:400 24px var(--f-disp);transform:skew(-8deg);color:var(--yel);text-shadow:2px 2px 0 #000}
+.vsm{align-self:center;font:400 64px var(--f-num);color:var(--yel);letter-spacing:2px;text-shadow:4px 4px 0 var(--red),7px 7px 0 #000;transform:rotate(-8deg);padding:0 4px}
+.ptabs2{display:flex;gap:6px;flex-wrap:wrap}
+.pt{display:flex;flex-direction:column;align-items:flex-start;border:2px solid var(--ink);border-left:7px solid var(--ac);background:rgba(255,255,255,.12);color:#fff;border-radius:8px;padding:3px 10px;font:800 12px var(--f-body);cursor:pointer}
+.pt small{font-size:9.5px;color:var(--soft)}
+.pt.on{background:var(--paper);color:var(--ink)}.pt.on small{color:var(--muted)}
+.car{position:relative;display:flex;flex-direction:column;align-items:center;gap:10px;touch-action:pan-y;user-select:none;-webkit-user-select:none}
+.cstage{position:relative;display:flex;align-items:center;justify-content:center;width:100%;height:calc(var(--sc) * 88/63);--sc:min(230px,46vw)}
+.selc{position:relative;width:var(--sc);aspect-ratio:63/88;flex:none}
+.selc .face{border-radius:12px;border:3px solid #111;box-shadow:0 10px 0 rgba(0,0,0,.35),0 16px 30px rgba(0,0,0,.45)}
+.selc .ph b{font-size:15px}.selc .ph small{font-size:11px}
+.cmain{position:relative;z-index:2;border:0;padding:0;background:none;cursor:pointer;border-radius:12px}
+.cmain:focus-visible{outline:3px solid var(--yel);outline-offset:4px}
+.cmain.in-r{animation:inr .28s ease-out}.cmain.in-l{animation:inl .28s ease-out}
+@keyframes inr{from{transform:translateX(40%) scale(.8) rotate(4deg);opacity:.3}}
+@keyframes inl{from{transform:translateX(-40%) scale(.8) rotate(-4deg);opacity:.3}}
+.selc.side{position:absolute;top:50%;transform:translateY(-50%) scale(.68);opacity:.38;filter:saturate(.5) brightness(.8);z-index:1}
+.selc.side.l{left:calc(50% - var(--sc)*1.08)}.selc.side.r{right:calc(50% - var(--sc)*1.08)}
+.carr{position:absolute;top:calc(var(--sc,230px)*.6);z-index:3;width:44px;height:44px;border-radius:50%;border:3px solid var(--ink);background:var(--yel);color:var(--ink);font:900 26px/1 var(--f-body);box-shadow:3px 3px 0 var(--ink);cursor:pointer;padding:0 0 3px}
+.car{--sc:min(230px,46vw)}
+.carr.l{left:2px}.carr.r{right:2px}
+.carr:active{transform:translate(2px,2px);box-shadow:1px 1px 0 var(--ink)}
+.cdots{display:flex;gap:6px}.cdots i{width:8px;height:8px;border-radius:50%;background:rgba(255,255,255,.3)}.cdots i.on{background:var(--yel);width:20px;border-radius:4px}
+.pname{text-align:center;display:flex;flex-direction:column;gap:2px}
+.pname b{font:400 30px var(--f-disp);letter-spacing:.5px;text-shadow:3px 3px 0 #000;line-height:1.1}
+.pname span{font-size:12px;color:var(--soft)}
+.asp,.mods{display:flex;flex-wrap:wrap;gap:7px;justify-content:center}
+.ab{border:2.5px solid var(--ink);border-radius:999px;background:rgba(255,255,255,.1);color:#fff;font:800 13px var(--f-body);padding:5px 14px;cursor:pointer;display:flex;flex-direction:column;align-items:center;line-height:1.15;box-shadow:2px 2px 0 var(--ink)}
+.ab small{font-size:9px;font-weight:600;opacity:.85}
+.ab.on{background:var(--ac);color:var(--at);transform:translateY(-2px);box-shadow:2px 4px 0 var(--ink)}
+.ab:disabled{opacity:.3;cursor:default}
+.ml{flex-basis:100%;text-align:center;font:800 11.5px var(--f-body);color:var(--yel)}
+.mb{border:2px solid var(--ink);border-radius:10px;background:rgba(255,255,255,.1);color:#fff;font:800 12px var(--f-body);padding:4px 10px;cursor:pointer;display:flex;flex-direction:column;align-items:center;line-height:1.2;box-shadow:2px 2px 0 var(--ink)}
+.mb small{font-size:9.5px;font-weight:600;color:var(--soft)}
+.mb.on{background:var(--paper);color:var(--ink)}.mb.on small{color:var(--muted)}
+.stats{display:flex;flex-wrap:wrap;gap:6px;justify-content:center}
+.stt{display:flex;flex-direction:column;align-items:center;min-width:48px;background:rgba(0,0,0,.35);border:2px solid rgba(255,255,255,.18);border-radius:10px;padding:4px 8px}
+.stt small{font-size:10px;color:var(--soft);font-weight:700}
+.stt b{font:400 24px var(--f-num);letter-spacing:1px;line-height:1.1}
+.stt b i{font-style:normal;font-size:14px;opacity:.7;margin:0 3px}
+.stt.hp{border-color:#7ed321}.vpick .stt.hp{border-color:#ff5a4f}
+.hint{margin:0;text-align:center;font-size:11px;color:var(--soft)}
+.note.warn{background:#ffe1dc}
+.gobar{display:flex;justify-content:center;gap:12px;padding:6px 0 10px}
+.btn.big{font-size:18px;padding:12px 40px;box-shadow:4px 4px 0 var(--ink)}
+@media (max-width:900px){
+  .vs{grid-template-columns:1fr}
+  .vsm{justify-self:center;font-size:48px;margin:-6px 0}
+}
+@media (max-width:700px){
+  .car,.cstage{--sc:min(200px,52vw)}
+  .pname b{font-size:25px}
+  .stt{min-width:46px;padding:3px 8px}.stt b{font-size:20px}
+}
 @media (prefers-reduced-motion:reduce){*{transition:none!important;animation:none!important}}
 </style>
 </head>
@@ -2349,7 +2410,7 @@ function startHTML(){
   const total=allKeys().length;const have=allKeys().filter(k=>IMG.has(k)).length;
   return `<section class="hero">
     <h1 class="title">챔피언스 테이블</h1>
-    <p class="lead">마블 챔피언스 기본판을 혼자, 또는 한 기기로 함께 펼쳐 놓고 하는 개인용 테이블이에요. 세팅과 라운드 진행은 앱이 맡고, 판단은 직접 해요.</p>
+    <p class="lead">마블 챔피언스 기본판을 혼자, 또는 한 기기로 함께 펼쳐 놓고 하는 개인용 테이블이에요. 카드만 내면 세팅, 빌런 페이즈, 카드 효과는 앱이 처리하고, 방어처럼 고를 일이 있을 때만 물어봐요.</p>
     <div class="btns">
       ${G?`<button class="btn go" data-act="resume">이어하기 · 라운드 ${G.round}</button>`:''}
       <button class="btn ${G?'':'go'}" data-act="toSetup">새 게임</button>
@@ -2367,40 +2428,47 @@ function startHTML(){
 let SF=store.get('mct_setup',{players:[{hid:'spiderman',aspect:'justice'}],scen:'rhino',mod:'bombscare',expert:false});
 function numFld(cid,key,label,need=true){const v=meta(cid)[key];
   return `<label class="fld ${need&&v==null?'need':''}">${label}<input type="number" inputmode="numeric" min="0" id="f-${cid}-${key}" data-meta="${cid}|${key}" value="${v??''}" placeholder="카드 확인"></label>`}
+function selCard(cid,side,cls=''){return `<div class="selc ${cls}">${faceOf(cid,side)}</div>`}
+function carousel(kind,list,cur,cidOf,sideOf,label){const n=list.length;const i=list.indexOf(cur);const pv=list[(i-1+n)%n],nx=list[(i+1)%n];const an=UI.sfAnim&&UI.sfAnim.k===kind?UI.sfAnim.d:'';
+  return `<div class="car" data-swipe="${kind}">
+    <button class="carr l" data-act="sfCycle" data-w="${kind}" data-d="-1" aria-label="이전 ${label}">‹</button>
+    <div class="cstage">${n>1?selCard(cidOf(pv),sideOf(pv),'side l'):''}<button class="cmain ${an?'in-'+an:''}" data-act="sfFlip" data-w="${kind}" aria-label="${label} 카드 뒤집어 보기">${selCard(cidOf(cur),sideOf(cur),'main')}</button>${n>1?selCard(cidOf(nx),sideOf(nx),'side r'):''}</div>
+    <button class="carr r" data-act="sfCycle" data-w="${kind}" data-d="1" aria-label="다음 ${label}">›</button>
+    <div class="cdots">${list.map(x=>`<i class="${x===cur?'on':''}"></i>`).join('')}</div></div>`}
+const stat=(l,v,c='')=>`<span class="stt ${c}"><small>${l}</small><b>${v??'?'}</b></span>`;
 function setupHTML(){
-  const s=SCEN[SF.scen];const stages=SF.expert?[s.vSet[1],s.vSet[2]]:[s.vSet[0],s.vSet[1]];
-  const usedAsp=SF.players.map(p=>p.aspect);const dupe=usedAsp.some((a,i)=>usedAsp.indexOf(a)!==i);
-  const usedHero=SF.players.map(p=>p.hid);const dupH=usedHero.some((a,i)=>usedHero.indexOf(a)!==i);
-  return `<header class="bar"><button class="brand" data-act="toStart">챔피언스 테이블</button><div class="phase"><span class="phs player">새 게임 세팅</span></div></header>
-  <section class="card-box">
-    <h3>플레이어</h3>
-    <div class="btns"><button class="btn sm" data-act="sfPractice">규칙서 연습 게임으로 맞추기</button><span class="sub">Spider-Man(정의) + Captain Marvel(용맹) vs Rhino · 폭탄 테러</span></div>
-    <div class="seg">${[1,2,3,4].map(n=>`<button class="btn sm ${SF.players.length===n?'sel':''}" data-act="sfN" data-n="${n}">${n}명</button>`).join('')}</div>
-    ${SF.players.map((p,k)=>{const h=HEROES[p.hid];return `<div class="pcfg">
-      <div class="grid-f">
-        <label class="fld">플레이어 ${k+1} 히어로<select id="sf-h-${k}" data-sf="hid" data-k="${k}">${Object.entries(HEROES).map(([id,x])=>`<option value="${id}" ${id===p.hid?'selected':''}>${x.name}</option>`).join('')}</select></label>
-        <label class="fld">성향<select id="sf-a-${k}" data-sf="aspect" data-k="${k}">${Object.entries(ASPECTS).map(([id,a])=>`<option value="${id}" ${id===p.aspect?'selected':''}>${a[0]}${id===h.aspect?' (초심자용 덱)':''}</option>`).join('')}</select></label>
-        ${numFld(h.identity,'hp','생명력')}${numFld(h.identity,'handH','히어로 손 크기')}${numFld(h.identity,'handA','일상 손 크기')}${numFld(h.identity,'atk','공격',false)}${numFld(h.identity,'thw','저지',false)}${numFld(h.identity,'def','방어',false)}${numFld(h.identity,'rec','회복',false)}
-      </div></div>`}).join('')}
-    ${dupe?'<p class="note">같은 성향을 두 명이 고르면 기본판 한 개로는 카드가 모자라요. 다른 성향으로 바꿔 주세요.</p>':''}
-    ${dupH?'<p class="note">같은 히어로는 한 명만 고를 수 있어요.</p>':''}
-    <p class="sub">빨간 칸은 아직 모르는 수치예요. 아이덴티티 카드 아래쪽에 적힌 값을 한 번만 넣으면 기억해요.</p>
-  </section>
-  <section class="card-box">
-    <h3>시나리오</h3>
-    <div class="grid-f">
-      <label class="fld">빌런<select id="sf-scen" data-sf="scen">${Object.entries(SCEN).map(([id,x])=>`<option value="${id}" ${id===SF.scen?'selected':''}>${x.name}</option>`).join('')}</select></label>
-      <label class="fld">모듈식 조우 세트<select id="sf-mod" data-sf="mod">${Object.entries(MODS).map(([id,m])=>`<option value="${id}" ${id===SF.mod?'selected':''}>${m[0]} (위험도 ${m[1]})${id===s.mod?' · 추천':''}</option>`).join('')}</select></label>
-      <label class="fld">모드<select id="sf-exp" data-sf="expert"><option value="0" ${SF.expert?'':'selected'}>일반</option><option value="1" ${SF.expert?'selected':''}>전문가 모드</option></select></label>
-    </div>
-    <div class="grid-f">
-      ${numFld(stages[0],'hp',`${nm(stages[0])} 생명력 (인원당)`)}
-      ${numFld(s.sSet[0],'target',`${nm(s.sSet[0])} 위협 임계점 (인원당)`)}
-      ${numFld(s.sSet[0],'accel','가속 (인원당)')}
-      ${numFld(s.sSet[0],'start','시작 위협 (인원당)',false)}
-    </div>
-  </section>
-  <div class="btns"><button class="btn" data-act="toStart">취소</button><button class="btn go" data-act="startGame" ${dupe||dupH?'disabled':''}>게임 시작</button></div>`;
+  const k=Math.min(UI.sfP||0,SF.players.length-1);const p=SF.players[k];const h=HEROES[p.hid];const hm=meta(h.identity);
+  const s=SCEN[SF.scen];const stages=SF.expert?[s.vSet[1],s.vSet[2]]:[s.vSet[0],s.vSet[1]];const sm=meta(s.sSet[0]);
+  const usedAsp=SF.players.map(q=>q.aspect);const dupe=usedAsp.some((a,i)=>usedAsp.indexOf(a)!==i);
+  const usedHero=SF.players.map(q=>q.hid);const dupH=usedHero.some((a,i)=>usedHero.indexOf(a)!==i);
+  const hFlip=UI.sfFlip==='h',vFlip=UI.sfFlip==='v';
+  const hids=Object.keys(HEROES),sids=Object.keys(SCEN);
+  const heroSide=hid=>(hid===p.hid&&hFlip)?'b':'a';
+  const vStage=sid=>{const x=SCEN[sid];return SF.expert?x.vSet[1]:x.vSet[0]};
+  return `<header class="bar"><button class="brand" data-act="toStart" aria-label="처음으로"><span class="lg">챔피언스 테이블</span></button><span class="phs player">새 게임</span><span class="sp"></span>
+    <div class="btns"><button class="btn sm" data-act="sfPractice">규칙서 연습 게임</button></div></header>
+  <div class="vs">
+    <section class="pick hpick" aria-label="히어로 선택">
+      <div class="ptop"><h2>히어로 선택</h2><div class="seg">${[1,2,3,4].map(n=>`<button class="btn sm ${SF.players.length===n?'sel':''}" data-act="sfN" data-n="${n}">${n}명</button>`).join('')}</div></div>
+      ${SF.players.length>1?`<div class="ptabs2">${SF.players.map((q,x)=>`<button class="pt ${x===k?'on':''}" data-act="sfPick" data-k="${x}" style="--ac:${ASPECTS[q.aspect][1]}"><small>P${x+1}</small>${esc(HEROES[q.hid].name)}</button>`).join('')}</div>`:''}
+      ${carousel('h',hids,p.hid,hid=>HEROES[hid].identity,heroSide,'히어로')}
+      <div class="pname"><b>${esc(hFlip?h.ae:h.name)}</b><span>${esc(hFlip?h.name:h.ae)} · 카드를 누르면 ${hFlip?'히어로':'일상'} 면</span></div>
+      <div class="asp">${Object.entries(ASPECTS).map(([id,a])=>{const taken=SF.players.some((q,x)=>x!==k&&q.aspect===id);return `<button class="ab ${p.aspect===id?'on':''}" data-act="sfAsp" data-a="${id}" style="--ac:${a[1]};--at:${a[2]}" ${taken?'disabled title="다른 플레이어가 사용 중"':''}>${a[0]}${id===h.aspect?'<small>초심자 덱</small>':''}</button>`}).join('')}</div>
+      <div class="stats">${stat('생명력',hm.hp,'hp')}${stat('공격',hm.atk)}${stat('저지',hm.thw)}${stat('방어',hm.def)}${stat('회복',hm.rec)}${stat('손 크기',`${hm.handH??'?'}<i>/</i>${hm.handA??'?'}`)}</div>
+      <p class="hint">손 크기: 히어로 면 / 일상 면 · 숙적 ${(()=>{const c=Object.keys(C).find(x=>C[x].kind==='minion'&&x.startsWith(h.nemSet+'-'));return c?esc(nm(c)):'-'})()}</p>
+    </section>
+    <div class="vsm" aria-hidden="true">VS</div>
+    <section class="pick vpick" aria-label="빌런 선택">
+      <div class="ptop"><h2>빌런 선택</h2><div class="seg"><button class="btn sm ${SF.expert?'':'sel'}" data-act="sfExp" data-v="0">일반</button><button class="btn sm ${SF.expert?'sel':''}" data-act="sfExp" data-v="1">전문가</button></div></div>
+      ${carousel('v',sids,SF.scen,vStage,sid=>(sid===SF.scen&&vFlip)?'b':'a','빌런')}
+      <div class="pname"><b>${esc(s.name)}</b><span>${SF.expert?'스테이지 II → III':'스테이지 I → II'} · 주요 음모 ${esc(nm(s.sSet[0]))}${s.sSet.length>1?` 외 ${s.sSet.length-1}단계`:''}</span></div>
+      <div class="mods"><span class="ml">모듈식 조우 세트</span>${Object.entries(MODS).map(([id,m])=>`<button class="mb ${SF.mod===id?'on':''}" data-act="sfMod" data-m="${id}">${esc(m[0])}<small>위험도 ${m[1]}${id===s.mod?' · 추천':''}</small></button>`).join('')}</div>
+      <div class="stats">${stat('생명력 (인원당)',`${meta(stages[0]).hp??'?'}<i>→</i>${meta(stages[1]).hp??'?'}`,'hp')}${stat('음모 임계점',sm.target!=null?sm.target+'<i>×인원</i>':'?')}${stat('가속',sm.accel!=null?sm.accel+'<i>×인원</i>':'?')}${stat('시작 위협',sm.start!=null?sm.start+'<i>×인원</i>':'0')}</div>
+    </section>
+  </div>
+  ${dupe?'<p class="note warn">같은 성향을 두 명이 고르면 기본판 한 개로는 카드가 모자라요. 다른 성향으로 바꿔 주세요.</p>':''}
+  ${dupH?'<p class="note warn">같은 히어로는 한 명만 고를 수 있어요.</p>':''}
+  <div class="gobar"><button class="btn" data-act="toStart">취소</button><button class="btn go big" data-act="startGame" ${dupe||dupH?'disabled':''}>게임 시작</button></div>`;
 }
 
 /* ---------- 카드 보관함 ---------- */
@@ -2871,6 +2939,17 @@ const A={
   vw5(){act(()=>{G.P.forEach((p,x)=>p.play.filter(i=>G.I[i].cid==='basic-nick-fury').forEach(i=>{moveTo(i,`p${x}.discard`);setTimeout(()=>toast('라운드 끝 — Nick Fury를 버렸어요'),400)}));endPhaseBuffs();const o=order();G.first=o[1]??o[0];G.round++;G.phase='player';G.formUsed={};G.once={};G.vw=null;G.view=G.first});closeSheet();toast(`라운드 ${G.round} 시작`)},
 
   /* 세팅 */
+  sfPick(d){UI.sfP=+d.k;UI.sfFlip=null;render()},
+  sfCycle(d){const dir=+d.d;UI.sfFlip=null;UI.sfAnim={k:d.w,d:dir>0?'r':'l'};
+    if(d.w==='h'){const k=Math.min(UI.sfP||0,SF.players.length-1);const ids=Object.keys(HEROES);const used=SF.players.filter((q,x)=>x!==k).map(q=>q.hid);let i=ids.indexOf(SF.players[k].hid);
+      for(let t=0;t<ids.length;t++){i=(i+dir+ids.length)%ids.length;if(!used.includes(ids[i]))break}
+      const h=ids[i];SF.players[k].hid=h;const ua=SF.players.filter((q,x)=>x!==k).map(q=>q.aspect);if(!ua.includes(HEROES[h].aspect))SF.players[k].aspect=HEROES[h].aspect}
+    else{const ids=Object.keys(SCEN);const i=(ids.indexOf(SF.scen)+dir+ids.length)%ids.length;SF.scen=ids[i];SF.mod=SCEN[ids[i]].mod}
+    store.set('mct_setup',SF);render();UI.sfAnim=null},
+  sfFlip(d){UI.sfFlip=UI.sfFlip===d.w?null:d.w;render()},
+  sfAsp(d){const k=Math.min(UI.sfP||0,SF.players.length-1);SF.players[k].aspect=d.a;store.set('mct_setup',SF);render()},
+  sfMod(d){SF.mod=d.m;store.set('mct_setup',SF);render()},
+  sfExp(d){SF.expert=d.v==='1';store.set('mct_setup',SF);render()},
   sfN(d){const n=+d.n;const ids=Object.keys(HEROES);while(SF.players.length<n){const used=SF.players.map(p=>p.hid);const h=ids.find(x=>!used.includes(x));const ua=SF.players.map(p=>p.aspect);
       const asp=!ua.includes(HEROES[h].aspect)?HEROES[h].aspect:Object.keys(ASPECTS).find(a=>!ua.includes(a));SF.players.push({hid:h,aspect:asp})}
     SF.players.length=n;store.set('mct_setup',SF);render()},
@@ -3268,6 +3347,10 @@ document.addEventListener('change',e=>{const t=e.target;
     else{SF[k]=t.value;if(k==='scen')SF.mod=SCEN[t.value].mod}
     store.set('mct_setup',SF);render()}
 });
+(()=>{let sx=null,sy=null,el=null;document.addEventListener('pointerdown',e=>{el=e.target.closest('[data-swipe]');if(el){sx=e.clientX;sy=e.clientY}},{passive:true});
+document.addEventListener('pointerup',e=>{if(!el||sx==null)return;const dx=e.clientX-sx,dy=e.clientY-sy;const w=el.dataset.swipe;el=null;sx=null;
+  if(Math.abs(dx)>45&&Math.abs(dx)>Math.abs(dy)*1.3){A.sfCycle({w,d:dx<0?1:-1});swipeEat=Date.now()}},{passive:true})})();
+let swipeEat=0;document.addEventListener('click',e=>{if(Date.now()-swipeEat<350){e.stopPropagation();e.preventDefault()}},true);
 document.addEventListener('keydown',e=>{if(e.key==='Escape'&&SH)closeSheet()});
 
 if('serviceWorker' in navigator){addEventListener('load',()=>navigator.serviceWorker.register('sw.js').catch(()=>{}))}

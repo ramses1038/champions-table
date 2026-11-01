@@ -506,6 +506,118 @@ details.manual[open] summary::before{transform:rotate(90deg)}
 details.manual summary::-webkit-details-marker{display:none}
 details.manual summary small{font-weight:500;font-size:11px}
 .mbody{display:flex;flex-direction:column;gap:8px;padding-top:10px}
+
+/* =========== 연출형 화면 (빌런 공격·조우 공개) =========== */
+#sheet.stage{align-items:center}
+#sheet.stage .scrim{background:rgba(5,10,25,.72)}
+#sheet.stage .panel2{width:min(1140px,100%);max-height:96%;border-radius:18px;border-bottom:3px solid var(--ink);color:#fff;
+  background:radial-gradient(rgba(255,255,255,.06) 1.2px,transparent 1.3px) 0 0/9px 9px,#101a33;box-shadow:0 8px 0 #000}
+.stg{display:flex;flex-direction:column;gap:14px}
+.stg-top{display:flex;align-items:center;gap:12px;flex-wrap:wrap}
+.stg-b{font:400 30px var(--f-disp);background:var(--red);color:#fff;border:4px solid var(--ink);border-radius:14px;padding:3px 20px;box-shadow:0 5px 0 #000;transform:rotate(-1.5deg);text-shadow:2px 2px 0 #000}
+.stg-b.rev{background:var(--purple)}.stg-b.sch{background:#1d6fd6}
+.stg-s{font:700 13px var(--f-body);color:var(--soft)}
+.stg-x{margin-left:auto}
+.stg-grid{display:grid;grid-template-columns:1.15fr 1fr;gap:20px;align-items:start}
+.stg-vis{display:flex;flex-direction:column;align-items:center;gap:16px;padding-top:6px}
+.vrowc{display:flex;align-items:center;justify-content:center;gap:10px;flex-wrap:wrap}
+.bigc{position:relative;width:var(--bc,170px);aspect-ratio:63/88;border:0;padding:0;background:none;cursor:pointer;flex:none}
+.bigc .face{border-radius:12px;border:3px solid #111;box-shadow:0 8px 0 rgba(0,0,0,.35),0 14px 24px rgba(0,0,0,.4)}
+.bigc.vil{--bc:min(190px,40vw)}
+.bigc.rev{--bc:min(300px,72vw)}
+.plus{font:400 44px var(--f-num);color:var(--yel);text-shadow:3px 3px 0 #000}
+.bstack{display:flex;align-items:center}
+.bigc.boost{--bc:min(150px,32vw)}
+.bigc.b0{transform:rotate(-5deg)}.bigc.b1{transform:rotate(5deg);margin-left:-50px}
+.sumbox{display:inline-flex;align-items:center;gap:12px;background:#000;border:3px solid var(--yel);border-radius:16px;padding:8px 20px}
+.sumbox span{font:700 15px var(--f-body);color:#dfe6f5}
+.sumbox b{font:400 44px var(--f-num);color:#ff5a4f;letter-spacing:2px;line-height:1}
+.stg-pan{background:var(--paper);color:var(--ink);border:4px solid var(--ink);border-radius:18px;padding:16px;box-shadow:0 7px 0 #000;display:flex;flex-direction:column;gap:10px}
+.stg-pan h3{margin:0;font:400 23px var(--f-disp);line-height:1.2}
+.stg-pan .sub{color:var(--muted)}
+.choices{display:flex;flex-direction:column;gap:9px}
+.choice{display:flex;align-items:center;gap:12px;width:100%;background:#fff;border:3px solid var(--ink);border-radius:14px;padding:8px 12px;box-shadow:0 4px 0 var(--ink);cursor:pointer;text-align:left;font-family:var(--f-body);color:var(--ink)}
+.choice:active{transform:translateY(3px);box-shadow:0 1px 0 var(--ink)}
+.choice.v{background:#efe6ff}
+.mface{position:relative;width:42px;height:58px;flex:none;display:grid;place-items:center;border-radius:6px;overflow:hidden}
+.mface .face{border-radius:5px;border-width:1.5px}
+.mface.none{background:#555;color:#fff;font:400 24px var(--f-num);border:2px solid var(--ink)}
+.ctx{flex:1;display:flex;flex-direction:column;gap:2px;min-width:0}
+.ctx b{font-size:15px}.ctx small{font-size:12px;color:#555;line-height:1.35}
+.cnum{font:400 26px var(--f-num);letter-spacing:1px;min-width:40px;text-align:right}
+.cnum.ok{color:#2e8b3a}.cnum.bad{color:#d62828}
+.rsp{border-top:2px dashed #bbb;padding-top:10px;display:flex;flex-direction:column;gap:8px}
+.rl{font:900 12px var(--f-body);color:var(--purple)}
+.fin{display:flex;align-items:center;justify-content:space-between;background:#fff;border:3px solid var(--ink);border-radius:12px;padding:6px 14px}
+.fin span{font-weight:800}.fin b{font:400 38px var(--f-num);letter-spacing:1px}.fin b.ok{color:#2e8b3a}.fin b.bad{color:#d62828}
+.stg-pan .btn.big{width:100%;font-size:17px;padding:12px}
+.logl{display:flex;flex-direction:column;gap:0;width:100%;max-width:320px}
+.logl div{font-size:13px;color:#dfe6f5;padding:6px 0;border-bottom:1px solid rgba(255,255,255,.12)}
+.logl h4{margin:0 0 4px;font:400 17px var(--f-disp);color:var(--yel)}
+@media (max-width:800px){
+  .stg-grid{grid-template-columns:1fr}
+  .stg-b{font-size:24px}
+  .bigc.vil{--bc:min(150px,36vw)}.bigc.boost{--bc:min(120px,28vw)}
+  .sumbox b{font-size:36px}
+}
+
+.stepchips{display:flex;gap:6px;flex-wrap:wrap;justify-content:center}
+.stepchips span{font:900 11.5px var(--f-body);background:rgba(255,255,255,.15);color:#fff;border:2px solid var(--ink);border-radius:999px;padding:2px 10px}
+.stepchips span.done{background:#fff;color:var(--ink)}
+.stepchips span.on{background:var(--yel);color:var(--ink)}
+.bigc.rev.land{--bc:min(260px,60vw);aspect-ratio:88/63;width:calc(var(--bc)*1.4)}
+.btns.col{flex-direction:column;align-items:stretch}
+.btns.col .btn{text-align:left;font-size:14px;padding:10px 14px;white-space:normal}
+
+.logl.lp{display:none}
+.stg-pan .logl div{color:#444;border-color:#ddd}.stg-pan .logl h4{color:var(--purple)}
+@media (max-width:800px){.logl.lv{display:none}.logl.lp{display:flex;max-width:none}.bigc.rev{--bc:min(210px,56vw)}}
+
+/* 대상 고르기 */
+.tgrid{display:grid;grid-template-columns:repeat(auto-fill,minmax(130px,1fr));gap:12px;margin:6px 0 4px}
+.tgc{position:relative;display:flex;flex-direction:column;align-items:center;gap:4px;background:#fff;border:3px solid var(--ink);border-radius:14px;padding:10px 8px 8px;box-shadow:0 4px 0 var(--ink);cursor:pointer;font-family:var(--f-body);color:var(--ink)}
+.tgc:active{transform:translateY(3px);box-shadow:0 1px 0 var(--ink)}
+.tgc.atk:hover{border-color:var(--red)}.tgc.thw:hover{border-color:var(--blue)}
+.tgc.off{opacity:.4;cursor:default}
+.tgimg{position:relative;width:76px;aspect-ratio:63/88}
+.tgimg.land{width:106px;aspect-ratio:88/63}
+.tgimg .face{border-radius:6px}
+.tgc b{font-size:13px;text-align:center;line-height:1.2}
+.tgc small{font-size:11px;color:#555;text-align:center}
+.tgres{position:absolute;top:-10px;right:-8px;font:400 18px var(--f-num);letter-spacing:1px;background:var(--red);color:#fff;border:2px solid var(--ink);border-radius:999px;padding:0 9px;box-shadow:2px 2px 0 var(--ink)}
+.tgc.thw .tgres{background:var(--blue)}
+.tgres.kill{background:var(--ink);color:var(--yel)}
+
+/* 자원 지불 */
+.paymeter{display:flex;align-items:center;gap:6px;flex-wrap:wrap;background:#fff;border:2px solid var(--ink);border-radius:10px;padding:6px 10px}
+.paymeter span{font-weight:800;font-size:12px;margin-right:4px}
+.paymeter i{width:20px;height:20px;border-radius:50%;border:2.5px solid var(--ink);background:#eee}
+.paymeter i.on{background:var(--yel)}.paymeter i.over{background:#bbb;border-style:dashed}
+.paymeter b{margin-left:auto;font:400 20px var(--f-num);letter-spacing:1px}
+.payrow{--cw:clamp(70px,16vw,96px);gap:12px}
+.paycard{transition:transform .15s}
+.paycard.on{transform:translateY(-8px)}
+
+/* 메뉴 · 더미 보기 · 게임 끝 */
+.mtiles{display:grid;grid-template-columns:repeat(auto-fill,minmax(140px,1fr));gap:10px}
+.mtile{display:flex;flex-direction:column;align-items:center;gap:6px;padding:16px 8px;border:3px solid var(--ink);border-radius:14px;background:#fff;box-shadow:0 4px 0 var(--ink);font:800 14px var(--f-body);cursor:pointer;color:var(--ink)}
+.mtile b{font-size:26px;line-height:1;color:var(--red)}
+.mtile:active{transform:translateY(3px);box-shadow:0 1px 0 var(--ink)}
+#sheet .panel2>.row{--cw:clamp(72px,20vw,110px);gap:12px}
+.over{background:rgba(5,10,25,.82)}
+.ovbox{background:radial-gradient(rgba(255,255,255,.06) 1.2px,transparent 1.3px) 0 0/9px 9px,#101a33;border:4px solid var(--ink);border-radius:20px;box-shadow:0 8px 0 #000;padding:22px;max-width:620px;width:100%;color:#fff;display:flex;flex-direction:column;align-items:center;gap:16px;text-align:center}
+.ovburst{font:400 clamp(48px,12vw,84px) var(--f-disp);color:var(--yel);text-shadow:4px 4px 0 var(--red),8px 8px 0 #000;transform:rotate(-4deg);line-height:1}
+.over.lose .ovburst{color:#cfd8ea;text-shadow:4px 4px 0 #333,8px 8px 0 #000}
+.ovcards{display:flex;align-items:center;gap:10px;justify-content:center;flex-wrap:wrap}
+.ovc{position:relative;width:clamp(70px,18vw,110px);aspect-ratio:63/88}
+.ovc .face{border-radius:8px;border-width:3px}
+.over.lose .ovc:not(:last-child){filter:grayscale(.8) brightness(.7)}
+.over.win .ovc:last-child{filter:grayscale(.8) brightness(.6);transform:rotate(8deg)}
+.ovvs{font:400 34px var(--f-num);color:var(--yel);text-shadow:3px 3px 0 var(--red)}
+.ovlead{margin:0;font-size:15px;line-height:1.6;color:#dfe6f5}
+.ovstats{display:flex;gap:10px;flex-wrap:wrap;justify-content:center}
+.ovstats span{display:flex;flex-direction:column;align-items:center;background:rgba(0,0,0,.35);border:2px solid rgba(255,255,255,.18);border-radius:10px;padding:4px 14px}
+.ovstats small{font-size:10.5px;color:var(--soft);font-weight:700}.ovstats b{font:400 26px var(--f-num);letter-spacing:1px}
 @media (prefers-reduced-motion:reduce){*{transition:none!important;animation:none!important}}
 </style>
 </head>
@@ -2259,11 +2371,18 @@ function targetSheet(){const t=UI.tg||(G.q&&G.q[0]&&G.q[0].t==='tg'?G.q[0]:null)
   if(atk){if(!t.minionOnly)tg.push(['villain',`${nm(vcid())} · 생명력 ${G.vill.hp}`]);G.P.forEach(q=>q.engaged.forEach(i=>{const ii=G.I[i];const hp=em(i).hp;tg.push([i,`${en(i)} · 피해 ${ii.dmg}${hp?'/'+hp:''}`])}))}
   else{tg.push(['scheme',`주요 음모 · 위협 ${G.sch.threat}`]);G.sides.forEach(i=>{const ii=G.I[i];tg.push([i,`${nm(ii.cid)} · 위협 ${ii.thr}`])})}
   if(t.excl){for(let x=tg.length-1;x>=0;x--)if(tg[x][0]===t.excl)tg.splice(x,1)}
-  return head(`${esc(srcName)} · ${atk?'공격':'저지'}`)+stepper('tgVal','',t.val,atk?'입힐 피해':'제거할 위협')+
+  const dis=v=>(!atk&&v==='scheme'&&(crisis||noMainRemove()))||(guard&&v==='villain');
+  const card=v=>{if(v==='villain'){const vi=G.I[G.vill.iid];const mx=meta(vcid()).hp?vMax():null;const left=Math.max(0,G.vill.hp-t.val);return [vi.cid,vi.side,false,nm(vcid()),`생명력 ${G.vill.hp} → ${left}${mx?' / '+mx:''}`,left<=0?'격파!':`-${t.val}`]}
+    if(v==='scheme'){const si=G.I[G.sch.iid];const left=Math.max(0,G.sch.threat-t.val);return [si.cid,si.side,false,'주요 음모',`위협 ${G.sch.threat} → ${left}`,`-${Math.min(t.val,G.sch.threat)}`]}
+    const ii=G.I[v];if(atk){const hp=em(v).hp;const left=hp?hp-ii.dmg-t.val:null;return [ii.cid,ii.side,ii.drone,en(v),hp?`피해 ${ii.dmg} → ${ii.dmg+t.val} / ${hp}`:'',left!=null&&left<=0?'격파!':`-${t.val}`]}
+    const left=Math.max(0,ii.thr-t.val);return [ii.cid,ii.side,false,nm(ii.cid),`위협 ${ii.thr} → ${left}`,left<=0?'격파!':`-${Math.min(t.val,ii.thr)}`]};
+  return head(`${esc(srcName)} · ${atk?'공격':'저지'} ${t.val}`)+
     (!atk&&crisis?'<p class="note">위기 아이콘이 있는 부가 음모가 있어요. 그 부가 음모를 먼저 격파해야 주요 음모의 위협을 제거할 수 있어요.</p>':'')+
+    (guard?'<p class="note">경호 하수인과 교전 중이라 빌런을 공격할 수 없어요.</p>':'')+
     `<p class="sub">${ev?'대상을 누르면 바로 적용해요.':`대상을 누르면 ${hero?'아이덴티티 카드':'동료'}를 소진하고 바로 적용해요.${hero?'':' 부수적 피해도 함께 처리돼요.'}`}</p>
-    ${guard?'<p class="note">경호 하수인과 교전 중이라 빌런을 공격할 수 없어요.</p>':''}
-    <div class="btns">${tg.map(([v,l])=>`<button class="btn ${atk?'go':'blue'}" data-act="tgHit" data-t="${v}" ${(!atk&&v==='scheme'&&(crisis||noMainRemove()))||(guard&&v==='villain')?'disabled':''}>${esc(l)}</button>`).join('')}${ev?'<button class="btn" data-act="tgSkip">대상 없이 넘어가기</button>':''}</div>`}
+    <div class="tgrid">${tg.map(([v])=>{const [cid,side,down,name,info,res]=card(v);const d=dis(v);return `<button class="tgc ${atk?'atk':'thw'} ${d?'off':''}" data-act="tgHit" data-t="${v}" ${d?'disabled':''}><span class="tgimg ${C[cid].land?'land':''}">${faceOf(cid,side,down)}</span><b>${esc(name)}</b><small>${esc(info)}</small><span class="tgres ${res==='격파!'?'kill':''}">${res}</span></button>`}).join('')}</div>
+    ${ev?'<div class="btns"><button class="btn" data-act="tgSkip">대상 없이 넘어가기</button></div>':''}
+    <details class="manual"><summary>수동 조정 <small>${atk?'피해':'위협 제거'} 수치 직접 고치기</small></summary><div class="mbody">${stepper('tgVal','',t.val,atk?'입힐 피해':'제거할 위협')}</div></details>`}
 
 function resolvePlay(iid,k,then,u){const i=G.I[iid];const c=cdOf(i.cid);if(then&&resolveThen(iid,k,then,u))return;
   if(then==='mtc'){moveTo(iid,`p${k}.play`);G.I[iid].owner=k;allyEnter(iid,k);toast(`소집명령 — ${nm(i.cid)}이(가) 플레이 영역에 들어왔어요`);return}
@@ -2346,7 +2465,8 @@ function paySheet(){const u=UI.pay;if(!u)return null;const i=G.I[u.iid];const d=
   return head(u.title||(u.then==='horn'?'강화 코뿔 · 히어로 행동':`카드 내기 · ${esc(nm(i.cid))}`))+`<div class="cs"><div class="cs-img"><div class="slot">${faceOf(i.cid,'a')}</div></div><div class="cs-body">
     ${cardText(i.cid,'a')}
     <p class="note">${u.varX?'원하는 만큼':`비용 <b>${cost}</b>`}${u.need?` (${RES[u.need]} 또는 만능)`:''} · 만든 자원 <b>${total}</b>. 버릴 카드를 누르면 그 카드에 인쇄된 자원이 생겨요. 남는 자원은 사라져요.</p>
-    ${hand.length?`<div class="row">${hand.map(x=>`<div class="paycard">${slot(x,{act:'paySel',sel:u.sel.has(x)})}${resOf(G.I[x].cid)?resChip(resOf(G.I[x].cid))+(resN(x)>1?`<b>×${resN(x)}</b>`:''):'<span class="res">자원 미등록</span>'}</div>`).join('')}</div>`:''}
+    ${!u.varX&&cost>0?`<div class="paymeter"><span>비용</span>${Array.from({length:Math.max(cost,total)},(_,x)=>`<i class="${x<total?(x<cost?'on':'over'):''}"></i>`).join('')}<b>${total} / ${cost}</b></div>`:''}
+    ${hand.length?`<div class="row payrow">${hand.map(x=>`<div class="paycard ${u.sel.has(x)?'on':''}">${slot(x,{act:'paySel',sel:u.sel.has(x)})}${resOf(G.I[x].cid)?resChip(resOf(G.I[x].cid))+(resN(x)>1?`<b>×${resN(x)}</b>`:''):'<span class="res">자원 미등록</span>'}</div>`).join('')}</div>`:''}
     ${gens.length?`<div class="btns">${gens.map(g=>`<button class="btn sm ${u.gen.has(g.id)?'sel':''}" data-act="payGen" data-g="${g.id}">${esc(g.label)} ${resChip(g.res)}</button>`).join('')}</div>`:''}
     <div class="btns"><button class="btn go" data-act="payDo" ${total<cost?'disabled':''}>${u.btn||(u.then==='horn'?'지불하고 강화 코뿔 버리기':cost?'자원 지불하고 내기':'바로 내기')}</button><button class="btn" data-act="payCancel">취소</button></div></div></div>`}
 function promptSheet(){const q=G.q&&G.q[0];if(!q)return null;
@@ -2390,32 +2510,33 @@ function promptSheet(){const q=G.q&&G.q[0];if(!q)return null;
     return head('폭발 · 피해 나누기')+`<p class="note">총 <b>${q.val}</b>점의 피해를 히어로들과 동료들에게 나누어 입힙니다. 남은 피해 <b>${q.val-used}</b></p>
       ${tg.map(([v,l])=>stepper('spStep',`data-v="${v}"`,q.alloc[v]||0,esc(l))).join('')}
       <div class="btns"><button class="btn go" data-act="spGo" ${used!==q.val&&tg.length?'disabled':''}>피해 입히기</button></div>`}
-  if(q.t==='qs'){const mi=G.I[q.iid];const p=G.P[q.k];const idi=G.I[p.id];
-    let b='';
-    if(mi.st.stun)b=`<p class="note">기절 상태라 공격 대신 기절 카드를 버려요.</p><div class="btns"><button class="btn go" data-act="qsApply" data-v="stun">기절 카드 버리기</button></div>`;
-    else if(webOn(q.iid))b=`<p class="note">거미줄 포획이 발동해요. 공격 대신 거미줄 포획을 버리고 이 하수인을 기절시켜요.</p><div class="btns"><button class="btn go" data-act="qsApply" data-v="web">거미줄 포획 발동</button></div>`;
-    else{const allies=p.play.filter(x=>(cdOf(G.I[x].cid)||{}).type==='동료'&&!G.I[x].ex);const bf=p.hand.some(x=>G.I[x].cid==='spiderman-backflip');
-      b=`<p class="sub">하수인 공격에는 강화 카드가 없어요. 방어할 캐릭터를 고르세요.</p><div class="btns"><button class="btn go" data-act="qsApply" data-v="none">방어하지 않기 · 피해 ${q.val}</button>
-        ${idi.ex?'':`<button class="btn blue" data-act="qsApply" data-v="h">히어로로 방어 (방어 ${heroDef(q.k)})</button>`}
-        ${allies.map(a=>`<button class="btn blue" data-act="qsApply" data-v="a:${a}">동료 ${esc(nm(G.I[a].cid))}로 방어</button>`).join('')}
-        ${bf?'<button class="btn v" data-act="qsApply" data-v="backflip">공중제비로 피해 모두 방지 (비용 0)</button>':''}
-        ${hasCF(q.k)?'<button class="btn v" data-act="qsApply" data-v="cf">성간 비행 버리고 피해 3 방지</button>':''}</div>${q.reduce?`<p class="sub">성간 비행으로 히어로가 받는 피해에서 ${q.reduce}점을 방지해요.</p>`:''}`}
-    return head(`${q.title||'하수인 공격'} · ${esc(en(q.iid))}`)+`<p class="note"><b>${esc(en(q.iid))}</b>이(가) ${esc(hn(q.k))}을(를) 공격해요. ${q.note||''} 공격력 ${q.val}.</p>${b}`}
+  if(q.t==='qs')return qsSheet(q);
   return promptSheet2(q)}
 
 function schBtns(ctx){const o=ctx==='q'?G.q[0]:G.vw;if(!o||!o.fin)return '';let h='';
   G.P.forEach((p,x)=>{if(p.elim)return;if(p.hid==='shehulk'&&p.form==='ae'&&!(G.once||{})['obj'+x])h+=`<button class="btn v" data-act="objGo" data-k="${x}" data-ctx="${ctx}">${esc(hn(x))}: 이의 있습니다! (위협 -1)</button>`;if(p.hand.some(i=>G.I[i].cid==='basic-emergency'))h+=`<button class="btn v" data-act="schCard" data-c="emg" data-k="${x}" data-ctx="${ctx}">${esc(hn(x))}: 비상사태 (위협 -1)</button>`;
     if(p.form==='hero'&&p.hand.some(i=>G.I[i].cid==='justice-great-responsibility'))h+=`<button class="btn v" data-act="schCard" data-c="gr" data-k="${x}" data-ctx="${ctx}">${esc(hn(x))}: 큰 힘에는 큰 책임 (위협 대신 피해)</button>`});
   return h?`<div class="btns">${h}</div>`:''}
-function vatkSheet(q){const k=q.k;const vi=G.I[G.vill.iid];const title=`${q.title||'빌런 공격'} · ${nm(vcid())} → ${hn(k)}`;
+function stage(o){return `<div class="stg" data-stage="1"><div class="stg-top"><span class="stg-b ${o.kind||''}">${o.badge}</span>${o.sub?`<span class="stg-s">${o.sub}</span>`:''}<button class="btn sm stg-x" data-act="closeSheet">테이블 보기</button></div><div class="stg-grid"><div class="stg-vis">${o.vis}</div><div class="stg-pan">${o.panel}</div></div></div>`}
+const bigC=(cid,side,cls='',down=false,iid=null)=>iid?`<button class="bigc ${cls}" data-act="card" data-i="${iid}">${faceOf(cid,side,down)}</button>`:`<div class="bigc ${cls}">${faceOf(cid,side,down)}</div>`;
+const miniF=(cid,side,down)=>`<span class="mface">${cid?faceOf(cid,side,down):''}</span>`;
+function choice(act,v,mini,title,sub,num,numCls='',cls=''){return `<button class="choice ${cls}" data-act="${act}" data-v="${v}">${mini}<span class="ctx"><b>${title}</b>${sub?`<small>${sub}</small>`:''}</span>${num!=null?`<span class="cnum ${numCls}">${num}</span>`:''}</button>`}
+const sumBox=(parts,total,cls='')=>`<div class="sumbox ${cls}"><span>${parts}</span><b>${total}</b></div>`;
+function vatkSheet(q){const k=q.k;const vi=G.I[G.vill.iid];const vc=vcid();const title=q.title||'빌런 공격';
+  const sub=`빌런 페이즈 · ${esc(nm(vc))} → ${esc(hn(k))}`;
+  const vcard=bigC(vi.cid,vi.side,'vil',false,G.vill.iid);
   if(!q.step){
-    if(vi.st.stun)return head(esc(title))+'<p class="note">빌런이 기절 상태예요. 공격 대신 기절 카드를 버려요.</p><div class="btns"><button class="btn go" data-act="vaGo" data-v="stun">기절 카드 버리기</button></div>';
-    if(webOn(G.vill.iid))return head(esc(title))+'<p class="note"><b>거미줄 포획</b>이 발동해요. 공격 대신 거미줄 포획을 버리고 빌런을 기절시켜요.</p><div class="btns"><button class="btn go" data-act="vaGo" data-v="web">거미줄 포획 발동</button></div>';
-    return head(esc(title))+`<p class="note">${esc(nm(vcid()))}이(가) ${esc(hn(k))}을(를) 공격해요 (공격력 ${vAtk()}${vBonus('atkp')?`, 장착 카드 +${vBonus('atkp')} 포함`:''}).${q.stun?' 이 공격에 피해를 입은 캐릭터는 기절해요.':''}</p><div class="btns"><button class="btn go" data-act="vaGo" data-v="start">강화 카드 받기</button></div>`}
-  if(q.step==='defend'){const opts=[];G.P.forEach((p,x)=>{if(!p.elim&&p.form==='hero'&&!G.I[p.id].ex)opts.push([`h:${x}`,`${hn(x)} (방어 ${heroDef(x)})`])});
-    G.P.forEach(p=>p.play.forEach(i=>{const ii=G.I[i];if(!ii.ex&&meta(ii.cid).hp)opts.push([`a:${i}`,`동료 ${nm(ii.cid)}`])}));
-    return head(esc(title))+`<div class="row">${q.boost?slot(q.boost,{down:true,act:'noop'}):''}${q.boost2?slot(q.boost2,{down:true,act:'noop'}):''}</div><p class="sub">강화 카드가 뒤집히기 전에 방어를 정해요. 히어로가 방어하면 방어 수치만큼 피해가 줄고, 동료가 방어하면 피해를 모두 받아요.</p>
-      <div class="btns"><button class="btn" data-act="vaGo" data-v="def:none">방어하지 않기</button>${opts.map(([v,l])=>`<button class="btn blue" data-act="vaGo" data-v="def:${v}">${esc(l)}</button>`).join('')}</div>`}
+    if(vi.st.stun)return stage({kind:'atk',badge:esc(title)+'!',sub,vis:vcard,panel:`<h3>기절 상태예요</h3><p class="sub">공격 대신 기절 카드를 버려요.</p><div class="btns"><button class="btn go" data-act="vaGo" data-v="stun">기절 카드 버리기</button></div>`});
+    if(webOn(G.vill.iid))return stage({kind:'atk',badge:esc(title)+'!',sub,vis:vcard,panel:`<h3>거미줄 포획 발동</h3><p class="sub">공격 대신 거미줄 포획을 버리고 빌런을 기절시켜요.</p><div class="btns"><button class="btn go" data-act="vaGo" data-v="web">거미줄 포획 발동</button></div>`});
+    return stage({kind:'atk',badge:esc(title)+'!',sub,vis:vcard,panel:`<h3>공격력 ${vAtk()}</h3><p class="sub">${q.stun?'이 공격에 피해를 입은 캐릭터는 기절해요. ':''}강화 카드를 받아요.</p><div class="btns"><button class="btn go" data-act="vaGo" data-v="start">강화 카드 받기</button></div>`})}
+  const boosts=[q.boost,q.boost2].filter(Boolean);
+  if(q.step==='defend'){const A0=vAtk();const opts=[];
+    G.P.forEach((p,x)=>{if(!p.elim&&p.form==='hero'&&!G.I[p.id].ex){const d=heroDef(x);const ii=G.I[p.id];opts.push(choice('vaGo','def:h:'+x,miniF(ii.cid,ii.side),`${esc(hn(x))}로 방어`,`방어 ${d} → 받는 피해 ${Math.max(0,A0-d)} + 강화`,`${Math.max(0,A0-d)}+`,'ok'))}});
+    G.P.forEach(p=>p.play.forEach(i=>{const ii=G.I[i];const hp=meta(ii.cid).hp;if(!ii.ex&&hp){const left=hp-(ii.dmg||0);opts.push(choice('vaGo','def:a:'+i,miniF(ii.cid,ii.side),`${esc(nm(ii.cid))}로 방어`,`동료가 피해를 모두 받아요 · 남은 생명력 ${left}${left<=A0?' (격파 예상)':''}`,`${A0}+`,'bad'))}}));
+    opts.push(choice('vaGo','def:none','<span class="mface none">✕</span>','방어하지 않기',`${esc(hn(k))}가 피해를 모두 받아요`,`${A0}+`,'bad'));
+    return stage({kind:'atk',badge:esc(title)+'!',sub,
+      vis:`<div class="vrowc">${vcard}<span class="plus">+</span><div class="bstack">${boosts.map((b,x)=>bigC(G.I[b].cid,G.I[b].side,'boost b'+x,true)).join('')||'<span class="sub">강화 카드 없음</span>'}</div></div>${sumBox(`공격 ${A0} + 강화 ?`,'?')}`,
+      panel:`<h3>누가 방어할까요?</h3><p class="sub">강화 카드는 방어를 정한 뒤 공개돼요. 방어한 캐릭터는 소진돼요.</p><div class="choices">${opts.join('')}</div>`})}
   const bi=q.boost?G.I[q.boost]:null;const total=Math.max(0,vAtk()+q.bst+(q.mod||0));let dmg=total;let note;
   if(q.def&&q.def.startsWith('h:')){const dk=+q.def.slice(2);if(q.defv==null)q.defv=heroDef(dk);dmg=Math.max(0,total-q.defv);note=`${hn(dk)}가 방어 (방어 ${q.defv})`}
   else if(q.def&&q.def.startsWith('a:'))note=`동료 ${nm(G.I[q.def.slice(2)].cid)}가 방어 — 피해를 모두 받아요`;else note=`방어 없음 — ${hn(k)}가 피해를 받아요`;
@@ -2423,23 +2544,33 @@ function vatkSheet(q){const k=q.k;const vi=G.I[G.vill.iid];const title=`${q.titl
   const ok=G.vill.attach.some(x=>G.I[x].cid==='rhino-e-charge')||(bi&&bi.cid==='rhino-e-charge');
   const tk=q.def&&q.def.startsWith('h:')?+q.def.slice(2):k;
   const bf=!q.prevented&&!(q.def&&q.def.startsWith('a:'))&&G.P[tk].hand.some(x=>G.I[x].cid==='spiderman-backflip');
-  return head(esc(title))+`<div class="cs"><div class="cs-img">${bi?`<button class="slot" data-act="card" data-i="${q.boost}">${faceOf(bi.cid,bi.side)}</button>`:'<p class="sub">강화 카드 없음</p>'}${q.boost2?`<button class="slot" data-act="card" data-i="${q.boost2}">${faceOf(G.I[q.boost2].cid,G.I[q.boost2].side)}</button>`:''}</div><div class="cs-body">
-    ${stepper('qStep',`data-k="bst"`,q.bst,'강화 아이콘')}${stepper('qStep',`data-k="mod"`,q.mod||0,'추가 보정')}
-    <p class="sub">빌런 공격 ${vAtk()} + 강화 ${q.bst}${q.mod?` + 보정 ${q.mod}`:''} = ${total} · ${note}</p>
-    ${q.def&&q.def.startsWith('h:')?stepper('qStep',`data-k="defv"`,q.defv,'방어'):''}
-    ${ok?'<p class="sub">압살: 동료가 받고 남은 초과 피해는 그 동료의 조종자가 입어요. 공격이 끝나면 돌격을 버려요.</p>':''}
-    ${q.stun||(bi&&bi.cid==='spiderman-nem-sweeping-swoop')?'<p class="sub">이 공격에 피해를 입은 캐릭터는 기절해요.</p>':''}
-    ${bf?`<div class="btns"><button class="btn v" data-act="vaGo" data-v="backflip:${tk}">${esc(hn(tk))}: 공중제비로 피해 모두 방지 (비용 0)</button></div>`:''}
-    ${!q.prevented&&!(q.def&&q.def.startsWith('a:'))&&hasCF(tk)?`<div class="btns"><button class="btn v" data-act="vaGo" data-v="cf:${tk}">${esc(hn(tk))}: 성간 비행 버리고 피해 3 방지</button></div>`:''}
-    ${q.reduce?`<p class="sub">성간 비행으로 피해 ${q.reduce}점을 방지해요.</p>`:''}
-    ${bi&&bi.cid==='captainmarvel-nem-kree-manipulator'&&!q.def?'<p class="sub">★ 크리 조종장치: 방어되지 않은 공격이라 주요 음모에 위협 1을 놓아요.</p>':''}
-    ${q.prevented?'<p class="sub">공중제비로 이번 공격의 피해를 모두 방지했어요.</p>':''}
-    ${stepper('qStep',`data-k="fin"`,q.fin,'받을 피해')}
-    <div class="btns"><button class="btn go" data-act="vaGo" data-v="apply">피해 ${q.fin} 주기</button></div></div></div>`}
+  const cf=!q.prevented&&!(q.def&&q.def.startsWith('a:'))&&hasCF(tk);
+  const notes=[ok?'압살: 동료가 받고 남은 초과 피해는 그 동료의 조종자가 입어요.':'',q.stun||(bi&&bi.cid==='spiderman-nem-sweeping-swoop')?'이 공격에 피해를 입은 캐릭터는 기절해요.':'',q.reduce?`성간 비행으로 피해 ${q.reduce}점을 방지해요.`:'',bi&&bi.cid==='captainmarvel-nem-kree-manipulator'&&!q.def?'★ 크리 조종장치: 방어되지 않은 공격이라 주요 음모에 위협 1을 놓아요.':'',q.prevented?'공중제비로 이번 공격의 피해를 모두 방지했어요.':''].filter(Boolean);
+  return stage({kind:'atk',badge:esc(title)+'!',sub,
+    vis:`<div class="vrowc">${vcard}<span class="plus">+</span><div class="bstack">${boosts.map((b,x)=>bigC(G.I[b].cid,G.I[b].side,'boost b'+x,false,b)).join('')||'<span class="sub">강화 카드 없음</span>'}</div></div>${sumBox(`공격 ${vAtk()} + 강화 ${q.bst}${q.mod?` + 보정 ${q.mod}`:''} =`,total)}`,
+    panel:`<h3>${esc(note)}</h3>${notes.map(n=>`<p class="sub">${n}</p>`).join('')}
+      ${bf||cf?`<div class="rsp"><span class="rl">손에 쓸 수 있는 카드가 있어요</span><div class="choices">${bf?choice('vaGo','backflip:'+tk,'<span class="mface none">0</span>','공중제비 (비용 0)','이번 공격의 피해를 모두 방지',null,'','v'):''}${cf?choice('vaGo','cf:'+tk,'<span class="mface none">↯</span>','성간 비행 버리기','피해 3 방지',null,'','v'):''}</div></div>`:''}
+      <div class="fin"><span>받을 피해</span><b class="${q.fin?'bad':'ok'}">${q.fin}</b></div>
+      <div class="btns"><button class="btn go big" data-act="vaGo" data-v="apply">${q.fin?`피해 ${q.fin} 받기`:'확인'}</button></div>
+      <details class="manual"><summary>수동 조정 <small>강화 아이콘·방어·피해 직접 고치기</small></summary><div class="mbody">${stepper('qStep',`data-k="bst"`,q.bst,'강화 아이콘')}${stepper('qStep',`data-k="mod"`,q.mod||0,'추가 보정')}${q.def&&q.def.startsWith('h:')?stepper('qStep',`data-k="defv"`,q.defv,'방어'):''}${stepper('qStep',`data-k="fin"`,q.fin,'받을 피해')}</div></details>`})}
+function qsSheet(q){const mi=G.I[q.iid];const p=G.P[q.k];const idi=G.I[p.id];const title=q.title||'하수인 공격';
+  const sub=`빌런 페이즈 · ${esc(en(q.iid))} → ${esc(hn(q.k))}`;const vis=`<div class="vrowc">${bigC(mi.cid,mi.side,'vil',mi.drone,q.iid)}</div>${sumBox(`공격력${q.note?' · '+esc(q.note):''}`,q.val)}`;
+  if(mi.st.stun)return stage({kind:'atk',badge:esc(title)+'!',sub,vis,panel:`<h3>기절 상태예요</h3><p class="sub">공격 대신 기절 카드를 버려요.</p><div class="btns"><button class="btn go" data-act="qsApply" data-v="stun">기절 카드 버리기</button></div>`});
+  if(webOn(q.iid))return stage({kind:'atk',badge:esc(title)+'!',sub,vis,panel:`<h3>거미줄 포획 발동</h3><p class="sub">공격 대신 거미줄 포획을 버리고 이 하수인을 기절시켜요.</p><div class="btns"><button class="btn go" data-act="qsApply" data-v="web">거미줄 포획 발동</button></div>`});
+  const allies=p.play.filter(x=>(cdOf(G.I[x].cid)||{}).type==='동료'&&!G.I[x].ex);const bf=p.hand.some(x=>G.I[x].cid==='spiderman-backflip');
+  const d=heroDef(q.k);const hd=Math.max(0,q.val-d-(q.reduce||0));const opts=[];
+  if(!idi.ex)opts.push(choice('qsApply','h',miniF(idi.cid,idi.side),`${esc(hn(q.k))}로 방어`,`방어 ${d} → 받는 피해 ${hd}`,hd,hd?'bad':'ok'));
+  allies.forEach(a=>{const ai=G.I[a];const left=(meta(ai.cid).hp||0)-(ai.dmg||0);opts.push(choice('qsApply','a:'+a,miniF(ai.cid,ai.side),`${esc(nm(ai.cid))}로 방어`,`동료가 피해를 모두 받아요 · 남은 생명력 ${left}${left<=q.val?' (격파 예상)':''}`,q.val,'bad'))});
+  opts.push(choice('qsApply','none','<span class="mface none">✕</span>','방어하지 않기',`${esc(hn(q.k))}가 피해를 받아요`,Math.max(0,q.val-(q.reduce||0)),'bad'));
+  const rsp=(bf?choice('qsApply','backflip','<span class="mface none">0</span>','공중제비 (비용 0)','피해를 모두 방지',null,'','v'):'')+(hasCF(q.k)?choice('qsApply','cf','<span class="mface none">↯</span>','성간 비행 버리기','히어로가 받는 피해 3 방지',null,'','v'):'');
+  return stage({kind:'atk',badge:esc(title)+'!',sub,vis,panel:`<h3>누가 방어할까요?</h3><p class="sub">하수인 공격에는 강화 카드가 없어요.${q.reduce?` 성간 비행으로 ${q.reduce}점 방지 중.`:''}</p><div class="choices">${opts.join('')}</div>${rsp?`<div class="rsp"><span class="rl">손에 쓸 수 있는 카드가 있어요</span><div class="choices">${rsp}</div></div>`:''}`})}
 
-function overHTML(){return `<div class="over"><div class="hero"><h1 class="title">${G.over==='win'?'승리!':'패배…'}</h1>
-  <p class="lead">${G.over==='win'?'빌런의 최종 스테이지를 격파했어요.':'빌런의 음모가 끝까지 달성됐거나 모든 히어로가 쓰러졌어요.'} 라운드 ${G.round}에서 끝났어요.</p>
-  <div class="btns"><button class="btn" data-act="overUndo">되돌리기</button><button class="btn go" data-act="toSetup">새 게임</button><button class="btn" data-act="toStart">처음 화면</button></div></div></div>`}
+function overHTML(){const win=G.over==='win';const vi=G.I[G.vill.iid];
+  return `<div class="over ${win?'win':'lose'}"><div class="ovbox"><div class="ovburst">${win?'승리!':'패배…'}</div>
+  <div class="ovcards">${G.P.map(p=>{const ii=G.I[p.id];return `<div class="ovc">${faceOf(ii.cid,ii.side)}</div>`}).join('')}<span class="ovvs">VS</span><div class="ovc">${faceOf(vi.cid,vi.side)}</div></div>
+  <p class="ovlead">${win?`${esc(G.P.map((p,k)=>hn(k)).join(' · '))}이(가) ${esc(nm(vcid()))}을(를) 쓰러뜨렸어요!`:'빌런의 음모가 끝까지 달성됐거나 모든 히어로가 쓰러졌어요.'}</p>
+  <div class="ovstats"><span><small>라운드</small><b>${G.round}</b></span><span><small>남은 위협</small><b>${G.sch.threat}</b></span><span><small>히어로 생명력</small><b>${G.P.map(p=>Math.max(0,p.hp)).join(' · ')}</b></span></div>
+  <div class="btns" style="justify-content:center"><button class="btn" data-act="overUndo">되돌리기</button><button class="btn go big" data-act="toSetup">새 게임</button><button class="btn" data-act="toStart">처음 화면</button></div></div></div>`}
 
 /* ---------- 시작 화면 ---------- */
 function startHTML(){
@@ -2512,8 +2643,9 @@ function libHTML(){
   const total=allKeys().length;const have=allKeys().filter(k=>IMG.has(k)).length;
   const item=(cid,side)=>{const c=C[cid];const has=IMG.has(cid+'|'+side);
     return `<div class="lib-item ${c.land?'land':''}"><button class="slot ${c.land?'land':''}" data-act="libCard" data-c="${cid}" data-s="${side}" aria-label="${esc(nm(cid,side))}">${faceOf(cid,side)}${has?'<span class="ok">✓</span>':''}${c.count>1&&side==='a'?`<span class="cnt-badge">×${c.count}</span>`:''}</button><span>${esc(nm(cid,side))}${c.ds?` (${side.toUpperCase()}면)`:''}</span></div>`};
-  return `<header class="bar"><button class="brand" data-act="toStart">챔피언스 테이블</button><div class="phase"><span class="phs player">카드 이미지 ${have} / ${total}</span></div>
-    <div class="btns">${G?'<button class="btn" data-act="resume">게임으로</button>':''}<button class="btn" data-act="names">파일 이름 목록</button><button class="btn go" data-act="bulk">여러 장 한 번에 넣기</button></div></header>
+  return `<header class="bar"><button class="brand" data-act="toStart" aria-label="처음으로"><span class="lg">챔피언스 테이블</span></button><span class="phs player">카드 보관함 ${have}/${total}</span><span class="sp"></span>
+    <div class="btns">${G?'<button class="btn" data-act="resume">게임으로</button>':''}</div></header>
+  <div class="btns" style="justify-content:flex-end"><button class="btn sm" data-act="names">파일 이름 목록</button><button class="btn sm go" data-act="bulk">여러 장 한 번에 넣기</button></div>
   <section class="card-box"><p class="lead">빈 카드를 누르면 그 자리에 이미지를 넣을 수 있어요. 넣는 즉시 게임 화면에도 반영돼요. 여러 장을 한 번에 넣을 때는 파일 이름을 카드 이름표(파일 이름 목록 참고)로 맞추거나, 제가 정리해 드린 zip 파일을 그대로 고르면 돼요.</p>
   <div class="progress"><i style="width:${total?have/total*100:0}%"></i></div></section>
   <section class="lib-set"><h3>카드 뒷면</h3><div class="lib-grid">${BACKS.map(([key,label])=>`<div class="lib-item"><button class="slot" data-act="libBack" data-key="${key}"><div class="face"><div class="back ${key==='back|enc'?'e':key==='back|villain'?'v':'p'}"></div></div><span class="ok">✓</span></button><span>${label}</span></div>`).join('')}</div></section>
@@ -2524,7 +2656,7 @@ function libHTML(){
    시트 (카드 상세 · 진행 마법사)
    ===================================================== */
 function openSheet(fn){SH=fn;drawSheet()}
-function drawSheet(){if(!SH){$('#sheet').hidden=true;return}const h=SH();if(h==null){closeSheet();return}$('#sheetBody').innerHTML=h;$('#sheet').hidden=false}
+function drawSheet(){if(!SH){$('#sheet').hidden=true;return}const h=SH();if(h==null){closeSheet();return}$('#sheetBody').innerHTML=h;$('#sheet').classList.toggle('stage',h.includes('data-stage="1"'));$('#sheet').hidden=false}
 function closeSheet(){SH=null;UI.sel=new Set();$('#sheet').hidden=true}
 const head=(t,extra='')=>`<div class="sh-head"><h3>${t}</h3><div class="btns">${extra}<button class="btn sm" data-act="closeSheet">닫기</button></div></div>`;
 const stepper=(act,attrs,val,label)=>`<div class="ctl"><span>${label}</span><div class="step"><button data-act="${act}" ${attrs} data-d="-1" aria-label="${label} 줄이기">−</button><output>${val}</output><button data-act="${act}" ${attrs} data-d="1" aria-label="${label} 늘리기">+</button></div></div>`;
@@ -2812,7 +2944,7 @@ const A={
       q.step='reveal';q.bst=(q.boost?(meta(G.I[q.boost].cid).boost??0):0)+(q.boost2?(meta(G.I[q.boost2].cid).boost??0):0);q.mod=q.umod||0;q.finAuto=true;return}
     if(v.startsWith('cf:')){const tk=+v.split(':')[1];const cf=G.P[tk].play.find(x=>G.I[x].cid==='captainmarvel-cosmic-flight');moveTo(cf,`p${tk}.discard`);q.reduce=(q.reduce||0)+3;q.finAuto=true;toast('성간 비행 — 피해 3 방지');return}
     if(v.startsWith('backflip:')){const tk=+v.split(':')[1];const b=G.P[tk].hand.find(x=>G.I[x].cid==='spiderman-backflip');moveTo(b,`p${tk}.discard`);q.prevented=true;q.fin=0;q.finAuto=false;toast('공중제비 — 이번 공격의 피해를 모두 방지해요');return}
-    if(v==='apply'){const dmg=q.prevented?0:q.fin;const bcid=q.boost?G.I[q.boost].cid:null;const stunHit=q.stun||bcid==='spiderman-nem-sweeping-swoop';
+    if(v==='apply'){const dmg=q.prevented?0:q.fin;vlog(`${q.title||'빌런 공격'} → ${q.def&&q.def.startsWith('a:')?nm(G.I[q.def.slice(2)].cid):hn(q.k)}${q.def&&q.def.startsWith('h:')?' 방어':''} · 피해 ${dmg}`);const bcid=q.boost?G.I[q.boost].cid:null;const stunHit=q.stun||bcid==='spiderman-nem-sweeping-swoop';
       const ok=G.vill.attach.some(x=>G.I[x].cid==='rhino-e-charge')||bcid==='rhino-e-charge';
       if(q.def&&q.def.startsWith('a:')){const a=q.def.slice(2);const ai=G.I[a];const own=ai.owner??k;const r=dmgAlly(a,dmg);
         if(r.hit&&!r.dead&&stunHit){ai.st.stun=1;toast(`${nm(ai.cid)} 기절`)}
@@ -2861,7 +2993,7 @@ const A={
   afs(d){const st=d.i;const i=G.I[st];const k=i.owner??G.view;openSheet(()=>head('알파 우주 정거장 · 버릴 카드 고르기')+`<p class="note">손에서 카드 1장을 버리면 ${G.P[k].hid==='captainmarvel'&&G.P[k].form==='ae'?'2장(Carol Danvers)':'1장'}을 뽑아요.</p><div class="row">${G.P[k].hand.map(x=>`<button class="slot" data-act="afsPick" data-i="${x}" data-s="${st}">${faceOf(G.I[x].cid,'a')}</button>`).join('')}</div>`)},
   afsPick(d){const st=G.I[d.s];const k=st.owner??G.view;const n=G.P[k].hid==='captainmarvel'&&G.P[k].form==='ae'?2:1;act(()=>{st.ex=true;moveTo(d.i,`p${k}.discard`);draw(k,n)});closeSheet();toast(`알파 우주 정거장 — ${n}장 뽑기`)},
   sfPractice(){SF={players:[{hid:'spiderman',aspect:'justice'},{hid:'captainmarvel',aspect:'aggression'}],scen:'rhino',mod:'bombscare',expert:false};store.set('mct_setup',SF);render()},
-  menu(){openSheet(()=>head('메뉴')+`<div class="btns"><button class="btn" data-act="toLib">카드 이미지 넣기</button><button class="btn" data-act="toSetup">새 게임</button><button class="btn" data-act="toStart">처음 화면</button></div><p class="sub" style="margin-top:12px">게임은 이 기기에 자동 저장돼요. 언제든 처음 화면의 '이어하기'로 돌아올 수 있어요.</p>`)},
+  menu(){openSheet(()=>head('메뉴')+`<div class="mtiles"><button class="mtile" data-act="closeSheet"><b>▶</b>게임 계속하기</button><button class="mtile" data-act="toSetup"><b>✚</b>새 게임</button><button class="mtile" data-act="toLib"><b>▦</b>카드 보관함</button><button class="mtile" data-act="toStart"><b>⌂</b>처음 화면</button></div><p class="sub" style="margin-top:12px">게임은 이 기기에 자동 저장돼요. 언제든 처음 화면의 '이어하기'로 돌아올 수 있어요.</p>`)},
   toStart(){closeSheet();VIEW='start';render()},
   toSetup(){closeSheet();VIEW='setup';render()},
   toLib(){closeSheet();VIEW='lib';render()},
@@ -3301,7 +3433,8 @@ function revAuto(c,k){const cid=G.I[c].cid;const cm=meta(cid);let msg='';
   else if(cm.type==='side'){sideEnter(c);msg=`${nm(cid)} — 위협 ${G.I[c].thr}로 등장`}
   else if(cm.type==='attachment'){moveTo(c,'vattach');msg=`${nm(cid)} — 빌런에게 장착`}
   else{disc(c);msg=`${nm(cid)} — 카드 문구대로 직접 처리해 주세요`}
-  if(msg)setTimeout(()=>toast(msg),30)}
+  if(msg){vlog('공개 · '+msg);setTimeout(()=>toast(msg),30)}}
+function vlog(m){if(G&&G.vw){G.vw.log=G.vw.log||[];G.vw.log.push(m);if(G.vw.log.length>12)G.vw.log.shift()}}
 /* 확인이 필요 없는 확인창은 자동으로 넘김 */
 function autoQ(){const q=G.q&&G.q[0];if(!q)return false;
   if(q.t==='vatk'){const vi=G.I[G.vill.iid];
@@ -3353,7 +3486,13 @@ function revSheet(q){const c=q.c;const ci=G.I[c];if(!ci)return null;const k=q.k;
   else if(isObl)main=`<p class="note"><b>의무 카드</b>예요. 카드 지시대로 처리하세요.</p><div class="btns"><button class="btn go" data-act="vwRes" data-t="obl-discard">처리 후 버린 조우 카드 더미로</button><button class="btn" data-act="vwRes" data-t="obl-remove">게임에서 제거</button></div>`;
   else if(!ENC[ci.cid]&&!cm.type)main=`<p class="note">이 카드의 종류를 골라 주세요. 한 번 고르면 기억해요.</p><div class="btns"><button class="btn" data-act="vwRes" data-t="minion">하수인</button><button class="btn" data-act="vwRes" data-t="treachery">배반</button><button class="btn" data-act="vwRes" data-t="attachment">장착</button><button class="btn" data-act="vwRes" data-t="side">부가 음모</button></div>`;
   else main=`<div class="btns"><button class="btn go" data-act="revGo">그대로 진행 — 공개될 때 효과 처리</button></div>`;
-  return head(`조우 카드 공개 · ${esc(hn(k))}`)+`<div class="cs"><div class="cs-img ${C[ci.cid].land?'land':''}"><div class="slot ${C[ci.cid].land?'land':''}">${faceOf(ci.cid,ci.side)}</div></div><div class="cs-body">${cardText(ci.cid,ci.side)}${essB?`<p class="sub">이 카드에 반응할 수 있는 카드가 있어요.</p><div class="btns">${essB}</div>`:''}${main}</div></div>`}
+  const steps=['위협','활성화','나눠주기','공개','라운드 끝'];const w=G.vw;const cur=w?w.step:4;const land=C[ci.cid].land;
+  const typ=isObl?'의무 카드':TYPES[cm.type]||'조우 카드';const logH=w&&w.log&&w.log.length?`<div class="logl"><h4>자동으로 처리된 일</h4>${w.log.slice(-5).map(l=>`<div>${esc(l)}</div>`).join('')}</div>`:'';
+  return stage({kind:'rev',badge:'조우 카드 공개',sub:`${esc(hn(k))}의 조우 카드 · ${typ}`,
+    vis:`<div class="stepchips">${steps.map((t,x)=>`<span class="${x+1===cur?'on':x+1<cur?'done':''}">${x+1} ${t}</span>`).join('')}</div>
+      <div class="bigc rev ${land?'land':''}">${faceOf(ci.cid,ci.side)}</div>
+      ${logH.replace('logl','logl lv')}`,
+    panel:`<h3>${esc(nm(ci.cid,ci.side))}</h3>${cardText(ci.cid,ci.side)}${essB?`<div class="rsp"><span class="rl">이 카드에 반응할 수 있는 카드가 있어요</span><div class="btns col">${essB}</div></div>`:''}${main.replace('<div class="btns">','<div class="btns col">')}${logH.replace('logl','logl lp')}`})}
 Object.assign(A,{
   revGo(){act(()=>{const q=G.q[0];if(!q||q.t!=='rev')return;G.q.shift();const w=G.vw;if(w)w.cur=null;revAuto(q.c,q.k)});resumeSheet()}
 });

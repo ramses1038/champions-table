@@ -491,6 +491,21 @@ body.ingame .pile-empty{border-color:#fff}
   .cs-img{--cw:calc(100vw - 40px - env(safe-area-inset-left,0px) - env(safe-area-inset-right,0px))}
   .cs-img.land{--cw:calc((100vw - 40px - env(safe-area-inset-left,0px) - env(safe-area-inset-right,0px))/1.4)}
 }
+
+/* 카드 상세 창 정리 */
+.schips{display:flex;flex-wrap:wrap;gap:6px;align-items:center}
+.schip{font:800 12px var(--f-body);background:var(--ink);color:var(--yel);border-radius:999px;padding:3px 10px}
+.schip.t{background:none;color:var(--ink);padding:0 6px 0 0}
+.stc.mini{width:58px;display:inline-block}
+.acts2{display:flex;flex-direction:column;gap:8px;padding:10px;border:2px solid var(--ink);border-radius:10px;background:#fff8d6}
+.acts2 .btn{font-size:14px;padding:9px 14px}
+details.manual{border-top:2px dashed rgba(26,28,41,.25);padding-top:8px}
+details.manual summary{cursor:pointer;font:800 13px var(--f-body);color:var(--muted);list-style:none;display:flex;align-items:center;gap:8px;flex-wrap:wrap}
+details.manual summary::before{content:"▸";font-size:12px;transition:transform .15s}
+details.manual[open] summary::before{transform:rotate(90deg)}
+details.manual summary::-webkit-details-marker{display:none}
+details.manual summary small{font-weight:500;font-size:11px}
+.mbody{display:flex;flex-direction:column;gap:8px;padding-top:10px}
 @media (prefers-reduced-motion:reduce){*{transition:none!important;animation:none!important}}
 </style>
 </head>
@@ -2517,6 +2532,17 @@ const ZLABEL={'enc.deck':'조우 덱','enc.discard':'버린 조우 카드 더미
 function zLabel(z){if(!z)return '';if(ZLABEL[z])return ZLABEL[z];const m=z.match(/^p(\d+)\.(\w+)$/);if(!m)return z;
   const L2={deck:'덱',hand:'손패',discard:'버린 카드 더미',play:'플레이 영역',engaged:'교전',aside:'숙적 대기',pend:'받은 조우 카드',identity:'아이덴티티'};return `${hn(+m[1])} ${L2[m[2]]||m[2]}`}
 
+function metaFields(cid){const c=C[cid];const m=meta(cid);const F=(k,l,t='number')=>`<label class="fld">${l}<input type="${t}" ${t==='number'?'min="0"':''} id="m-${cid}-${k}" data-meta="${cid}|${k}" ${t==='text'?'data-text="1"':''} value="${esc(m[k]??'')}"></label>`;
+  const B=(k,l)=>`<label class="fld">${l}<select id="m-${cid}-${k}" data-meta="${cid}|${k}" data-bool="1"><option value="">없음</option><option value="1" ${m[k]?'selected':''}>있음</option></select></label>`;
+  let f='';
+  if(c.kind==='identity')f=[['hp','최대 생명력'],['handH','히어로 손 크기'],['handA','일상 손 크기'],['atk','공격'],['thw','저지'],['def','방어'],['rec','회복']].map(([k,l])=>F(k,l)).join('');
+  else if(c.kind==='villain')f=F('hp','생명력(인원당)')+F('atk','공격')+F('sch','음모');
+  else if(c.kind==='main')f=F('target','임계점(인원당)')+F('accel','가속(인원당)')+F('start','시작 위협(인원당)');
+  else if(c.enc&&c.kind!=='obligation'){f=`<label class="fld">종류<select id="m-${cid}-type" data-meta="${cid}|type" data-text="1"><option value="">모름</option>${Object.entries(TYPES).filter(([k])=>k!=='obligation').map(([k,v])=>`<option value="${k}" ${m.type===k?'selected':''}>${v}</option>`).join('')}</select></label>`+F('boost','강화 아이콘');
+    if(m.type==='minion')f+=F('atk','공격')+F('sch','음모')+F('hp','생명력');
+    if(m.type==='side')f+=F('start','시작 위협')+B('accel','가속 아이콘')+B('hazard','수령 아이콘')+B('crisis','위기 아이콘')}
+  else if(!c.enc)f=[['hp','생명력'],['atk','공격'],['catk','공격 부수적 피해'],['thw','저지'],['cthw','저지 부수적 피해']].map(([k,l])=>F(k,l)).join('');
+  return f?`<div class="grid-f">${f}</div>`:'<p class="sub">이 카드는 고칠 수치가 없어요.</p>'}
 function cardSheet(iid){return ()=>{
   const i=G.I[iid];if(!i)return null;const c=C[i.cid];const m=meta(i.cid);const z=where(iid);
   const fixed=z==='villain'||z==='scheme'||(z||'').endsWith('.identity');
@@ -2527,42 +2553,37 @@ function cardSheet(iid){return ()=>{
     else{moves=G.P.map((p,k)=>[`p${k}.engaged`,`${hn(k)}와 교전`]).concat([['sides','부가 음모로'],['vattach','빌런에게 장착']],G.P.map((p,k)=>[`p${k}.play`,`${hn(k)} 앞에 두기`]),[['enc.discard','버린 조우 카드 더미로'],['enc.deck','조우 덱 맨 위로'],['removed','게임에서 제거']])}
     moves=moves.filter(([d])=>d!==z);
   }
-  let extra='';
-  if(z==='villain'){const vm=meta(i.cid);
-    extra=`<div class="sec"><h4>빌런</h4>${stepper('vhp','',G.vill.hp,'생명력')}
-      <div class="grid-f">${['hp','atk','sch'].map(k=>`<label class="fld">${{hp:'생명력(인원당)',atk:'ATK',sch:'SCH'}[k]}<input type="number" id="m-${i.cid}-${k}" data-meta="${i.cid}|${k}" value="${vm[k]??''}"></label>`).join('')}</div>
-      <div class="btns"><button class="btn sm" data-act="vAdvance">다음 빌런 스테이지로</button></div></div>`}
-  if(z==='scheme'){const sm=meta(i.cid);
-    extra=`<div class="sec"><h4>주요 음모</h4>${stepper('sThr','',G.sch.threat,'위협')}
-      <div class="grid-f">${['target','accel','start'].map(k=>`<label class="fld">${{target:'임계점(인원당)',accel:'가속(인원당)',start:'시작 위협(인원당)'}[k]}<input type="number" id="m-${i.cid}-${k}" data-meta="${i.cid}|${k}" value="${sm[k]??''}"></label>`).join('')}</div>
-      <div class="btns"><button class="btn sm" data-act="sAdvance">다음 음모 스테이지로</button>${G.accel?stepper('accTok','',G.accel,'가속 토큰'):`<button class="btn sm" data-act="accTok" data-d="1">가속 토큰 추가</button>`}</div></div>`}
   const mm=(z||'').match(/^p(\d+)\.identity$/);
-  if(mm){const k=+mm[1];const p=G.P[k];
-    extra=`<div class="sec"><h4>아이덴티티</h4>${stepper('php',`data-k="${k}"`,p.hp,'생명력')}
-      <div class="btns"><button class="btn sm ${p.form==='hero'?'go':'blue'}" data-act="form" data-k="${k}">${p.form==='hero'?'일상 형태로 변신':'히어로 형태로 변신'}</button></div>
-      <div class="grid-f">${[['hp','최대 생명력'],['handH','히어로 손 크기'],['handA','일상 손 크기'],['atk','공격'],['thw','저지'],['def','방어'],['rec','회복']].map(([kk,l])=>`<label class="fld">${l}<input type="number" id="m-${i.cid}-${kk}" data-meta="${i.cid}|${kk}" value="${meta(i.cid)[kk]??''}"></label>`).join('')}</div></div>`}
-  const isEnemy=c.enc&&!fixed&&c.kind!=='obligation';
-  const info=`<div class="sec"><h4>카드 정보 (한 번 넣으면 기억해요)</h4><div class="grid-f">
-      <label class="fld">표시 이름<input type="text" id="m-${i.cid}-name" data-meta="${i.cid}|name" data-text="1" value="${esc(m.name??'')}" placeholder="${esc(c.name)}"></label>
-      ${isEnemy?`<label class="fld">종류<select id="m-${i.cid}-type" data-meta="${i.cid}|type" data-text="1"><option value="">모름</option>${Object.entries(TYPES).filter(([k])=>k!=='obligation').map(([k,v])=>`<option value="${k}" ${m.type===k?'selected':''}>${v}</option>`).join('')}</select></label>
-      <label class="fld">강화 아이콘<input type="number" min="0" id="m-${i.cid}-boost" data-meta="${i.cid}|boost" value="${m.boost??''}"></label>
-      ${m.type==='minion'?['atk','sch','hp'].map(k=>`<label class="fld">${k.toUpperCase()}<input type="number" id="m-${i.cid}-${k}" data-meta="${i.cid}|${k}" value="${m[k]??''}"></label>`).join(''):''}
-      ${m.type==='side'?`<label class="fld">가속 아이콘<select id="m-${i.cid}-accel" data-meta="${i.cid}|accel" data-bool="1"><option value="">없음</option><option value="1" ${m.accel?'selected':''}>있음</option></select></label><label class="fld">수령 아이콘<select id="m-${i.cid}-hazard" data-meta="${i.cid}|hazard" data-bool="1"><option value="">없음</option><option value="1" ${m.hazard?'selected':''}>있음</option></select></label><label class="fld">위기 아이콘<select id="m-${i.cid}-crisis" data-meta="${i.cid}|crisis" data-bool="1"><option value="">없음</option><option value="1" ${m.crisis?'selected':''}>있음</option></select></label>`:''}`:''}
-      ${!c.enc&&!fixed?[['hp','생명력'],['atk','공격'],['catk','공격 부수적 피해'],['thw','저지'],['cthw','저지 부수적 피해']].map(([k,l])=>`<label class="fld">${l}<input type="number" min="0" id="m-${i.cid}-${k}" data-meta="${i.cid}|${k}" value="${m[k]??''}"></label>`).join(''):''}
-    </div><div class="btns"><button class="btn sm" data-act="pickImg" data-key="${i.cid}|${i.side}">${IMG.has(i.cid+'|'+i.side)?'이미지 바꾸기':'이미지 넣기'}${c.ds?` (${i.side.toUpperCase()}면)`:''}</button></div></div>`;
+  // 게임 행동 (자동화와 함께 쓰는 버튼)
+  let acts='';
+  if(z&&/\.hand$/.test(z))acts+=playBtn(iid);
+  if(mm){const k=+mm[1];const p=G.P[k];acts+=`<div class="btns"><button class="btn ${p.form==='hero'?'':'blue'}" data-act="form" data-k="${k}">${p.form==='hero'?'일상 형태로 변신':'히어로 형태로 변신'}</button></div>${G.formUsed[k]?'<p class="sub">이번 라운드에 이미 변신했어요.</p>':''}${basicBtns(k)}`}
+  if(!c.enc&&z&&/\.play$/.test(z)&&(!cdOf(i.cid)||cdOf(i.cid).type==='동료'))acts+=`<div class="btns"><button class="btn go" data-act="allyUse" data-i="${iid}" data-t="atk" ${i.ex?'disabled':''}>동료로 공격 ${allyStat(iid,'atk')}</button><button class="btn blue" data-act="allyUse" data-i="${iid}" data-t="thw" ${i.ex?'disabled':''}>동료로 저지 ${allyStat(iid,'thw')}</button></div>`;
+  acts+=cardButtons(iid,z);
+  // 현재 상태 요약 (읽기 전용)
+  const chips=[];if(i.ex)chips.push('<span class="schip">소진</span>');if(i.dmg)chips.push(`<span class="tk dmg">${i.dmg}</span><span class="schip t">피해</span>`);if(i.thr)chips.push(`<span class="tk thr"><i>${i.thr}</i></span><span class="schip t">위협</span>`);if(i.cnt)chips.push(`<span class="tk cnt">${i.cnt}</span><span class="schip t">카운터</span>`);
+  ['stun','conf','tough'].forEach(k=>{if(i.st[k])chips.push(`<span class="stc ${k} mini"></span>`)});
+  if(z==='villain')chips.push(`<span class="schip">생명력 ${G.vill.hp}${meta(i.cid).hp?' / '+vMax():''}</span><span class="schip">공격 ${vAtk()} · 음모 ${vSch()}</span>`);
+  if(z==='scheme')chips.push(`<span class="schip">위협 ${G.sch.threat} / ${schTarget()??'?'}</span>`);
+  if(mm){const p=G.P[+mm[1]];chips.push(`<span class="schip">생명력 ${p.hp} / ${p.hpMax}</span><span class="schip">${p.form==='hero'?'히어로':'일상'} 형태</span>`)}
+  // 수동 조정 (접힘)
+  let man=`<div class="btns"><button class="btn sm ${i.ex?'sel':''}" data-act="ex" data-i="${iid}">${i.ex?'준비 상태로 세우기':'소진 (90도 돌리기)'}</button>${c.ds?`<button class="btn sm" data-act="flip" data-i="${iid}">뒤집기</button>`:''}</div>`;
+  if(z==='villain')man+=stepper('vhp','',G.vill.hp,'생명력');
+  else if(z==='scheme')man+=stepper('sThr','',G.sch.threat,'위협')+stepper('accTok','',G.accel,'가속 토큰');
+  else if(mm)man+=stepper('php',`data-k="${+mm[1]}"`,G.P[+mm[1]].hp,'생명력');
+  if(z!=='scheme'&&z!=='villain'&&!mm)man+=stepper('tok',`data-i="${iid}" data-k="dmg"`,i.dmg,'피해');
+  if(c.enc&&z!=='villain'&&!mm)man+=stepper('tok',`data-i="${iid}" data-k="thr"`,i.thr,'위협');
+  man+=stepper('tok',`data-i="${iid}" data-k="cnt"`,i.cnt,'카운터');
+  man+=`<div class="ctl"><span>상태</span><div class="btns">${[['stun','기절'],['conf','혼란'],['tough','강인함']].map(([k,l])=>`<button class="stbtn ${i.st[k]?'on':''}" data-act="stat" data-i="${iid}" data-k="${k}" aria-label="${l}${i.st[k]?' 해제':' 놓기'}" aria-pressed="${!!i.st[k]}"><span class="stc ${k}"></span></button>`).join('')}</div></div>`;
+  if(moves.length)man+=`<h4 style="margin:6px 0 0">옮기기</h4><div class="btns">${moves.map(([d,l])=>`<button class="btn sm" data-act="mv" data-i="${iid}" data-to="${d}">${esc(l)}</button>`).join('')}</div>`;
+  if(z==='villain')man+=`<div class="btns"><button class="btn sm" data-act="vAdvance">다음 빌런 스테이지로</button></div>`;
+  if(z==='scheme')man+=`<div class="btns"><button class="btn sm" data-act="sAdvance">다음 음모 스테이지로</button></div>`;
   return head(esc(i.drone?en(iid):nm(i.cid,i.side)))+`<div class="cs"><div class="cs-img ${c.land?'land':''}"><div class="slot ${c.land?'land':''}">${faceOf(i.cid,i.side,i.drone)}${toks(i)}</div></div>
     <div class="cs-body"><p class="sub">${esc(setLabel(c))} · ${esc(zLabel(z))}${m.type&&c.enc?` · ${TYPES[m.type]}`:''}</p>
-      <div class="btns"><button class="btn sm ${i.ex?'sel':''}" data-act="ex" data-i="${iid}">${i.ex?'준비 상태로 세우기':'소진 (90도 돌리기)'}</button>${c.ds?`<button class="btn sm" data-act="flip" data-i="${iid}">뒤집기</button>`:''}</div>
+      ${chips.length?`<div class="schips">${chips.join('')}</div>`:''}
       ${cardText(i.cid,i.side)}
-      ${z&&/\.hand$/.test(z)?playBtn(iid):''}
-      ${cardButtons(iid,z)}
-      ${!c.enc&&z&&/\.play$/.test(z)&&(!cdOf(i.cid)||cdOf(i.cid).type==='동료')?`<div class="btns"><button class="btn sm go" data-act="allyUse" data-i="${iid}" data-t="atk" ${i.ex?'disabled':''}>동료로 공격 ${allyStat(iid,'atk')}</button><button class="btn sm blue" data-act="allyUse" data-i="${iid}" data-t="thw" ${i.ex?'disabled':''}>동료로 저지 ${allyStat(iid,'thw')}</button></div>`:''}
-      ${z==='scheme'?'':stepper('tok',`data-i="${iid}" data-k="dmg"`,i.dmg,'피해')}
-      ${stepper('tok',`data-i="${iid}" data-k="thr"`,i.thr,'위협')}
-      ${stepper('tok',`data-i="${iid}" data-k="cnt"`,i.cnt,'카운터')}
-      <div class="ctl"><span>상태</span><div class="btns">${[['stun','기절'],['conf','혼란'],['tough','강인함']].map(([k,l])=>`<button class="stbtn ${i.st[k]?'on':''}" data-act="stat" data-i="${iid}" data-k="${k}" aria-label="${l}${i.st[k]?' 해제':' 놓기'}" aria-pressed="${!!i.st[k]}"><span class="stc ${k}"></span></button>`).join('')}</div></div>
-      ${moves.length?`<div class="sec"><h4>옮기기</h4><div class="btns">${moves.map(([d,l])=>`<button class="btn sm" data-act="mv" data-i="${iid}" data-to="${d}">${esc(l)}</button>`).join('')}</div></div>`:''}
-      ${extra}${info}
+      ${acts?`<div class="acts2">${acts}</div>`:''}
+      <details class="manual" ${UI.manOpen?'open':''}><summary data-act="manTog">수동 조정 <small>자동 처리가 안 된 규칙 예외나 실물과 맞출 때만</small></summary><div class="mbody">${man}</div></details>
     </div></div>`;
 }}
 
@@ -2849,6 +2870,7 @@ const A={
   overUndo(){A.undo()},
   view(d){act(()=>{G.view=+d.k})},
   card(d){openSheet(cardSheet(d.i))},
+  manTog(d,t,e){e.preventDefault();UI.manOpen=!UI.manOpen;drawSheet()},
   upToggle(){UI.upOpen=!UI.upOpen;render()},
   ex(d){act(()=>{G.I[d.i].ex=!G.I[d.i].ex})},
   flip(d){act(()=>{const i=G.I[d.i];i.side=i.side==='a'?'b':'a';const k=G.P.findIndex(p=>p.id===d.i);if(k>=0)G.P[k].form=i.side==='a'?'hero':'ae'})},
@@ -2986,6 +3008,7 @@ const A={
       <p class="sub">${esc(setLabel(c))} · 기본판 ${c.count}장 · 파일 이름표 <code>${cid}${side==='b'?'_b':''}</code></p>
       <div class="btns"><button class="btn go" data-act="pickImg" data-key="${key}">${IMG.has(key)?'이미지 바꾸기':'이미지 넣기'}</button>${IMG.has(key)?`<button class="btn" data-act="rmImg" data-key="${key}">이미지 지우기</button>`:''}</div>
       <label class="fld">표시 이름 (한글판 이름으로 바꿔도 돼요)<input type="text" id="lib-name-${cid}-${side}" data-meta="${cid}|${side==='b'&&c.kind==='identity'?'nameB':'name'}" data-text="1" value="${esc(meta(cid)[side==='b'&&c.kind==='identity'?'nameB':'name']??'')}" placeholder="${esc(nm(cid,side))}"></label>
+      <details class="manual"><summary>카드 수치 고치기 <small>카드 데이터에 오타가 있을 때만</small></summary><div class="mbody">${metaFields(cid)}</div></details>
     </div></div>`})},
   libBack(d){toast('카드 뒷면은 앱에 기본으로 들어 있어요')},
   pickImg(d){UI.pickKey=d.key;$('#filePick').click()},

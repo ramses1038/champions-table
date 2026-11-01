@@ -618,6 +618,29 @@ details.manual summary small{font-weight:500;font-size:11px}
 .ovstats{display:flex;gap:10px;flex-wrap:wrap;justify-content:center}
 .ovstats span{display:flex;flex-direction:column;align-items:center;background:rgba(0,0,0,.35);border:2px solid rgba(255,255,255,.18);border-radius:10px;padding:4px 14px}
 .ovstats small{font-size:10.5px;color:var(--soft);font-weight:700}.ovstats b{font:400 26px var(--f-num);letter-spacing:1px}
+
+/* 가로 카드 · 빌런 체력 고정 · 애니메이션 · 끌어서 내기 */
+.bigc.land{aspect-ratio:88/63;width:calc(var(--bc,170px)*1.4)}
+.bigc.boost.land{--bc:min(130px,28vw)}
+.landrot{position:absolute;left:50%;top:50%;width:calc(var(--cw)*88/63);height:var(--cw);transform:translate(-50%,-50%) rotate(90deg)}
+.landrot .face{position:absolute;inset:0}
+.hvil{display:none;align-items:center;gap:8px;min-width:0;flex:1 1 220px;max-width:460px;background:rgba(0,0,0,.35);border:2px solid var(--ink);border-radius:999px;padding:2px 12px 2px 12px}
+.hvil b{font:400 14px var(--f-disp);color:#fff;white-space:nowrap;overflow:hidden;text-overflow:ellipsis;max-width:120px;text-shadow:1px 1px 0 #000}
+.hvbar{flex:1;height:12px;transform:skewX(-18deg);border:2px solid #0a0a0a;background:#0b1222;overflow:hidden;min-width:50px}
+.hvbar i{display:block;height:100%;background:linear-gradient(#ff7a6a,#d8251a 55%,#8e120b);transition:width .3s}
+.hvil em{font:400 17px var(--f-num);font-style:normal;color:#fff;letter-spacing:1px;white-space:nowrap;text-shadow:2px 2px 0 #000}
+body.vilmini .hvil{display:flex}
+body.vilmini .bar .sp{display:none}
+@media (max-width:700px){body.vilmini .bar .phs{display:none}.hvil b{display:none}.hvil{padding:2px 8px}}
+.ghostcard{position:fixed;z-index:80;pointer-events:none;border-radius:8px;box-shadow:0 12px 26px rgba(0,0,0,.55)}
+.ghostcard .face{position:absolute;inset:0}
+.ghostcard .toks,.ghostcard .sts{display:none}
+.ghostcard.drag{transform:rotate(-4deg);transition:box-shadow .15s}
+.ghostcard.drag.ok{box-shadow:0 0 0 4px var(--yel),0 16px 30px rgba(0,0,0,.6)}
+.fan .slot{touch-action:none}
+body.dragging .mz.pz{outline:3px dashed rgba(255,214,64,.45);outline-offset:4px}
+body.dropok .mz.pz{outline-color:var(--yel);background:rgba(255,214,64,.07)}
+body.dragging .fc:hover{transform:translateY(calc(38% + var(--y))) rotate(var(--r))}
 @media (prefers-reduced-motion:reduce){*{transition:none!important;animation:none!important}}
 </style>
 </head>
@@ -2238,7 +2261,7 @@ function slot(iid,o={}){const i=G.I[iid];if(!i)return '';const c=C[i.cid];
 function pile(arr,kind,act,label,showTop){
   const n=arr.length;let inner;
   if(!n)inner='<span class="pile-empty"></span>';
-  else if(showTop){const i=G.I[arr[n-1]];inner=faceOf(i.cid,i.side)}
+  else if(showTop){const i=G.I[arr[n-1]];inner=C[i.cid].land?`<div class="landrot">${faceOf(i.cid,i.side)}</div>`:faceOf(i.cid,i.side)}
   else inner=faceOf(G.I[arr[n-1]].cid,'a',true);
   return `<button class="slot" data-act="${act}" aria-label="${label} ${n}장">${inner}<span class="cnt-badge">${n}</span></button>`}
 function dial(v,act,attrs,cls=''){const s=String(Math.max(0,v)).padStart(2,'0');
@@ -2307,7 +2330,7 @@ function gameHTML(){
   return `
   <header class="bar">
     <button class="brand" data-act="menu" aria-label="메뉴"><span class="lg">챔피언스 테이블</span></button>
-    <span class="rnd"><span class="lg">ROUND </span>${G.round}</span><span class="phs ${G.phase}">${G.phase==='player'?'플레이어':'빌런'}<span class="lg"> 페이즈</span></span>
+    <span class="rnd"><span class="lg">ROUND </span>${G.round}</span><span class="hvil" aria-hidden="true"><b>${esc(nm(vcid()))}</b><span class="hvbar"><i style="width:${vm.hp&&vMax()?Math.max(0,Math.min(100,G.vill.hp/vMax()*100)):100}%"></i></span><em>${Math.max(0,G.vill.hp)}${vm.hp?' / '+vMax():''}</em></span><span class="phs ${G.phase}">${G.phase==='player'?'플레이어':'빌런'}<span class="lg"> 페이즈</span></span>
     <span class="sp"></span>
     <div class="btns">
       <button class="btn" data-act="undo" ${hist.length?'':'disabled'}>되돌리기</button>
@@ -2518,7 +2541,7 @@ function schBtns(ctx){const o=ctx==='q'?G.q[0]:G.vw;if(!o||!o.fin)return '';let 
     if(p.form==='hero'&&p.hand.some(i=>G.I[i].cid==='justice-great-responsibility'))h+=`<button class="btn v" data-act="schCard" data-c="gr" data-k="${x}" data-ctx="${ctx}">${esc(hn(x))}: 큰 힘에는 큰 책임 (위협 대신 피해)</button>`});
   return h?`<div class="btns">${h}</div>`:''}
 function stage(o){return `<div class="stg" data-stage="1"><div class="stg-top"><span class="stg-b ${o.kind||''}">${o.badge}</span>${o.sub?`<span class="stg-s">${o.sub}</span>`:''}<button class="btn sm stg-x" data-act="closeSheet">테이블 보기</button></div><div class="stg-grid"><div class="stg-vis">${o.vis}</div><div class="stg-pan">${o.panel}</div></div></div>`}
-const bigC=(cid,side,cls='',down=false,iid=null)=>iid?`<button class="bigc ${cls}" data-act="card" data-i="${iid}">${faceOf(cid,side,down)}</button>`:`<div class="bigc ${cls}">${faceOf(cid,side,down)}</div>`;
+const bigC=(cid,side,cls='',down=false,iid=null)=>(cls+=(C[cid]&&C[cid].land&&!down)?' land':'',iid)?`<button class="bigc ${cls}" data-act="card" data-i="${iid}">${faceOf(cid,side,down)}</button>`:`<div class="bigc ${cls}">${faceOf(cid,side,down)}</div>`;
 const miniF=(cid,side,down)=>`<span class="mface">${cid?faceOf(cid,side,down):''}</span>`;
 function choice(act,v,mini,title,sub,num,numCls='',cls=''){return `<button class="choice ${cls}" data-act="${act}" data-v="${v}">${mini}<span class="ctx"><b>${title}</b>${sub?`<small>${sub}</small>`:''}</span>${num!=null?`<span class="cnum ${numCls}">${num}</span>`:''}</button>`}
 const sumBox=(parts,total,cls='')=>`<div class="sumbox ${cls}"><span>${parts}</span><b>${total}</b></div>`;
@@ -3534,6 +3557,49 @@ document.addEventListener('change',e=>{const t=e.target;
 document.addEventListener('pointerup',e=>{if(!el||sx==null)return;const dx=e.clientX-sx,dy=e.clientY-sy;const w=el.dataset.swipe;el=null;sx=null;
   if(Math.abs(dx)>45&&Math.abs(dx)>Math.abs(dy)*1.3){A.sfCycle({w,d:dx<0?1:-1});swipeEat=Date.now()}},{passive:true})})();
 let swipeEat=0;document.addEventListener('click',e=>{if(Date.now()-swipeEat<350){e.stopPropagation();e.preventDefault()}},true);
+/* ---------- 카드 이동 애니메이션 · 끌어서 내기 · 빌런 체력 고정 ---------- */
+const RM=()=>matchMedia('(prefers-reduced-motion: reduce)').matches;
+function animSnap(){const m={};document.querySelectorAll('#app .slot[data-i]').forEach(el=>{const r=el.getBoundingClientRect();if(!r.width)return;m[el.dataset.i]={r,html:el.innerHTML,hand:!!el.closest('.fan'),land:el.classList.contains('land')}});
+  const pr=s=>{const e=document.querySelector(s);return e?e.getBoundingClientRect():null};
+  return {m,view:G.view,deck:pr('[data-act="pDeck"]'),disc:pr('[data-act="pDiscard"]')}}
+function animPlay(sn){if(RM()||!G||sn.view!==G.view)return;const now={};
+  const ease='cubic-bezier(.2,.75,.25,1)';
+  document.querySelectorAll('#app .slot[data-i]').forEach(el=>{const id=el.dataset.i;now[id]=1;const r=el.getBoundingClientRect();if(!r.width)return;const o=sn.m[id];
+    if(o){const dx=(o.r.left+o.r.width/2)-(r.left+r.width/2),dy=(o.r.top+o.r.height/2)-(r.top+r.height/2);if(Math.hypot(dx,dy)<24)return;const s=o.r.width/r.width;
+      el.animate([{transform:`translate(${dx}px,${dy}px) scale(${s})`,zIndex:60},{transform:'none',zIndex:60}],{duration:430,easing:ease});return}
+    if(el.closest('.fan')&&sn.deck){const d=sn.deck;const dx=(d.left+d.width/2)-(r.left+r.width/2),dy=(d.top+d.height/2)-(r.top+r.height/2);
+      el.animate([{transform:`translate(${dx}px,${dy}px) scale(${d.width/r.width}) rotate(-8deg)`,opacity:.4},{transform:'none',opacity:1}],{duration:520,easing:ease,delay:Math.random()*90})}});
+  const disc=document.querySelector('[data-act="pDiscard"]');const dr=disc?disc.getBoundingClientRect():null;
+  Object.entries(sn.m).forEach(([id,o])=>{if(now[id]||!o.hand)return;const g=document.createElement('div');g.className='ghostcard';g.innerHTML=o.html;
+    Object.assign(g.style,{left:o.r.left+'px',top:o.r.top+'px',width:o.r.width+'px',height:o.r.height+'px'});document.body.appendChild(g);
+    const to=dr?`translate(${dr.left+dr.width/2-(o.r.left+o.r.width/2)}px,${dr.top+dr.height/2-(o.r.top+o.r.height/2)}px) scale(${dr.width/o.r.width})`:'translateY(-120px) scale(.9)';
+    const a=g.animate([{transform:'none',opacity:1},{transform:'translateY(-40px) scale(1.08)',opacity:1,offset:.3},{transform:to,opacity:dr?.9:0}],{duration:620,easing:ease});a.onfinish=()=>g.remove()})}
+function vilMini(){const b=document.querySelector('.hpb.vil'),bar=document.querySelector('header.bar');if(!b||!bar){document.body.classList.remove('vilmini');return}
+  document.body.classList.toggle('vilmini',b.getBoundingClientRect().bottom<bar.getBoundingClientRect().bottom+4)}
+addEventListener('scroll',vilMini,{passive:true});addEventListener('resize',vilMini);
+{const _base=render;render=function(){const sn=(VIEW==='game'&&G&&!G.over&&document.querySelector('#app .fan'))?animSnap():null;_base();if(sn)try{animPlay(sn)}catch(e){}vilMini()}}
+function dragWhy(iid){const i=G.I[iid];if(!i)return '카드를 찾을 수 없어요';const d=cdOf(i.cid);if(!d||d.cost==null)return '이 카드는 낼 수 없어요';
+  if(d.type==='자원')return '자원 카드는 다른 카드를 낼 때 비용으로 써요';
+  if(d.window==='defense')return '공격을 받을 때 쓰는 카드예요. 빌런 공격 화면에 버튼이 나와요';
+  if(d.window==='treachery')return '배반 카드가 공개될 때 쓰는 카드예요';
+  if(d.window==='resp')return '조건이 맞으면 쓸지 자동으로 물어봐요';
+  if(d.window==='scheme')return '위협이 놓이려 할 때 쓰는 카드예요';
+  if(G.phase!=='player')return '플레이어 페이즈에 낼 수 있어요';return ''}
+(()=>{let st=null;
+  document.addEventListener('pointerdown',e=>{const el=e.target.closest('.fan .slot[data-i]');if(!el||e.button>0||SH)return;st={el,id:el.dataset.i,x:e.clientX,y:e.clientY,drag:false,g:null}},{passive:true});
+  document.addEventListener('pointermove',e=>{if(!st)return;const dx=e.clientX-st.x,dy=e.clientY-st.y;
+    if(!st.drag){if(Math.hypot(dx,dy)<12)return;st.drag=true;const r=st.el.getBoundingClientRect();st.w=r.width;st.h=r.height;const g=document.createElement('div');g.className='ghostcard drag';g.innerHTML=st.el.innerHTML;
+      Object.assign(g.style,{width:r.width*1.15+'px',height:r.height*1.15+'px'});document.body.appendChild(g);st.g=g;st.el.style.opacity='.25';document.body.classList.add('dragging')}
+    const g=st.g;g.style.left=(e.clientX-st.w*.575)+'px';g.style.top=(e.clientY-st.h*.7)+'px';
+    const fan=document.querySelector('.hand2');const top=fan?fan.getBoundingClientRect().top+20:innerHeight*.7;const ok=e.clientY<top;
+    document.body.classList.toggle('dropok',ok);g.classList.toggle('ok',ok)},{passive:true});
+  const end=e=>{if(!st)return;const s=st;st=null;if(!s.drag)return;swipeEat=Date.now();s.el.style.opacity='';const ok=document.body.classList.contains('dropok');
+    document.body.classList.remove('dragging','dropok');
+    if(ok&&e.type==='pointerup'){const why=dragWhy(s.id);if(why){toast(why);s.g.remove();return}
+      s.g.animate([{transform:'scale(1)',opacity:1},{transform:'scale(.7)',opacity:0}],{duration:220}).onfinish=()=>s.g.remove();A.play({i:s.id});return}
+    const r=s.el.getBoundingClientRect();const gr=s.g.getBoundingClientRect();
+    s.g.animate([{transform:'none'},{transform:`translate(${r.left-gr.left}px,${r.top-gr.top}px) scale(.87)`}],{duration:240,easing:'ease-out'}).onfinish=()=>s.g.remove()};
+  document.addEventListener('pointerup',end);document.addEventListener('pointercancel',end)})();
 document.addEventListener('keydown',e=>{if(e.key==='Escape'&&SH)closeSheet()});
 
 if('serviceWorker' in navigator){addEventListener('load',()=>navigator.serviceWorker.register('sw.js').catch(()=>{}))}

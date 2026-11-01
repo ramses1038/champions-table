@@ -631,7 +631,7 @@ details.manual summary small{font-weight:500;font-size:11px}
 .hvil em{font:400 17px var(--f-num);font-style:normal;color:#fff;letter-spacing:1px;white-space:nowrap;text-shadow:2px 2px 0 #000}
 body.vilmini .hvil{display:flex}
 body.vilmini .bar .sp{display:none}
-@media (max-width:700px){body.vilmini .bar .phs{display:none}.hvil b{display:none}.hvil{padding:2px 8px}}
+@media (max-width:700px){.hvil b{display:none}.hvil{padding:2px 8px}}
 .ghostcard{position:fixed;z-index:80;pointer-events:none;border-radius:8px;box-shadow:0 12px 26px rgba(0,0,0,.55)}
 .ghostcard .face{position:absolute;inset:0}
 .ghostcard .toks,.ghostcard .sts{display:none}
@@ -641,6 +641,18 @@ body.vilmini .bar .sp{display:none}
 body.dragging .mz.pz{outline:3px dashed rgba(255,214,64,.45);outline-offset:4px}
 body.dropok .mz.pz{outline-color:var(--yel);background:rgba(255,214,64,.07)}
 body.dragging .fc:hover{transform:translateY(calc(38% + var(--y))) rotate(var(--r))}
+
+/* 상단 빌런 체력 (스크롤 시) */
+.hvil{flex:1 1 auto;max-width:none;margin:0 6px;padding:3px 14px;gap:10px}
+.hvil b{font-size:15px;max-width:160px}
+.hvbar{position:relative;height:20px;border-width:2.5px;box-shadow:2px 2px 0 #000}
+.hvbar i{position:absolute;left:0;top:0;bottom:0;height:auto}
+.hvbar .seg{position:absolute;inset:0;background:repeating-linear-gradient(90deg,transparent 0 calc(100%/var(--seg) - 2px),rgba(0,0,0,.9) calc(100%/var(--seg) - 2px) calc(100%/var(--seg)))}
+.hvbar i::after{content:"";position:absolute;left:0;right:0;top:3px;height:3px;background:rgba(255,255,255,.45)}
+.hvil em{font-size:20px}
+.bar .btns{margin-left:auto}
+body.vilmini .bar .phs{display:inline-block}
+@media (max-width:700px){body.vilmini .bar .phs{display:none}body.vilmini .bar .brand{display:none}.hvil{margin:0 2px;min-width:0;gap:6px}.hvbar{height:14px;min-width:30px}.hvil em{font-size:14px;letter-spacing:0}}
 @media (prefers-reduced-motion:reduce){*{transition:none!important;animation:none!important}}
 </style>
 </head>
@@ -2330,7 +2342,7 @@ function gameHTML(){
   return `
   <header class="bar">
     <button class="brand" data-act="menu" aria-label="메뉴"><span class="lg">챔피언스 테이블</span></button>
-    <span class="rnd"><span class="lg">ROUND </span>${G.round}</span><span class="hvil" aria-hidden="true"><b>${esc(nm(vcid()))}</b><span class="hvbar"><i style="width:${vm.hp&&vMax()?Math.max(0,Math.min(100,G.vill.hp/vMax()*100)):100}%"></i></span><em>${Math.max(0,G.vill.hp)}${vm.hp?' / '+vMax():''}</em></span><span class="phs ${G.phase}">${G.phase==='player'?'플레이어':'빌런'}<span class="lg"> 페이즈</span></span>
+    <span class="rnd"><span class="lg">ROUND </span>${G.round}</span><span class="phs ${G.phase}">${G.phase==='player'?'플레이어':'빌런'}<span class="lg"> 페이즈</span></span><span class="hvil" aria-hidden="true"><b>${esc(nm(vcid()))}</b><span class="hvbar"><i style="width:${vm.hp&&vMax()?Math.max(0,Math.min(100,G.vill.hp/vMax()*100)):100}%"></i>${vm.hp&&vMax()<=40?`<span class="seg" style="--seg:${vMax()}"></span>`:''}</span><em>${Math.max(0,G.vill.hp)}${vm.hp?' / '+vMax():''}</em></span>
     <span class="sp"></span>
     <div class="btns">
       <button class="btn" data-act="undo" ${hist.length?'':'disabled'}>되돌리기</button>

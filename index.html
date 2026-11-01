@@ -761,6 +761,10 @@ b.ok{color:#7ee081}
 .dkc .step output{color:#fff;font-size:18px;min-width:20px}
 .dksel{display:flex;flex-wrap:wrap;gap:7px;justify-content:center}
 .mb:disabled{opacity:.4}
+
+.bkbox{display:grid;grid-template-columns:repeat(4,1fr);gap:8px;margin:4px 0}
+.bkbox div{display:flex;flex-direction:column;align-items:center;background:#fff;border:2px solid var(--ink);border-radius:10px;padding:6px 4px}
+.bkbox b{font:400 26px var(--f-num);letter-spacing:1px}.bkbox small{font-size:11px;color:var(--muted)}
 @media (prefers-reduced-motion:reduce){*{transition:none!important;animation:none!important}}
 </style>
 </head>
@@ -769,6 +773,7 @@ b.ok{color:#7ee081}
 <div class="app" id="app"></div>
 <div id="sheet" hidden><div class="scrim" data-act="closeSheet"></div><div class="panel2" id="sheetBody"></div></div>
 <div id="toast" hidden></div>
+<input type="file" id="bkFile" accept=".json,application/json" hidden>
 <div id="rotateMsg"><div><b>↻</b>휴대폰을 세로로 돌려 주세요</div></div>
 <div id="overRoot"></div>
 <input type="file" id="filePick" accept="image/*" hidden>
@@ -2744,6 +2749,7 @@ function startHTML(){
       <button class="btn v" data-act="tutAsk">튜토리얼</button>
       <button class="btn" data-act="toDecks">덱 빌더</button>
       <button class="btn" data-act="toStats">기록실</button>
+      <button class="btn" data-act="bkOpen">백업 · 복원</button>
       <button class="btn blue" data-act="toLib">카드 이미지 넣기</button>
     </div>
   </section>
@@ -3157,7 +3163,7 @@ const A={
   afs(d){const st=d.i;const i=G.I[st];const k=i.owner??G.view;openSheet(()=>head('알파 우주 정거장 · 버릴 카드 고르기')+`<p class="note">손에서 카드 1장을 버리면 ${G.P[k].hid==='captainmarvel'&&G.P[k].form==='ae'?'2장(Carol Danvers)':'1장'}을 뽑아요.</p><div class="row">${G.P[k].hand.map(x=>`<button class="slot" data-act="afsPick" data-i="${x}" data-s="${st}">${faceOf(G.I[x].cid,'a')}</button>`).join('')}</div>`)},
   afsPick(d){const st=G.I[d.s];const k=st.owner??G.view;const n=G.P[k].hid==='captainmarvel'&&G.P[k].form==='ae'?2:1;act(()=>{st.ex=true;moveTo(d.i,`p${k}.discard`);draw(k,n)});closeSheet();toast(`알파 우주 정거장 — ${n}장 뽑기`)},
   sfPractice(){SF={players:[{hid:'spiderman',aspect:'justice'},{hid:'captainmarvel',aspect:'aggression'}],scen:'rhino',mod:'bombscare',expert:false};store.set('mct_setup',SF);render()},
-  menu(){openSheet(()=>head('메뉴')+`<div class="mtiles"><button class="mtile" data-act="closeSheet"><b>▶</b>게임 계속하기</button><button class="mtile" data-act="toSetup"><b>✚</b>새 게임</button><button class="mtile" data-act="toLib"><b>▦</b>카드 보관함</button><button class="mtile" data-act="toDecks"><b>🂠</b>덱 빌더</button><button class="mtile" data-act="toStats"><b>♛</b>기록실</button><button class="mtile" data-act="tutAsk"><b>?</b>튜토리얼</button><button class="mtile" data-act="toStart"><b>⌂</b>처음 화면</button></div><p class="sub" style="margin-top:12px">게임은 이 기기에 자동 저장돼요. 언제든 처음 화면의 '이어하기'로 돌아올 수 있어요.</p>`)},
+  menu(){openSheet(()=>head('메뉴')+`<div class="mtiles"><button class="mtile" data-act="closeSheet"><b>▶</b>게임 계속하기</button><button class="mtile" data-act="toSetup"><b>✚</b>새 게임</button><button class="mtile" data-act="toLib"><b>▦</b>카드 보관함</button><button class="mtile" data-act="toDecks"><b>🂠</b>덱 빌더</button><button class="mtile" data-act="toStats"><b>♛</b>기록실</button><button class="mtile" data-act="bkOpen"><b>⇅</b>백업 · 복원</button><button class="mtile" data-act="tutAsk"><b>?</b>튜토리얼</button><button class="mtile" data-act="toStart"><b>⌂</b>처음 화면</button></div><p class="sub" style="margin-top:12px">게임은 이 기기에 자동 저장돼요. 언제든 처음 화면의 '이어하기'로 돌아올 수 있어요.</p>`)},
   toStart(){closeSheet();VIEW='start';render()},
   toSetup(){closeSheet();VIEW='setup';render()},
   toLib(){closeSheet();VIEW='lib';render()},
@@ -3700,6 +3706,43 @@ document.addEventListener('pointerup',e=>{if(!el||sx==null)return;const dx=e.cli
   if(Math.abs(dx)>45&&Math.abs(dx)>Math.abs(dy)*1.3){A.sfCycle({w,d:dx<0?1:-1});swipeEat=Date.now()}},{passive:true})})();
 let swipeEat=0;document.addEventListener('click',e=>{if(Date.now()-swipeEat<350){e.stopPropagation();e.preventDefault()}},true);
 /* =====================================================
+   백업 · 복원 (파일)
+   ===================================================== */
+const BK_KEYS=['mct_stats','mct_decks','mct_deckopt','mct_game','mct_setup','mct_meta','mct_tut_seen','mct_meta_v2'];
+function bkData(){const d={};BK_KEYS.forEach(k=>{try{const v=localStorage.getItem(k);if(v!=null)d[k]=v}catch(e){}});return {app:'champions-table',v:1,at:Date.now(),data:d}}
+function bkSummary(o){const g=k=>{try{return JSON.parse(o.data[k]||'null')}catch(e){return null}};const st=g('mct_stats')||{games:[],ach:{}};const dk=g('mct_decks')||[];const gm=g('mct_game');
+  return {games:(st.games||[]).length,wins:(st.games||[]).filter(x=>x.res==='win').length,ach:Object.keys(st.ach||{}).length,decks:dk.length,game:gm&&!gm.over?gm:null}}
+async function bkExport(){const o=bkData();const txt=JSON.stringify(o);const d=new Date();const pad=n=>String(n).padStart(2,'0');
+  const name=`champions-backup-${d.getFullYear()}${pad(d.getMonth()+1)}${pad(d.getDate())}-${pad(d.getHours())}${pad(d.getMinutes())}.json`;
+  const file=new File([txt],name,{type:'application/json'});
+  try{store.set('mct_lastbk',Date.now())}catch(e){}
+  try{if(navigator.canShare&&navigator.canShare({files:[file]})){await navigator.share({files:[file],title:'챔피언스 테이블 백업'});toast('백업 파일을 보냈어요');drawSheet();return}}catch(e){if(e&&e.name==='AbortError'){toast('백업을 취소했어요');return}}
+  const u=URL.createObjectURL(file);const a=document.createElement('a');a.href=u;a.download=name;document.body.appendChild(a);a.click();a.remove();setTimeout(()=>URL.revokeObjectURL(u),4000);toast('백업 파일을 저장했어요');drawSheet()}
+function bkSheet(){const s=bkSummary(bkData());const last=store.get('mct_lastbk',null);
+  return head('백업 · 복원')+`<p class="note">통계·도전과제, 직접 만든 덱, 진행 중인 게임, 설정을 파일 하나로 저장하거나 불러와요. 다른 기기로 옮기거나, 앱을 지우기 전에 써 주세요.<br><small>카드 이미지는 포함되지 않아요. 새 기기에는 카드 이미지 zip을 따로 한 번 넣어 주세요.</small></p>
+  <div class="bkbox"><div><b>${s.games}</b><small>기록된 게임</small></div><div><b>${s.ach}</b><small>도전과제</small></div><div><b>${s.decks}</b><small>나만의 덱</small></div><div><b>${s.game?'R'+s.game.round:'-'}</b><small>진행 중 게임</small></div></div>
+  <p class="sub">${last?`마지막 백업: ${new Date(last).toLocaleString('ko-KR')}`:'아직 백업한 적이 없어요.'}</p>
+  <div class="btns"><button class="btn go" data-act="bkExport">백업 파일 만들기</button><button class="btn blue" data-act="bkPick">백업 파일 불러오기</button></div>`}
+let BKIN=null;
+function bkInSheet(){const o=BKIN;if(!o)return null;const s=bkSummary(o);const cur=bkSummary(bkData());
+  return head('백업 불러오기')+`<p class="note">${new Date(o.at).toLocaleString('ko-KR')}에 만든 백업이에요.</p>
+  <div class="bkbox"><div><b>${s.games}</b><small>기록된 게임</small></div><div><b>${s.ach}</b><small>도전과제</small></div><div><b>${s.decks}</b><small>나만의 덱</small></div><div><b>${s.game?'R'+s.game.round:'-'}</b><small>진행 중 게임</small></div></div>
+  <div class="sec"><h4>합치기 (추천)</h4><p class="sub">지금 기기의 기록·덱은 그대로 두고, 백업에만 있는 기록과 덱을 더해요. 진행 중 게임은 ${cur.game?'지금 기기의 게임을 유지해요':'백업의 게임을 가져와요'}.</p><button class="btn go" data-act="bkMerge">합치기</button></div>
+  <div class="sec"><h4>덮어쓰기</h4><p class="sub">지금 기기의 기록·덱·게임을 지우고 백업 내용으로 바꿔요. (지금 기기: 게임 ${cur.games}판 · 덱 ${cur.decks}개)</p><button class="btn" data-act="bkReplace">덮어쓰기</button></div>`}
+function bkApply(mode){const o=BKIN;if(!o)return;const D=o.data;
+  if(mode==='replace'){BK_KEYS.forEach(k=>{try{if(D[k]!=null)localStorage.setItem(k,D[k]);else localStorage.removeItem(k)}catch(e){}})}
+  else{const P=(v,d)=>{try{return v?JSON.parse(v):d}catch(e){return d}};
+    const a=P(localStorage.getItem('mct_stats'),{games:[],ach:{}}),b=P(D.mct_stats,{games:[],ach:{}});const ids=new Set((a.games||[]).map(x=>x.id));
+    a.games=(a.games||[]).concat((b.games||[]).filter(x=>!ids.has(x.id))).sort((x,y)=>x.at-y.at);a.ach=Object.assign({},b.ach||{},a.ach||{});localStorage.setItem('mct_stats',JSON.stringify(a));
+    const da=P(localStorage.getItem('mct_decks'),[]),db_=P(D.mct_decks,[]);const did=new Set(da.map(x=>x.id));localStorage.setItem('mct_decks',JSON.stringify(da.concat(db_.filter(x=>!did.has(x.id)))));
+    if(!localStorage.getItem('mct_game')&&D.mct_game)localStorage.setItem('mct_game',D.mct_game);
+    ['mct_tut_seen','mct_meta_v2'].forEach(k=>{if(D[k]!=null&&localStorage.getItem(k)==null)localStorage.setItem(k,D[k])})}
+  BKIN=null;sessionStorage.setItem('mct_bkdone',mode);location.reload()}
+Object.assign(A,{bkOpen(){openSheet(bkSheet)},bkExport(){bkExport()},bkPick(){$('#bkFile').click()},bkMerge(){bkApply('merge')},bkReplace(){bkApply('replace')}});
+document.addEventListener('change',async e=>{if(e.target.id!=='bkFile')return;const f=e.target.files[0];e.target.value='';if(!f)return;
+  try{const o=JSON.parse(await f.text());if(!o||o.app!=='champions-table'||!o.data)throw 0;BKIN=o;openSheet(bkInSheet)}catch(err){toast('챔피언스 테이블 백업 파일이 아니에요')}});
+setTimeout(()=>{try{const m=sessionStorage.getItem('mct_bkdone');if(m){sessionStorage.removeItem('mct_bkdone');toast(m==='merge'?'백업을 합쳤어요':'백업으로 덮어썼어요')}}catch(e){}},600);
+/* =====================================================
    덱 빌더
    ===================================================== */
 let DECKS=store.get('mct_decks',[]);let DOPT=store.get('mct_deckopt',{phys:false});
@@ -3805,7 +3848,7 @@ function statsHTML(){const gs=STATS.games,ws=W();
   const recent=gs.slice().reverse().slice(0,15).map(g=>{const d=new Date(g.at);return `<div class="rg ${g.res}"><span class="rr">${g.res==='win'?'승리':'패배'}</span><span class="rd">${d.getMonth()+1}/${d.getDate()}</span><b>${g.heroes.map(h=>esc(HEROES[h.hid].name)+`<small> ${ASPECTS[h.aspect][0]}${h.deck?' · '+esc(h.deck):''}</small>`).join(' + ')}</b><span>vs ${esc(SCEN[g.scen].name)}${g.expert?' (전문가)':''}</span><span class="sub">R${g.rounds}${g.nem?' · 숙적 등장':''}${g.cause==='scheme'?' · 음모 완성':g.cause==='heroes'?' · 탈락':''}</span></div>`}).join('')||'<p class="sub">아직 기록된 게임이 없어요. 게임을 끝까지 하면 여기에 쌓여요.</p>';
   const got=ACH.filter(a=>STATS.ach[a.id]).length;
   const ach=ACH.map(a=>`<div class="ach ${STATS.ach[a.id]?'on':''}"><span class="aic">${STATS.ach[a.id]?a.ic:'?'}</span><b>${a.t}</b><small>${a.d}</small></div>`).join('');
-  return `<header class="bar"><button class="brand" data-act="toStart" aria-label="처음으로"><span class="lg">챔피언스 테이블</span></button><span class="phs player">기록실</span><span class="sp"></span><div class="btns">${G?'<button class="btn" data-act="resume">게임으로</button>':''}</div></header>
+  return `<header class="bar"><button class="brand" data-act="toStart" aria-label="처음으로"><span class="lg">챔피언스 테이블</span></button><span class="phs player">기록실</span><span class="sp"></span><div class="btns"><button class="btn" data-act="bkOpen">백업</button>${G?'<button class="btn" data-act="resume">게임으로</button>':''}</div></header>
   <section class="mz st"><span class="zl">한눈에 보기</span><div class="stiles">${tile('플레이',gs.length,'판')}${tile('승리',ws.length,'판')}${tile('승률',pct(ws.length,gs.length))}${tile('도전과제',`${got}/${ACH.length}`)}${tile('최단 승리',ws.length?Math.min(...ws.map(x=>x.rounds)):'-',ws.length?'라운드':'')}</div></section>
   <section class="mz st"><span class="zl">도전과제 ${got} / ${ACH.length}</span><div class="achs">${ach}</div></section>
   <section class="mz st"><span class="zl">히어로 × 빌런</span><p class="sub">아직 비어 있는 칸이 다음 도전이에요.</p>${mx}</section>

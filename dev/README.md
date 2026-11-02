@@ -2,3 +2,4 @@
 - ui-b.patch: 인계 zip의 app/champions-table.source.html에 적용하는 변경분 (patch -p0 또는 수동 적용)
 - 완료: 2-1 B안 배치(gameB), 폰 가로 고정, 동료 그림 자르기(비용 아래부터), 튜토리얼 중엔 예전 화면
 - 다음: 2-2 다듬기(빌런 공격 연출 화면 확인, 일상 형태 표시, 시트 위치), 3단계 끌어서 겨냥, 4단계 다음 행동·상태 아이콘 정리, 5단계 무대 연출, 튜토리얼 새 화면 대응
+- 글꼴: 소스가 fonts/*.woff(인계 zip assets/fonts의 black-han-sans·noto-sans-kr 400/700/900)를 상대 경로로 읽음 → 웹앱 올릴 때 fonts 폴더 복사 + sw.js 캐시 목록에 추가할 것

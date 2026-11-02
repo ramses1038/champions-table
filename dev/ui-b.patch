@@ -1,5 +1,5 @@
 --- work/app/champions-table.before-ui.html	2026-11-02 16:19:05.039783002 +0900
-+++ champions-table.html	2026-11-02 17:11:22.826507180 +0900
++++ champions-table.html	2026-11-02 17:17:53.698499210 +0900
 @@ -9,7 +9,7 @@
    --blue:#3a6db5; --blue-l:#93b6e2; --navy:#16285a; --green:#2f9e4f; --purple:#7442a0;
    --paper:#f8f1e4; --ink:#1a1c29; --muted:#5b5e6e; --white:#ffffff;
@@ -46,12 +46,12 @@
 +.btabs{position:absolute;left:12px;top:46px;display:flex;gap:4px;z-index:19}
 +.btab{font:900 10px var(--f-body);padding:2px 8px;border-radius:9px;background:#ffffff18;border:1px solid #fff4;color:#fff}.btab.on{background:var(--yel);color:#222;border-color:var(--yel)}
 +.bbanners{position:absolute;left:50%;top:46px;transform:translateX(-50%);z-index:25;display:flex;flex-direction:column;gap:6px}
-+.bcolL,.bcolR{position:absolute;top:52px;display:flex;flex-direction:column;gap:8px;width:190px;overflow-y:auto;overflow-x:visible;max-height:calc(100% - 52px - 120px);padding-right:8px}
++.bcolL,.bcolR{position:absolute;top:52px;display:flex;flex-direction:column;gap:8px;width:var(--colw,190px);overflow-y:auto;overflow-x:visible;max-height:calc(100% - 52px - 120px);padding-right:8px}
 +.bcolL{left:14px}.bcolR{right:14px}
 +.bcap{font:900 9px var(--f-body);color:#9fb3db}
 +.brow{display:flex;gap:7px;align-items:center;background:#0a1430b0;border:1px solid #ffffff22;border-radius:9px;padding:5px;flex:none}
 +.bth{position:relative;flex:none}
-+.bth>.slot{width:76px;height:54px;aspect-ratio:auto;border-radius:6px;overflow:hidden}
++.bth>.slot{width:var(--thw,76px);height:calc(var(--thw,76px)*.71);aspect-ratio:auto;border-radius:6px;overflow:hidden}
 +.bth>.slot .face{inset:0;width:auto;height:auto;transform:none;border:2px solid #fff;border-radius:6px;box-shadow:none}
 +.bth>.slot .face img{position:absolute;left:0;top:0;width:106.4%;height:auto;object-fit:fill;transform:translateY(-13%)}
 +.bcolR .bth>.slot .face{border-color:#ff9a8f}
@@ -73,7 +73,7 @@
 +.bthr{display:inline-flex;align-items:center;gap:4px;margin-top:3px;background:#2a1748;border:1.5px solid #b98ae6;border-radius:10px;padding:1px 9px 1px 5px}
 +.bthr .ico{width:18px!important;height:18px!important}.bthr b{font:22px/22px var(--f-num);letter-spacing:.05em}.bthr small{font:900 10px var(--f-body);color:#d9c2ff}
 +.bbig{position:absolute;top:96px;display:flex;flex-direction:column;align-items:center;width:var(--bcw);--cw:var(--bcw)}
-+.bhero{left:218px}.bvil{right:218px}
++.bhero{left:calc(var(--colw,190px) + 30px)}.bvil{right:calc(var(--colw,190px) + 30px)}
 +.bcard{position:relative}
 +.bcard>.slot .face{border-radius:10px;border:2px solid #fff;box-shadow:0 8px 18px #000a}
 +.bhero .bcard>.slot .face{border-color:var(--yel);box-shadow:0 0 18px #ffd64055,0 8px 18px #000a}.bvil .bcard>.slot .face{border-color:#ff6b5f}
@@ -106,7 +106,7 @@
 +/* 사용한(소진) 카드: 흑백 */
 +#bstage .slot.ex:not(.land){width:var(--cw);aspect-ratio:63/88}
 +#bstage .slot.ex:not(.land) .face{inset:0;width:auto;height:auto;transform:none}
-+#bstage .bth>.slot.ex:not(.land){width:76px;aspect-ratio:auto}
++#bstage .bth>.slot.ex:not(.land){width:var(--thw,76px);aspect-ratio:auto}
 +#bstage .slot.ex .face{filter:grayscale(1) brightness(.78)}
 +#bstage .slot.ex.land .face{transform:none}
 +#bstage .bth>.slot.ex::after{font-size:8px;left:2px;bottom:2px;padding:0 3px}
@@ -142,7 +142,7 @@
  }
  
  const LASTV={};
-@@ -2518,6 +2623,62 @@
+@@ -2518,6 +2623,64 @@
    ${handFan(p)}`;
  }
  
@@ -199,13 +199,15 @@
 +function bFit(){const st=document.getElementById('bstage');document.body.classList.toggle('bui',!!st);if(!st)return;
 +  const W=innerWidth,H=innerHeight,k=Math.min(H/390,W/844),Wl=W/k,Hl=H/k;st.style.width=Wl+'px';st.style.height=Hl+'px';st.style.transform='scale('+k+')';
 +  const short=Hl<450;st.classList.toggle('short',short);const hd=document.querySelector('.hand2');const hh=hd?hd.offsetHeight/k:90;
-+  const cw=short?Math.min((Wl-436-60)/2,(Hl-88-hh-12)/1.397):Math.min((Wl-436-60)/2,(Hl-96-150-40)/1.397);const extra=G&&G.P?(G.P.length-1)*14:0;st.style.setProperty('--bcw',Math.max(60,cw-extra)+'px')}
++  const others=G&&G.P?G.P.length-1:0;const mid=34+others*13;const colw=166,thw=68;st.style.setProperty('--colw',colw+'px');st.style.setProperty('--thw',thw+'px');
++  const wl=(Wl-2*(colw+30)-mid)/2;const hlim=short?(Hl-88-hh-12)/1.397:(Hl-96-150-40)/1.397;
++  st.style.setProperty('--bcw',Math.max(60,Math.min(wl,hlim))+'px')}
 +addEventListener('resize',()=>{try{bFit()}catch(e){}});
 +
  function basicBtns(k){const p=G.P[k];const m=meta(HEROES[p.hid].identity);const ex=G.I[p.id].ex;
    const b=p.form==='hero'?[['atk','기본 공격',heroStat(k,'atk'),'go'],['thw','기본 저지',heroStat(k,'thw'),'blue']]:[['rec','기본 회복',m.rec,'']];
    return `<div class="btns">${b.map(([t,l,v,c])=>`<button class="btn sm ${c}" data-act="basic" data-k="${k}" data-t="${t}" ${ex||p.elim?'disabled':''}>${l} ${v??'?'}</button>`).join('')}</div>${ex?'<span class="sub">아이덴티티 카드가 소진돼 있어요</span>':''}${idActs(k)}`}
-@@ -3979,7 +4140,7 @@
+@@ -3979,7 +4142,7 @@
    document.addEventListener('touchend',end);document.addEventListener('touchcancel',end)})();
  /* 폰은 세로 고정 */
  (()=>{const phone=()=>Math.min(screen.width,screen.height)<600;

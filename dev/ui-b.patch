@@ -1,5 +1,5 @@
 --- work/app/champions-table.before-ui.html	2026-11-02 16:19:05.039783002 +0900
-+++ champions-table.html	2026-11-02 16:51:33.916165431 +0900
++++ champions-table.html	2026-11-02 17:05:26.206826209 +0900
 @@ -9,7 +9,7 @@
    --blue:#3a6db5; --blue-l:#93b6e2; --navy:#16285a; --green:#2f9e4f; --purple:#7442a0;
    --paper:#f8f1e4; --ink:#1a1c29; --muted:#5b5e6e; --white:#ffffff;
@@ -18,7 +18,7 @@
    #rotateMsg{display:grid;position:fixed;inset:0;z-index:999;place-items:center;background:#16233f;color:#fff;font:800 18px var(--f-body);text-align:center}
    #rotateMsg b{display:block;font-size:56px;color:var(--yel);animation:rot 1.6s ease-in-out infinite}
    @keyframes rot{50%{transform:rotate(-90deg)}}
-@@ -768,6 +768,102 @@
+@@ -768,6 +768,103 @@
  .ccode{position:absolute;right:4px;bottom:3px;font:400 10px var(--f-num);opacity:.7;letter-spacing:.5px}
  .catinfo .lead{font-size:13px}
  @media (prefers-reduced-motion:reduce){*{transition:none!important;animation:none!important}}
@@ -29,7 +29,8 @@
 +#bstage .ico{width:18px;height:18px;flex:none}
 +.btop{position:absolute;left:0;right:0;top:0;height:40px;display:flex;align-items:center;gap:14px;padding:0 12px;background:linear-gradient(#0a1124,#0e1830ee);border-bottom:2px solid #2c3f6c;font-size:12px;z-index:20}
 +.bhn{font:17px var(--f-disp);letter-spacing:.02em;white-space:nowrap}
-+.brnd{display:flex;align-items:center;gap:5px;font:700 13px var(--f-body);white-space:nowrap}.brnd b{font:18px var(--f-num);letter-spacing:.04em}
++.brnd{display:flex;align-items:baseline;gap:1px;font:13px var(--f-num);letter-spacing:.04em;color:#fff;white-space:nowrap;margin-left:-6px}.brnd b{font:21px var(--f-num);color:var(--yel);letter-spacing:.04em}
++.bmenu{width:30px;height:30px;border-radius:8px;border:1.5px solid #ffffff55;background:#ffffff14;display:flex;flex-direction:column;justify-content:center;gap:4px;padding:0 7px;cursor:pointer;flex:none}.bmenu i{display:block;height:2.5px;border-radius:2px;background:#fff}
 +.bsch{position:absolute;left:50%;top:4px;transform:translateX(-50%);display:flex;align-items:center;gap:8px;background:#1d1236;border:2px solid #8f5ccc;border-radius:10px;padding:3px 10px 3px 4px;box-shadow:0 2px 8px #0008;color:#fff;font-family:var(--f-body)}
 +.bsci{position:relative;flex:none;width:44px;height:30px;border-radius:6px;overflow:hidden;border:1px solid #fff4}
 +.bsci .face{position:absolute;inset:0;width:auto;height:auto;transform:none;border:0;border-radius:0;box-shadow:none}.bsci .face img{object-fit:cover}.bsci .face .ph b,.bsci .face .ph small{display:none}
@@ -121,7 +122,7 @@
  </style>
  
  <div class="app" id="app"></div>
-@@ -2408,10 +2504,11 @@
+@@ -2408,10 +2505,11 @@
    else if(VIEW==='lib')app.innerHTML=libHTML();
    else if(VIEW==='stats')app.innerHTML=statsHTML();
    else if(VIEW==='decks')app.innerHTML=decksHTML();
@@ -134,7 +135,7 @@
  }
  
  const LASTV={};
-@@ -2518,6 +2615,63 @@
+@@ -2518,6 +2616,62 @@
    ${handFan(p)}`;
  }
  
@@ -166,12 +167,11 @@
 +  return `
 +  <div id="bstage">
 +  <header class="btop">
-+    <span class="bhn">${esc(h.name)}</span><span class="brnd"><svg class="ico" viewBox="0 0 24 24"><path fill="#ffd640" d="M5 3h14v4H5zM5 9h14v4H5zM5 15h14v4H5z" opacity=".9"/></svg><b>${G.round}</b>R</span>
++    <button class="bmenu" data-act="menu" aria-label="메뉴"><i></i><i></i><i></i></button><span class="bhn">${esc(h.name)}</span><span class="brnd"><b>${G.round}</b>R</span>
 +    <button class="bsch" data-act="card" data-i="${G.sch.iid}"><span class="bsci">${faceOf(scid(),G.I[G.sch.iid].side)}</span><span class="bsct">${esc(nm(scid(),G.I[G.sch.iid].side))}</span><span class="bscv">${G.sch.threat}<small>/${tgt??'?'}</small></span><span class="bsca">다음 +${add}</span>${crisis?'<span class="bscc">위기 · 저지 불가</span>':''}</button>
 +    <div class="bright">
 +      <button class="bbtn" data-act="undo" ${hist.length?'':'disabled'}>되돌리기</button>
 +      ${G.phase==='player'?'<button class="bbtn end" data-act="endPlayer">페이즈 종료</button>':'<button class="bbtn vw" data-act="vwOpen">진행 화면</button>'}
-+      <button class="bgear" data-act="menu" aria-label="메뉴"><svg viewBox="0 0 24 24" width="26" height="26"><path fill="#cfd8ea" d="M19.4 13a7.6 7.6 0 0 0 0-2l2.1-1.6-2-3.4-2.5 1a7.4 7.4 0 0 0-1.7-1L15 3h-4l-.4 2.6a7.4 7.4 0 0 0-1.7 1l-2.5-1-2 3.4L6.6 11a7.6 7.6 0 0 0 0 2l-2.1 1.6 2 3.4 2.5-1a7.4 7.4 0 0 0 1.7 1L11 21h4l.4-2.6a7.4 7.4 0 0 0 1.7-1l2.5 1 2-3.4zM13 15a3 3 0 1 1 0-6 3 3 0 0 1 0 6z"/></svg></button>
 +    </div>
 +  </header>
 +  ${G.P.length>1?`<nav class="btabs">${G.P.map((q,x)=>`<button class="btab ${x===k?'on':''}" data-act="view" data-k="${x}">${esc(HEROES[q.hid].name)}${q.elim?' · 탈락':''}</button>`).join('')}</nav>`:''}

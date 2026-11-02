@@ -1,5 +1,5 @@
 --- work/app/champions-table.before-ui.html	2026-11-02 16:19:05.039783002 +0900
-+++ champions-table.html	2026-11-02 17:17:53.698499210 +0900
++++ champions-table.html	2026-11-02 17:23:12.223706947 +0900
 @@ -9,7 +9,7 @@
    --blue:#3a6db5; --blue-l:#93b6e2; --navy:#16285a; --green:#2f9e4f; --purple:#7442a0;
    --paper:#f8f1e4; --ink:#1a1c29; --muted:#5b5e6e; --white:#ffffff;
@@ -18,7 +18,7 @@
    #rotateMsg{display:grid;position:fixed;inset:0;z-index:999;place-items:center;background:#16233f;color:#fff;font:800 18px var(--f-body);text-align:center}
    #rotateMsg b{display:block;font-size:56px;color:var(--yel);animation:rot 1.6s ease-in-out infinite}
    @keyframes rot{50%{transform:rotate(-90deg)}}
-@@ -768,6 +768,110 @@
+@@ -768,6 +768,124 @@
  .ccode{position:absolute;right:4px;bottom:3px;font:400 10px var(--f-num);opacity:.7;letter-spacing:.5px}
  .catinfo .lead{font-size:13px}
  @media (prefers-reduced-motion:reduce){*{transition:none!important;animation:none!important}}
@@ -103,6 +103,20 @@
 +.bbkn{position:absolute;right:1px;top:10px;writing-mode:vertical-rl;font:11px var(--f-disp);color:#fff;text-shadow:0 1px 2px #000;white-space:nowrap}
 +.bbkh{position:absolute;right:1px;bottom:10px;writing-mode:vertical-rl;font:12px var(--f-num);letter-spacing:.05em;color:#9be36a;text-shadow:0 1px 2px #000}
 +.bcard>.slot{position:relative;z-index:2}
++
++/* 화면이 높을 때(아이패드 4:3): 목록을 아래 띠로 */
++#bstage.tall .bbig{top:74px}
++#bstage.tall .bhero{left:auto;right:calc(50% + var(--mid,34px)/2 + 6px)}
++#bstage.tall .bvil{right:auto;left:calc(50% + 17px)}
++#bstage.tall .bcolL,#bstage.tall .bcolR{top:calc(74px + var(--bcw)*1.397 + 58px);max-height:none;bottom:auto;flex-direction:row;flex-wrap:nowrap;gap:6px;overflow-x:auto;overflow-y:hidden;width:calc(50% - 22px);padding:16px 0 4px;align-items:stretch}
++#bstage.tall .bcolL{left:14px}#bstage.tall .bcolR{right:14px}
++#bstage.tall .bcap{position:absolute;top:0;left:2px}
++#bstage.tall .brow{width:170px}
++#bstage.tall .bups{left:14px;top:74px;bottom:auto}
++#bstage.tall .bups .trow{display:flex;flex-direction:column;gap:4px}
++#bstage.tall .bups .trow .cap{position:static}
++#bstage.tall .bups .trow .urow{flex-direction:column;gap:6px}
++#bstage.tall .bups .trow .urow .slot{--cw:44px}
 +/* 사용한(소진) 카드: 흑백 */
 +#bstage .slot.ex:not(.land){width:var(--cw);aspect-ratio:63/88}
 +#bstage .slot.ex:not(.land) .face{inset:0;width:auto;height:auto;transform:none}
@@ -129,7 +143,7 @@
  </style>
  
  <div class="app" id="app"></div>
-@@ -2408,10 +2512,11 @@
+@@ -2408,10 +2526,11 @@
    else if(VIEW==='lib')app.innerHTML=libHTML();
    else if(VIEW==='stats')app.innerHTML=statsHTML();
    else if(VIEW==='decks')app.innerHTML=decksHTML();
@@ -142,7 +156,7 @@
  }
  
  const LASTV={};
-@@ -2518,6 +2623,64 @@
+@@ -2518,6 +2637,66 @@
    ${handFan(p)}`;
  }
  
@@ -201,13 +215,15 @@
 +  const short=Hl<450;st.classList.toggle('short',short);const hd=document.querySelector('.hand2');const hh=hd?hd.offsetHeight/k:90;
 +  const others=G&&G.P?G.P.length-1:0;const mid=34+others*13;const colw=166,thw=68;st.style.setProperty('--colw',colw+'px');st.style.setProperty('--thw',thw+'px');
 +  const wl=(Wl-2*(colw+30)-mid)/2;const hlim=short?(Hl-88-hh-12)/1.397:(Hl-96-150-40)/1.397;
++  const tall=!short&&Hl>=560&&/tall/.test(location.hash);st.classList.toggle('tall',tall);
++  if(tall){st.style.setProperty('--mid',mid+'px');const ch=(Hl-74-30-28-92-hh-8)/1.397;st.style.setProperty('--bcw',Math.max(60,Math.min((Wl-150-mid)/2,ch))+'px');return}
 +  st.style.setProperty('--bcw',Math.max(60,Math.min(wl,hlim))+'px')}
 +addEventListener('resize',()=>{try{bFit()}catch(e){}});
 +
  function basicBtns(k){const p=G.P[k];const m=meta(HEROES[p.hid].identity);const ex=G.I[p.id].ex;
    const b=p.form==='hero'?[['atk','기본 공격',heroStat(k,'atk'),'go'],['thw','기본 저지',heroStat(k,'thw'),'blue']]:[['rec','기본 회복',m.rec,'']];
    return `<div class="btns">${b.map(([t,l,v,c])=>`<button class="btn sm ${c}" data-act="basic" data-k="${k}" data-t="${t}" ${ex||p.elim?'disabled':''}>${l} ${v??'?'}</button>`).join('')}</div>${ex?'<span class="sub">아이덴티티 카드가 소진돼 있어요</span>':''}${idActs(k)}`}
-@@ -3979,7 +4142,7 @@
+@@ -3979,7 +4158,7 @@
    document.addEventListener('touchend',end);document.addEventListener('touchcancel',end)})();
  /* 폰은 세로 고정 */
  (()=>{const phone=()=>Math.min(screen.width,screen.height)<600;

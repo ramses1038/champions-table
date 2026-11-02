@@ -1,0 +1,146 @@
+--- work/app/champions-table.before-ui.html	2026-11-02 16:19:05.039783002 +0900
++++ champions-table.html	2026-11-02 16:23:48.872047273 +0900
+@@ -648,7 +648,7 @@
+ #sheet .panel2::before{content:"";display:block;width:46px;height:5px;border-radius:3px;background:rgba(26,28,41,.25);margin:-6px auto 8px}
+ #sheet.stage .panel2::before{background:rgba(255,255,255,.25)}
+ #rotateMsg{display:none}
+-@media (orientation:landscape) and (max-height:500px) and (hover:none){
++@media (orientation:portrait) and (max-width:600px) and (hover:none){
+   #rotateMsg{display:grid;position:fixed;inset:0;z-index:999;place-items:center;background:#16233f;color:#fff;font:800 18px var(--f-body);text-align:center}
+   #rotateMsg b{display:block;font-size:56px;color:var(--yel);animation:rot 1.6s ease-in-out infinite}
+   @keyframes rot{50%{transform:rotate(-90deg)}}
+@@ -768,6 +768,58 @@
+ .ccode{position:absolute;right:4px;bottom:3px;font:400 10px var(--f-num);opacity:.7;letter-spacing:.5px}
+ .catinfo .lead{font-size:13px}
+ @media (prefers-reduced-motion:reduce){*{transition:none!important;animation:none!important}}
++
++/* ---------- 전투 화면 B안(가로) ---------- */
++#bstage{position:fixed;inset:0;overflow:hidden;color:#fff;--top:54px;--colw:clamp(150px,19vw,240px);--bot:calc(var(--hcw)*1.4*.62 + 64px);
++ --bcw:min(calc((100vw - 2*var(--colw) - 110px)/2),calc((100vh - var(--top) - var(--bot) - 84px)/1.397));
++ background:radial-gradient(rgba(255,255,255,.07) 1.2px,transparent 1.3px) 0 0/9px 9px,radial-gradient(ellipse 70% 55% at 50% 50%,#22355e 0%,var(--mat) 62%,#0c1630 100%)}
++#bstage.tabs{--top:84px}
++#bstage .ico{width:16px;height:16px;flex:none}
++.bbar{position:absolute;left:0;right:0;top:0;height:44px;display:flex;align-items:center;gap:10px;padding:0 10px;padding-left:max(10px,env(safe-area-inset-left));padding-right:max(10px,env(safe-area-inset-right));background:linear-gradient(#0a1124,#0e1830f0);border-bottom:2px solid #2c3f6c;z-index:20}
++.bbar .sp{flex:1}.bmenu{width:34px;height:34px;border-radius:9px;border:1.5px solid #fff4;background:#ffffff14;color:#fff;font:900 18px var(--f-body)}
++.bhn{font:17px var(--f-disp);white-space:nowrap}.brnd{font:900 12px var(--f-body);color:#cfd8ea}.brnd b{font:20px var(--f-num);color:var(--yel);margin-right:2px}
++.bphs{font:900 11px var(--f-body);padding:2px 8px;border-radius:9px;background:#2c5594}.bphs.villain{background:#a91d14}
++.bsch{position:absolute;left:50%;top:4px;transform:translateX(-50%);display:flex;align-items:center;gap:8px;background:#1d1236;border:2px solid #8f5ccc;border-radius:10px;padding:3px 10px;color:#fff;max-width:44vw}
++.bsct{font:13px var(--f-disp);color:#e7d7ff;white-space:nowrap;overflow:hidden;text-overflow:ellipsis;max-width:14vw}.bscv{font:24px var(--f-num);letter-spacing:.05em}.bscv small{font-size:16px;color:#c9a9f3}
++.bsca{font:900 11px var(--f-body);background:#8f5ccc;border-radius:9px;padding:1px 7px;white-space:nowrap}.bscc{font:900 11px var(--f-body);background:#e05d2a;border-radius:9px;padding:1px 7px;white-space:nowrap}
++.bbar .btn{white-space:nowrap}.bend{background:linear-gradient(#e2473b,#a91d14)!important;color:#fff!important;border-color:#fff!important}
++.btabs{position:absolute;left:10px;top:50px;display:flex;gap:6px;z-index:19}.btabs .chip.on{background:var(--yel);color:#222}
++.bbanners{position:absolute;left:50%;top:calc(var(--top) + 4px);transform:translateX(-50%);z-index:25;display:flex;flex-direction:column;gap:6px}
++.bcolL,.bcolR{position:absolute;top:var(--top);bottom:var(--bot);width:var(--colw);display:flex;flex-direction:column;gap:7px;overflow-y:auto;overflow-x:visible;padding:2px 6px 6px}
++.bcolL{left:4px}.bcolR{right:4px}
++.bcolL .cap,.bcolR .cap,.bups .cap{font:900 10px var(--f-body);color:#9fb3db}
++.brow{display:flex;gap:7px;align-items:center;background:#0a1430b0;border:1px solid #ffffff22;border-radius:9px;padding:5px;flex:none}
++.bth{position:relative;flex:none}
++.bth>.slot{--cw:clamp(60px,7vw,86px);aspect-ratio:1.53;border-radius:6px;overflow:hidden}
++.bth>.slot .face{border-width:2px}.bth>.slot .face img{position:absolute;left:0;top:0;width:106.4%;height:auto;object-fit:fill;transform:translateY(-13%)}
++.brow.land .bth>.slot{--cw:34px;aspect-ratio:88/63;overflow:visible}
++.binf{flex:1;min-width:0}.brn{font:12px var(--f-disp);display:flex;align-items:center;gap:5px;white-space:nowrap;overflow:hidden;text-overflow:ellipsis}
++.bint{display:inline-flex;align-items:center;gap:2px;font:16px var(--f-num);letter-spacing:.04em;background:#0b1020e6;border:1.5px solid #fff5;border-radius:11px;padding:0 7px 0 4px}
++.bint small{font:900 9px var(--f-body);color:var(--yel);margin-left:2px}
++.bhp{position:relative;height:14px;border-radius:7px;background:#0009;border:1.5px solid #000;margin-top:3px;overflow:hidden;width:100%}.bhp.big{height:18px;margin-top:8px}
++.bhp i{position:absolute;left:0;top:0;bottom:0;border-radius:6px}.bhp span{position:relative;display:block;text-align:center;font:13px/12px var(--f-num);letter-spacing:.06em;text-shadow:0 1px 1px #000}.bhp.big span{font-size:16px;line-height:16px}
++.bhp.hph i{background:linear-gradient(#9be36a,#3e9c2c)}.bhp.hpe i{background:linear-gradient(#ff6a5c,#c9221a)}
++.bsts{display:flex;flex-wrap:wrap;gap:3px;margin-top:3px;min-height:14px}
++.bst{font:900 9px/14px var(--f-body);padding:0 5px;border-radius:8px;background:#5b5e6e}.bst.stun{background:#e05d2a}.bst.conf{background:#7a59d6}.bst.tough{background:#e8b31c;color:#231}.bst.cri{background:#7442a0}.bst.acc{background:#c8281e}.bst.haz{background:#2f8a45}
++.bthr{display:inline-flex;align-items:center;gap:4px;margin-top:2px;background:#2a1748;border:1.5px solid #b98ae6;border-radius:10px;padding:0 9px 0 5px}.bthr .ico{width:16px;height:16px}.bthr b{font:20px/22px var(--f-num)}.bthr small{font:900 9px var(--f-body);color:#d9c2ff}
++div.bbig{position:absolute;top:calc(var(--top) + 22px);display:flex;flex-direction:column;align-items:center;width:var(--bcw);--cw:var(--bcw)}
++.bhero{left:calc(var(--colw) + 24px)}.bvil{right:calc(var(--colw) + 24px)}
++.bcard{position:relative}.bbig .bsts,.bbig .bacts{--cw:auto}
++.bhero .bcard>.slot .face{box-shadow:0 0 0 3px var(--yel),0 0 18px #ffd64055,0 8px 18px #000a}.bvil .bcard>.slot .face{box-shadow:0 0 0 3px #ff6b5f,0 8px 18px #000a}
++.bform{position:absolute;left:0;top:-21px;padding:0 9px;height:18px;border-radius:9px;background:#c8281e;border:1.5px solid #fff;font:900 10px/15px var(--f-body)}.bform.alter{background:#2c5594}
++.bflip{position:absolute;right:-10px;bottom:-10px;width:32px;height:32px;border-radius:50%;background:var(--navy);border:2px solid var(--yel);display:grid;place-items:center;z-index:3;box-shadow:0 2px 6px #0009}
++.bflip[data-used]{opacity:.45}
++.bintent{position:absolute;top:-30px;display:flex;gap:5px}
++.btuck{position:absolute;right:-12px;top:22%;display:flex;flex-direction:column;gap:3px;z-index:4}
++.btc>.slot{--cw:28px;border-radius:4px}.btc.mine>.slot .face{border-color:#5aa0ff}.btc.enc>.slot .face{border-color:#ff6b5f}
++.bth .btuck{right:-8px;top:auto;bottom:-6px}.bth .btc>.slot{--cw:20px}
++.bacts{display:flex;flex-wrap:wrap;gap:5px;justify-content:center;margin-top:4px}.bacts .btn{font-size:12px;padding:4px 9px}.bacts .sub{display:none}
++.bups{position:absolute;left:calc(var(--colw) + 24px);bottom:calc(var(--hcw)*1.4*.62 + 14px);max-width:calc(50vw - var(--colw) - 30px)}
++.bups .trow .urow .slot{--cw:clamp(34px,3.8vw,46px)}.bups .trow .urow.none{font-size:10px;color:#9fb3db}
++.bpiles{position:absolute;bottom:10px;display:flex;gap:8px;z-index:31}.bpl{left:max(10px,env(safe-area-inset-left))}.bpr{right:max(10px,env(safe-area-inset-right))}
++.bpiles .slot{--cw:clamp(40px,4.4vw,54px)}
++.blimbo .slot{--cw:44px}.bnone{font:900 10px var(--f-body);color:#6f82ab;padding:4px}
++#bstage .hlab{display:none}
+ </style>
+ 
+ <div class="app" id="app"></div>
+@@ -2408,7 +2460,7 @@
+   else if(VIEW==='lib')app.innerHTML=libHTML();
+   else if(VIEW==='stats')app.innerHTML=statsHTML();
+   else if(VIEW==='decks')app.innerHTML=decksHTML();
+-  else if(G)app.innerHTML=gameHTML();
++  else if(G)app.innerHTML=((UI.oldUI||(typeof tutCur==='function'&&tutCur()))?gameHTML():gameB());
+   else{VIEW='start';app.innerHTML=startHTML()}
+   document.body.classList.toggle('ingame',VIEW==='game'&&!!G);
+   $('#overRoot').innerHTML=(VIEW==='game'&&G&&G.over)?overHTML():'';
+@@ -2518,6 +2570,57 @@
+   ${handFan(p)}`;
+ }
+ 
++
++/* ---------- 전투 화면 B안(가로) ---------- */
++const SWD='<svg class="ico" viewBox="0 0 24 24"><path fill="#ff6b5f" d="M14.5 3 21 3l0 6.5-9.9 9.9 1.4 1.4-1.4 1.4-2.1-2.1-3.5 3.5-1.4-1.4 3.5-3.5L5.5 16.6l1.4-1.4 1.4 1.4z"/></svg>';
++const SCH='<svg class="ico" viewBox="0 0 24 24"><circle cx="12" cy="12" r="9" fill="none" stroke="#c79bff" stroke-width="2.5"/><circle cx="12" cy="12" r="3.5" fill="#c79bff"/></svg>';
++const FLIP='<svg viewBox="0 0 24 24" width="20" height="20"><g transform="matrix(-1 0 0 1 24 0)"><path d="M19 12a7 7 0 1 1-2.05-4.95" fill="none" stroke="#ffd640" stroke-width="2.6" stroke-linecap="round"/><path d="M20.5 3.5v5.2h-5.2z" fill="#ffd640" stroke="#ffd640" stroke-width="1.2" stroke-linejoin="round"/></g></svg>';
++function bBar(v,mx,cls){const p=mx?Math.max(0,Math.min(1,v/mx))*100:100;return `<div class="bhp ${cls}"><i style="width:${p}%"></i><span>${Math.max(0,v)}${mx?'/'+mx:''}</span></div>`}
++function bSts(i){let s='';if(i.st.stun)s+='<span class="bst stun">기절</span>';if(i.st.conf)s+='<span class="bst conf">혼란</span>';if(i.st.tough)s+='<span class="bst tough">강인</span>';if(i.cnt)s+=`<span class="bst cnt">카운터 ${i.cnt}</span>`;return s}
++function bTuck(i){const a=(i.att||[]).concat(Object.values(G.I).filter(x=>x.host===i.id&&!(i.att||[]).includes(x.id)).map(x=>x.id));
++  return a.length?`<div class="btuck">${a.map(x=>`<div class="btc ${C[G.I[x].cid].enc?'enc':'mine'}">${slot(x,{noTok:true})}</div>`).join('')}</div>`:''}
++function bRow(iid,info){const i=G.I[iid];const land=C[i.cid].land;
++  return `<div class="brow ${land?'land':''}"><div class="bth">${slot(iid,{noTok:true})}${bTuck(i)}</div><div class="binf"><div class="brn">${esc(nm(i.cid,i.side))}${info.intent||''}</div>${info.bar||''}<div class="bsts">${info.sts||''}${bSts(i)}</div></div></div>`}
++function gameB(){
++  const k=G.view;const p=G.P[k];const h=HEROES[p.hid];const vm=meta(vcid());const tgt=schTarget();const vi=G.I[G.vill.iid];
++  const sm=meta(scid());const sideAcc=G.sides.filter(i=>meta(G.I[i].cid).accel).length;const add=(sm.accel??0)*N()+G.accel+sideAcc;
++  const crisis=G.sides.some(i=>meta(G.I[i].cid).crisis);
++  let banners='';
++  if(G.vill.hp<=0&&vm.hp)banners+=`<div class="banner"><b>빌런 스테이지 ${ROMAN[G.vill.idx+(G.cfg.expert?1:0)]} 격파!</b><button class="btn go" data-act="vAdvance">${G.vill.idx+1<G.vill.stages.length?'다음 빌런 스테이지로':'승리 처리'}</button></div>`;
++  if(tgt!=null&&G.sch.threat>=tgt)banners+=`<div class="banner"><b>음모 완료 — 위협 ${G.sch.threat}/${tgt}</b><button class="btn v" data-act="sAdvance">${G.sch.idx+1<G.sch.stages.length?'다음 음모 스테이지로':'패배 처리'}</button></div>`;
++  if(p.hp<=0&&!p.elim)banners+=`<div class="banner"><b>${esc(h.name)}의 생명력이 0이 됐어요</b><button class="btn go" data-act="elim" data-k="${k}">탈락 처리</button></div>`;
++  const al=p.play.filter(x=>(cdOf(G.I[x].cid)||{}).type==='동료');const lim=allyLimit(k);
++  const allies=al.map(a=>{const ai=G.I[a];const mx=meta(ai.cid).hp||0;return bRow(a,{bar:bBar(mx-(ai.dmg||0),mx,'hph')})}).join('');
++  const eng=p.engaged.map(m=>{const mi=G.I[m];const e=em(m);return bRow(m,{intent:e.atk!=null?`<span class="bint">${SWD}${e.atk}</span>`:'',bar:bBar((e.hp||0)-(mi.dmg||0),e.hp||0,'hpe')})}).join('');
++  const sides=G.sides.map(x=>{const xi=G.I[x];const m=meta(xi.cid);return bRow(x,{bar:`<div class="bthr">${SCH}<b>${xi.thr||0}</b><small>위협</small></div>`,sts:(m.crisis?'<span class="bst cri">위기</span>':'')+(m.accel?'<span class="bst acc">가속</span>':'')+(m.hazard?'<span class="bst haz">수령</span>':'')})}).join('');
++  const lmb=G.limbo.length?`<div class="blimbo"><span class="cap">공개된 카드</span>${rowOf(G.limbo,'',{down:false})}</div>`:'';
++  const hero=G.I[p.id];
++  return `
++  <div id="bstage" class="${G.P.length>1?'tabs':''}">
++  <header class="bbar">
++    <button class="bmenu" data-act="menu" aria-label="메뉴">☰</button>
++    <span class="bhn">${esc(h.name)}</span><span class="brnd"><b>${G.round}</b>R</span><span class="bphs ${G.phase}">${G.phase==='player'?'플레이어':'빌런'} 페이즈</span>
++    <button class="bsch" data-act="card" data-i="${G.sch.iid}"><span class="bsct">${esc(nm(scid(),G.I[G.sch.iid].side))}</span><span class="bscv">${G.sch.threat}<small>/${tgt??'?'}</small></span><span class="bsca">다음 +${add}</span>${crisis?'<span class="bscc">위기 · 저지 불가</span>':''}</button>
++    <span class="sp"></span>
++    <button class="btn sm bundo" data-act="undo" ${hist.length?'':'disabled'}>되돌리기</button>
++    ${G.phase==='player'?`<button class="btn bend" data-act="endPlayer">페이즈 종료</button>`:`<button class="btn v" data-act="vwOpen">진행 화면</button>`}
++  </header>
++  ${G.P.length>1?`<nav class="btabs">${G.P.map((q,x)=>`<button class="chip ${x===k?'on':''}" data-act="view" data-k="${x}">${esc(HEROES[q.hid].name)}${q.elim?' · 탈락':''}</button>`).join('')}</nav>`:''}
++  ${banners?`<div class="bbanners">${banners}</div>`:''}
++  <div class="bcolL"><span class="cap">동료 ${al.length}/${lim}</span>${allies||'<div class="bnone">동료 없음</div>'}</div>
++  <div class="bbig bhero"><span class="bform ${p.form}">${p.form==='hero'?'히어로':'일상'}</span>
++    <div class="bcard">${slot(p.id,{noTok:true})}<button class="bflip" data-act="form" data-k="${k}" aria-label="${p.form==='hero'?'일상으로 변신':'히어로로 변신'}" ${G.formUsed[k]?'data-used="1"':''}>${FLIP}</button></div>
++    ${bBar(p.hp,p.hpMax,'hph big')}<div class="bsts">${bSts(hero)}</div><div class="bacts">${basicBtns(k)}</div></div>
++  <div class="bbig bvil"><div class="bintent"><span class="bint">${SWD}${vAtk()}<small>+강화 1장</small></span><span class="bint">${SCH}${vSch()}</span></div>
++    <div class="bcard">${slot(G.vill.iid,{noTok:true})}${G.vill.attach.length?`<div class="btuck">${G.vill.attach.map(x=>`<div class="btc enc">${slot(x,{noTok:true})}</div>`).join('')}</div>`:''}</div>
++    ${bBar(G.vill.hp,vm.hp?vMax():0,'hpe big')}<div class="bsts">${bSts(vi)}</div></div>
++  <div class="bcolR"><span class="cap">교전 중인 적 ${p.engaged.length} · 부가 음모 ${G.sides.length}</span>${eng}${sides}${(!eng&&!sides)?'<div class="bnone">없음</div>':''}${lmb}</div>
++  <div class="bups">${upRow(k)}</div>
++  <div class="bpiles bpl">${pile(p.deck,'p','pDeck','플레이어 덱')}${pile(p.discard,'p','pDiscard','버린 카드 더미',true)}${p.pend.length?pile(p.pend,'e','pendInfo','받은 조우 카드'):''}${p.aside.length?pile(p.aside,'e','nemInfo','숙적 세트'):''}</div>
++  <div class="bpiles bpr">${pile(G.enc.discard,'e','encDiscard','버린 조우 카드 더미',true)}${pile(G.enc.deck,'e','encDeck','조우 덱')}</div>
++  ${handFan(p)}
++  </div>`}
++
+ function basicBtns(k){const p=G.P[k];const m=meta(HEROES[p.hid].identity);const ex=G.I[p.id].ex;
+   const b=p.form==='hero'?[['atk','기본 공격',heroStat(k,'atk'),'go'],['thw','기본 저지',heroStat(k,'thw'),'blue']]:[['rec','기본 회복',m.rec,'']];
+   return `<div class="btns">${b.map(([t,l,v,c])=>`<button class="btn sm ${c}" data-act="basic" data-k="${k}" data-t="${t}" ${ex||p.elim?'disabled':''}>${l} ${v??'?'}</button>`).join('')}</div>${ex?'<span class="sub">아이덴티티 카드가 소진돼 있어요</span>':''}${idActs(k)}`}
+@@ -3979,7 +4082,7 @@
+   document.addEventListener('touchend',end);document.addEventListener('touchcancel',end)})();
+ /* 폰은 세로 고정 */
+ (()=>{const phone=()=>Math.min(screen.width,screen.height)<600;
+-  try{if(phone()&&screen.orientation&&screen.orientation.lock)screen.orientation.lock('portrait').catch(()=>{})}catch(e){}})();
++  try{if(phone()&&screen.orientation&&screen.orientation.lock)screen.orientation.lock('landscape').catch(()=>{})}catch(e){}})();
+ /* ---------- 카드 이동 애니메이션 · 끌어서 내기 · 빌런 체력 고정 ---------- */
+ const RM=()=>matchMedia('(prefers-reduced-motion: reduce)').matches;
+ function animSnap(){const m={};document.querySelectorAll('#app .slot[data-i]').forEach(el=>{const r=el.getBoundingClientRect();if(!r.width)return;m[el.dataset.i]={r,html:el.innerHTML,hand:!!el.closest('.fan'),land:el.classList.contains('land')}});

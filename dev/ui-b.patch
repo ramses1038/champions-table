@@ -1,5 +1,5 @@
 --- work/app/champions-table.before-ui.html	2026-11-02 16:19:05.039783002 +0900
-+++ champions-table.html	2026-11-02 16:28:43.981937722 +0900
++++ champions-table.html	2026-11-02 16:32:11.495302886 +0900
 @@ -9,7 +9,7 @@
    --blue:#3a6db5; --blue-l:#93b6e2; --navy:#16285a; --green:#2f9e4f; --purple:#7442a0;
    --paper:#f8f1e4; --ink:#1a1c29; --muted:#5b5e6e; --white:#ffffff;
@@ -18,7 +18,7 @@
    #rotateMsg{display:grid;position:fixed;inset:0;z-index:999;place-items:center;background:#16233f;color:#fff;font:800 18px var(--f-body);text-align:center}
    #rotateMsg b{display:block;font-size:56px;color:var(--yel);animation:rot 1.6s ease-in-out infinite}
    @keyframes rot{50%{transform:rotate(-90deg)}}
-@@ -768,6 +768,68 @@
+@@ -768,6 +768,84 @@
  .ccode{position:absolute;right:4px;bottom:3px;font:400 10px var(--f-num);opacity:.7;letter-spacing:.5px}
  .catinfo .lead{font-size:13px}
  @media (prefers-reduced-motion:reduce){*{transition:none!important;animation:none!important}}
@@ -74,6 +74,22 @@
 +.bpiles .slot{--cw:clamp(40px,4.4vw,54px)}
 +.blimbo .slot{--cw:44px}.bnone{font:900 10px var(--f-body);color:#6f82ab;padding:4px}
 +#bstage .hlab{display:none}
++@media (max-height:520px){
++ #bstage{--top:50px;--bot:calc(var(--hcw)*1.4*.62 + 8px);--bcw:min(calc((100vw - 2*var(--colw) - 120px)/2),calc((100vh - var(--top) - var(--bot) - 34px)/1.397))}
++ #bstage.tabs{--top:78px}
++ .bbar{height:42px}.bhn{font-size:14px}.bphs{display:none}
++ .bbig{top:calc(var(--top) + 20px)}
++ .bbig .bhp.big{position:absolute;top:calc(var(--bcw)*1.397 - 22px);left:4%;width:76%;margin:0;z-index:3}
++ .bbig .bsts{position:absolute;top:28px;left:6px;z-index:3;flex-direction:column}
++ .bhero .bacts{position:absolute;left:calc(100% + 10px);top:30%;flex-direction:column;width:auto;margin:0}
++ .bhero .bacts .btn{font-size:11px;padding:3px 7px}
++ .bintent{top:-24px}
++ .bups{left:4px;width:var(--colw);max-width:none;bottom:calc(var(--bot) + 4px)}
++ .bups .trow .urow .slot{--cw:34px}
++ .bcolL{bottom:calc(var(--bot) + 64px)}
++ .brow{padding:3px}.bth>.slot{--cw:64px}
++}
++
 +#bstage ~ .hand2,.hand2{}
 +body.ingame #bstage .fan,#bstage .fan{width:min(56vw,620px)}
 +#bstage .fc{--ov:max(calc(var(--hcw)*-.62),min(-14px,calc((min(56vw,620px) - var(--n)*var(--hcw))/var(--n1))));transform:translateY(calc(46% + var(--y))) rotate(var(--r))}
@@ -87,7 +103,7 @@
  </style>
  
  <div class="app" id="app"></div>
-@@ -2408,7 +2470,7 @@
+@@ -2408,7 +2486,7 @@
    else if(VIEW==='lib')app.innerHTML=libHTML();
    else if(VIEW==='stats')app.innerHTML=statsHTML();
    else if(VIEW==='decks')app.innerHTML=decksHTML();
@@ -96,7 +112,7 @@
    else{VIEW='start';app.innerHTML=startHTML()}
    document.body.classList.toggle('ingame',VIEW==='game'&&!!G);
    $('#overRoot').innerHTML=(VIEW==='game'&&G&&G.over)?overHTML():'';
-@@ -2518,6 +2580,57 @@
+@@ -2518,6 +2596,57 @@
    ${handFan(p)}`;
  }
  
@@ -154,7 +170,7 @@
  function basicBtns(k){const p=G.P[k];const m=meta(HEROES[p.hid].identity);const ex=G.I[p.id].ex;
    const b=p.form==='hero'?[['atk','기본 공격',heroStat(k,'atk'),'go'],['thw','기본 저지',heroStat(k,'thw'),'blue']]:[['rec','기본 회복',m.rec,'']];
    return `<div class="btns">${b.map(([t,l,v,c])=>`<button class="btn sm ${c}" data-act="basic" data-k="${k}" data-t="${t}" ${ex||p.elim?'disabled':''}>${l} ${v??'?'}</button>`).join('')}</div>${ex?'<span class="sub">아이덴티티 카드가 소진돼 있어요</span>':''}${idActs(k)}`}
-@@ -3979,7 +4092,7 @@
+@@ -3979,7 +4108,7 @@
    document.addEventListener('touchend',end);document.addEventListener('touchcancel',end)})();
  /* 폰은 세로 고정 */
  (()=>{const phone=()=>Math.min(screen.width,screen.height)<600;

@@ -1,5 +1,5 @@
 --- work/app/champions-table.before-ui.html	2026-11-02 16:19:05.039783002 +0900
-+++ champions-table.html	2026-11-02 16:36:50.232135430 +0900
++++ champions-table.html	2026-11-02 16:39:32.191994021 +0900
 @@ -9,7 +9,7 @@
    --blue:#3a6db5; --blue-l:#93b6e2; --navy:#16285a; --green:#2f9e4f; --purple:#7442a0;
    --paper:#f8f1e4; --ink:#1a1c29; --muted:#5b5e6e; --white:#ffffff;
@@ -37,7 +37,7 @@
 +.bsct{font:13px var(--f-disp);color:#e7d7ff;white-space:nowrap;overflow:hidden;text-overflow:ellipsis;max-width:14vw}.bscv{font:24px var(--f-num);letter-spacing:.05em}.bscv small{font-size:16px;color:#c9a9f3}
 +.bsca{font:900 11px var(--f-body);background:#8f5ccc;border-radius:9px;padding:1px 7px;white-space:nowrap}.bscc{font:900 11px var(--f-body);background:#e05d2a;border-radius:9px;padding:1px 7px;white-space:nowrap}
 +.bbar .btn{white-space:nowrap}.bend{background:linear-gradient(#e2473b,#a91d14)!important;color:#fff!important;border-color:#fff!important}
-+.btabs{position:absolute;left:10px;top:50px;display:flex;gap:6px;z-index:19}.btabs .chip.on{background:var(--yel);color:#222}
++.btabs{position:absolute;left:10px;top:50px;display:flex;gap:6px;z-index:19}.btabs .chip{background:#ffffff1c;color:#fff;border:1.5px solid #ffffff55}.btabs .chip.on{background:var(--yel);color:#222;border-color:var(--yel)}
 +.bbanners{position:absolute;left:50%;top:calc(var(--top) + 4px);transform:translateX(-50%);z-index:25;display:flex;flex-direction:column;gap:6px}
 +.bcolL,.bcolR{position:absolute;top:var(--top);bottom:var(--bot);width:var(--colw);display:flex;flex-direction:column;gap:7px;overflow-y:auto;overflow-x:visible;padding:2px 6px 6px}
 +.bcolL{left:4px}.bcolR{right:4px}
@@ -158,7 +158,7 @@
 +  <div id="bstage" class="${G.P.length>1?'tabs':''}">
 +  <header class="bbar">
 +    <button class="bmenu" data-act="menu" aria-label="메뉴">☰</button>
-+    <span class="bhn">${esc(h.name)}</span><span class="brnd"><b>${G.round}</b>R</span><span class="bphs ${G.phase}">${G.phase==='player'?'플레이어':'빌런'} 페이즈</span>
++    <span class="bhn">${esc(h.name)}</span><span class="brnd"><b>${G.round}</b>R</span>
 +    <button class="bsch" data-act="card" data-i="${G.sch.iid}"><span class="bsct">${esc(nm(scid(),G.I[G.sch.iid].side))}</span><span class="bscv">${G.sch.threat}<small>/${tgt??'?'}</small></span><span class="bsca">다음 +${add}</span>${crisis?'<span class="bscc">위기 · 저지 불가</span>':''}</button>
 +    <span class="sp"></span>
 +    <button class="btn sm bundo" data-act="undo" ${hist.length?'':'disabled'}>되돌리기</button>

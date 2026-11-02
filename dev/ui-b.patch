@@ -1,5 +1,5 @@
 --- work/app/champions-table.before-ui.html	2026-11-02 16:19:05.039783002 +0900
-+++ champions-table.html	2026-11-02 16:32:11.495302886 +0900
++++ champions-table.html	2026-11-02 16:36:50.232135430 +0900
 @@ -9,7 +9,7 @@
    --blue:#3a6db5; --blue-l:#93b6e2; --navy:#16285a; --green:#2f9e4f; --purple:#7442a0;
    --paper:#f8f1e4; --ink:#1a1c29; --muted:#5b5e6e; --white:#ffffff;
@@ -18,7 +18,7 @@
    #rotateMsg{display:grid;position:fixed;inset:0;z-index:999;place-items:center;background:#16233f;color:#fff;font:800 18px var(--f-body);text-align:center}
    #rotateMsg b{display:block;font-size:56px;color:var(--yel);animation:rot 1.6s ease-in-out infinite}
    @keyframes rot{50%{transform:rotate(-90deg)}}
-@@ -768,6 +768,84 @@
+@@ -768,6 +768,97 @@
  .ccode{position:absolute;right:4px;bottom:3px;font:400 10px var(--f-num);opacity:.7;letter-spacing:.5px}
  .catinfo .lead{font-size:13px}
  @media (prefers-reduced-motion:reduce){*{transition:none!important;animation:none!important}}
@@ -74,6 +74,19 @@
 +.bpiles .slot{--cw:clamp(40px,4.4vw,54px)}
 +.blimbo .slot{--cw:44px}.bnone{font:900 10px var(--f-body);color:#6f82ab;padding:4px}
 +#bstage .hlab{display:none}
++/* 사용한(소진) 카드: 가로로 돌리지 않고 흑백 */
++#bstage .slot.ex:not(.land){width:var(--cw);aspect-ratio:63/88}
++#bstage .slot.ex:not(.land) .face{inset:0;width:auto;height:auto;transform:none}
++#bstage .bth>.slot.ex:not(.land){aspect-ratio:1.53}
++#bstage .bth>.slot.ex:not(.land) .face{inset:0}
++#bstage .slot.ex .face{filter:grayscale(1) brightness(.78)}
++#bstage .slot.ex.land .face{transform:none}
++#bstage .bth>.slot.ex::after{font-size:8px;left:2px;bottom:2px;padding:0 3px}
++/* 히어로 머리줄: 형태 표시 + 상태 */
++.bhead{position:absolute;left:0;top:-22px;display:flex;gap:4px;align-items:center;z-index:3}
++.bhead .bform{position:static}
++.bhead .bst{font-size:10px;line-height:16px;border:1.5px solid #fff}
++
 +@media (max-height:520px){
 + #bstage{--top:50px;--bot:calc(var(--hcw)*1.4*.62 + 8px);--bcw:min(calc((100vw - 2*var(--colw) - 120px)/2),calc((100vh - var(--top) - var(--bot) - 34px)/1.397))}
 + #bstage.tabs{--top:78px}
@@ -81,12 +94,12 @@
 + .bbig{top:calc(var(--top) + 20px)}
 + .bbig .bhp.big{position:absolute;top:calc(var(--bcw)*1.397 - 22px);left:4%;width:76%;margin:0;z-index:3}
 + .bbig .bsts{position:absolute;top:28px;left:6px;z-index:3;flex-direction:column}
-+ .bhero .bacts{position:absolute;left:calc(100% + 10px);top:30%;flex-direction:column;width:auto;margin:0}
++ .bhero .bacts{position:absolute;left:0;right:0;top:calc(var(--bcw)*1.397 - 52px);margin:0;z-index:3}
 + .bhero .bacts .btn{font-size:11px;padding:3px 7px}
 + .bintent{top:-24px}
 + .bups{left:4px;width:var(--colw);max-width:none;bottom:calc(var(--bot) + 4px)}
 + .bups .trow .urow .slot{--cw:34px}
-+ .bcolL{bottom:calc(var(--bot) + 64px)}
++ .bcolL,.bcolR{bottom:auto;max-height:calc(2*68px + 7px + 20px)}
 + .brow{padding:3px}.bth>.slot{--cw:64px}
 +}
 +
@@ -103,7 +116,7 @@
  </style>
  
  <div class="app" id="app"></div>
-@@ -2408,7 +2486,7 @@
+@@ -2408,7 +2499,7 @@
    else if(VIEW==='lib')app.innerHTML=libHTML();
    else if(VIEW==='stats')app.innerHTML=statsHTML();
    else if(VIEW==='decks')app.innerHTML=decksHTML();
@@ -112,7 +125,7 @@
    else{VIEW='start';app.innerHTML=startHTML()}
    document.body.classList.toggle('ingame',VIEW==='game'&&!!G);
    $('#overRoot').innerHTML=(VIEW==='game'&&G&&G.over)?overHTML():'';
-@@ -2518,6 +2596,57 @@
+@@ -2518,6 +2609,57 @@
    ${handFan(p)}`;
  }
  
@@ -154,9 +167,9 @@
 +  ${G.P.length>1?`<nav class="btabs">${G.P.map((q,x)=>`<button class="chip ${x===k?'on':''}" data-act="view" data-k="${x}">${esc(HEROES[q.hid].name)}${q.elim?' · 탈락':''}</button>`).join('')}</nav>`:''}
 +  ${banners?`<div class="bbanners">${banners}</div>`:''}
 +  <div class="bcolL"><span class="cap">동료 ${al.length}/${lim}</span>${allies||'<div class="bnone">동료 없음</div>'}</div>
-+  <div class="bbig bhero"><span class="bform ${p.form}">${p.form==='hero'?'히어로':'일상'}</span>
++  <div class="bbig bhero"><div class="bhead"><span class="bform ${p.form}">${p.form==='hero'?'히어로':'일상'}</span>${bSts(hero)}</div>
 +    <div class="bcard">${slot(p.id,{noTok:true})}<button class="bflip" data-act="form" data-k="${k}" aria-label="${p.form==='hero'?'일상으로 변신':'히어로로 변신'}" ${G.formUsed[k]?'data-used="1"':''}>${FLIP}</button></div>
-+    ${bBar(p.hp,p.hpMax,'hph big')}<div class="bsts">${bSts(hero)}</div><div class="bacts">${basicBtns(k)}</div></div>
++    ${bBar(p.hp,p.hpMax,'hph big')}<div class="bacts">${basicBtns(k)}</div></div>
 +  <div class="bbig bvil"><div class="bintent"><span class="bint">${SWD}${vAtk()}<small>+강화 1장</small></span><span class="bint">${SCH}${vSch()}</span></div>
 +    <div class="bcard">${slot(G.vill.iid,{noTok:true})}${G.vill.attach.length?`<div class="btuck">${G.vill.attach.map(x=>`<div class="btc enc">${slot(x,{noTok:true})}</div>`).join('')}</div>`:''}</div>
 +    ${bBar(G.vill.hp,vm.hp?vMax():0,'hpe big')}<div class="bsts">${bSts(vi)}</div></div>
@@ -170,7 +183,7 @@
  function basicBtns(k){const p=G.P[k];const m=meta(HEROES[p.hid].identity);const ex=G.I[p.id].ex;
    const b=p.form==='hero'?[['atk','기본 공격',heroStat(k,'atk'),'go'],['thw','기본 저지',heroStat(k,'thw'),'blue']]:[['rec','기본 회복',m.rec,'']];
    return `<div class="btns">${b.map(([t,l,v,c])=>`<button class="btn sm ${c}" data-act="basic" data-k="${k}" data-t="${t}" ${ex||p.elim?'disabled':''}>${l} ${v??'?'}</button>`).join('')}</div>${ex?'<span class="sub">아이덴티티 카드가 소진돼 있어요</span>':''}${idActs(k)}`}
-@@ -3979,7 +4108,7 @@
+@@ -3979,7 +4121,7 @@
    document.addEventListener('touchend',end);document.addEventListener('touchcancel',end)})();
  /* 폰은 세로 고정 */
  (()=>{const phone=()=>Math.min(screen.width,screen.height)<600;
